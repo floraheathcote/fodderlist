@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to pins_path, class: 'btn btn-default' do %>
+    All Pins
+  <% end %>
+  <% if @pin.user == current_user%>
+  <%= link_to edit_pin_path(@pin), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <% end %>
+  <h1>Show pin</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Description:</dt>
+  <dd><%= @pin.description %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @pin.user.name %></dd>
+  <%= pin_image(@pin)%>
+
+</dl>

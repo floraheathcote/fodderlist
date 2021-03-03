@@ -1,0 +1,12 @@
+<% @pins.each do |pin| %>
+    <%= link_to pin_image(pin), pin %><br/><%= pin.description %><br/><%= pin.user.name %><br/>
+    <% if pin.user == current_user %>
+      <%= link_to "Edit", edit_pin_path(pin) %>
+      <%= link_to "Delete", pin, method: :delete, data: { confirm: "Are you sure?" } %><br/><br/>
+    <% end %>
+
+<% end %>
+
+<br/><br/>
+
+<%= link_to "Add Pin", new_pin_path %>

@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :notifications, as: :recipient
   has_many :services
+  has_many :pins, -> { order(created_at: :desc) }, dependent: :destroy
 end
