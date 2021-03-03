@@ -4,7 +4,7 @@ module PinsHelper
         if pin.pin_image.attached?
             image_tag pin.pin_image.variant(resize_to_limit: [150, nil])
         else
-            image_tag "placeholder.png"
+            image_tag "placeholder.jpg"
         end
     end
 
