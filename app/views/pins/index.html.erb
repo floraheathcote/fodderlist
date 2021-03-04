@@ -1,20 +1,14 @@
 
-
-<div class="row" data-masonry='{"percentPosition": true }' style="position: relative; ">
-
-
-
-
+<div class="card-columns">
         <% @pins.each do |pin| %>
-                <div class="grid-item">
-                    <%= link_to pin_image(pin), pin %>
-                    
+                <div class="card">
+                        <%= image_tag pin.pin_image, class: 'card-img', width: 300 %>
                 </div>
-        <% end %>
+        <% end %>        
+</div>
+<br><br><br><br>
 
 
-
-    
-  </div>
 
   <%= link_to "Add Pin", new_pin_path %>
+  
