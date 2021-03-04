@@ -3,6 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+//= require masonry/jquery.masonry
 
 require("@rails/ujs").start()
 require("turbolinks").start()
@@ -19,3 +20,4 @@ $(document).on("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
 })
+
