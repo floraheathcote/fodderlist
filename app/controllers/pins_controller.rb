@@ -4,8 +4,12 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
+    @user = current_user
+    @pins = @user.pins
+  end
+    
+  def feed
     @pins = Pin.all
-    @pin = Pin.first
   end
 
   # GET /pins/1 or /pins/1.json

@@ -1,0 +1,13 @@
+
+
+<div class="row">
+        <div class="card-columns">
+                <% pins.each do |pin| %>
+                        <div class="card">
+                                <%= link_to ( image_tag pin.pin_image, class: 'card-img', width: 300 ), pin %>
+                        </div>
+                <% end %>        
+        </div>
+        <br><br><br><br>
+ </div>
+
