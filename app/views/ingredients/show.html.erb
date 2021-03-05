@@ -13,6 +13,8 @@
   <dd><%= @ingredient.name %></dd>
 
   <dt>Ingredient category:</dt>
-  <dd><%= @ingredient.ingredient_category %></dd>
+  <dd><%= @ingredient.ingredient_category.name %></dd>
+
+  <%= main_image(@ingredient) %>
 
 </dl>

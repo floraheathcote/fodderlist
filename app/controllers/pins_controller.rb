@@ -1,6 +1,6 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
 
   # GET /pins or /pins.json
   def index

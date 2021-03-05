@@ -7,9 +7,11 @@
   </div>
 
   <div class="col-sm-6 text-right">
-  <%= link_to new_ingredient_path, class: 'btn btn-primary' do %>
+  <%= link_to "Edit Categories", ingredient_categories_path, class: 'btn btn-primary' %>
+
+    <%= link_to new_ingredient_path, class: 'btn btn-primary' do %>
     Add New Ingredient
-  <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -33,7 +35,7 @@
             <td><%= link_to ingredient.name, ingredient %></td>
           
 
-                      <td><%= ingredient.ingredient_category %></td>
+                      <td><%= ingredient.ingredient_category.name %></td>
           
           
         <% end %>

@@ -23,4 +23,14 @@ module ApplicationHelper
       "#{base_url}/00000000000000000000000000000000#{base_url_params}"
     end
   end
+
+  def main_image(model)
+    if model.main_image.attached?
+        image_tag model.main_image.variant(resize_to_limit: [150, nil])
+    else
+        image_tag "placeholder.jpg"
+    end
+  end   
+
+
 end
