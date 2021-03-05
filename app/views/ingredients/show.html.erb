@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to ingredients_path, class: 'btn btn-default' do %>
+    All Ingredients
+  <% end %>
+  <%= link_to edit_ingredient_path(@ingredient), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show ingredient</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @ingredient.name %></dd>
+
+  <dt>Ingredient category:</dt>
+  <dd><%= @ingredient.ingredient_category %></dd>
+
+</dl>

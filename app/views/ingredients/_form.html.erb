@@ -1,0 +1,39 @@
+<%= form_with(model: ingredient, local: true) do |form| %>
+  <% if ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ingredient_category_id %>
+    <%= form.text_field :ingredient_category_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if ingredient.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if ingredient.persisted? %>
+      <%= link_to "Cancel", ingredient, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", ingredients_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

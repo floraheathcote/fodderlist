@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :ingredients
+  resources :ingredient_categories
   resources :pins
 
   get '/feed', to: 'pins#feed'
