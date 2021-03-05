@@ -1,0 +1,49 @@
+<%= form_with(model: recipe_ingredient, local: true) do |form| %>
+  <% if recipe_ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
+
+      <ul>
+      <% recipe_ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :recipe_id %>
+    <%= form.text_field :recipe_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ingredient_id %>
+    <%= form.text_field :ingredient_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :default_amount %>
+    <%= form.text_field :default_amount, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :unit %>
+    <%= form.text_field :unit, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if recipe_ingredient.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', recipe_ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if recipe_ingredient.persisted? %>
+      <%= link_to "Cancel", recipe_ingredient, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", recipe_ingredients_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

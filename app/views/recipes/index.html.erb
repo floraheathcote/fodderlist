@@ -1,0 +1,51 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Recipes</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_recipe_path, class: 'btn btn-primary' do %>
+    Add New Recipe
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Name</th>
+    
+
+            <th>Meal type</th>
+            <th>Method</th>
+            <th>Default qty</th>
+            <th>Default unit</th>
+            <th>Notes</th>
+            
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <%= content_tag :tr, id: dom_id(recipe), class: dom_class(recipe) do %>
+          
+            <td><%= link_to recipe.name, recipe %></td>
+          
+
+                      <td><%= recipe.meal_type %></td>
+                      <td><%= recipe.method %></td>
+                      <td><%= recipe.default_qty %></td>
+                      <td><%= recipe.default_unit %></td>
+                      <td><%= recipe.notes %></td>
+          
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

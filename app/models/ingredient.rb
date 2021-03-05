@@ -1,10 +1,11 @@
 class Ingredient < ApplicationRecord
   belongs_to :ingredient_category
+  has_many :recipe_ingredients, dependent: :destroy
 
   has_one_attached :main_image
 
   validates :name, presence: true, uniqueness: true
-
+  validates :ingredient_category, presence: true
 
   validate :acceptable_image
 

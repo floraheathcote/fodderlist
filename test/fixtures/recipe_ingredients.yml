@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipe: one
+  ingredient: one
+  default_amount: 9.99
+  unit: MyString
+
+two:
+  recipe: two
+  ingredient: two
+  default_amount: 9.99
+  unit: MyString

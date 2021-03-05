@@ -1,0 +1,30 @@
+<div class="page-header">
+  <%= link_to recipes_path, class: 'btn btn-default' do %>
+    All Recipes
+  <% end %>
+  <%= link_to edit_recipe_path(@recipe), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show recipe</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @recipe.name %></dd>
+
+  <dt>Meal type:</dt>
+  <dd><%= @recipe.meal_type %></dd>
+
+  <dt>Method:</dt>
+  <dd><%= @recipe.method %></dd>
+
+  <dt>Default qty:</dt>
+  <dd><%= @recipe.default_qty %></dd>
+
+  <dt>Default unit:</dt>
+  <dd><%= @recipe.default_unit %></dd>
+
+  <dt>Notes:</dt>
+  <dd><%= @recipe.notes %></dd>
+
+</dl>
