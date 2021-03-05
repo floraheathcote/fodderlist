@@ -2,7 +2,10 @@
 
 <%= render 'imagegrid', pins: @pins %>
 
+<div class="center">
+        <%= will_paginate(@pins, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
 
-  
+
   
 <%# other card formats: https://getbootstrap.com/docs/4.0/components/card/#sizing. Also see card-column css in application.css.scss file %>
