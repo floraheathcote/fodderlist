@@ -79,3 +79,5 @@ gem 'whenever', require: false
 
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'bootstrap-will_paginate'
+
+gem "seed_dump"

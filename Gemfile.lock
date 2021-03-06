@@ -314,6 +314,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    seed_dump (3.3.1)
+      activerecord (>= 4)
+      activesupport (>= 4)
     selectize-rails (0.12.6)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -404,6 +407,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.5)
   redis (~> 4.2, >= 4.2.2)
   sass-rails (>= 6)
+  seed_dump
   selenium-webdriver
   sidekiq (~> 6.0, >= 6.0.3)
   sitemap_generator (~> 6.1, >= 6.1.2)
