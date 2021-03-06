@@ -12,6 +12,8 @@
   <dt>Name:</dt>
   <dd><%= @recipe.name %></dd>
 
+  <%= main_image(@recipe) %>
+
   <dt>Meal type:</dt>
   <dd><%= @recipe.meal_type %></dd>
 
@@ -28,3 +30,23 @@
   <dd><%= @recipe.notes %></dd>
 
 </dl>
+
+
+<h1>Recipe Ingredients</h1>
+
+  <ul class="list-group list-group-flush">
+    <% @recipe_ingredients.each do |recipe_ingredient| %>
+    
+      <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
+                                      <%= recipe_ingredient.default_amount %> 
+                                      <%= recipe_ingredient.unit %>    
+                                      <%= link_to "Edit", edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient) %>
+                                      <%= link_to "Remove", recipe_recipe_ingredient_path(recipe_ingredient) ,
+                                              method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
+                                      </td></li>
+
+    <% end %>
+
+  </ul>
+
+<%= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>     <br><br>

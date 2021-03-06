@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
+    @recipe_ingredients = @recipe.recipe_ingredients
   end
 
   # GET /recipes/new
@@ -64,6 +65,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :meal_type, :method, :default_qty, :default_unit, :notes)
+      params.require(:recipe).permit(:name, :meal_type, :method, :default_qty, :default_unit, :notes, :main_image)
     end
 end

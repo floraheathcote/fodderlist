@@ -1,9 +1,16 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :recipe_ingredients
-  resources :recipes
+  
+  resources :recipes do
+    resources :recipe_ingredients
+  end
+
   resources :ingredients
+  
+
+
+
   resources :ingredient_categories
   resources :pins
 

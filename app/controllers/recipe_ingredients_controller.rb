@@ -13,19 +13,24 @@ class RecipeIngredientsController < ApplicationController
   # GET /recipe_ingredients/new
   def new
     @recipe_ingredient = RecipeIngredient.new
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   # GET /recipe_ingredients/1/edit
   def edit
+    @recipe = Recipe.find(params[:recipe_id])
+
   end
 
   # POST /recipe_ingredients or /recipe_ingredients.json
   def create
-    @recipe_ingredient = RecipeIngredient.new(recipe_ingredient_params)
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_ingredient = @recipe.recipe_ingredients.new(recipe_ingredient_params)
+
 
     respond_to do |format|
       if @recipe_ingredient.save
-        format.html { redirect_to @recipe_ingredient, notice: "Recipe ingredient was successfully created." }
+        format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully created." }
         format.json { render :show, status: :created, location: @recipe_ingredient }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,10 +41,11 @@ class RecipeIngredientsController < ApplicationController
 
   # PATCH/PUT /recipe_ingredients/1 or /recipe_ingredients/1.json
   def update
+    @recipe = Recipe.find(params[:recipe_id])
     respond_to do |format|
       if @recipe_ingredient.update(recipe_ingredient_params)
-        format.html { redirect_to @recipe_ingredient, notice: "Recipe ingredient was successfully updated." }
-        format.json { render :show, status: :ok, location: @recipe_ingredient }
+        format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully updated." }
+        format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
@@ -49,9 +55,10 @@ class RecipeIngredientsController < ApplicationController
 
   # DELETE /recipe_ingredients/1 or /recipe_ingredients/1.json
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
     @recipe_ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to recipe_ingredients_url, notice: "Recipe ingredient was successfully destroyed." }
+      format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully destroyed." }
       format.json { head :no_content }
     end
   end
