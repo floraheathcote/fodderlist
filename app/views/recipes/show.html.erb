@@ -1,52 +1,24 @@
 <div class="page-header">
-  <%= link_to recipes_path, class: 'btn btn-default' do %>
-    All Recipes
-  <% end %>
-  <%= link_to edit_recipe_path(@recipe), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1>Show recipe</h1>
+  <%= link_to "All Recipes", recipes_path, class: 'btn btn-default' %>
+</div>
+<span>
+<br><br><br>
+<p>
+</P>
+</span>
+
+<div class="row">
+  <div class="col-sm-7">
+    <%= render 'method_card', recipe: @recipe %>
+  </div>
+  <br><br>
+  <div class="col-sm-5">
+    <%= render 'ingredients_card', recipe_ingredients: @recipe_ingredients %>
+    <br>
+    <%= render 'add_recipe_ingredient_card', recipe_ingredient: @new_recipe_ingredient, recipe: @recipe %>
+  </div> 
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @recipe.name %></dd>
-
-  <%= main_image(@recipe) %>
-
-  <dt>Meal type:</dt>
-  <dd><%= @recipe.meal_type %></dd>
-
-  <dt>Method:</dt>
-  <dd><%= @recipe.method %></dd>
-
-  <dt>Default qty:</dt>
-  <dd><%= @recipe.default_qty %></dd>
-
-  <dt>Default unit:</dt>
-  <dd><%= @recipe.default_unit %></dd>
-
-  <dt>Notes:</dt>
-  <dd><%= @recipe.notes %></dd>
-
-</dl>
 
 
-<h1>Recipe Ingredients</h1>
 
-  <ul class="list-group list-group-flush">
-    <% @recipe_ingredients.each do |recipe_ingredient| %>
-    
-      <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
-                                      <%= recipe_ingredient.default_amount %> 
-                                      <%= recipe_ingredient.unit %>    
-                                      <%= link_to "Edit", edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient) %>
-                                      <%= link_to "Remove", recipe_recipe_ingredient_path(recipe_ingredient) ,
-                                              method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
-                                      </td></li>
-
-    <% end %>
-
-  </ul>
-
-<%= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>     <br><br>
