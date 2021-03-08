@@ -1,9 +1,9 @@
 class RecipeIngredientsController < ApplicationController
-  before_action :set_recipe_ingredient, only: %i[ show edit update destroy ]
+  before_action :set_recipe_ingredient, only: %i[ show edit update ]
 
   # GET /recipe_ingredients or /recipe_ingredients.json
   def index
-    @recipe_ingredients = RecipeIngredient.all
+    @recipe_ingredients = RecipeIngredient.IngredientCategory.order(:ingredient_category.name)
   end
 
   # GET /recipe_ingredients/1 or /recipe_ingredients/1.json
@@ -14,6 +14,7 @@ class RecipeIngredientsController < ApplicationController
   def new
     @recipe_ingredient = RecipeIngredient.new
     @recipe = Recipe.find(params[:recipe_id])
+    @recipe_ingredient.build_ingredient
   end
 
   # GET /recipe_ingredients/1/edit
@@ -55,6 +56,7 @@ class RecipeIngredientsController < ApplicationController
 
   # DELETE /recipe_ingredients/1 or /recipe_ingredients/1.json
   def destroy
+    @recipe_ingredient = RecipeIngredient.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_ingredient.destroy
     respond_to do |format|
@@ -71,6 +73,9 @@ class RecipeIngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_ingredient_params
-      params.require(:recipe_ingredient).permit(:recipe_id, :ingredient_id, :default_amount, :unit)
+      params.require(:recipe_ingredient).permit(:recipe_id, :ingredient_id, :default_amount, :unit, ingredient_attributes: [:id, :name, :ingredient_category], ingredient_category_attributes: [:name, :id])
+              
     end
 end
+
+

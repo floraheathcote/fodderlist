@@ -12,9 +12,9 @@
   <% end %>
 
     <div class="form-group">
-    <%= form.label :Ingredient %>
+    <h5><%= form.label :Ingredient, "Select ingredient from ingredient library:" %></h5>
     <div class="dropdown">
-      <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.all, :id, :name) %>
+      <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
     </div>
   </div>
 

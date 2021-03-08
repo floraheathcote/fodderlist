@@ -1,16 +1,15 @@
 <div class="page-header">
-  <%= link_to "All Recipes", recipes_path, class: 'btn btn-default' %>
+  <%= link_to "<< All Recipes", recipes_path, class: 'btn btn-default' %>
 </div>
-<span>
-<br><br><br>
-<p>
-</P>
-</span>
 
 <div class="row">
   <div class="col-sm-7">
     <%= render 'method_card', recipe: @recipe %>
+  <br>
+    
   </div>
+
+
   <br><br>
   <div class="col-sm-5">
     <%= render 'ingredients_card', recipe_ingredients: @recipe_ingredients %>

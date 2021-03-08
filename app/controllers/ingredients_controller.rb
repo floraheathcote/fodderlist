@@ -1,9 +1,10 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
 
+
   # GET /ingredients or /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.order(:name)
   end
 
   # GET /ingredients/1 or /ingredients/1.json
@@ -13,6 +14,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new
   def new
     @ingredient = Ingredient.new
+    @ingredient.build_ingredient_category
   end
 
   # GET /ingredients/1/edit
@@ -64,6 +66,6 @@ class IngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_category_id, :main_image)
+      params.require(:ingredient).permit(:name, :ingredient_category_id, :main_image, ingredient_category_attributes: [:name, :id])
     end
 end

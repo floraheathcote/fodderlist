@@ -1,5 +1,5 @@
 User.create!([
-  {id: 1, email: "flora.heathcote@gmail.com", encrypted_password: "$2a$12$fkx1ia3QJ86bM1HFW0divOshke6YK.tMbxGj2dkGso5jXZZmGhIuC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, first_name: "Flora", last_name: "Heathcote", announcements_last_read_at: nil, admin: false, created_at: "2021-03-05 21:15:49", updated_at: "2021-03-05 21:15:49"}
+  {id: 1, email: "flora.heathcote@gmail.com", encrypted_password: "$2a$12$fkx1ia3QJ86bM1HFW0divOshke6YK.tMbxGj2dkGso5jXZZmGhIuC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, first_name: "Flora", last_name: "Heathcote", announcements_last_read_at: nil, admin: true, created_at: "2021-03-05 21:15:49", updated_at: "2021-03-05 21:15:49"}
 ])
 IngredientCategory.create!([
   {id: 1, name: "Meat", created_at: "2021-03-05 21:40:34", updated_at: "2021-03-05 21:40:34"},

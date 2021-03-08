@@ -1,13 +1,18 @@
 class Ingredient < ApplicationRecord
-  belongs_to :ingredient_category
+  belongs_to :ingredient_category, inverse_of: :ingredients
   has_many :recipe_ingredients, dependent: :destroy
+  accepts_nested_attributes_for :ingredient_category
 
   has_one_attached :main_image
 
-  validates :name, presence: true, uniqueness: true
-  validates :ingredient_category, presence: true
+  # validates :name, presence: true, uniqueness: { case_sensitive: false }
+  # validates :ingredient_category, presence: true
 
   validate :acceptable_image
+
+  before_save do 
+    self.name = name.downcase
+  end
 
 
 private

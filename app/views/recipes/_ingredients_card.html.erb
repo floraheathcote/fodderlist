@@ -10,12 +10,12 @@
                                               <%= recipe_ingredient.default_amount %> 
                                               <%= recipe_ingredient.unit %>    
                                               <%= link_to "Edit", edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient) %>
-                                              <%= link_to "Remove", recipe_recipe_ingredient_path(recipe_ingredient) ,
+                                              <%= link_to "Remove", recipe_recipe_ingredient_path(@recipe, recipe_ingredient) ,
                                                       method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
                                               </td></li>
 
             <% end %>
           </ul></p>
-        <%= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>
+        <%#= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>
       </div>
     </div>
