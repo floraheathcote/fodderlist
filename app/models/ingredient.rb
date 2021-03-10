@@ -10,9 +10,9 @@ class Ingredient < ApplicationRecord
 
   validate :acceptable_image
 
-  before_save do 
-    self.name = name.downcase
-  end
+  # before_save do 
+  #   self.name = name.downcase
+  # end
 
 
 private

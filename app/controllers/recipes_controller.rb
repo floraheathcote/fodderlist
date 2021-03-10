@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe_ingredients = @recipe.recipe_ingredients
+    @recipe_ingredient_groups = @recipe.recipe_ingredient_groups
+    @new_recipe_ingredient_group = RecipeIngredientGroup.new
     @new_recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
   end
@@ -25,7 +27,9 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
+
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
 
     respond_to do |format|
       if @recipe.save

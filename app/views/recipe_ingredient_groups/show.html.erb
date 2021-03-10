@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to recipe_recipe_ingredient_groups_path, class: 'btn btn-default' do %>
+    All Recipe_ingredient_groups
+  <% end %>
+  <%= link_to edit_recipe_recipe_ingredient_group_path(@recipe, @recipe_ingredient_group), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show recipe_ingredient_group</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @recipe_ingredient_group.name %></dd>
+
+  <dt>Recipe:</dt>
+  <dd><%= @recipe_ingredient_group.recipe.name %></dd>
+
+</dl>

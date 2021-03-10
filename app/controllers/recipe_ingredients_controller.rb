@@ -13,8 +13,8 @@ class RecipeIngredientsController < ApplicationController
   # GET /recipe_ingredients/new
   def new
     @recipe_ingredient = RecipeIngredient.new
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_ingredient.build_ingredient
+    @recipe_ingredient_group = RecipeIngredientGroup.find(params[:recipe_ingredient_group_id])
+    # @recipe_ingredient.build_ingredient
   end
 
   # GET /recipe_ingredients/1/edit

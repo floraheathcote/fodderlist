@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_230041) do
+ActiveRecord::Schema.define(version: 2021_03_09_211748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 2021_03_05_230041) do
     t.bigint "ingredient_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", default: 1, null: false
     t.index ["ingredient_category_id"], name: "index_ingredients_on_ingredient_category_id"
+    t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -90,6 +92,14 @@ ActiveRecord::Schema.define(version: 2021_03_05_230041) do
     t.index ["user_id"], name: "index_pins_on_user_id"
   end
 
+  create_table "recipe_ingredient_groups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_recipe_ingredient_groups_on_recipe_id"
+  end
+
   create_table "recipe_ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
@@ -97,8 +107,10 @@ ActiveRecord::Schema.define(version: 2021_03_05_230041) do
     t.string "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "recipe_ingredient_group_id", default: 1, null: false
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
+    t.index ["recipe_ingredient_group_id"], name: "index_recipe_ingredients_on_recipe_ingredient_group_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -110,6 +122,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_230041) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", default: 1, null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -144,8 +158,12 @@ ActiveRecord::Schema.define(version: 2021_03_05_230041) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ingredients", "ingredient_categories"
+  add_foreign_key "ingredients", "users"
   add_foreign_key "pins", "users"
+  add_foreign_key "recipe_ingredient_groups", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"
+  add_foreign_key "recipe_ingredients", "recipe_ingredient_groups"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "recipes", "users"
   add_foreign_key "services", "users"
 end

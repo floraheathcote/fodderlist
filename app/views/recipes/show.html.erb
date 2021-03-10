@@ -12,10 +12,14 @@
 
   <br><br>
   <div class="col-sm-5">
-    <%= render 'ingredients_card', recipe_ingredients: @recipe_ingredients %>
-    <br>
-    <%= render 'add_recipe_ingredient_card', recipe_ingredient: @new_recipe_ingredient, recipe: @recipe %>
+  <%= render 'add_recipe_ingredient_group_card', recipe_ingredient_group: @new_recipe_ingredient, recipe: @recipe %>
   </div> 
+    <%#= render 'ingredients_card', recipe_ingredients: @recipe_ingredients %>
+    <br>
+    <%#= render 'add_recipe_ingredient_card', recipe_ingredient: @new_recipe_ingredient, recipe: @recipe %>
+    <br>
+    
+   <br>
 </div>
 
 

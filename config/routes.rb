@@ -2,16 +2,19 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   
+
   resources :recipes do
-    resources :recipe_ingredients
+    resources :recipe_ingredient_groups do
+      resources :recipe_ingredients
+    end
   end
 
   resources :ingredients
   
 
-
-
   resources :ingredient_categories
+
+  
   resources :pins
 
   get '/feed', to: 'pins#feed'

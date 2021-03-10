@@ -18,6 +18,8 @@
     </div>
   </div>
 
+  <%#= form.association :assoc_name, collection: Assoc.all(), input_html: {id: 'dropdown-choice-select'} %>
+
   <div class="form-group">
     <%= form.label :quantity %>
     <%= form.text_field :default_amount, class: 'form-control' %>
@@ -28,8 +30,7 @@
     <%= form.text_field :unit, class: 'form-control' %>
   </div>
 
-
-
+      
     <%= form.submit class: 'btn btn-primary' %>
       <%= link_to "Cancel", recipe, class: "btn btn-link" %>
 

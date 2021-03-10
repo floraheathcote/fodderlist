@@ -1,0 +1,12 @@
+
+<div class="card">
+        <div class="card-body">
+        <h3>Current ingredient group titles:</h3>
+            <% @recipe_ingredient_groups.each do |recipe_ingredient_group| %>
+                <p><%= link_to recipe_ingredient_group.name, recipe_recipe_ingredient_group_path(@recipe, recipe_ingredient_group) %></p>
+            <% end %>
+
+          <p class="card-text"><%= render 'recipe_ingredient_groups/form', recipe: @recipe, recipe_ingredient_group: @new_recipe_ingredient_group %></p>
+        </div>
+</div>
+
