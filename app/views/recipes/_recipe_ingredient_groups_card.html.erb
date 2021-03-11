@@ -1,0 +1,17 @@
+
+<div class="card">
+        <div class="card-body">
+        <h5>Ingredient groups:</h5>
+            <% @recipe_ingredient_groups.each do |recipe_ingredient_group| %>
+                <p><%= link_to recipe_ingredient_group.name, edit_recipe_ingredient_group_path(recipe_ingredient_group) %></p>
+            <% end %>
+
+          <p class="card-text">
+          <%#= render 'recipe_ingredient_groups/form', recipe: @recipe, recipe_ingredient_group: @new_recipe_ingredient_group %>
+          <%= render 'recipe_ingredient_groups/form', scope: :recipe_ingredient_group, url: recipe_recipe_ingredient_groups_path(recipe), method: :post  %>
+
+          </p>
+        </div>
+</div>
+
+                <%#= render 'recipe_ingredients/form', scope: :recipe_ingredient, url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), method: :post %>

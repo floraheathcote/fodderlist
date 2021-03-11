@@ -1,3 +1,5 @@
 <h1>Edit Recipe_ingredient</h1>
 
-<%= render 'form', recipe_ingredient: @recipe_ingredient, recipe: @recipe %>
+<%= render 'form', scope: :recipe_ingredient, url: recipe_ingredient_path(@recipe_ingredient), method: :patch %>
+
+<%= link_to "Remove", recipe_ingredient_path(@recipe_ingredient), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>

@@ -1,42 +1,35 @@
 
+<%= form_with(scope: scope, url: url, local: true, method: method) do |form| %> 
 
-<%#= form_with(model: recipe_ingredient, local: true) do |form| %>
-<%= form_with(model: [recipe_ingredient], url: [recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group)]) do |form| %>
-  <% if recipe_ingredient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
+          <% if @recipe_ingredient.errors.any? %>
+                <div id="error_explanation">
+                      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
 
-      <ul>
-      <% recipe_ingredient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                      <ul>
+                      <% recipe_ingredient.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                </div>
+          <% end %>
 
     <div class="form-group">
-    <h5><%= form.label :Ingredient, "Select ingredient from ingredient library:" %></h5>
-    <div class="dropdown">
-      <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
+        <h5><%= form.label :Ingredient, "add ingredient:" %></h5>
+            <div class="dropdown">
+              <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
+            </div>
     </div>
-  </div>
+        
+      <table>
+            <tr>
+                  <td><%= form.text_field :default_amount, class: 'form-control', placeholder: "how much" %></td>
+                  <td><%= form.text_field :unit, class: 'form-control', placeholder: "unit - e.g. tablespoons" %></td>
+            </tr>
+      </table>    
+      <br>
 
-  <%#= form.association :assoc_name, collection: Assoc.all(), input_html: {id: 'dropdown-choice-select'} %>
 
-  <div class="form-group">
-    <%= form.label :quantity %>
-    <%= form.text_field :default_amount, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :unit %>
-    <%= form.text_field :unit, class: 'form-control' %>
-  </div>
-
-        <%#= hidden_field_tag(:recipe_ingredient_group_id, recipe_ingredient_group.id) %>
-      
     <%= form.submit class: 'btn btn-primary' %>
-      <%= link_to "Cancel", recipe, class: "btn btn-link" %>
-
-  </div>
+    <%= link_to "Cancel", @recipe, class: "btn btn-link" %>
+   
 <% end %>

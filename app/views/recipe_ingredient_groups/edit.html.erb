@@ -1,3 +1,6 @@
 <h1>Edit Recipe_ingredient_group</h1>
 
-<%= render 'form', recipe_ingredient_group: @recipe_ingredient_group, recipe: @recipe %>
+<%#= render 'form', recipe_ingredient_group: @recipe_ingredient_group, recipe: @recipe %>
+
+<%= render 'form', scope: :recipe_ingredient_group, url: recipe_recipe_ingredient_groups_path(@recipe), method: :post  %>
+<%= link_to "Delete", recipe_ingredient_group_path(@recipe_ingredient_group), method: :delete, class: "text-danger", data: { confirm: 'Are you sure? ALL INGREDIENTS FOR THIS GROUP WILL BE REMOVED!' }%>

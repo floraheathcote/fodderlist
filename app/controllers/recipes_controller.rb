@@ -14,6 +14,8 @@ class RecipesController < ApplicationController
     @new_recipe_ingredient_group = RecipeIngredientGroup.new
     @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
+    
+
   end
 
   # GET /recipes/new

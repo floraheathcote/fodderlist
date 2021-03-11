@@ -1,109 +1,20 @@
 <div class="page-header">
-  <%= link_to "<< All Recipes", recipes_path, class: 'btn btn-default' %>
+    <%= link_to "<< All Recipes", recipes_path, class: 'btn btn-default' %>
 </div>
 
 <div class="row">
-  <div class="col-sm-7">
-    <%= render 'method_card', recipe: @recipe %>
-  <br>
-    
-  </div>
-
-
-  <br><br>
-  <div class="col-sm-5">
-      <%= render 'add_recipe_ingredient_group_card', recipe_ingredient_group: @new_recipe_ingredient, recipe: @recipe %>
-      <br>
-
-            <% @recipe_ingredient_groups.each do |recipe_ingredient_group| %>
-
-
-            <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= recipe_ingredient_group.name %></h5>
-                    <p class="card-text">
-                      <ul class="list-group list-group-flush">
-                        <% recipe_ingredient_group.recipe_ingredients.each do |recipe_ingredient| %>
-                        
-                          <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
-                                                          <%= recipe_ingredient.default_amount %> 
-                                                          <%= recipe_ingredient.unit %>    
-                                                          <%= link_to "Edit", edit_recipe_ingredient_path(recipe_ingredient) %>
-                                                          <%= link_to "Remove", recipe_ingredient_path(recipe_ingredient) ,
-                                                                  method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
-                                                          </td></li>
-
-                        <% end %>
-                      </ul></p>
-                
-              
-
-            <%#= render 'recipe_ingredients/form', recipe_ingredient_group: recipe_ingredient_group, recipe: recipe, recipe_ingredient: new_recipe_ingredient %>
-
-                    <%#= form_with(model: [recipe_ingredient], url: [recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group)]) do |form| %>
-                          
-                         <%= form_with(scope: :recipe_ingredient, url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), local: true, method: :post) do |form| %> 
-                          <% if @recipe_ingredient.errors.any? %>
-                            <div id="error_explanation">
-                              <h2><%= pluralize(@recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
-
-                              <ul>
-                              <% @recipe_ingredient.errors.full_messages.each do |message| %>
-                                <li><%= message %></li>
-                              <% end %>
-                              </ul>
-                            </div>
-                          <% end %>
-
-                            <div class="form-group">
-                            <h5><%= form.label :Ingredient, "Select ingredient from ingredient library:" %></h5>
-                            <div class="dropdown">
-                              <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
-                            </div>
-                          </div>
-
-                          <%#= form.association :assoc_name, collection: Assoc.all(), input_html: {id: 'dropdown-choice-select'} %>
-
-                          <div class="form-group">
-                            <%= form.label :quantity %>
-                            <%= form.text_field :default_amount, class: 'form-control' %>
-                          </div>
-
-                          <div class="form-group">
-                            <%= form.label :unit %>
-                            <%= form.text_field :unit, class: 'form-control' %>
-                          </div>
-
-                                <%#= hidden_field_tag(:recipe_ingredient_group_id, recipe_ingredient_group.id) %>
-                              
-                            <%= form.submit class: 'btn btn-primary' %>
-                              <%= link_to "Cancel", @recipe, class: "btn btn-link" %>
-
-                          </div>
-                        <% end %>
-
-
-
-
-
-
-
-
-            </div>
-      </div>
-      <br>
-<% end %>
-
-
-      <%#= render 'ingredients_card', recipe: @recipe, recipe_ingredient_groups: @recipe_ingredient_groups, new_recipe_ingredient: @new_recipe_ingredient %>
+    <div class="col-sm-7">
+        <%= render 'method_card', recipe: @recipe %>
+        <br>
+    </div>
+      <br><br>
+    <div class="col-sm-5">
+        <%= render 'recipe_ingredient_groups_card', recipe_ingredient_group: @new_recipe_ingredient_group, recipe: @recipe %>
+        <br>
+        <%= render 'ingredients_card', recipe_ingredient_groups: @recipe_ingredient_groups %>
       <br>
   </div> 
-    
     <br>
-    <%#= render 'add_recipe_ingredient_card', recipe_ingredient: @new_recipe_ingredient, recipe: @recipe %>
-    <br>
-    
-   <br>
 </div>
 
 

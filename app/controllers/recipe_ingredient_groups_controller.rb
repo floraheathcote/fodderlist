@@ -19,7 +19,8 @@ class RecipeIngredientGroupsController < ApplicationController
 
   # GET /recipe_ingredient_groups/1/edit
   def edit
-    @recipe = Recipe.find(params[:recipe_id])
+    @new_recipe_ingredient_group = RecipeIngredientGroup.find(params[:id])
+    @recipe = @new_recipe_ingredient_group.recipe
   end
 
   # POST /recipe_ingredient_groups or /recipe_ingredient_groups.json
@@ -41,7 +42,7 @@ class RecipeIngredientGroupsController < ApplicationController
 
   # PATCH/PUT /recipe_ingredient_groups/1 or /recipe_ingredient_groups/1.json
   def update
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = @recipe_ingredient_group.recipe
     respond_to do |format|
       if @recipe_ingredient_group.update(recipe_ingredient_group_params)
         format.html { redirect_to @recipe, notice: "Recipe ingredient group was successfully updated." }
@@ -56,7 +57,7 @@ class RecipeIngredientGroupsController < ApplicationController
   # DELETE /recipe_ingredient_groups/1 or /recipe_ingredient_groups/1.json
   def destroy
     @recipe_ingredient_group.destroy
-    @recipe = Recipe.find(params[:recipe_id])
+    @recipe = @recipe_ingredient_group.recipe
     respond_to do |format|
       format.html { redirect_to @recipe, notice: "Recipe ingredient group was successfully destroyed." }
       format.json { head :no_content }
@@ -66,8 +67,7 @@ class RecipeIngredientGroupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe_ingredient_group
-      @recipe = Recipe.find(params[:recipe_id])
-      @recipe_ingredient_group = @recipe.recipe_ingredient_groups.find(params[:id])
+      @recipe_ingredient_group = RecipeIngredientGroup.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
