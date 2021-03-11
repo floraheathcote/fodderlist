@@ -1,21 +1,30 @@
 
-<div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Recipe Ingredients</h5>
-        <p class="card-text">
-          <ul class="list-group list-group-flush">
-            <% recipe_ingredients.each do |recipe_ingredient| %>
-            
-              <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
-                                              <%= recipe_ingredient.default_amount %> 
-                                              <%= recipe_ingredient.unit %>    
-                                              <%= link_to "Edit", edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient) %>
-                                              <%= link_to "Remove", recipe_recipe_ingredient_path(@recipe, recipe_ingredient) ,
-                                                      method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
-                                              </td></li>
+<% recipe_ingredient_groups.each do |recipe_ingredient_group| %>
 
-            <% end %>
-          </ul></p>
-        <%#= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>
+
+      <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= recipe_ingredient_group.name %></h5>
+              <p class="card-text">
+                <ul class="list-group list-group-flush">
+                  <% recipe_ingredient_group.recipe_ingredients.each do |recipe_ingredient| %>
+                  
+                    <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
+                                                    <%= recipe_ingredient.default_amount %> 
+                                                    <%= recipe_ingredient.unit %>    
+                                                    <%= link_to "Edit", edit_recipe_recipe_ingredient_path(@recipe, recipe_ingredient) %>
+                                                    <%= link_to "Remove", recipe_recipe_ingredient_path(@recipe, recipe_ingredient) ,
+                                                            method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>
+                                                    </td></li>
+
+                  <% end %>
+                </ul></p>
+                
+              <%#= link_to "Add Ingredient", new_recipe_recipe_ingredient_path(@recipe), class:"btn btn-light" %>
+
+            <%= render 'recipe_ingredients/form', recipe_ingredient_group: recipe_ingredient_group, recipe: recipe, recipe_ingredient: new_recipe_ingredient %>
+
+            </div>
       </div>
-    </div>
+      <br>
+<% end %>

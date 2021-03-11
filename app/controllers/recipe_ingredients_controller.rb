@@ -25,14 +25,17 @@ class RecipeIngredientsController < ApplicationController
 
   # POST /recipe_ingredients or /recipe_ingredients.json
   def create
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_ingredient = @recipe.recipe_ingredients.new(recipe_ingredient_params)
-
+    
+    # @recipe = Recipe.find(params[:recipe_id])
+    # @recipe_ingredient = @recipe.recipe_ingredients.new(recipe_ingredient_params)
+    @recipe_ingredient_group = RecipeIngredientGroup.find(params[:recipe_ingredient_group_id])
+    @recipe = @recipe_ingredient_group.recipe
+    @recipe_ingredient = @recipe_ingredient_group.recipe_ingredients.new(recipe_ingredient_params)
 
     respond_to do |format|
       if @recipe_ingredient.save
         format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully created." }
-        format.json { render :show, status: :created, location: @recipe_ingredient }
+        format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
@@ -73,8 +76,8 @@ class RecipeIngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_ingredient_params
-      params.require(:recipe_ingredient).permit(:recipe_id, :ingredient_id, :default_amount, :unit, ingredient_attributes: [:id, :name, :ingredient_category], ingredient_category_attributes: [:name, :id])
-              
+      params.require(:recipe_ingredient).permit(:recipe_ingredient_group_id, :recipe_id, :ingredient_id, :default_amount, :unit, ingredient_attributes: [:id, :name, :ingredient_category], ingredient_category_attributes: [:name, :id])        
+      # params.require(:recipe_ingredient_group).permit(:recipe_ingredient_group_id)
     end
 end
 

@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
     @recipe_ingredients = @recipe.recipe_ingredients
     @recipe_ingredient_groups = @recipe.recipe_ingredient_groups
     @new_recipe_ingredient_group = RecipeIngredientGroup.new
-    @new_recipe_ingredient = RecipeIngredient.new
+    @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
   end
 
