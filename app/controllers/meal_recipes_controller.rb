@@ -27,20 +27,22 @@ class MealRecipesController < ApplicationController
 
     respond_to do |format|
       if @meal_recipe.save
-        @meal = @meal_recipe.meal
+        # @meal = @meal_recipe.meal
 
           @recipe = @meal_recipe.recipe
-          if @recipe.present?
+          @meal = @meal_recipe.meal
+          # if @recipe.present?
             @recipe.recipe_ingredients.each do |recipe_ingredient|
                 @meal_ingredient = MealIngredient.new
-                @meal_ingredient.ingredient = recipe_ingredient.ingredient
+                @meal_ingredient.ingredient_id = recipe_ingredient.ingredient_id
                 @meal_ingredient.quantity = recipe_ingredient.default_amount
                 @meal_ingredient.unit = recipe_ingredient.unit
-                ## need to set meal_ingredient meal_id
+                @meal_ingredient.meal_recipe = @meal_recipe
                 @meal_ingredient.meal = @meal
+
                 @meal_ingredient.save
+            # end
             end
-          end
 
 
         format.html { redirect_to @meal_recipe.meal.meal_plan, notice: "Meal recipe was successfully created." }
