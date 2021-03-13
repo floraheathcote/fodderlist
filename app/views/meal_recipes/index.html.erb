@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Meal_recipes</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_meal_recipe_path, class: 'btn btn-primary' do %>
+    Add New Meal recipe
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Meal</th>
+            <th>Recipe</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @meal_recipes.each do |meal_recipe| %>
+        <%= content_tag :tr, id: dom_id(meal_recipe), class: dom_class(meal_recipe) do %>
+          
+
+                      <td><%= meal_recipe.meal %></td>
+                      <td><%= meal_recipe.recipe %></td>
+          
+          
+            <td><%= link_to 'Show', meal_recipe %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

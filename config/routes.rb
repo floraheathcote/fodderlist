@@ -1,7 +1,13 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  
+
+  resources :meal_plans, :shallow => true do
+    resources :meals, :shallow => true do
+      resources :meal_recipes
+      resources :meal_ingredients
+    end
+  end
 
   resources :recipes, :shallow => true do
     resources :recipe_ingredient_groups, :shallow => true do
@@ -11,10 +17,8 @@ Rails.application.routes.draw do
 
   resources :ingredients
   
-
   resources :ingredient_categories
 
-  
   resources :pins
 
   get '/feed', to: 'pins#feed'
@@ -29,6 +33,6 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  root to: 'pins#feed'
+  root to: 'recipes#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

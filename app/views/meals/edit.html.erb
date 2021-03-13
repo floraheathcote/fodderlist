@@ -1,0 +1,4 @@
+<h1>Edit Meal</h1>
+
+<%= render 'meals/form', scope: @meal, url: meal_path(@meal), method: :put %>
+<%= link_to "Delete", meal_path(@meal), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>

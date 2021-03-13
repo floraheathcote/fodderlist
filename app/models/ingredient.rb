@@ -1,6 +1,7 @@
 class Ingredient < ApplicationRecord
   belongs_to :ingredient_category, inverse_of: :ingredients
   has_many :recipe_ingredients, dependent: :destroy
+  has_many :meal_ingredients, dependent: :destroy
   accepts_nested_attributes_for :ingredient_category
 
   has_one_attached :main_image

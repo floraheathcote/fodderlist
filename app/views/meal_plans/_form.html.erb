@@ -1,0 +1,39 @@
+<%= form_with(model: meal_plan, local: true) do |form| %>
+  <% if meal_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meal_plan.errors.count, "error") %> prohibited this meal_plan from being saved:</h2>
+
+      <ul>
+      <% meal_plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if meal_plan.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', meal_plan, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if meal_plan.persisted? %>
+      <%= link_to "Cancel", meal_plan, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", meal_plans_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

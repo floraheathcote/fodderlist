@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_211748) do
+ActiveRecord::Schema.define(version: 2021_03_13_095335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,50 @@ ActiveRecord::Schema.define(version: 2021_03_09_211748) do
     t.index ["user_id"], name: "index_ingredients_on_user_id"
   end
 
+  create_table "meal_ingredients", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "ingredient_id", null: false
+    t.decimal "quantity"
+    t.string "unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "meal_recipe_id"
+    t.index ["ingredient_id"], name: "index_meal_ingredients_on_ingredient_id"
+    t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
+    t.index ["meal_recipe_id"], name: "index_meal_ingredients_on_meal_recipe_id"
+  end
+
+  create_table "meal_plans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "start_date"
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meal_plans_on_user_id"
+  end
+
+  create_table "meal_recipes", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "portions"
+    t.index ["meal_id"], name: "index_meal_recipes_on_meal_id"
+    t.index ["recipe_id"], name: "index_meal_recipes_on_recipe_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.bigint "meal_plan_id", null: false
+    t.boolean "favorite"
+    t.text "notes"
+    t.datetime "meal_date"
+    t.string "meal_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["meal_plan_id"], name: "index_meals_on_meal_plan_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -101,15 +145,13 @@ ActiveRecord::Schema.define(version: 2021_03_09_211748) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.bigint "recipe_id", null: false
     t.bigint "ingredient_id", null: false
     t.decimal "default_amount"
-    t.string "unit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "recipe_ingredient_group_id", default: 1, null: false
+    t.string "unit"
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
     t.index ["recipe_ingredient_group_id"], name: "index_recipe_ingredients_on_recipe_ingredient_group_id"
   end
 
@@ -117,8 +159,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_211748) do
     t.string "name"
     t.string "meal_type"
     t.text "method"
-    t.decimal "default_qty"
-    t.string "default_unit"
+    t.decimal "portions"
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -159,11 +200,17 @@ ActiveRecord::Schema.define(version: 2021_03_09_211748) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "ingredients", "ingredient_categories"
   add_foreign_key "ingredients", "users"
+  add_foreign_key "meal_ingredients", "ingredients"
+  add_foreign_key "meal_ingredients", "meal_recipes"
+  add_foreign_key "meal_ingredients", "meals"
+  add_foreign_key "meal_plans", "users"
+  add_foreign_key "meal_recipes", "meals"
+  add_foreign_key "meal_recipes", "recipes"
+  add_foreign_key "meals", "meal_plans"
   add_foreign_key "pins", "users"
   add_foreign_key "recipe_ingredient_groups", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipe_ingredient_groups"
-  add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "services", "users"
 end

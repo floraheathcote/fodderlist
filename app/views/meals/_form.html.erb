@@ -1,0 +1,47 @@
+
+
+<%= form_with(scope: :meal, url: url, local: true, method: method) do |form| %>
+  <% if @meal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+
+      <ul>
+      <% meal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%#= form.label :favorite %>
+    <%#= form.check_box :favorite, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :notes %>
+    <%= form.text_area :notes, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meal_date %>
+    <%= form.date_select :meal_date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meal_type %>
+    <%= form.select :meal_type, Meal::MEALTYPES, prompt: "Pick one" %>
+  </div>
+
+
+ 
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+ 
+<% end %>

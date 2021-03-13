@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
+
+  <%= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
+
+  <h3>Your meals for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %></h3>
+</div>
+
+<dl class="dl-horizontal">
+    <dt>Notes:</dt>
+    <dd><%= @meal_plan.notes %></dd>
+</dl>
+
+
+
+
+<div class="row">
+    <div class="col-sm-7">
+    <%= render 'meal_cards', meals: @meals %>
+        <br>
+    </div>
+      <br><br>
+    <div class="col-sm-5">
+            <%= render 'add_meal_card', meal: @meal, url: meal_plan_meals_path(@meal_plan), method: :post %>
+
+      <br>
+  </div> 
+    <br>
+</div>
+
+

@@ -1,0 +1,36 @@
+
+
+<%= form_with(scope: :meal_recipe, url: url, local: true, method: method) do |form| %>
+
+  <% if @meal_recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meal_recipe.errors.count, "error") %> prohibited this meal_recipe from being saved:</h2>
+
+            <ul>
+              <% @meal_recipe.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :Recipe %>
+    <div class="dropdown">
+      <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name) %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :portions %>
+    <%= form.text_field :portions, class: 'form-control' %>
+  </div>
+
+  <%= form.hidden_field :meal_id, value: meal.id %>
+    
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+  
+  </div>
+<% end %>
