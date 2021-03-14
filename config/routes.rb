@@ -2,10 +2,13 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  resources :days
   resources :meal_plans, :shallow => true do
-    resources :meals, :shallow => true do
-      resources :meal_recipes
-      resources :meal_ingredients
+    resources :days, :shallow => true do
+      resources :meals, :shallow => true do
+        resources :meal_recipes
+        resources :meal_ingredients
+      end
     end
   end
 

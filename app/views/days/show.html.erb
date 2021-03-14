@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to days_path, class: 'btn btn-default' do %>
+    All Days
+  <% end %>
+  <%= link_to edit_day_path(@day), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show day</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Meal plan:</dt>
+  <dd><%= @day.meal_plan %></dd>
+
+  <dt>Date:</dt>
+  <dd><%= @day.date %></dd>
+
+</dl>

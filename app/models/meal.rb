@@ -1,5 +1,5 @@
 class Meal < ApplicationRecord
-  belongs_to :meal_plan
+  belongs_to :day
   
   # has_many :meal_ingredients, through: :meal_recipe
   has_many :meal_recipes, dependent: :destroy

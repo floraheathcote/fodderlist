@@ -9,6 +9,7 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
     @meal = Meal.new
+    @days = @meal_plan.days
     @meals = @meal_plan.meals
     @meal_plan = MealPlan.find(params[:id])
     @meal_recipe = @meal.meal_recipes.new
@@ -27,9 +28,13 @@ class MealPlansController < ApplicationController
   def create
     @meal_plan = MealPlan.new(meal_plan_params)
     @meal_plan.user = current_user
+    
 
     respond_to do |format|
       if @meal_plan.save
+
+        create_days(@meal_plan)
+
         format.html { redirect_to @meal_plan, notice: "Meal plan was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
@@ -37,6 +42,8 @@ class MealPlansController < ApplicationController
         format.json { render json: @meal_plan.errors, status: :unprocessable_entity }
       end
     end
+
+    @day = @meal_plan.days.new
   end
 
   # PATCH/PUT /meal_plans/1 or /meal_plans/1.json
@@ -69,6 +76,16 @@ class MealPlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_plan_params
-      params.require(:meal_plan).permit(:user_id, :start_date, :notes)
+      params.require(:meal_plan).permit(:user_id, :start_date, :notes, :number_of_days)
+    end
+
+    def create_days(meal_plan)
+      newdays = @meal_plan.number_of_days  
+      (1..newdays).each do |int|
+          @new_day = Day.new
+          @new_day.date = @meal_plan.start_date + int.days - 1.days
+          @new_day.meal_plan = @meal_plan
+          @new_day.save
+        end
     end
 end

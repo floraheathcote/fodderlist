@@ -21,9 +21,10 @@ class MealsController < ApplicationController
 
   # POST /meals or /meals.json
   def create
-    @meal_plan = MealPlan.find_by(params[:id])
-    @meal = @meal_plan.meals.new(meal_params)
-    
+    @day = Day.find_by(params[:id])
+    # @meal_plan = MealPlan.find_by(params[:id])
+    @meal = @day.meals.new(meal_params)
+    @meal_plan = @day.meal_plan
 
     respond_to do |format|
       if @meal.save
@@ -38,7 +39,7 @@ class MealsController < ApplicationController
         #   end
 
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
-        format.json { render :show, status: :created, location: @meal }
+        format.json { render :show, status: :created, location: @meal_plan }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal.errors, status: :unprocessable_entity }
@@ -79,6 +80,6 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:meal_plan_id, :portions, :name, :recipe_id, :favorite, :notes, :meal_date, :meal_type)
+      params.require(:meal).permit(:day_id, :portions, :name, :recipe_id, :favorite, :notes, :meal_type)
     end
 end

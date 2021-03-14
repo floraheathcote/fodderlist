@@ -1,0 +1,16 @@
+<%#= image_tag(meal_recipe.recipe.main_image) %>
+<%= link_to "Remove", meal_recipe_path(meal_recipe),
+                method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+
+<% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
+
+        <li class="list-group-item"><%= meal_ingredient.ingredient.name %> 
+                                            <%= meal_ingredient.quantity %> 
+                                            <%= meal_ingredient.unit %>    
+                                            <%#= link_to "Edit", edit_recipe_ingredient_path(recipe_ingredient) %>
+                                            <%#= link_to "Remove", recipe_ingredient_path(recipe_ingredient),
+                                                    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                                            </li>
+
+<% end %>
+</ul></p>

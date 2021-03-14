@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_095335) do
+ActiveRecord::Schema.define(version: 2021_03_14_201148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2021_03_13_095335) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.bigint "meal_plan_id", null: false
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_plan_id"], name: "index_days_on_meal_plan_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_095335) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "number_of_days"
     t.index ["user_id"], name: "index_meal_plans_on_user_id"
   end
 
@@ -105,15 +114,14 @@ ActiveRecord::Schema.define(version: 2021_03_13_095335) do
   end
 
   create_table "meals", force: :cascade do |t|
-    t.bigint "meal_plan_id", null: false
     t.boolean "favorite"
     t.text "notes"
-    t.datetime "meal_date"
     t.string "meal_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.index ["meal_plan_id"], name: "index_meals_on_meal_plan_id"
+    t.bigint "day_id", null: false
+    t.index ["day_id"], name: "index_meals_on_day_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -198,6 +206,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_095335) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "days", "meal_plans"
   add_foreign_key "ingredients", "ingredient_categories"
   add_foreign_key "ingredients", "users"
   add_foreign_key "meal_ingredients", "ingredients"
@@ -206,7 +215,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_095335) do
   add_foreign_key "meal_plans", "users"
   add_foreign_key "meal_recipes", "meals"
   add_foreign_key "meal_recipes", "recipes"
-  add_foreign_key "meals", "meal_plans"
+  add_foreign_key "meals", "days"
   add_foreign_key "pins", "users"
   add_foreign_key "recipe_ingredient_groups", "recipes"
   add_foreign_key "recipe_ingredients", "ingredients"

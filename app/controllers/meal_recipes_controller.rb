@@ -21,29 +21,12 @@ class MealRecipesController < ApplicationController
 
   # POST /meal_recipes or /meal_recipes.json
   def create
-    # @meal = Meal.find_by(params[:id])
     @meal_recipe = MealRecipe.new(meal_recipe_params)
-    # @meal_recipe.meal = @meal
-
+    
     respond_to do |format|
       if @meal_recipe.save
-        # @meal = @meal_recipe.meal
-
-          @recipe = @meal_recipe.recipe
-          @meal = @meal_recipe.meal
-          # if @recipe.present?
-            @recipe.recipe_ingredients.each do |recipe_ingredient|
-                @meal_ingredient = MealIngredient.new
-                @meal_ingredient.ingredient_id = recipe_ingredient.ingredient_id
-                @meal_ingredient.quantity = recipe_ingredient.default_amount
-                @meal_ingredient.unit = recipe_ingredient.unit
-                @meal_ingredient.meal_recipe = @meal_recipe
-                @meal_ingredient.meal = @meal
-
-                @meal_ingredient.save
-            # end
-            end
-
+          
+        create_meal_ingredients_for_recipe(@meal_recipe)
 
         format.html { redirect_to @meal_recipe.meal.meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
@@ -86,5 +69,22 @@ class MealRecipesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def meal_recipe_params
       params.require(:meal_recipe).permit(:meal_id, :recipe_id, :portions)
+    end
+
+    def create_meal_ingredients_for_recipe(meal_recipe)
+      @recipe = meal_recipe.recipe
+      @meal = meal_recipe.meal
+      # if @recipe.present?
+        @recipe.recipe_ingredients.each do |recipe_ingredient|
+            @meal_ingredient = MealIngredient.new
+            @meal_ingredient.ingredient = recipe_ingredient.ingredient
+            @meal_ingredient.quantity = recipe_ingredient.default_amount
+            @meal_ingredient.unit = recipe_ingredient.unit
+            @meal_ingredient.meal_recipe = @meal_recipe
+            @meal_ingredient.meal = @meal
+
+            @meal_ingredient.save
+        # end
+        end
     end
 end

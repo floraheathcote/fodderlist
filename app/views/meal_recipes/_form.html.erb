@@ -14,19 +14,15 @@
     </div>
   <% end %>
 
-  <div class="form-group">
     <%= form.label :Recipe %>
-    <div class="dropdown">
-      <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name) %>
-    </div>
-  </div>
+    
+      <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, class: "dropdown-menu") %>
+    
 
-  <div class="form-group">
     <%= form.label :portions %>
     <%= form.text_field :portions, class: 'form-control' %>
-  </div>
 
-  <%= form.hidden_field :meal_id, value: meal.id %>
+    <%= form.hidden_field :meal_id, value: meal.id %>
     
 
     <%= form.submit class: 'btn btn-primary' %>
