@@ -22,13 +22,14 @@ class MealRecipesController < ApplicationController
   # POST /meal_recipes or /meal_recipes.json
   def create
     @meal_recipe = MealRecipe.new(meal_recipe_params)
-    
+    @meal_plan = @meal_recipe.meal.day.meal_plan
+
     respond_to do |format|
       if @meal_recipe.save
           
         create_meal_ingredients_for_recipe(@meal_recipe)
 
-        format.html { redirect_to @meal_recipe.meal.meal_plan, notice: "Meal recipe was successfully created." }
+        format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class MealRecipesController < ApplicationController
 
   # DELETE /meal_recipes/1 or /meal_recipes/1.json
   def destroy
-    @meal_plan = @meal_recipe.meal.meal_plan
+    @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal_recipe.destroy
     respond_to do |format|
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal recipe was successfully destroyed." }

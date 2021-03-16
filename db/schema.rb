@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_201148) do
+ActiveRecord::Schema.define(version: 2021_03_15_144104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_03_14_201148) do
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "notes"
     t.index ["meal_plan_id"], name: "index_days_on_meal_plan_id"
   end
 
@@ -95,11 +96,9 @@ ActiveRecord::Schema.define(version: 2021_03_14_201148) do
 
   create_table "meal_plans", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "start_date"
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "number_of_days"
     t.index ["user_id"], name: "index_meal_plans_on_user_id"
   end
 

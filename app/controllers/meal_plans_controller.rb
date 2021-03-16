@@ -9,10 +9,11 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
     @meal = Meal.new
-    @days = @meal_plan.days
+    @days = @meal_plan.days.order("date ASC")
     @meals = @meal_plan.meals
     @meal_plan = MealPlan.find(params[:id])
     @meal_recipe = @meal.meal_recipes.new
+    # @start_date = @meal_plan.start_date
   end
 
   # GET /meal_plans/new
@@ -28,12 +29,15 @@ class MealPlansController < ApplicationController
   def create
     @meal_plan = MealPlan.new(meal_plan_params)
     @meal_plan.user = current_user
-    
+    start_date_from_form = @meal_plan.start_date_from_form
+    number_of_days_from_form = @meal_plan.number_of_days_from_form
+    # start_date = params[:start_date]
+    # number_of_days = params[:number_of_days]
 
     respond_to do |format|
       if @meal_plan.save
 
-        create_days(@meal_plan)
+        create_days(meal_plan: @meal_plan, start_date: start_date_from_form, days: number_of_days_from_form)
 
         format.html { redirect_to @meal_plan, notice: "Meal plan was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
@@ -76,15 +80,18 @@ class MealPlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_plan_params
-      params.require(:meal_plan).permit(:user_id, :start_date, :notes, :number_of_days)
+      params.require(:meal_plan).permit(:user_id, :notes, :start_date_from_form, :number_of_days_from_form)
     end
 
-    def create_days(meal_plan)
-      newdays = @meal_plan.number_of_days  
-      (1..newdays).each do |int|
+    def create_days(meal_plan:, start_date:, days:)
+      
+      # newdays = @meal_plan.number_of_days
+      
+      (1..days.to_i).each do |int|
           @new_day = Day.new
-          @new_day.date = @meal_plan.start_date + int.days - 1.days
-          @new_day.meal_plan = @meal_plan
+          @new_day.date = start_date
+          @new_day.date += (int - 1).days
+          @new_day.meal_plan = meal_plan
           @new_day.save
         end
     end

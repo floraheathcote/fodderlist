@@ -2,16 +2,30 @@
 
   <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
 
-  <%= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
+  <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
+  <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-primary', 
+    method: :delete, class: "text-danger", 
+    data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' }%>
 
-  <h3>Meal Plan Days: <%= @meal_plan.start_date.strftime("%A, %B %d") %> (<%= pluralize(@meal_plan.number_of_days, "days") %> )</h3>
+
+  <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
+                             (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
+                               <%= link_to "Add a day", new_meal_plan_day_path(@meal_plan), 
+                               class: 'btn btn-primary' %>
+
 </div>
 
 Notes: <%= @meal_plan.notes %><br>
 <br>
 
 <% @days.each do |day| %>
-DAY: <%= day.date.strftime("%A, %B %d") %>
+<p>DAY: <%= day.date.strftime("%A, %B %d") %>
+  <%= link_to "Remove Day from Meal Plan", day_path(day), 
+          class: 'btn btn-primary', 
+          method: :delete, class: "text-danger", 
+          data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
+</p> 
+<p>NOTES: <%= day.notes %></p>
 
       <div class="row">
           <div class="col-sm-5">

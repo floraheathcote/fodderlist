@@ -1,7 +1,9 @@
 
 
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+<% if meal.meal_recipes.present? %>
+<%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top', width: 300 ), edit_meal_path(meal) %>
+<% end %> 
   <div class="card-body">
     <h5 class="card-title"><%= meal.name %></h5><%= link_to "Edit/Delete", edit_meal_path(meal) %></h5>
     <p class="card-text"><%= meal.meal_type %></p>

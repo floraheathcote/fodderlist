@@ -13,13 +13,17 @@
 
   <div class="form-group">
     <%= form.label :start_date %>
-    <%= form.date_select :start_date, class: 'form-control' %>
+    <%= form.date_select :start_date_from_form, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :number_of_days %>
-    <%= form.text_field :number_of_days, class: 'form-control' %>
-  </div>
+  <% if meal_plan.persisted? %>
+  <p> To edit which days are in the meal plan, manually add or delete them from the main <%= link_to "Meal Plan", meal_plan %> page.</p>
+     <% else %> 
+      <div class="form-group">
+        <%= form.label :number_of_days %>
+        <%= form.text_field :number_of_days_from_form, class: 'form-control' %>
+      </div>
+  <% end %>
 
   <div class="form-group">
     <%= form.label :notes %>

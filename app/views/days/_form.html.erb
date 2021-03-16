@@ -12,13 +12,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :meal_plan_id %>
-    <%= form.text_field :meal_plan_id, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
     <%= form.label :date %>
-    <%= form.datetime_select :date, class: 'form-control' %>
+    <%= form.date_select :date, :selected => @date, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -31,9 +26,9 @@
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if day.persisted? %>
-      <%= link_to "Cancel", day, class: "btn btn-link" %>
+      <%= link_to "Cancel", @meal_plan, class: "btn btn-link" %>
     <% else %>
-      <%= link_to "Cancel", days_path, class: "btn btn-link" %>
+      <%= link_to "Cancel", @meal_plan, class: "btn btn-link" %>
     <% end %>
   </div>
 <% end %>

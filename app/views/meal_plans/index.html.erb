@@ -30,11 +30,9 @@
       <% @meal_plans.each do |meal_plan| %>
         <%= content_tag :tr, id: dom_id(meal_plan), class: dom_class(meal_plan) do %>
           
-
                       <td><%= meal_plan.user %></td>
                       <td><%= meal_plan.start_date %></td>
                       <td><%= meal_plan.notes %></td>
-          
           
             <td><%= link_to 'Show', meal_plan %></td>
           
