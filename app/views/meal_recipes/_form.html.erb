@@ -2,27 +2,16 @@
 
 <%= form_with(scope: :meal_recipe, url: url, local: true, method: method) do |form| %>
 
-  <% if @meal_recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meal_recipe.errors.count, "error") %> prohibited this meal_recipe from being saved:</h2>
-
-            <ul>
-              <% @meal_recipe.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-    </div>
-  <% end %>
-
     
     <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
-    {:prompt => 'Add recipe to meal'}, 
-    {:class=>'input',
-    :style=>'width:100%', :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
+        {:prompt => 'Add recipe to meal'}, 
+        {:class=>'input',
+        :style=>'width:100%', 
+        :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
     
     <%= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
 
-    <%#= form.hidden_field :meal_id, value: meal.id %>
+    <%= form.hidden_field :meal_id, value: meal.id %>
 
     <br>
     <%= form.submit "Add recipe", class: 'btn btn-primary' %>

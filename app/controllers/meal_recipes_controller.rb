@@ -32,6 +32,7 @@ class MealRecipesController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else
+        fail
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal_recipe.errors, status: :unprocessable_entity }
       end
@@ -45,6 +46,7 @@ class MealRecipesController < ApplicationController
         format.html { redirect_to @meal_recipe, notice: "Meal recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_recipe }
       else
+        
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @meal_recipe.errors, status: :unprocessable_entity }
       end
@@ -73,18 +75,21 @@ class MealRecipesController < ApplicationController
     end
 
     def create_meal_ingredients_for_recipe(meal_recipe)
-      @recipe = meal_recipe.recipe
-      @meal = meal_recipe.meal
+      recipe = meal_recipe.recipe
+      meal = meal_recipe.meal
       # if @recipe.present?
-        @recipe.recipe_ingredients.each do |recipe_ingredient|
+        recipe.recipe_ingredients.each do |recipe_ingredient|
             @meal_ingredient = MealIngredient.new
             @meal_ingredient.ingredient = recipe_ingredient.ingredient
             @meal_ingredient.quantity = recipe_ingredient.default_amount
             @meal_ingredient.unit = recipe_ingredient.unit
-            @meal_ingredient.meal_recipe = @meal_recipe
-            @meal_ingredient.meal = @meal
-
-            @meal_ingredient.save
+            @meal_ingredient.meal_recipe = meal_recipe
+            @meal_ingredient.meal = meal
+            
+            if @meal_ingredient.save
+            else
+              fail
+            end
         # end
         end
     end

@@ -6,6 +6,12 @@ class Recipe < ApplicationRecord
 
     belongs_to :user
 
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
+    validates :meal_type, presence: true
+    validates :portions, presence: true
+
+
+
     has_one_attached :main_image
     before_save do 
         self.name = name.capitalize

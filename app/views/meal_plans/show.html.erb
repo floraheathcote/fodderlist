@@ -34,6 +34,6 @@ Notes: <%= @meal_plan.notes %><br>
             
       <div class="col-sm-5">
           <h3>Add meal to <%= day.date.strftime("%A") %>:</h3>
-          <%= render 'add_meal_card', meal: @meal, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
+          <%= render 'add_meal_card', meal: @new_meal, day: day, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
       </div>
 <% end %>

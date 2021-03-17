@@ -1,5 +1,9 @@
 class Meal < ApplicationRecord
   belongs_to :day
+
+
+  validates :meal_type, presence: true
+
   
   # has_many :meal_ingredients, through: :meal_recipe
   has_many :meal_recipes, dependent: :destroy

@@ -1,17 +1,7 @@
 
 
-<%= form_with(scope: :meal, url: url, local: true, method: method) do |form| %>
-  <% if @meal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
-
-      <ul>
-      <% meal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(scope: meal, url: url, local: true, method: method) do |form| %>
+  
 
   <div class="form-group">
     <%= form.label :name %>
@@ -33,7 +23,7 @@
     <%= form.select :meal_type, Meal::MEALTYPES, prompt: "Pick one" %>
   </div>
 
-
+      <%= form.hidden_field :day_id, value: day.id %>
  
 
     <%= form.submit class: 'btn btn-primary' %>

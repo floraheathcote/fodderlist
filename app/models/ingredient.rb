@@ -6,8 +6,8 @@ class Ingredient < ApplicationRecord
 
   has_one_attached :main_image
 
-  # validates :name, presence: true, uniqueness: { case_sensitive: false }
-  # validates :ingredient_category, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+
 
   validate :acceptable_image
 

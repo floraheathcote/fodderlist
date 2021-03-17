@@ -8,11 +8,11 @@ class MealPlansController < ApplicationController
 
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
-    @meal = Meal.new
+    @new_meal = Meal.new
     @days = @meal_plan.days.order("date ASC")
     @meals = @meal_plan.meals
     @meal_plan = MealPlan.find(params[:id])
-    @meal_recipe = @meal.meal_recipes.new
+    @new_meal_recipe = MealRecipe.new
     # @start_date = @meal_plan.start_date
   end
 

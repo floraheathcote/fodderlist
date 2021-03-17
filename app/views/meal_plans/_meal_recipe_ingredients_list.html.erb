@@ -7,8 +7,8 @@
         <li> <%= meal_ingredient.ingredient.name %> 
                                             <%= meal_ingredient.quantity %> 
                                             <%= meal_ingredient.unit %>    
-                                            <%#= link_to "Edit", edit_recipe_ingredient_path(recipe_ingredient) %>
-                                            <%#= link_to "Remove", recipe_ingredient_path(recipe_ingredient),
+                                            <%= link_to "Edit", edit_meal_ingredient_path(meal_ingredient) %>
+                                            <%= link_to "Remove", meal_ingredient_path(meal_ingredient),
                                                     method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
                                             </li>
 
