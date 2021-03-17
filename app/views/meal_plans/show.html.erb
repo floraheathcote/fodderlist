@@ -26,21 +26,14 @@ Notes: <%= @meal_plan.notes %><br>
           data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
 </p> 
 <p>NOTES: <%= day.notes %></p>
-
-      <div class="row">
-          <div class="col-sm-5">
-          <% day.meals.each do |meal| %>
-
-              <%= render 'meal_card', meal: meal %>
-              <br>
-              <% end %>
-          </div>
+      <div class="card-deck">
+            <% day.meals.each do |meal| %>
+                <%= render 'meal_card', meal: meal %>
+            <% end %>
+      </div>
             
-          <div class="col-sm-5">
+      <div class="col-sm-5">
           <h3>Add meal to <%= day.date.strftime("%A") %>:</h3>
-          <%= render 'add_meal_card', meal: @meal, url: day_meals_path(day), method: :post %>
-            <br>
-          </div> 
-          <br>
+          <%= render 'add_meal_card', meal: @meal, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
       </div>
 <% end %>

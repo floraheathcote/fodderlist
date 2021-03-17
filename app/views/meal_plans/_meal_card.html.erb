@@ -1,21 +1,20 @@
 
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="max-width: 18rem;">
+<div class="card-header"><%= meal.meal_type %><p><%= link_to "Edit/Delete", edit_meal_path(meal) %></p></div>
 <% if meal.meal_recipes.present? %>
-<%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top', width: 300 ), edit_meal_path(meal) %>
-<% end %> 
+<%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
+<% end %>
   <div class="card-body">
-    <h5 class="card-title"><%= meal.name %></h5><%= link_to "Edit/Delete", edit_meal_path(meal) %></h5>
-    <p class="card-text"><%= meal.meal_type %></p>
-  
-    <ul class="list-group list-group-flush">
-          <h6>Recipes used in this meal:</h6>
+    <h5 class="card-title"><%= meal.name %></h5>
+    
+      <h6>Recipes used in this meal:</h6>
     
           <% meal.meal_recipes.each do |meal_recipe| %>
               <%= meal_recipe.recipe.name %>, <%= meal_recipe.portions %> portions
               <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
           <% end %>
-    </ul>
+    
         
         <%= render 'meal_recipes/form', meal: meal, scope: @meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
   

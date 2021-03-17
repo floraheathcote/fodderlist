@@ -14,19 +14,19 @@
     </div>
   <% end %>
 
-    <%= form.label :Recipe %>
     
-      <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, class: "dropdown-menu") %>
+    <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
+    {:prompt => 'Add recipe to meal'}, 
+    {:class=>'input',
+    :style=>'width:100%', :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
     
+    <%= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
 
-    <%= form.label :portions %>
-    <%= form.text_field :portions, class: 'form-control' %>
+    <%#= form.hidden_field :meal_id, value: meal.id %>
 
-    <%= form.hidden_field :meal_id, value: meal.id %>
-
-
-    <%= form.submit class: 'btn btn-primary' %>
+    <br>
+    <%= form.submit "Add recipe", class: 'btn btn-primary' %>
 
   
-  </div>
+
 <% end %>
