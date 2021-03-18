@@ -4,7 +4,7 @@
 <% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
 
         <li> <%= meal_ingredient.ingredient.name %> 
-                                            <%= meal_ingredient.quantity %> 
+                                            <%= meal_ingredient.quantity.round(0.5) %> 
                                             <%= meal_ingredient.unit %>    
                                             <%= link_to "Edit", edit_meal_ingredient_path(meal_ingredient) %>
                                             <%= link_to "Remove", meal_ingredient_path(meal_ingredient),

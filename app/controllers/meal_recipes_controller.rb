@@ -22,7 +22,9 @@ class MealRecipesController < ApplicationController
   # POST /meal_recipes or /meal_recipes.json
   def create
     @meal_recipe = MealRecipe.new(meal_recipe_params)
+    @meal_recipe.portions = @meal_recipe.recipe.portions
     @meal_plan = @meal_recipe.meal.day.meal_plan
+    
 
     respond_to do |format|
       if @meal_recipe.save
@@ -63,6 +65,40 @@ class MealRecipesController < ApplicationController
     end
   end
 
+
+  def double_portions
+    multiply_portions_and_ingredients(2)
+
+    respond_to do |format|
+      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.json { head :no_content }
+    end
+  end
+
+  def half_portions
+    multiply_portions_and_ingredients(0.5)
+    respond_to do |format|
+      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.json { head :no_content }
+    end
+  end
+
+  def add_one_portion
+    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+    @portions = @meal_recipe.portions
+    ratio_increase = 1 + 1/@portions
+
+    multiply_portions_and_ingredients(ratio_increase)
+
+    respond_to do |format|
+      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.json { head :no_content }
+    end
+  end
+    
+    
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meal_recipe
@@ -93,4 +129,20 @@ class MealRecipesController < ApplicationController
         # end
         end
     end
+
+
+    def multiply_portions_and_ingredients(multiply_by)
+      @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+      @meal_plan = @meal_recipe.meal.day.meal_plan
+      meal_ingredients = @meal_recipe.meal_ingredients
+      @meal_recipe.portions *= multiply_by
+
+      if @meal_recipe.save
+          meal_ingredients.each do |meal_ingredient|
+            meal_ingredient.quantity *= multiply_by
+            meal_ingredient.save
+          end
+      end
+    end  
+
 end

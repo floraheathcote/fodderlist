@@ -15,8 +15,12 @@
         <h6>Recipes used in this meal:</h6><br>
       
         <% meal.meal_recipes.each do |meal_recipe| %>
-            <h6><%= meal_recipe.recipe.name %></h6> <%= meal_recipe.portions %> portions 
-                            <%= link_to "Remove", meal_recipe_path(meal_recipe),
+            <h6><%= meal_recipe.recipe.name %></h6> <%= meal_recipe.portions.round(0.5) %> portions 
+             
+                    <%= link_to image_tag('icon-x2.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
+                    <%= link_to image_tag('icon-divide.png', size: '32'), meal_recipe_half_portions_path(meal_recipe) %>
+                    <%= link_to image_tag('icon-add1.png', size: '32'), meal_recipe_add_one_portion_path(meal_recipe) %>
+                    <%= link_to "Remove", meal_recipe_path(meal_recipe),
             method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %><br><br>
             <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
             

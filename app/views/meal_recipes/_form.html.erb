@@ -9,7 +9,8 @@
         :style=>'width:100%', 
         :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
     
-    <%= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
+    <%#= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
+
 
     <%= form.hidden_field :meal_id, value: meal.id %>
 

@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :meal_recipes do
+      get 'double_portions'
+      get 'half_portions'
+      get 'add_one_portion'
+  end
+
   resources :ingredients
   
   resources :ingredient_categories
