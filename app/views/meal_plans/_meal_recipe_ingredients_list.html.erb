@@ -1,7 +1,6 @@
 <%#= image_tag(meal_recipe.recipe.main_image) %>
-<%= link_to "Remove", meal_recipe_path(meal_recipe),
-                method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
 
+<small class="text-muted">
 <% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
 
         <li> <%= meal_ingredient.ingredient.name %> 
@@ -14,3 +13,4 @@
 
 <% end %>
 </ul></p>
+</small>

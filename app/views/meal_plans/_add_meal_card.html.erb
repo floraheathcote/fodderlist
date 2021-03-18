@@ -4,7 +4,7 @@
 <div class="card-header">Add a meal or snack to <%= day.date.strftime("%A") %></p></div>
 
   <div class="card-body">
-            <p class="card-text"><%= render 'meals/form', day: day, meal: meal, url: url, method: method %></p>
+            <p class="card-text"><%= render 'meals/form', day: day, scope: meal, url: url, button_text: "Add Meal", method: method %></p>
         </div>
   
 </div>

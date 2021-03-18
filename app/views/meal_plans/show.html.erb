@@ -24,14 +24,15 @@ Notes: <%= @meal_plan.notes %><br>
   
 
       <h5>DAY: <%= day.date.strftime("%A, %B %d") %></h5>
-        <%= link_to "Delete", day_path(day), 
+      <p>NOTES: <%= day.notes %></p>
+        <%= link_to "Delete day & all meals in it", day_path(day), 
                 class: 'btn btn-primary', 
                 method: :delete, class: "text-danger", 
                 data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
  </div>
  
  
-  <p>NOTES: <%= day.notes %></p>
+  
         <div class="card-deck">
               <% day.meals.each do |meal| %>
                   <%= render 'meal_card', meal: meal %>

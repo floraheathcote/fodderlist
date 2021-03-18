@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to meal_ingredients_path, class: 'btn btn-default' do %>
+  <%= link_to meal_ingredient_path(@meal_ingredient), class: 'btn btn-default' do %>
     All Meal_ingredients
   <% end %>
   <%= link_to edit_meal_ingredient_path(@meal_ingredient), class: 'btn btn-primary' do %>
@@ -10,10 +10,13 @@
 
 <dl class="dl-horizontal">
   <dt>Meal:</dt>
-  <dd><%= @meal_ingredient.meal %></dd>
+  <dd><%= @meal_ingredient.meal.name %></dd>
+
+  <dt>Meal plan:</dt>
+  <dd><%= @meal_ingredient.meal.day.meal_plan.id %></dd>
 
   <dt>Ingredient:</dt>
-  <dd><%= @meal_ingredient.ingredient %></dd>
+  <dd><%= @meal_ingredient.ingredient.name %></dd>
 
   <dt>Quantity:</dt>
   <dd><%= @meal_ingredient.quantity %></dd>

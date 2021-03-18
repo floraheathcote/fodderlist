@@ -8,18 +8,25 @@
   <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
   <% end %>
     <div class="card-body">
-
+        <% if meal.notes.present? %>
+            Notes: <%= meal.notes %><br><br>
+        <% end%>
       
         <h6>Recipes used in this meal:</h6><br>
       
-            <% meal.meal_recipes.each do |meal_recipe| %>
-                <h6><%= meal_recipe.recipe.name %></h6> <%= meal_recipe.portions %> portions <br><br>
-                <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
-                <br>
-            <% end %>
-      
-          
-          <%= render 'meal_recipes/form', meal: meal, scope: @new_meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
-    
+        <% meal.meal_recipes.each do |meal_recipe| %>
+            <h6><%= meal_recipe.recipe.name %></h6> <%= meal_recipe.portions %> portions 
+                            <%= link_to "Remove", meal_recipe_path(meal_recipe),
+            method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %><br><br>
+            <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
+            
+
+        <% end %>
+            
     </div>
+
+    <div class="card-footer">
+          <%= render 'meal_recipes/form', meal: meal, scope: @new_meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
+    </div>
+ 
 </div>

@@ -36,11 +36,13 @@ class MealIngredientsController < ApplicationController
 
   # PATCH/PUT /meal_ingredients/1 or /meal_ingredients/1.json
   def update
-    @meal_plan = @meal_ingredient.meal.day.meal_plan
+    # @meal_plan = @meal_ingredient.meal
+
+    meal_plan = @meal_ingredient.meal.day.meal_plan
     respond_to do |format|
       
       if @meal_ingredient.update(meal_ingredient_params)
-        format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal ingredient was successfully updated." }
+        format.html { redirect_to meal_plan_url(meal_plan), notice: "Meal ingredient was successfully updated." }
         format.json { render :show, status: :ok, location: meal_plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,10 +53,10 @@ class MealIngredientsController < ApplicationController
 
   # DELETE /meal_ingredients/1 or /meal_ingredients/1.json
   def destroy
-    @meal_plan = @meal_ingredient.meal.day.meal_plan
+    meal_plan = @meal_ingredient.meal.day.meal_plan
     @meal_ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal ingredient was successfully destroyed." }
+      format.html { redirect_to meal_plan_url(meal_plan), notice: "Meal ingredient was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,6 +69,6 @@ class MealIngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_ingredient_params
-      params.require(:meal_ingredient).permit(:meal_id, :ingredient_id, :quantity, :unit)
+      params.require(:meal_ingredient).permit(:meal_id, :meal_recipe_id, :ingredient_id, :quantity, :unit)
     end
 end

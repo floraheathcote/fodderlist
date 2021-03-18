@@ -17,6 +17,7 @@ class MealsController < ApplicationController
 
   # GET /meals/1/edit
   def edit
+    @day = @meal.day
   end
 
   # POST /meals or /meals.json
@@ -51,11 +52,11 @@ class MealsController < ApplicationController
 
   # PATCH/PUT /meals/1 or /meals/1.json
   def update
-    @meal_plan = @meal.meal_plan
+    @meal_plan = @meal.day.meal_plan
 
     respond_to do |format|
       if @meal.update(meal_params)
-        format.html { redirect_to @meal_plan, notice: "Meal was successfully updated." }
+        format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal was successfully updated." }
         format.json { render :show, status: :ok, location: @meal }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,7 +67,7 @@ class MealsController < ApplicationController
 
   # DELETE /meals/1 or /meals/1.json
   def destroy
-    @meal_plan = @meal.meal_plan
+    @meal_plan = @meal.day.meal_plan
     @meal.destroy
     respond_to do |format|
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal was successfully destroyed." }
@@ -82,6 +83,6 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:day_id, :portions, :name, :recipe_id, :favorite, :notes, :meal_type)
+      params.require(:meal).permit(:day_id, :portions, :name, :favorite, :notes, :meal_type)
     end
 end
