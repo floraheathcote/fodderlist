@@ -92,7 +92,19 @@ class MealPlansController < ApplicationController
           @new_day.date = start_date
           @new_day.date += (int - 1).days
           @new_day.meal_plan = meal_plan
-          @new_day.save
+          if @new_day.save
+            create_meals_for_day(@new_day)
+          end
         end
+    end
+
+    def create_meals_for_day(day)
+      ["breakfast", "lunch", "evening meal"].each do |mealtype|
+          meal = Meal.new
+          meal.meal_type = mealtype
+          meal.name = "Add meal name"
+          meal.day = day
+          meal.save
+      end
     end
 end
