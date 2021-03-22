@@ -5,7 +5,7 @@ class Meal < ApplicationRecord
   validates :meal_type, presence: true
 
   
-  # has_many :meal_ingredients, through: :meal_recipe
+  has_many :meal_ingredients
   has_many :meal_recipes, dependent: :destroy
 
   MEALTYPES = ["breakfast", "lunch", "evening meal", "snack", "substantial snack", "extra meal"]
@@ -14,5 +14,10 @@ class Meal < ApplicationRecord
   def collection_select_nice_data
     "#{name} | #{quantity} | #{unit}"
   end
+
+  def all_meal_ingredients
+    self.meal_ingredients
+  end
+
 
 end

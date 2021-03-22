@@ -13,7 +13,27 @@ class MealPlansController < ApplicationController
     @meals = @meal_plan.meals
     @meal_plan = MealPlan.find(params[:id])
     @new_meal_recipe = MealRecipe.new
-    # @start_date = @meal_plan.start_date
+    # @all_meal_ingredients = all_meal_ingredients_in_meal_plan(@meal_plan)
+    @all_meal_ingredients = @meal_plan.all_meal_ingredients
+
+    @mp3 =  MealPlan
+    .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id
+                INNER JOIN meals on days.id=meals.day_id
+                INNER JOIN meal_ingredients on meals.id=meal_ingredients.meal_id
+                INNER JOIN ingredients on meal_ingredients.ingredient_id=ingredients.id
+                INNER JOIN ingredient_categories on ingredients.ingredient_category_id = ingredient_categories.id")
+    .select(  " meal_plans.id, 
+                SUM(meal_ingredients.quantity),
+                meal_ingredients.unit,
+                ingredients.name AS ing_name,
+                ingredient_categories.name AS cat_name")
+    .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredient_categories.id')
+    .order(     'ingredient_categories.name')
+    .where(     "meal_plans.id = '#{@meal_plan.id}'")
+
+
+
+
   end
 
   # GET /meal_plans/new
@@ -84,9 +104,7 @@ class MealPlansController < ApplicationController
     end
 
     def create_days(meal_plan:, start_date:, days:)
-      
-      # newdays = @meal_plan.number_of_days
-      
+     
       (1..days.to_i).each do |int|
           @new_day = Day.new
           @new_day.date = start_date
@@ -107,4 +125,6 @@ class MealPlansController < ApplicationController
           meal.save
       end
     end
-end
+
+  end
+

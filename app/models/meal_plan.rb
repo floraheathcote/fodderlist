@@ -15,14 +15,27 @@ class MealPlan < ApplicationRecord
     self.days.count
   end
 
+  def all_meal_ingredients
+    @all_meal_ingredients ||= []
+    self.days.each do |day|
+      day.meals.each do |meal|
+        meal.meal_ingredients.each do |meal_ingredient|
+          
+          @all_meal_ingredients << meal_ingredient
+        end
+      end
+    end
+    return @all_meal_ingredients
+  end
+
+  # def all_ingredients_group_sum
   
+  #   @group_meal_ingredients = self.all_meal_ingredients.ingredients.group("ingredient_category")
+  #   @group_sum = @group_meal_ingredients.sum
+
+  
+  # end
+
+
 end
 
-
-
-# def set_meal_plan_start_and_days(meal_plan)
-#   start_date = meal_plan.days.order(:date).first
-#   number_of_days = meal_plan.days.count
-#       meal_plan.update_attributes(start_date: start_date)
-#       meal_plan.update_attributes(number_of_days: number_of_days)
-# end

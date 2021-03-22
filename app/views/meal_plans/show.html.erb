@@ -43,3 +43,31 @@ Notes: <%= @meal_plan.notes %><br>
             
       
 <% end %>
+<br>
+
+All Ingredients: 
+<ul>
+<% @all_meal_ingredients.each do |meal_ingredient| %>
+  <li>ID: <%= meal_ingredient.id %> <%= meal_ingredient.ingredient.name %> <%= meal_ingredient.quantity.round(0.5) %> 
+  <% if meal_ingredient.unit.present? %>
+      <%= meal_ingredient.unit %></li>
+  <% end%>
+<% end %>
+
+
+<br><br><br>
+ActiveRecord:<br><br>
+
+<% @mp3.each do |mp| %>
+<%= mp.cat_name %>
+<%= mp.ing_name %>
+<%#= Ingredient.find_by(id: mp.ingredient_id).name %>
+<%= mp.sum %>
+<%= mp.unit %>
+<br>
+<% end %>
+
+
+
+
+<%#= @records_array %>
