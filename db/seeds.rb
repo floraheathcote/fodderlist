@@ -1,6 +1,4 @@
-User.create!([
-  {email: "flora.heathcote@gmail.com", password: "monday", encrypted_password: "$2a$12$fkx1ia3QJ86bM1HFW0divOshke6YK.tMbxGj2dkGso5jXZZmGhIuC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2021-03-13 09:42:54", first_name: "Flora", last_name: "Heathcote", announcements_last_read_at: nil, admin: true}
-])
+
 Recipe.create!([
   {name: "Beef stir fry - asian style", meal_type: "Main meal", method: "DIRECTIONS\r\nIn a medium bowl add 'marinade ingredients' (cornflour, mirin or dry sherry, sesame oil and reduced sodium soy sauce) and mix well.\r\nAdd the meat to the bowl and mix, making ensure all the slices are evenly coated. Set aside for 15 minutes so the beef could absorb the flavours.\r\nHeat wok or frypan, add oil, heat and add onion, garlic and ginger cook until soft but not browned.\r\nAdd thinly sliced beef with the marinade and cook over a high heat for 3 minutes.\r\nAdd the greens of your choice (example broccoli, Chinese broccoli, snow peas, bok choy or Asian greens) and beans.\r\nAdd water to the wok and mix scrapping the sauce on the bottom of the wok.\r\nCook until the vegetables are just tender but retain their vibrant green colour (approximately 4 minutes).\r\nEnjoy.", portions: "4.0", notes: "https://www.food.com/recipe/beef-stir-fry-asian-style-336781", user_id: 1},
   {name: "Sausage and mash", meal_type: "Main meal", method: "mush potatoes, fry bangers", portions: "3.0", notes: "", user_id: 1},
