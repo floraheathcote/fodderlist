@@ -45,29 +45,52 @@ Notes: <%= @meal_plan.notes %><br>
 <% end %>
 <br>
 
-All Ingredients: 
-<ul>
-<% @all_meal_ingredients.each do |meal_ingredient| %>
-  <li>ID: <%= meal_ingredient.id %> <%= meal_ingredient.ingredient.name %> <%= meal_ingredient.quantity.round(0.5) %> 
-  <% if meal_ingredient.unit.present? %>
-      <%= meal_ingredient.unit %></li>
-  <% end%>
+<h2>All Ingredients: </h2>
+
+<% check_cat_name = "" %>
+<% check_ing_name = "" %>
+
+<% @active_record_ingredients.each do |mp| %>
+      <% unless check_cat_name == mp.cat_name %>
+          <br><br>
+          <h5><%= mp.cat_name %><br></h5>
+          <% check_cat_name = mp.cat_name %>
+      <% end %>
+      <% unless check_ing_name == mp.ing_name -%>
+        <%= mp.ing_name -%>
+        <% check_ing_name = mp.ing_name -%>
+      <% end -%>
+      <%= pluralize(mp.sum, mp.unit) -%>
+      
+      <br>
 <% end %>
 
 
-<br><br><br>
-ActiveRecord:<br><br>
+<br><br>
+<%#=@active_record_ingredients.columns %>
 
-<% @mp3.each do |mp| %>
-<%= mp.cat_name %>
-<%= mp.ing_name %>
-<%#= Ingredient.find_by(id: mp.ingredient_id).name %>
-<%= mp.sum %>
-<%= mp.unit %>
-<br>
+<br><br>
+<%#= @array_of_hashes %>
+
+<h2>Output</h2>
+array of arrays: <%= @array_of_arrays %>
+<br><br><br><br>
+<%#= @cats %>
+<br><br><br><br>
+<%#= @all_ingredient_categories %>
+<%= @final_array %>
+<br><br><br><br>
+<% @final_array.each do |cat_array| %>
+<br><br>
+  <%= cat_array[0] %>
+    <% cat_array[1].each do |ing_array| %>
+    <br>
+      <%= ing_array[0] %>
+      <% ing_array[1].each do |sum_qty_hash| %>
+ 
+          <%= sum_qty_hash[:sum] %> <%= sum_qty_hash[:unit] %>
+
+      <% end %>
+    <% end %>
+
 <% end %>
-
-
-
-
-<%#= @records_array %>

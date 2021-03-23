@@ -13,27 +13,10 @@ class MealPlansController < ApplicationController
     @meals = @meal_plan.meals
     @meal_plan = MealPlan.find(params[:id])
     @new_meal_recipe = MealRecipe.new
-    # @all_meal_ingredients = all_meal_ingredients_in_meal_plan(@meal_plan)
-    @all_meal_ingredients = @meal_plan.all_meal_ingredients
-
-    @mp3 =  MealPlan
-    .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id
-                INNER JOIN meals on days.id=meals.day_id
-                INNER JOIN meal_ingredients on meals.id=meal_ingredients.meal_id
-                INNER JOIN ingredients on meal_ingredients.ingredient_id=ingredients.id
-                INNER JOIN ingredient_categories on ingredients.ingredient_category_id = ingredient_categories.id")
-    .select(  " meal_plans.id, 
-                SUM(meal_ingredients.quantity),
-                meal_ingredients.unit,
-                ingredients.name AS ing_name,
-                ingredient_categories.name AS cat_name")
-    .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredient_categories.id')
-    .order(     'ingredient_categories.name')
-    .where(     "meal_plans.id = '#{@meal_plan.id}'")
-
-
-
-
+    @active_record_ingredients =  @meal_plan.all_meal_plan_ingredients
+    @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)
+    @array_of_arrays = @array_of_hashes.map {|x| x.values}
+    @final_array = organised_ingredients_array(@meal_plan)
   end
 
   # GET /meal_plans/new
@@ -51,8 +34,6 @@ class MealPlansController < ApplicationController
     @meal_plan.user = current_user
     start_date_from_form = @meal_plan.start_date_from_form
     number_of_days_from_form = @meal_plan.number_of_days_from_form
-    # start_date = params[:start_date]
-    # number_of_days = params[:number_of_days]
 
     respond_to do |format|
       if @meal_plan.save
@@ -104,7 +85,6 @@ class MealPlansController < ApplicationController
     end
 
     def create_days(meal_plan:, start_date:, days:)
-     
       (1..days.to_i).each do |int|
           @new_day = Day.new
           @new_day.date = start_date
@@ -124,6 +104,39 @@ class MealPlansController < ApplicationController
           meal.day = day
           meal.save
       end
+    end
+
+
+    def organised_ingredients_array(meal_plan)
+      final_array = []
+      current_line = -1
+      prev_cat = ""
+      prev_ing = ""
+      active_record_ingredients =  meal_plan.all_meal_plan_ingredients
+      array_of_hashes =  active_record_ingredients.to_a.map(&:serializable_hash)
+      array_of_arrays = array_of_hashes.map {|x| x.values}
+
+      array_of_arrays.count.times do |index|
+          if @array_of_arrays[index][1] == prev_cat 
+              # stay on current line
+              if @array_of_arrays[index][2] == prev_ing #need to add sum & unit to current ingredient
+                final_array[current_line][1][0][-1] << {sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}
+              else #need to add a new ingredient, then add sum & unit to new ingredient
+                  final_array[current_line][-1] << [[array_of_arrays[index][2]]] # add ingredient name
+                  final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
+                  prev_ing = array_of_arrays[index][2]
+              end
+          else  # increment current_line, add new category name, reset ingredient_address
+              current_line +=1
+              ingredient_index = 0
+              final_array << [[array_of_arrays[index][1]]]  # add category name
+              final_array[current_line] << [[[array_of_arrays[index][2]]]] # add ingredient name
+              final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
+              prev_cat = array_of_arrays[index][1]
+              prev_ing = array_of_arrays[index][2]
+          end
+      end
+      return final_array
     end
 
   end

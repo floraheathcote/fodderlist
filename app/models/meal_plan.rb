@@ -15,27 +15,36 @@ class MealPlan < ApplicationRecord
     self.days.count
   end
 
-  def all_meal_ingredients
-    @all_meal_ingredients ||= []
-    self.days.each do |day|
-      day.meals.each do |meal|
-        meal.meal_ingredients.each do |meal_ingredient|
+  # def all_meal_ingredients
+  #   @all_meal_ingredients ||= []
+  #   self.days.each do |day|
+  #     day.meals.each do |meal|
+  #       meal.meal_ingredients.each do |meal_ingredient|
           
-          @all_meal_ingredients << meal_ingredient
-        end
-      end
-    end
-    return @all_meal_ingredients
-  end
-
-  # def all_ingredients_group_sum
-  
-  #   @group_meal_ingredients = self.all_meal_ingredients.ingredients.group("ingredient_category")
-  #   @group_sum = @group_meal_ingredients.sum
-
-  
+  #         @all_meal_ingredients << meal_ingredient
+  #       end
+  #     end
+  #   end
+  #   return @all_meal_ingredients
   # end
 
+
+  def all_meal_plan_ingredients
+        MealPlan
+        .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id AND meal_plans.id='#{self.id}'
+                    INNER JOIN meals on days.id=meals.day_id
+                    INNER JOIN meal_ingredients on meals.id=meal_ingredients.meal_id
+                    INNER JOIN ingredients on meal_ingredients.ingredient_id=ingredients.id
+                    INNER JOIN ingredient_categories on ingredients.ingredient_category_id = ingredient_categories.id")
+        .select(  " meal_plans.id, 
+                    ingredient_categories.name AS cat_name,
+                    ingredients.name AS ing_name,
+                    SUM(meal_ingredients.quantity),
+                    meal_ingredients.unit")
+        .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredient_categories.id')
+        .order(     'cat_name ASC, ing_name ASC')
+        # .where(     "meal_plans.id = '#{self.id}'")
+  end
 
 end
 
