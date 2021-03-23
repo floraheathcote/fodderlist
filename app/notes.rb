@@ -239,3 +239,24 @@ end
         array_of_arrays[0][2] = "beef fillet"
         array_of_arrays[0][3] = 0.15e2
         array_of_arrays[0][4] = ""
+
+
+        <h2>All Ingredients: </h2>
+
+<% check_cat_name = "" %>
+<% check_ing_name = "" %>
+
+<% @active_record_ingredients.each do |mp| %>
+      <% unless check_cat_name == mp.cat_name %>
+          <br><br>
+          <h5><%= mp.cat_name %><br></h5>
+          <% check_cat_name = mp.cat_name %>
+      <% end %>
+      <% unless check_ing_name == mp.ing_name -%>
+        <%= mp.ing_name -%>
+        <% check_ing_name = mp.ing_name -%>
+      <% end -%>
+      <%= pluralize(mp.sum, mp.unit) -%>
+      
+      <br>
+<% end %>

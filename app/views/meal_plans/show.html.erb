@@ -34,7 +34,7 @@ Notes: <%= @meal_plan.notes %><br>
  
   
         <div class="card-deck">
-              <% day.meals.each do |meal| %>
+              <% day.meals.order(created_at: :desc).each do |meal| %>
                   <%= render 'meal_card', meal: meal %>
               <% end %>
               <%= render 'add_meal_card', meal: @new_meal, day: day, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
@@ -45,52 +45,17 @@ Notes: <%= @meal_plan.notes %><br>
 <% end %>
 <br>
 
-<h2>All Ingredients: </h2>
+<h2>Ingredients at a glance</h2>
 
-<% check_cat_name = "" %>
-<% check_ing_name = "" %>
-
-<% @active_record_ingredients.each do |mp| %>
-      <% unless check_cat_name == mp.cat_name %>
-          <br><br>
-          <h5><%= mp.cat_name %><br></h5>
-          <% check_cat_name = mp.cat_name %>
-      <% end %>
-      <% unless check_ing_name == mp.ing_name -%>
-        <%= mp.ing_name -%>
-        <% check_ing_name = mp.ing_name -%>
-      <% end -%>
-      <%= pluralize(mp.sum, mp.unit) -%>
-      
-      <br>
-<% end %>
-
-
+<%= link_to("Finalise meal plan and generate shopping list >>", "") %>
 <br><br>
-<%#=@active_record_ingredients.columns %>
 
-<br><br>
-<%#= @array_of_hashes %>
 
-<h2>Output</h2>
-array of arrays: <%= @array_of_arrays %>
-<br><br><br><br>
-<%#= @cats %>
-<br><br><br><br>
-<%#= @all_ingredient_categories %>
-<%= @final_array %>
-<br><br><br><br>
-<% @final_array.each do |cat_array| %>
-<br><br>
-  <%= cat_array[0] %>
-    <% cat_array[1].each do |ing_array| %>
-    <br>
-      <%= ing_array[0] %>
-      <% ing_array[1].each do |sum_qty_hash| %>
- 
-          <%= sum_qty_hash[:sum] %> <%= sum_qty_hash[:unit] %>
-
-      <% end %>
+<div class="card-group">
+  
+    <% @final_array.each do |cat_array| %>
+    <%= render 'ingredient_category_card', cat_array: cat_array %>
     <% end %>
+</div>
+<br><br><br>
 
-<% end %>

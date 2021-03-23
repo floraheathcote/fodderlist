@@ -55,6 +55,7 @@ class MealPlansController < ApplicationController
   def update
     respond_to do |format|
       if @meal_plan.update(meal_plan_params)
+        # scrollPosition = [window.scrollX, window.scrollY]
         format.html { redirect_to @meal_plan, notice: "Meal plan was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_plan }
       else

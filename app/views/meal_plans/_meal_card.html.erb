@@ -1,8 +1,8 @@
 
 
 <div class="card" style="max-width: 18rem;">
-  <div class="card-header"><%= meal.meal_type %><p><%= link_to "Edit/Delete", edit_meal_path(meal) %></p>
-  <h5><%= meal.name %></h5>
+  <div class="card-header"><%= meal.meal_type %><p><%= link_to "Edit/Delete meal", edit_meal_path(meal) %></p>
+  <h5><%= meal.name %></h5><%= link_to "(edit name)", edit_meal_path(meal) %>
   </div>
   <% if meal.meal_recipes.present? %>
   <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
@@ -15,7 +15,7 @@
         <h6>Recipes used in this meal:</h6><br>
       
         <% meal.meal_recipes.each do |meal_recipe| %>
-            <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(0.5), "portion") %>
+            <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(1), "portion") %>
              
                     <%= link_to image_tag('icon-x2.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
                     <%= link_to image_tag('icon-divide.png', size: '32'), meal_recipe_half_portions_path(meal_recipe) %>
