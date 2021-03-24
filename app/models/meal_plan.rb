@@ -3,6 +3,7 @@ class MealPlan < ApplicationRecord
  
   has_many :days, dependent: :destroy
   has_many :meals, through: :days
+  has_many :shopping_list_items, dependent: :destroy
 
   attr_accessor :start_date_from_form
   attr_accessor :number_of_days_from_form

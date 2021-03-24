@@ -25,24 +25,8 @@ IngredientCategory.create!([
   {name: "cooked meat, chilled olives, dips"},
   {name: "oil, vinegar, soy sauce, table sauce, mustard"}
 ])
-MealPlan.create!([
-  {user_id: 1, notes: ""},
-  {user_id: 1, notes: ""}
-])
-MealRecipe.create!([
-  {meal_id: 36, recipe_id: 1, portions: "12.0"},
-  {meal_id: 46, recipe_id: 1, portions: "4.0"},
-  {meal_id: 48, recipe_id: 4, portions: "4.0"},
-  {meal_id: 50, recipe_id: 3, portions: "4.0"},
-  {meal_id: 50, recipe_id: 4, portions: "2.0"},
-  {meal_id: 53, recipe_id: 1, portions: "16.0"},
-  {meal_id: 54, recipe_id: 5, portions: "12.0"},
-  {meal_id: 47, recipe_id: 5, portions: "1.25"},
-  {meal_id: 51, recipe_id: 4, portions: "1.5"},
-  {meal_id: 54, recipe_id: 4, portions: "4.0"},
-  {meal_id: 44, recipe_id: 4, portions: "7.00"},
-  {meal_id: 43, recipe_id: 3, portions: "3.0"}
-])
+
+
 RecipeIngredient.create!([
   {ingredient_id: 25, default_amount: "1.0", recipe_ingredient_group_id: 17, unit: ""},
   {ingredient_id: 27, default_amount: "1.0", recipe_ingredient_group_id: 17, unit: "pack"},
@@ -70,69 +54,7 @@ RecipeIngredientGroup.create!([
   {name: "Dressing", recipe_id: 4},
   {name: "All", recipe_id: 5}
 ])
-MealIngredient.create!([
-  {meal_id: 46, ingredient_id: 25, quantity: "3.0", unit: "", meal_recipe_id: 71},
-  {meal_id: 46, ingredient_id: 15, quantity: "1.0", unit: "teaspoon", meal_recipe_id: 71},
-  {meal_id: 46, ingredient_id: 1, quantity: "3.0", unit: "", meal_recipe_id: 71},
-  {meal_id: 46, ingredient_id: 21, quantity: "2.0", unit: "tablespoons", meal_recipe_id: 71},
-  {meal_id: 48, ingredient_id: 25, quantity: "2.0", unit: "", meal_recipe_id: 72},
-  {meal_id: 48, ingredient_id: 27, quantity: "2.0", unit: "pack", meal_recipe_id: 72},
-  {meal_id: 44, ingredient_id: 25, quantity: "3.5", unit: "", meal_recipe_id: 66},
-  {meal_id: 44, ingredient_id: 27, quantity: "3.5", unit: "pack", meal_recipe_id: 66},
-  {meal_id: 44, ingredient_id: 26, quantity: "1.75", unit: "", meal_recipe_id: 66},
-  {meal_id: 44, ingredient_id: 28, quantity: "1.75", unit: "", meal_recipe_id: 66},
-  {meal_id: 44, ingredient_id: 12, quantity: "7.0", unit: "tablespoons", meal_recipe_id: 66},
-  {meal_id: 44, ingredient_id: 21, quantity: "1.75", unit: "tsp", meal_recipe_id: 66},
-  {meal_id: 48, ingredient_id: 26, quantity: "1.0", unit: "", meal_recipe_id: 72},
-  {meal_id: 48, ingredient_id: 28, quantity: "1.0", unit: "", meal_recipe_id: 72},
-  {meal_id: 48, ingredient_id: 12, quantity: "4.0", unit: "tablespoons", meal_recipe_id: 72},
-  {meal_id: 48, ingredient_id: 21, quantity: "1.0", unit: "tsp", meal_recipe_id: 72},
-  {meal_id: 50, ingredient_id: 18, quantity: "4.0", unit: "", meal_recipe_id: 73},
-  {meal_id: 50, ingredient_id: 21, quantity: "2.0", unit: "tablespoons", meal_recipe_id: 73},
-  {meal_id: 50, ingredient_id: 16, quantity: "1.0", unit: "head", meal_recipe_id: 73},
-  {meal_id: 50, ingredient_id: 25, quantity: "1.0", unit: "", meal_recipe_id: 75},
-  {meal_id: 50, ingredient_id: 27, quantity: "1.0", unit: "pack", meal_recipe_id: 75},
-  {meal_id: 50, ingredient_id: 26, quantity: "0.5", unit: "", meal_recipe_id: 75},
-  {meal_id: 50, ingredient_id: 28, quantity: "0.5", unit: "", meal_recipe_id: 75},
-  {meal_id: 50, ingredient_id: 12, quantity: "2.0", unit: "tablespoons", meal_recipe_id: 75},
-  {meal_id: 50, ingredient_id: 21, quantity: "0.5", unit: "tsp", meal_recipe_id: 75},
-  {meal_id: 43, ingredient_id: 18, quantity: "3.0", unit: "", meal_recipe_id: 68},
-  {meal_id: 43, ingredient_id: 20, quantity: "0.375", unit: "cup", meal_recipe_id: 68},
-  {meal_id: 43, ingredient_id: 21, quantity: "1.5", unit: "tablespoons", meal_recipe_id: 68},
-  {meal_id: 43, ingredient_id: 16, quantity: "0.75", unit: "head", meal_recipe_id: 68},
-  {meal_id: 53, ingredient_id: 25, quantity: "12.0", unit: "", meal_recipe_id: 76},
-  {meal_id: 53, ingredient_id: 15, quantity: "4.0", unit: "teaspoon", meal_recipe_id: 76},
-  {meal_id: 53, ingredient_id: 1, quantity: "12.0", unit: "", meal_recipe_id: 76},
-  {meal_id: 36, ingredient_id: 1, quantity: "9.0", unit: nil, meal_recipe_id: 64},
-  {meal_id: 36, ingredient_id: 25, quantity: "9.0", unit: "", meal_recipe_id: 64},
-  {meal_id: 36, ingredient_id: 15, quantity: "3.0", unit: "teaspoon", meal_recipe_id: 64},
-  {meal_id: 36, ingredient_id: 21, quantity: "6.0", unit: "", meal_recipe_id: 64},
-  {meal_id: 53, ingredient_id: 21, quantity: "8.0", unit: "tablespoons", meal_recipe_id: 76},
-  {meal_id: 50, ingredient_id: 20, quantity: "6.0", unit: "cup", meal_recipe_id: 73},
-  {meal_id: 47, ingredient_id: 30, quantity: "1.25", unit: "cups", meal_recipe_id: 70},
-  {meal_id: 47, ingredient_id: 29, quantity: "0.85", unit: "", meal_recipe_id: 70},
-  {meal_id: 51, ingredient_id: 12, quantity: "1.5", unit: "tablespoons", meal_recipe_id: 74},
-  {meal_id: 51, ingredient_id: 21, quantity: "0.375", unit: "tsp", meal_recipe_id: 74},
-  {meal_id: 51, ingredient_id: 25, quantity: "0.75", unit: "", meal_recipe_id: 74},
-  {meal_id: 51, ingredient_id: 27, quantity: "0.75", unit: "pack", meal_recipe_id: 74},
-  {meal_id: 51, ingredient_id: 26, quantity: "0.375", unit: "", meal_recipe_id: 74},
-  {meal_id: 54, ingredient_id: 30, quantity: "12.0", unit: "cups", meal_recipe_id: 77},
-  {meal_id: 54, ingredient_id: 29, quantity: "8.0", unit: "", meal_recipe_id: 77},
-  {meal_id: 51, ingredient_id: 28, quantity: "0.375", unit: "", meal_recipe_id: 74},
-  {meal_id: 54, ingredient_id: 25, quantity: "2.0", unit: "", meal_recipe_id: 78},
-  {meal_id: 54, ingredient_id: 27, quantity: "2.0", unit: "pack", meal_recipe_id: 78},
-  {meal_id: 54, ingredient_id: 26, quantity: "1.0", unit: "", meal_recipe_id: 78},
-  {meal_id: 54, ingredient_id: 28, quantity: "1.0", unit: "", meal_recipe_id: 78},
-  {meal_id: 54, ingredient_id: 12, quantity: "4.0", unit: "tablespoons", meal_recipe_id: 78},
-  {meal_id: 54, ingredient_id: 21, quantity: "1.0", unit: "tsp", meal_recipe_id: 78}
-])
-Day.create!([
-  {meal_plan_id: 66, date: "2021-03-18 00:00:00", notes: nil},
-  {meal_plan_id: 66, date: "2021-03-20 00:00:00", notes: nil},
-  {meal_plan_id: 67, date: "2021-03-20 00:00:00", notes: nil},
-  {meal_plan_id: 67, date: "2021-03-21 00:00:00", notes: nil},
-  {meal_plan_id: 67, date: "2021-03-22 00:00:00", notes: nil}
-])
+
 Ingredient.create!([
   {name: "sesame oil", ingredient_category_id: 8, user_id: 1},
   {name: "fresh ginger", ingredient_category_id: 2, user_id: 1},
@@ -165,20 +87,7 @@ Ingredient.create!([
   {name: "frozen peas", ingredient_category_id: 2, user_id: 1},
   {name: "sausages", ingredient_category_id: 1, user_id: 1}
 ])
-Meal.create!([
-  {favorite: nil, notes: nil, meal_type: "lunch", name: "Add meal name", day_id: 58484},
-  {favorite: nil, notes: nil, meal_type: "evening meal", name: "Add meal name", day_id: 58484},
-  {favorite: nil, notes: "", meal_type: "lunch", name: "Salmon with salad", day_id: 58482},
-  {favorite: nil, notes: "", meal_type: "evening meal", name: "Deliveroo", day_id: 58482},
-  {favorite: nil, notes: "blah notes", meal_type: "substantial snack", name: "Beef stir fry with rice", day_id: 58482},
-  {favorite: nil, notes: nil, meal_type: "evening meal", name: "Add meal name", day_id: 58485},
-  {favorite: nil, notes: nil, meal_type: "lunch", name: "Add meal name", day_id: 58486},
-  {favorite: nil, notes: nil, meal_type: "evening meal", name: "Add meal name", day_id: 58486},
-  {favorite: nil, notes: nil, meal_type: "lunch", name: "Add meal name", day_id: 58487},
-  {favorite: nil, notes: "notes here", meal_type: "breakfast", name: "Add meal name", day_id: 58485},
-  {favorite: nil, notes: "new note", meal_type: "lunch", name: "Add meal name", day_id: 58485},
-  {favorite: nil, notes: "nooote", meal_type: "evening meal", name: "Add meal name", day_id: 58487}
-])
+
 Pin.create!([
   {description: "flooring", user_id: 1},
   {description: "taps", user_id: 1},

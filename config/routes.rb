@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :days
   resources :meal_plans, :shallow => true do
+    resources :shopping_list_items
     resources :days, :shallow => true do
       resources :meals, :shallow => true do
         resources :meal_recipes

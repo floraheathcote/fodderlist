@@ -1,0 +1,27 @@
+<div class="page-header">
+  <%= link_to shopping_list_items_path, class: 'btn btn-default' do %>
+    All Shopping_list_items
+  <% end %>
+  <%= link_to edit_shopping_list_item_path(@shopping_list_item), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show shopping_list_item</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Ingredient:</dt>
+  <dd><%= @shopping_list_item.ingredient %></dd>
+
+  <dt>Sum qty:</dt>
+  <dd><%= @shopping_list_item.sum_qty %></dd>
+
+  <dt>Unit:</dt>
+  <dd><%= @shopping_list_item.unit %></dd>
+
+  <dt>Ticked:</dt>
+  <dd><%= @shopping_list_item.ticked %></dd>
+
+  <dt>Meal plan:</dt>
+  <dd><%= @shopping_list_item.meal_plan %></dd>
+
+</dl>

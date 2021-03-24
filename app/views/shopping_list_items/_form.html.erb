@@ -1,0 +1,54 @@
+<%= form_with(model: shopping_list_item, local: true) do |form| %>
+  <% if shopping_list_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shopping_list_item.errors.count, "error") %> prohibited this shopping_list_item from being saved:</h2>
+
+      <ul>
+      <% shopping_list_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :ingredient_id %>
+    <%= form.text_field :ingredient_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sum_qty %>
+    <%= form.text_field :sum_qty, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :unit %>
+    <%= form.text_field :unit, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ticked %>
+    <%= form.check_box :ticked, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :meal_plan_id %>
+    <%= form.text_field :meal_plan_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if shopping_list_item.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', shopping_list_item, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if shopping_list_item.persisted? %>
+      <%= link_to "Cancel", shopping_list_item, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", shopping_list_items_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
