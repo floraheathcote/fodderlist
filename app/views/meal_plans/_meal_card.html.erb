@@ -17,7 +17,7 @@
         <% meal.meal_recipes.each do |meal_recipe| %>
             <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(1), "portion") %>
              
-                    <%= link_to image_tag('icon-x2.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
+                    <%= link_to image_tag( 'icontimestwo.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
                     <%= link_to image_tag('icon-divide.png', size: '32'), meal_recipe_half_portions_path(meal_recipe) %>
                     <%= link_to image_tag('icon-add1.png', size: '32'), meal_recipe_add_one_portion_path(meal_recipe) %>
                     <%= link_to "Remove", meal_recipe_path(meal_recipe),

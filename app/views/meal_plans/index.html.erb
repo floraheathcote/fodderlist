@@ -1,20 +1,18 @@
 
 <h1>Meal_plans</h1>
 
-<%= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' do %>
+<%= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' %>
+<br>
 
 
       <% @meal_plans.each do |meal_plan| %>
-        <%= content_tag :tr, id: dom_id(meal_plan), class: dom_class(meal_plan) do %>
           
-                      <td><%= meal_plan.user %></td>
-                      <td><%= meal_plan.start_date %></td>
-                      <td><%= meal_plan.notes %></td>
+                      <%= meal_plan.number_of_days %> days
+                      <%= meal_plan.start_date.strftime("%A, %B %d") %>
+                      <%= meal_plan.notes %>
           
-            <td><%= link_to 'Show', meal_plan %></td>
-          
+            <%= link_to 'Show', meal_plan %>
+          <br>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      
+
