@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :days
   resources :meal_plans, :shallow => true do
+    get 'create_shopping_list'
+    get 'delete_shopping_list'
     resources :shopping_list_items
     resources :days, :shallow => true do
       resources :meals, :shallow => true do
@@ -24,6 +26,8 @@ Rails.application.routes.draw do
       get 'half_portions'
       get 'add_one_portion'
   end
+
+ 
 
   resources :ingredients
   

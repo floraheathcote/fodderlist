@@ -8,6 +8,7 @@ class MealPlansController < ApplicationController
 
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
+    
     @new_meal = Meal.new
     @days = @meal_plan.days.order("date ASC")
     @meals = @meal_plan.meals
@@ -51,6 +52,8 @@ class MealPlansController < ApplicationController
     @day = @meal_plan.days.new
   end
 
+  
+
   # PATCH/PUT /meal_plans/1 or /meal_plans/1.json
   def update
     respond_to do |format|
@@ -73,6 +76,37 @@ class MealPlansController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def create_shopping_list
+    #   meal_plan_create_shopping_list_path
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    @meal_plan.all_meal_plan_ingredients.each do |mpi|
+        @shopping_list_item = @meal_plan.shopping_list_items.new
+          @shopping_list_item.meal_plan_id = mpi.id
+          @shopping_list_item.ingredient_id = mpi.ingredient_id
+          @shopping_list_item.sum_qty = mpi.sum
+          @shopping_list_item.unit = mpi.unit
+          unless @shopping_list_item.save
+            fail
+          end
+    end
+    redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list was successfully created."
+    # format.html { redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list was successfully created." }
+    # format.json { render :show, status: :created, location: @shopping_list_item }  
+    
+  end
+
+  def delete_shopping_list
+    # meal_plan_delete_shopping_list_path
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    @meal_plan.shopping_list_items.delete_all
+
+    respond_to do |format|
+      format.html { redirect_to @meal_plan, notice: "Shopping list deleted and meal plan reverted to draft status." }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -139,6 +173,9 @@ class MealPlansController < ApplicationController
       end
       return final_array
     end
+
+    
+
 
   end
 

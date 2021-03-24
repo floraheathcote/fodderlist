@@ -1,15 +1,35 @@
 
+<h1>Shopping list</h1>
+
+To buy:
+
+<ul>
+<% prev_category = nil %>
+<% prev_ingredient = nil %>
+<% @shopping_list_items_unticked.each do |item| %>
+<% unless item.ingredient.ingredient_category == prev_category -%><br><br><h6><%= item.ingredient.ingredient_category.name %></h6><% end -%>
+<% prev_category = item.ingredient.ingredient_category -%>
+    <% unless item.ingredient == prev_ingredient -%><br> <%= item.ingredient.name -%>: <% end -%><% if item.ingredient == prev_ingredient -%> & <% end %><%= item.sum_qty.round(0.05) %> <%= item.unit %>
+    <% prev_ingredient = item.ingredient %>
+<% end %>
+</ul>
+
+<% @shopping_list_items_ticked.each do |item| %>
+    <%= item.ingredient.name %>   
+<% end %>
+
+
+Bought / already got:
+
 
 
 <div class="row">
   <div class="col-sm-6">
-    <h1>Shopping_list_items</h1>
+    <h1>Shopping list</h1>
   </div>
 
   <div class="col-sm-6 text-right">
-  <%= link_to new_shopping_list_item_path, class: 'btn btn-primary' do %>
-    Add New Shopping list item
-  <% end %>
+  
   </div>
 </div>
 
@@ -35,14 +55,14 @@
         <%= content_tag :tr, id: dom_id(shopping_list_item), class: dom_class(shopping_list_item) do %>
           
 
-                      <td><%= shopping_list_item.ingredient %></td>
-                      <td><%= shopping_list_item.sum_qty %></td>
+                      <td><%= shopping_list_item.ingredient.name %></td>
+                      <td><%= shopping_list_item.sum_qty.round(0.05) %></td>
                       <td><%= shopping_list_item.unit %></td>
                       <td><%= shopping_list_item.ticked %></td>
-                      <td><%= shopping_list_item.meal_plan %></td>
+                      <td><%= shopping_list_item.meal_plan.start_date %></td>
           
           
-            <td><%= link_to 'Show', shopping_list_item %></td>
+ 
           
         <% end %>
       <% end %>

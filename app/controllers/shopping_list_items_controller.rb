@@ -3,7 +3,10 @@ class ShoppingListItemsController < ApplicationController
 
   # GET /shopping_list_items or /shopping_list_items.json
   def index
-    @shopping_list_items = ShoppingListItem.all
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    @shopping_list_items = ShoppingListItem.where(meal_plan: @meal_plan)
+    @shopping_list_items_ticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: true)
+    @shopping_list_items_unticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: false)
   end
 
   # GET /shopping_list_items/1 or /shopping_list_items/1.json
@@ -13,6 +16,7 @@ class ShoppingListItemsController < ApplicationController
   # GET /shopping_list_items/new
   def new
     @shopping_list_item = ShoppingListItem.new
+    
   end
 
   # GET /shopping_list_items/1/edit
@@ -33,6 +37,8 @@ class ShoppingListItemsController < ApplicationController
       end
     end
   end
+
+
 
   # PATCH/PUT /shopping_list_items/1 or /shopping_list_items/1.json
   def update

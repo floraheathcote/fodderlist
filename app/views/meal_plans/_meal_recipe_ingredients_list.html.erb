@@ -6,9 +6,11 @@
         <li> <%= meal_ingredient.ingredient.name %> 
                                             <%= meal_ingredient.quantity.round(1) %> 
                                             <%= meal_ingredient.unit %>    
-                                            <%= link_to "Edit", edit_meal_ingredient_path(meal_ingredient) %>
-                                            <%= link_to "X", meal_ingredient_path(meal_ingredient),
-                                                    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                                            <% if @meal_plan.status=="draft" %>
+                                                <%= link_to "Edit", edit_meal_ingredient_path(meal_ingredient) %>
+                                                <%= link_to "X", meal_ingredient_path(meal_ingredient),
+                                                        method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                                            <% end %>
                                             </li>
 
 <% end %>

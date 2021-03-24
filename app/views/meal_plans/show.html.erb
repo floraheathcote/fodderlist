@@ -1,18 +1,21 @@
 <div class="page-header">
 
-  <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
+      <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
 
-  <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
-  <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-primary', 
-    method: :delete, class: "text-danger", 
-    data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' }%>
+      <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
+      <% if @meal_plan.status=="draft" %>
+          <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-primary', 
+                method: :delete, class: "text-danger", 
+                data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' }%>
+      <% end %>
 
-
-  <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
-                             (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
-                               <%= link_to "Add a day", new_meal_plan_day_path(@meal_plan), 
-                               class: 'btn btn-primary' %>
-
+      <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
+                                (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
+      
+                                <% if @meal_plan.status=="draft" %>
+                                  <%= link_to "Add a day", new_meal_plan_day_path(@meal_plan), 
+                                  class: 'btn btn-primary' %>
+                                <% end %>
 </div>
 
 Notes: <%= @meal_plan.notes %><br>
@@ -20,42 +23,61 @@ Notes: <%= @meal_plan.notes %><br>
 
 <% @days.each do |day| %>
 
-<div class="container p-3 my-3 bg-primary text-white">
-  
+      <div class="container p-3 my-3 bg-primary text-white">
+          
+            <h5>DAY: <%= day.date.strftime("%A, %B %d") %></h5>
+            <p>NOTES: <%= day.notes %></p>
+        <% if @meal_plan.status == "draft" %>
+            <%= link_to "Delete day & all meals in it", day_path(day), 
+                    class: 'btn btn-primary', 
+                    method: :delete, class: "text-danger", 
+                    data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
+        <% end %>
+      </div>
+ 
+      <div class="card-deck">
+            <% day.meals.order(created_at: :desc).each do |meal| %>
+                <%= render 'meal_card', meal: meal %>
+            <% end %>
 
-      <h5>DAY: <%= day.date.strftime("%A, %B %d") %></h5>
-      <p>NOTES: <%= day.notes %></p>
-        <%= link_to "Delete day & all meals in it", day_path(day), 
-                class: 'btn btn-primary', 
-                method: :delete, class: "text-danger", 
-                data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
- </div>
- 
- 
-  
-        <div class="card-deck">
-              <% day.meals.order(created_at: :desc).each do |meal| %>
-                  <%= render 'meal_card', meal: meal %>
-              <% end %>
+            <% if @meal_plan.status=="draft" %>
               <%= render 'add_meal_card', meal: @new_meal, day: day, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
-
-        </div>
-            
-      
+            <% end %>
+      </div>
+        
 <% end %>
-<br>
 
+<br>
 <h2>Ingredients at a glance</h2>
 
-<%= link_to("Finalise meal plan and generate shopping list >>", "") %>
-<br><br>
+      <% if @meal_plan.status == "confirmed" %>
+            Meal plan status: Closed to editing 
+            <p><%= link_to("View shopping list for this meal_plan", meal_plan_shopping_list_items_url(@meal_plan)) %></p>
+            <p><%= link_to("Delete shopping list for meal plan and continue editing meal plan", meal_plan_delete_shopping_list_path(@meal_plan)) %></p>
+      <% else %>
+            Meal plan status: Draft 
+            <p><%= link_to("Finalise meal plan and generate shopping list >>", meal_plan_create_shopping_list_path(@meal_plan)) %></p>
+      <% end %>
 
 
-<div class="card-group">
+ <div class="card-group">
   
     <% @final_array.each do |cat_array| %>
-    <%= render 'ingredient_category_card', cat_array: cat_array %>
+        <%= render 'ingredient_category_card', cat_array: cat_array %>
     <% end %>
 </div>
 <br><br><br>
 
+<%# @meal_plan.all_meal_plan_ingredients.each do |mpi| %>
+    <%#= mpi.ingredient_id %>
+    <%#= mpi.sum %>
+    <%#= mpi.cat_name %>
+<%# end %>
+
+
+
+<%#= @meal_plan.all_meal_plan_ingredients.where(cat_name: "frozen foods").each do |mpi| %>
+    <%#= mpi.ingredient_id %>
+    <%#= mpi.sum %>
+    <%#= mpi.id %>
+<%# end %>

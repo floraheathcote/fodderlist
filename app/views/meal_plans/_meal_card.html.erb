@@ -1,7 +1,11 @@
 
 
 <div class="card" style="max-width: 18rem;">
-  <div class="card-header"><%= meal.meal_type %><p><%= link_to "Edit/Delete meal", edit_meal_path(meal) %></p>
+  <div class="card-header"><%= meal.meal_type %><p>
+    <% if @meal_plan.status=="draft" %>
+        <%= link_to "Edit/Delete meal", edit_meal_path(meal) %></p>
+    <% end %>
+
   <h5><%= meal.name %></h5><%= link_to "(edit name)", edit_meal_path(meal) %>
   </div>
   <% if meal.meal_recipes.present? %>
@@ -16,12 +20,13 @@
       
         <% meal.meal_recipes.each do |meal_recipe| %>
             <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(1), "portion") %>
-             
+             <% if @meal_plan.status=="draft" %>
                     <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icontimestwo.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
                     <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icon-divide.png', size: '32'), meal_recipe_half_portions_path(meal_recipe) %>
                     <%= link_to image_tag('https://reciping.s3.us-east-2.amazonaws.com/icon-add1.png', size: '32'), meal_recipe_add_one_portion_path(meal_recipe) %>
                     <%= link_to "Remove", meal_recipe_path(meal_recipe),
             method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %><br><br>
+            <% end %>
             <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
             
 
@@ -29,8 +34,10 @@
             
     </div>
 
+    <% if @meal_plan.status=="draft" %>
     <div class="card-footer">
           <%= render 'meal_recipes/form', meal: meal, scope: @new_meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
     </div>
+    <% end %>
  
 </div>

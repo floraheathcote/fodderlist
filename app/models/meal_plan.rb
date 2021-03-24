@@ -7,6 +7,7 @@ class MealPlan < ApplicationRecord
 
   attr_accessor :start_date_from_form
   attr_accessor :number_of_days_from_form
+  attr_accessor :status
   
   def start_date
     self.days.order(:date).first.date
@@ -30,6 +31,14 @@ class MealPlan < ApplicationRecord
   # end
 
 
+  def status
+    if self.shopping_list_items.present?
+      self.status = "confirmed"
+    else
+      self.status = "draft"
+    end
+  end
+
   def all_meal_plan_ingredients
         MealPlan
         .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id AND meal_plans.id='#{self.id}'
@@ -41,8 +50,9 @@ class MealPlan < ApplicationRecord
                     ingredient_categories.name AS cat_name,
                     ingredients.name AS ing_name,
                     SUM(meal_ingredients.quantity),
-                    meal_ingredients.unit")
-        .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredient_categories.id')
+                    meal_ingredients.unit,
+                    ingredients.id AS ingredient_id")
+        .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredients.id, ingredient_categories.id')
         .order(     'cat_name ASC, ing_name ASC')
         # .where(     "meal_plans.id = '#{self.id}'")
   end
