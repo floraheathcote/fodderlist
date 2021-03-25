@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :meal_plans, :shallow => true do
     get 'create_shopping_list'
     get 'delete_shopping_list'
-    resources :shopping_list_items
+    resources :shopping_list_items do
+      get 'toggle_tick'
+    end
     resources :days, :shallow => true do
       resources :meals, :shallow => true do
         resources :meal_recipes
