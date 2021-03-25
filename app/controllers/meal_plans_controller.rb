@@ -80,16 +80,23 @@ class MealPlansController < ApplicationController
   def create_shopping_list
     #   meal_plan_create_shopping_list_path
     @meal_plan = MealPlan.find(params[:meal_plan_id])
+    prev_ingredient_id = nil #@meal_plan.all_meal_plan_ingredients.last # just need a non-nil value that isn't equal to first ingredient
     @meal_plan.all_meal_plan_ingredients.each do |mpi|
+      if mpi.ingredient_id == prev_ingredient_id
+        @shopping_list_item.total_sum_unit += ( " & " + mpi.sum.to_s + " " + mpi.unit.to_s )
+        # add unit
+      else
         @shopping_list_item = @meal_plan.shopping_list_items.new
-          @shopping_list_item.meal_plan_id = mpi.id
-          @shopping_list_item.ingredient_id = mpi.ingredient_id
-          @shopping_list_item.sum_qty = mpi.sum
-          @shopping_list_item.unit = mpi.unit
-          unless @shopping_list_item.save
-            fail
-          end
+        @shopping_list_item.meal_plan_id = mpi.id
+        @shopping_list_item.ingredient_id = mpi.ingredient_id   
+        @shopping_list_item.total_sum_unit = mpi.sum.to_s + " " + mpi.unit.to_s
+      end
+        unless @shopping_list_item.save
+          fail
+        end
+        prev_ingredient_id = mpi.ingredient_id
     end
+
     redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list was successfully created."
     # format.html { redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list was successfully created." }
     # format.json { render :show, status: :created, location: @shopping_list_item }  

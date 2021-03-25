@@ -91,6 +91,6 @@ class ShoppingListItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shopping_list_item_params
-      params.require(:shopping_list_item).permit(:ingredient_id, :sum_qty, :unit, :ticked, :meal_plan_id)
+      params.require(:shopping_list_item).permit(:ingredient_id, :total_sum_unit, :ticked, :meal_plan_id)
     end
 end

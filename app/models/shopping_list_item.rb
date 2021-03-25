@@ -2,7 +2,7 @@ class ShoppingListItem < ApplicationRecord
   belongs_to :ingredient
   belongs_to :meal_plan
 
-  validates :sum_qty, presence: true
+  validates :total_sum_unit, presence: true
 
   after_initialize :set_defaults
 

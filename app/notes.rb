@@ -260,3 +260,61 @@ end
       
       <br>
 <% end %>
+
+
+
+To buy:
+
+<ul>
+<% prev_category = nil %>
+<% prev_ingredient = nil %>
+<% prev_item  = nil %>
+<ul>
+<% @shopping_list_items_unticked.each do |item| %>
+    
+    <% if prev_item.present? %>
+        <% unless item.ingredient == prev_ingredient -%>
+              <% if item.ticked %>
+                <%= link_to("un-tick", shopping_list_item_toggle_tick_path(prev_item) ) %>
+                </li> 
+                <% else %>
+                <%= link_to("edit quantity", edit_shopping_list_item_path(prev_item) ) %>
+                <%= link_to("tick off", shopping_list_item_toggle_tick_path(prev_item) ) %>
+              <% end %>
+        <% end %>
+    <% end %>
+
+    <% unless item.ingredient.ingredient_category == prev_category -%><br><br><h6><%= item.ingredient.ingredient_category.name %></h6><% end -%>
+    <% prev_category = item.ingredient.ingredient_category -%>
+
+    <% unless item.ingredient == prev_ingredient -%><br> 
+        <li><%= item.ingredient.name -%>: 
+    <% end -%>
+    
+    <% if item.ingredient == prev_ingredient -%> & 
+    <% end %>
+    <%= item.sum_qty.round(0.05) %> <%= item.unit %>
+
+    <% if item == @shopping_list_items_unticked.last %>
+              <% if item.ticked %>
+                <%= link_to("un-tick", shopping_list_item_toggle_tick_path(prev_item) ) %>
+                </li> 
+                <% else %>
+                <%= link_to("edit quantity", edit_shopping_list_item_path(prev_item) ) %>
+                <%= link_to("tick off", shopping_list_item_toggle_tick_path(prev_item) ) %>
+              <% end %>
+    <% end %>
+
+
+    <% prev_ingredient = item.ingredient %>
+    <% prev_item = item %>
+<% end %>
+</ul>
+
+
+
+
+Bought / already got:
+<% @shopping_list_items_ticked.each do |item| %>
+    <%= item.ingredient.name %>   
+<% end %>
