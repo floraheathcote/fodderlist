@@ -1,12 +1,13 @@
 class Meal < ApplicationRecord
   belongs_to :day
+  has_many :meal_ingredients, dependent: :destroy
+  has_many :meal_recipes, dependent: :destroy
 
 
   validates :meal_type, presence: true
 
   
-  has_many :meal_ingredients
-  has_many :meal_recipes, dependent: :destroy
+  
 
   MEALTYPES = ["breakfast", "lunch", "evening meal", "snack", "substantial snack", "extra meal"]
   validates :meal_type, inclusion: { in: MEALTYPES, message: "must be between 1 and 5" }

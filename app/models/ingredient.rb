@@ -1,5 +1,5 @@
 class Ingredient < ApplicationRecord
-  belongs_to :ingredient_category, inverse_of: :ingredients
+  belongs_to :ingredient_category
   has_many :recipe_ingredients, dependent: :destroy
   has_many :meal_ingredients, dependent: :destroy
 
