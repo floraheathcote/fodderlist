@@ -12,36 +12,11 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :ingredient_id %>
-    <%= form.text_field :ingredient_id, class: 'form-control' %>
+    <%= form.label :quantity %>
+    <%= form.text_field :total_sum_unit, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :sum_qty %>
-    <%= form.text_field :sum_qty, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :unit %>
-    <%= form.text_field :unit, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :ticked %>
-    <%= form.check_box :ticked, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :meal_plan_id %>
-    <%= form.text_field :meal_plan_id, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <% if shopping_list_item.persisted? %>
-      <div class="float-right">
-        <%= link_to 'Destroy', shopping_list_item, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-      </div>
-    <% end %>
 
     <%= form.submit class: 'btn btn-primary' %>
 

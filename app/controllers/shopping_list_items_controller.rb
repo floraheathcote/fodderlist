@@ -5,8 +5,8 @@ class ShoppingListItemsController < ApplicationController
   def index
     @meal_plan = MealPlan.find(params[:meal_plan_id])
     @shopping_list_items = ShoppingListItem.where(meal_plan: @meal_plan)
-    @shopping_list_items_ticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: true)
-    @shopping_list_items_unticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: false)
+    @shopping_list_items_ticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: true).joins(:ingredient).order(ingredient_category_id: :asc)
+    @shopping_list_items_unticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: false).joins(:ingredient).order(ingredient_category_id: :asc)
   end
 
   # GET /shopping_list_items/1 or /shopping_list_items/1.json

@@ -1,51 +1,16 @@
 
 <h1>Shopping list</h1>
 
+<%= link_to "View meal plan", meal_plans_path, class: 'btn btn-primary' %>
 
+<br><br><br>
 
+<h3>To buy:</h3>
+<%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_unticked %>
 
-<div class="row">
-  <div class="col-sm-6">
-    <h1>Shopping list</h1>
-  </div>
+<br><br><br>
 
-  <div class="col-sm-6 text-right">
-  
-  </div>
-</div>
+<h3>Ticked off:</h3>
+<%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    
-
-            <th>Ingredient</th>
-            <th>Sum qty</th>
-            <th>Ticked</th>
-            <th>Meal plan</th>
-            
-          <th></th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @shopping_list_items.each do |shopping_list_item| %>
-        <%= content_tag :tr, id: dom_id(shopping_list_item), class: dom_class(shopping_list_item) do %>
-          
-
-                      <td><%= shopping_list_item.ingredient.name %></td>
-                      <td><%= shopping_list_item.total_sum_unit %></td>
-
-                      <td><%= shopping_list_item.ticked %></td>
-                      <td><%= shopping_list_item.meal_plan.start_date %></td>
-          
-          
- 
-          
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<br><br><br>
