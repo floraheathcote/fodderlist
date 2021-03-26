@@ -23,19 +23,10 @@ Notes: <%= @meal_plan.notes %><br>
 
 <% @days.each do |day| %>
 
-      <div class="container p-3 my-3 bg-primary text-white">
-          
-            <h5>DAY: <%= day.date.strftime("%A, %B %d") %></h5>
-            <p>NOTES: <%= day.notes %></p>
-            <p>HOLIBOBS: <%= day.holiday %></p>
-        <% if @meal_plan.status == "draft" %>
-            <%= link_to "Delete day & all meals in it", day_path(day), 
-                    class: 'btn btn-default', 
-                    method: :delete, class: "text-danger", 
-                    data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
-        <% end %>
-      </div>
- 
+    <%= render 'day_header_bar', day: day %>
+
+ <br>
+
       <div class="card-deck">
             <% day.meals.order(created_at: :desc).each do |meal| %>
                 <%= render 'meal_card', meal: meal %>
@@ -44,8 +35,9 @@ Notes: <%= @meal_plan.notes %><br>
             <% if @meal_plan.status=="draft" %>
               <%= render 'add_meal_card', meal: @new_meal, day: day, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
             <% end %>
+             
       </div>
-        
+<br> <br> <br>        
 <% end %>
 
 <br>
@@ -62,30 +54,9 @@ Notes: <%= @meal_plan.notes %><br>
 
 
  <div class="card-group">
-  
     <% @final_array.each do |cat_array| %>
         <%= render 'ingredient_category_card', cat_array: cat_array %>
     <% end %>
 </div>
+
 <br><br><br>
-
-<%# @meal_plan.all_meal_plan_ingredients.each do |mpi| %>
-    <%#= mpi.ingredient_id %>
-    <%#= mpi.sum %>
-    <%#= mpi.cat_name %>
-<%# end %>
-
-
-
-<%#= @meal_plan.all_meal_plan_ingredients.where(cat_name: "frozen foods").each do |mpi| %>
-    <%#= mpi.ingredient_id %>
-    <%#= mpi.sum %>
-    <%#= mpi.id %>
-<%# end %>
-
-<% @all_events.each do |event| %>
-    <%= event['date'] %>
-<% end %>
-
-
-  

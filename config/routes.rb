@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
-  resources :days
+  # resources :days
   resources :meal_plans, :shallow => true do
     get 'create_shopping_list'
     get 'delete_shopping_list'

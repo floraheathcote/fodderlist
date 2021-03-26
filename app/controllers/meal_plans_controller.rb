@@ -22,8 +22,8 @@ class MealPlansController < ApplicationController
     @final_array = organised_ingredients_array(@meal_plan)
 
 
-    rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
-    @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
+    # rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
+    # @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
     # @response2 = @response['england-and-wales']['events'][0]
     # @response = JSON.parse(rawjson) 'england-and-wales.events[0].title'
     
