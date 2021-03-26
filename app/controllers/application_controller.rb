@@ -16,10 +16,23 @@ class ApplicationController < ActionController::Base
 # end
 
 def get_meal_plan_last_day(meal_plan)
-  day = meal_plan.days.order(:date).last
-  date = day.date
+  if meal_plan.days.first.id.present?
+    day = meal_plan.days.order(:date).last
+    date = day.date
+  else
+    date = meal_plan.updated_at
+  end
 end
 
+def create_meals_for_day(day)
+  ["breakfast", "lunch", "evening meal"].each do |mealtype|
+      meal = Meal.new
+      meal.meal_type = mealtype
+      meal.name = "Add meal name"
+      meal.day = day
+      meal.save
+  end
+end
 
   protected
 

@@ -23,7 +23,7 @@ class MealPlansController < ApplicationController
 
 
     rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
-    @response = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
+    @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
     # @response2 = @response['england-and-wales']['events'][0]
     # @response = JSON.parse(rawjson) 'england-and-wales.events[0].title'
     
@@ -148,15 +148,7 @@ class MealPlansController < ApplicationController
         end
     end
 
-    def create_meals_for_day(day)
-      ["breakfast", "lunch", "evening meal"].each do |mealtype|
-          meal = Meal.new
-          meal.meal_type = mealtype
-          meal.name = "Add meal name"
-          meal.day = day
-          meal.save
-      end
-    end
+    
 
 
     def organised_ingredients_array(meal_plan)

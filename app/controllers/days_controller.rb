@@ -1,8 +1,6 @@
 class DaysController < ApplicationController
   before_action :set_day, only: %i[ show edit update destroy ]
 
-  
-
   # GET /days or /days.json
   def index
     @days = Day.all
@@ -14,7 +12,8 @@ class DaysController < ApplicationController
 
   # GET /days/new
   def new
-    @meal_plan = MealPlan.find_by(params[:id])
+    
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
     @day = @meal_plan.days.new
     @date = get_meal_plan_last_day(@meal_plan) + 1.day
 
@@ -26,12 +25,13 @@ class DaysController < ApplicationController
 
   # POST /days or /days.json
   def create
-    @meal_plan = MealPlan.find_by(params[:id])
-    @day = @meal_plan.days.new(day_params)
+    @meal_plan = MealPlan.find(params[:meal_plan_id])
+    @day = Day.new(day_params)
 
     respond_to do |format|
       if @day.save
-        format.html { redirect_to @meal_plan, notice: "Day was successfully created." }
+        create_meals_for_day(@day)
+        format.html { redirect_to meal_plan_url(@meal_plan), notice: "Day was successfully created." }
         format.json { render :show, status: :created, location: @day }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -76,3 +76,4 @@ class DaysController < ApplicationController
       params.require(:day).permit(:meal_plan_id, :date)
     end
 end
+

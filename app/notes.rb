@@ -318,3 +318,18 @@ Bought / already got:
 <% @shopping_list_items_ticked.each do |item| %>
     <%= item.ingredient.name %>   
 <% end %>
+
+
+
+
+after_initialize :create_meals_for_day
+
+def create_meals_for_day
+  ["breakfast", "lunch", "evening meal"].each do |mealtype|
+      meal = Meal.new
+      meal.meal_type = mealtype
+      meal.name = "Add meal name"
+      meal.day_id = self.id
+      meal.save
+  end
+end

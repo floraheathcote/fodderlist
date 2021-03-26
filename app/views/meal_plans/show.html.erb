@@ -27,9 +27,10 @@ Notes: <%= @meal_plan.notes %><br>
           
             <h5>DAY: <%= day.date.strftime("%A, %B %d") %></h5>
             <p>NOTES: <%= day.notes %></p>
+            <p>HOLIBOBS: <%= day.holiday %></p>
         <% if @meal_plan.status == "draft" %>
             <%= link_to "Delete day & all meals in it", day_path(day), 
-                    class: 'btn btn-primary', 
+                    class: 'btn btn-default', 
                     method: :delete, class: "text-danger", 
                     data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' }%>
         <% end %>
@@ -82,4 +83,9 @@ Notes: <%= @meal_plan.notes %><br>
     <%#= mpi.id %>
 <%# end %>
 
-<%= @response %>
+<% @all_events.each do |event| %>
+    <%= event['date'] %>
+<% end %>
+
+
+  

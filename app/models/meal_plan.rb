@@ -10,11 +10,19 @@ class MealPlan < ApplicationRecord
   attr_accessor :status
   
   def start_date
-    self.days.order(:date).first.date
+    if self.days.present?
+      self.days.order(:date).first.date
+    else
+      self.updated_at
+    end
   end
 
   def number_of_days
-    self.days.count
+    if self.days.present?
+      self.days.count
+    else
+      0
+    end
   end
 
   # def all_meal_ingredients

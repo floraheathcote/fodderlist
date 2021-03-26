@@ -7,8 +7,8 @@
 
 
       <% @meal_plans.each do |meal_plan| %>
-          
-                      <%= meal_plan.number_of_days %> days
+                      <%= meal_plan.id %>
+                      <%= pluralize(meal_plan.number_of_days, "day") %>
                       <%= meal_plan.start_date.strftime("%A, %B %d") %>
                       <%= meal_plan.notes %>
           
