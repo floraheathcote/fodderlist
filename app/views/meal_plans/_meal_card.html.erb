@@ -8,9 +8,11 @@
 
   <h5><%= meal.name %></h5><%= link_to "(edit name)", edit_meal_path(meal) %>
   </div>
-  <% if meal.meal_recipes.present? %>
-  <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
-  <% end %>
+    <% if meal.meal_recipes.present? %>
+        <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
+    <% else %>
+        <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: 'card-img-top' ), edit_meal_path(meal) %>
+    <% end %>
     <div class="card-body">
         <% if meal.notes.present? %>
             Notes: <%= meal.notes %><br><br>

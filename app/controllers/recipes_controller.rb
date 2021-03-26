@@ -33,8 +33,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
+    
+
     respond_to do |format|
       if @recipe.save
+        recipe_ingredient_group = @recipe.recipe_ingredient_groups.new
+        recipe_ingredient_group.name = "Main ingredients"
+        recipe_ingredient_group.save
         format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
         format.json { render :show, status: :created, location: @recipe }
       else

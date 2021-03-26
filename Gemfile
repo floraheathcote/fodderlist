@@ -83,3 +83,5 @@ gem 'bootstrap-will_paginate'
 
 gem "seed_dump"
 gem 'simple_form'
+
+gem 'rest-client', '>= 2.0.1'

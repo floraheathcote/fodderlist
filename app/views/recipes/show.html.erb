@@ -9,10 +9,11 @@
     </div>
       <br><br>
     <div class="col-sm-5">
-        <%= render 'recipe_ingredient_groups_card', recipe_ingredient_group: @new_recipe_ingredient_group, recipe: @recipe %>
-        <br>
+   
         <%= render 'ingredients_card', recipe_ingredient_groups: @recipe_ingredient_groups %>
       <br>
+        <%= render 'recipe_ingredient_groups_card', recipe_ingredient_group: @new_recipe_ingredient_group, recipe: @recipe %>
+
   </div> 
     <br>
 </div>

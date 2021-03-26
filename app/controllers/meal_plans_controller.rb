@@ -1,3 +1,5 @@
+require 'rest_client'
+
 class MealPlansController < ApplicationController
   before_action :set_meal_plan, only: %i[ show edit update destroy ]
 
@@ -18,6 +20,14 @@ class MealPlansController < ApplicationController
     @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)
     @array_of_arrays = @array_of_hashes.map {|x| x.values}
     @final_array = organised_ingredients_array(@meal_plan)
+
+
+    rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
+    @response = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
+    # @response2 = @response['england-and-wales']['events'][0]
+    # @response = JSON.parse(rawjson) 'england-and-wales.events[0].title'
+    
+
   end
 
   # GET /meal_plans/new

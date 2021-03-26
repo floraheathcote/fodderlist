@@ -6,5 +6,11 @@ class Day < ApplicationRecord
 
 
 
+  
+
+
+
+
+
 
 end
