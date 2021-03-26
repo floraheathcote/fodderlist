@@ -1,8 +1,5 @@
-<%#= image_tag(meal_recipe.recipe.main_image) %>
-
 <small class="text-muted">
 <% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
-
         <li> <%= meal_ingredient.ingredient.name %> 
                                             <%= meal_ingredient.quantity.round(1) %> 
                                             <%= meal_ingredient.unit %>    
@@ -14,5 +11,6 @@
                                             </li>
 
 <% end %>
-</ul></p>
+</ul>
 </small>
+<br>

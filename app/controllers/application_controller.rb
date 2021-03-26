@@ -28,7 +28,7 @@ def create_meals_for_day(day)
   ["breakfast", "lunch", "evening meal"].each do |mealtype|
       meal = Meal.new
       meal.meal_type = mealtype
-      meal.name = "Add meal name"
+      meal.name = mealtype
       meal.day = day
       meal.save
   end

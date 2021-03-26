@@ -1,12 +1,14 @@
 
 
 <div class="card" style="max-width: 18rem;">
-  <div class="card-header"><%= meal.meal_type %><p>
+  <div class="card-header">
+ 
+  <h5><%= meal.name %></h5>
     <% if @meal_plan.status=="draft" %>
-        <%= link_to "Edit/Delete meal", edit_meal_path(meal) %></p>
+        <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
     <% end %>
 
-  <h5><%= meal.name %></h5><%= link_to "(edit name)", edit_meal_path(meal) %>
+  
   </div>
     <% if meal.meal_recipes.present? %>
         <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
@@ -18,15 +20,13 @@
             Notes: <%= meal.notes %><br><br>
         <% end%>
       
-        <h6>Recipes used in this meal:</h6><br>
-      
         <% meal.meal_recipes.each do |meal_recipe| %>
             <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(1), "portion") %>
              <% if @meal_plan.status=="draft" %>
-                    <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icontimestwo.png', size: '32'), meal_recipe_double_portions_path(meal_recipe) %>
-                    <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icon-divide.png', size: '32'), meal_recipe_half_portions_path(meal_recipe) %>
-                    <%= link_to image_tag('https://reciping.s3.us-east-2.amazonaws.com/icon-add1.png', size: '32'), meal_recipe_add_one_portion_path(meal_recipe) %>
-                    <%= link_to "Remove", meal_recipe_path(meal_recipe),
+                    <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icontimestwo.png', size: '25'), meal_recipe_double_portions_path(meal_recipe) %>
+                    <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icon-divide.png', size: '25'), meal_recipe_half_portions_path(meal_recipe) %>
+                    <%= link_to image_tag('https://reciping.s3.us-east-2.amazonaws.com/icon-add1.png', size: '25'), meal_recipe_add_one_portion_path(meal_recipe) %>
+                    <%= link_to image_tag('https://reciping.s3.us-east-2.amazonaws.com/delete.png', size: '25'), meal_recipe_path(meal_recipe),
             method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %><br><br>
             <% end %>
             <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
