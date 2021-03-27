@@ -1,8 +1,9 @@
 
 <h1>Meal_plans</h1>
 
-<%= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' %>
-<br><br><br>
+<%#= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' ---- need to add date=0 case in order to keep this%>
+
+<br><br>
    
 
 <%= month_calendar events: @meal_plans do |date, meal_plans| %>
@@ -11,8 +12,10 @@
           new_meal_plan_path(@meal_plan, start_date: date) %>
 
   <% meal_plans.each do |meal_plan| %>
-    <div>
-      <%= link_to meal_plan.name, meal_plan %>
-    </div>
+
+      <div class="container-fluid rounded bg-dark">
+        <%= link_to meal_plan.name, meal_plan %>
+      </div>
+    
   <% end %>
 <% end %>
