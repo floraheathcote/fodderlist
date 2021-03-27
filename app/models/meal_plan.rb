@@ -8,6 +8,9 @@ class MealPlan < ApplicationRecord
   attr_accessor :start_date_from_form
   attr_accessor :number_of_days_from_form
   attr_accessor :status
+  attr_accessor :name
+  attr_accessor :start_time
+  attr_accessor :end_time
   
   def start_date
     if self.days.present?
@@ -23,6 +26,19 @@ class MealPlan < ApplicationRecord
     else
       0
     end
+  end
+
+  # fields for simple calendar to use:
+  def start_time
+    self.start_date
+  end
+
+  def end_time
+    self.start_date + number_of_days.days - 1.day
+  end
+
+  def name
+    "MP " + self.id.to_s
   end
 
   # def all_meal_ingredients

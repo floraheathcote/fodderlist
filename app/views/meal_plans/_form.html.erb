@@ -17,9 +17,10 @@
   <p> To edit which days are in the meal plan, manually add or delete them from the main <%= link_to "Meal Plan", meal_plan %> page.</p>
      <% else %> 
       <div class="form-group">
-        <%= form.label :start_date %>
-        <%= form.date_select :start_date_from_form, class: 'form-control' %>
+        <%#= form.label :start_date %>
+        <%= form.hidden_field :start_date_from_form, value: params[:start_date].to_date %>
       </div>
+      
 
       <div class="form-group">
         <%= form.label :number_of_days %>

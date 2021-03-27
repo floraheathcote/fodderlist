@@ -2,18 +2,17 @@
 <h1>Meal_plans</h1>
 
 <%= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' %>
-<br>
+<br><br><br>
+   
 
+<%= month_calendar events: @meal_plans do |date, meal_plans| %>
+  <%= date.day %>
+  <%= link_to (bi_icon 'plus-circle', class: 'ingredient-style'), 
+          new_meal_plan_path(@meal_plan, start_date: date) %>
 
-
-      <% @meal_plans.each do |meal_plan| %>
-                      <%= meal_plan.id %>
-                      <%= pluralize(meal_plan.number_of_days, "day") %>
-                      <%= meal_plan.start_date.strftime("%A, %B %d") %>
-                      <%= meal_plan.notes %>
-          
-            <%= link_to 'Show', meal_plan %>
-          <br>
-        <% end %>
-      
-
+  <% meal_plans.each do |meal_plan| %>
+    <div>
+      <%= link_to meal_plan.name, meal_plan %>
+    </div>
+  <% end %>
+<% end %>
