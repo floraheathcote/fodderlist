@@ -1,14 +1,19 @@
 <small class="text-muted">
 <% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
-        <li> <%= meal_ingredient.ingredient.name %> 
-                                            <%= meal_ingredient.quantity.round(1) %> 
-                                            <%= meal_ingredient.unit %>    
-                                            <% if @meal_plan.status=="draft" %>
-                                                <%= link_to "Edit", edit_meal_ingredient_path(meal_ingredient) %>
-                                                <%= link_to "X", meal_ingredient_path(meal_ingredient),
-                                                        method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-                                            <% end %>
-                                            </li>
+        <% if meal_ingredient.unit.present?%>
+
+                <li> <%= meal_ingredient.ingredient.name %> 
+                <%= pluralize(round_nicely(meal_ingredient.quantity), meal_ingredient.unit) %> 
+        <% else %>
+                <li> <%= pluralize(round_nicely(meal_ingredient.quantity), meal_ingredient.ingredient.name)  %> 
+        <% end %>
+
+        <% if @meal_plan.status=="draft" %>
+        <%= link_to (bi_icon 'pencil', class: 'ingredient-style', color: 'grey'), edit_meal_ingredient_path(meal_ingredient) %>
+        <%= link_to (bi_icon 'x-circle', class: 'ingredient-style', color: 'grey'), meal_ingredient_path(meal_ingredient),
+                method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        </li>
 
 <% end %>
 </ul>

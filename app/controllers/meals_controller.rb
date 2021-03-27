@@ -65,6 +65,10 @@ class MealsController < ApplicationController
     end
   end
 
+
+ 
+
+
   # DELETE /meals/1 or /meals/1.json
   def destroy
     @meal_plan = @meal.day.meal_plan

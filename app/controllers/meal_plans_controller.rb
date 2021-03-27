@@ -20,7 +20,7 @@ class MealPlansController < ApplicationController
     @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)
     @array_of_arrays = @array_of_hashes.map {|x| x.values}
     @final_array = organised_ingredients_array(@meal_plan)
-
+    
 
     # rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
     # @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']

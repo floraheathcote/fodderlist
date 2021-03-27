@@ -6,5 +6,8 @@ class MealIngredient < ApplicationRecord
   validates :quantity, presence: true
   # validates :unit, presence: true
 
+  before_save do 
+    self.unit = unit.singularize
+  end
 
 end

@@ -32,5 +32,21 @@ module ApplicationHelper
     end
   end   
 
+  def round_nicely(number)
+    if number.round(1) == number.to_i
+      number.to_i
+    else
+      number.round(1)
+    end
+  end
+
+  def bi_icon(icon, options = {})
+  klasses = ["bi"].append(options.delete(:class)).compact
+  content_tag :svg, options.merge(class: klasses, fill: "currentColor") do
+    content_tag :use, nil, "xlink:href" => "#{ asset_path 'bootstrap-icons/bootstrap-icons.svg' }##{icon}"
+  end
+  
+end
+
 
 end

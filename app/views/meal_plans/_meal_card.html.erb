@@ -7,21 +7,38 @@
     <% if @meal_plan.status=="draft" %>
         <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
     <% end %>
-
-  
   </div>
+
+
+<div class="container">
+<br>
+  <div class="row">
     <% if meal.meal_recipes.present? %>
-        <%= link_to ( image_tag meal.meal_recipes.first.recipe.main_image, class: 'card-img-top' ), edit_meal_path(meal) %>
+        <% meal.meal_image_array.each do |image| %>
+            <div class="col-sm">
+            <%= image_tag(image, class: "rounded-circle", size: '50', style: 'object-fit: cover')  %>
+            </div>
+        <% end%>     
+
+        <%#= image_tag(meal.meal_image, class: "rounded-circle") %>
     <% else %>
-        <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: 'card-img-top' ), edit_meal_path(meal) %>
+        <div class="col-sm">
+        <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '200', style: 'object-fit: cover' ) %>
+        </div>
     <% end %>
+     
+  </div>
+    </div>
     <div class="card-body">
         <% if meal.notes.present? %>
             Notes: <%= meal.notes %><br><br>
         <% end%>
       
         <% meal.meal_recipes.each do |meal_recipe| %>
-            <h6><%= meal_recipe.recipe.name %></h6> <%= pluralize(meal_recipe.portions.round(1), "portion") %>
+
+            <h6><%= meal_recipe.recipe.name %></h6> 
+            <%= pluralize(round_nicely(meal_recipe.portions), "portion") %>
+
              <% if @meal_plan.status=="draft" %>
                     <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icontimestwo.png', size: '25'), meal_recipe_double_portions_path(meal_recipe) %>
                     <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/icon-divide.png', size: '25'), meal_recipe_half_portions_path(meal_recipe) %>

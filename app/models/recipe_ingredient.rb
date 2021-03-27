@@ -6,8 +6,8 @@ class RecipeIngredient < ApplicationRecord
   # validates :unit, presence: true
   validates :ingredient_id, presence: true
   
-  # before_save do 
-  #   self.unit = singularize(unit)
-  # end
+  before_save do 
+    self.unit = unit.singularize
+  end
 
 end

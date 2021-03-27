@@ -4,9 +4,9 @@
 
       <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
       <% if @meal_plan.status=="draft" %>
-          <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-primary', 
-                method: :delete, class: "text-danger", 
-                data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' }%>
+          <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
+                method: :delete, 
+                data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
       <% end %>
 
       <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
@@ -60,3 +60,4 @@ Notes: <%= @meal_plan.notes %><br>
 </div>
 
 <br><br><br>
+

@@ -13,7 +13,7 @@ class Ingredient < ApplicationRecord
   validate :acceptable_image
 
   before_save do 
-    self.name = name.downcase
+    self.name = name.downcase.singularize
   end
 
 
