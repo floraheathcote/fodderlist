@@ -1,8 +1,8 @@
 User.create!([
-  {email: "flora.heathcote@gmail.com", 
-  password: "password",
-  password_confirmation: "password",
-  first_name: "Flora", last_name: "Heathcote", announcements_last_read_at: nil, admin: false}
+  {email: "flora.heathcote@gmail.com"}, 
+  {password: "password"},
+  {password_confirmation: "password"},
+  {name: "Flora Heathcote"}
 ])
 
 
