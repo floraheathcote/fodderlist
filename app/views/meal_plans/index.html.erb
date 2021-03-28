@@ -6,7 +6,7 @@
 <br><br>
    
 
-
+<% prev_mp = nil %>
 <%= month_calendar events: @days do |date, days| %>
   <%= date.day %>
 
@@ -16,32 +16,9 @@
   <% end %>
 
   <% days.each do |day| %>
-
-      <div class="container-fluid rounded bg-dark">
-        <%= link_to day.meal_plan.id, day.meal_plan %>
-        <%#= all_meal_recipes(day)  %>
-      </div>
-
-      <% prev_meal = nil %>
-      <div class="container">
-      <% all_meal_recipes(day).each do |mr| %>
-        <% if mr.meal == prev_meal -%>
-
-        <% else %>
-            </div>
-            <div class="row">
-              <small class="text-muted"><%= mr.meal.name -%></small><br>
-            </div>
-            <div class="row">
-        <% end %>
-        <% prev_meal = mr.meal %>
-
-        
-          <%= image_tag(mr.recipe.main_image, size: '40', style: 'object-fit: cover') -%>
-        
-      <% end %>
-      </div>
-
+      <%= render 'calendar_meal_plan_banner', day: day %>
+      <%= render 'calendar_meals_in_day', day: day %>
   <% end %>
+
 <% end %>
 

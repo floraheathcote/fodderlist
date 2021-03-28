@@ -87,21 +87,21 @@ module ApplicationHelper
 
   end
 
-  def all_meals(day)
-    Meal.joins( "             INNER JOIN meal_recipes on meals.id=meal_recipes.meal_id
-                              INNER JOIN days on days.id=meals.day_id
-                              INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
-                              INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
-                              INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
-                              )
-              .select(  "     recipes.id AS recipe_id, 
-                              meals.id AS meal_id, 
-                              meal_recipes.id AS meal_recipe_id,
-                              meals.name
-                               ")
-              .order( "       days.date ASC")
+  # def all_meals(day)
+  #   Meal.joins( "             INNER JOIN meal_recipes on meals.id=meal_recipes.meal_id
+  #                             INNER JOIN days on days.id=meals.day_id
+  #                             INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+  #                             INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+  #                             INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+  #                             )
+  #             .select(  "     recipes.id AS recipe_id, 
+  #                             meals.id AS meal_id, 
+  #                             meal_recipes.id AS meal_recipe_id,
+  #                             meals.name
+  #                              ")
+  #             .order( "       days.date ASC")
 
-  end
+  # end
 
 end
 

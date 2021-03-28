@@ -446,3 +446,42 @@ end
     <%= image_tag(mr.recipe.main_image, size: '40', style: 'object-fit: cover') -%>
   
 <% end %>
+
+
+
+<% if day.meal_plan == prev_mp %>
+<% if day.meal_plan.status == "draft"%>
+    <%= link_to "------", day.meal_plan, class: 'btn btn-secondary btn-block' %>
+<% else %>
+    <%= link_to "------", day.meal_plan, class: 'btn btn-success btn-block' %>
+<% end %>
+<% else %>
+<div class="row justify-content-center float-right">
+<% if day.meal_plan.status == "draft"%>
+    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary' %>
+<% else %>
+    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-success btn' %>
+<% end %>
+</div>
+<% end %>
+
+
+
+
+
+
+<% if day.meal_plan == prev_mp %>
+<% if day.meal_plan.status == "draft"%>
+    <%= link_to "------", day.meal_plan, class: 'btn btn-secondary btn-block' %>
+<% else %>
+    <%= link_to "------", day.meal_plan, class: 'btn btn-success btn-block' %>
+<% end %>
+<% else %>
+<div class="row justify-content-center float-right">
+<% if day.meal_plan.status == "draft"%>
+    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary' %>
+<% else %>
+    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-success btn' %>
+<% end %>
+</div>
+<% end %>

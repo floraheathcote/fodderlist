@@ -1,0 +1,16 @@
+
+  <% prev_meal = nil %>
+      
+      <% all_meal_recipes(day).each do |mr| %>
+          <% unless mr.meal == prev_meal -%>
+              </div>
+              <div class="row justify-content-center">
+                <small class="text-muted"><br><%= mr.meal.name -%></small><br>
+              </div>
+              <div class="row justify-content-center">
+          <% end %>
+          <% prev_meal = mr.meal %>
+          
+          <%= image_tag(mr.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle') -%> 
+        
+      <% end %>
