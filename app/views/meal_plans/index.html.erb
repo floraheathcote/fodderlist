@@ -1,21 +1,47 @@
 
-<h1>Meal_plans</h1>
+<h1>Meal Plans</h1>
 
 <%#= link_to "Create new meal plan", new_meal_plan_path, class: 'btn btn-primary' ---- need to add date=0 case in order to keep this%>
 
 <br><br>
    
 
-<%= month_calendar events: @meal_plans do |date, meal_plans| %>
-  <%= date.day %>
-  <%= link_to (bi_icon 'plus-circle', class: 'ingredient-style'), 
-          new_meal_plan_path(@meal_plan, start_date: date) %>
 
-  <% meal_plans.each do |meal_plan| %>
+<%= month_calendar events: @days do |date, days| %>
+  <%= date.day %>
+
+  <% unless date_array.include?(date) %>
+          <%= link_to (bi_icon 'plus-circle', class: 'ingredient-style'), 
+              new_meal_plan_path(start_date: date) %>
+  <% end %>
+
+  <% days.each do |day| %>
 
       <div class="container-fluid rounded bg-dark">
-        <%= link_to meal_plan.name, meal_plan %>
+        <%= link_to day.meal_plan.id, day.meal_plan %>
+        <%#= all_meal_recipes(day)  %>
       </div>
-    
+
+      <% prev_meal = nil %>
+      <div class="container">
+      <% all_meal_recipes(day).each do |mr| %>
+        <% if mr.meal == prev_meal -%>
+
+        <% else %>
+            </div>
+            <div class="row">
+              <small class="text-muted"><%= mr.meal.name -%></small><br>
+            </div>
+            <div class="row">
+        <% end %>
+        <% prev_meal = mr.meal %>
+
+        
+          <%= image_tag(mr.recipe.main_image, size: '40', style: 'object-fit: cover') -%>
+        
+      <% end %>
+      </div>
+
   <% end %>
 <% end %>
+

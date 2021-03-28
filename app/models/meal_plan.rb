@@ -28,6 +28,8 @@ class MealPlan < ApplicationRecord
     end
   end
 
+  
+
   # fields for simple calendar to use:
   def start_time
     self.start_date
@@ -80,6 +82,9 @@ class MealPlan < ApplicationRecord
         .order(     'cat_name ASC, ing_name ASC')
         # .where(     "meal_plans.id = '#{self.id}'")
   end
+
+
+  
 
 end
 

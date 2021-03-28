@@ -6,8 +6,14 @@ class Day < ApplicationRecord
   validates :date, presence: true
   before_save :add_holiday_info
 
+# for meal plan index calendar:
+  def start_time
+    self.date
+  end
 
-
+  def end_time
+    self.date
+  end
 
 
   def add_holiday_info

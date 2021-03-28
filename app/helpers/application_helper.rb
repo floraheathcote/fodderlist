@@ -41,12 +41,68 @@ module ApplicationHelper
   end
 
   def bi_icon(icon, options = {})
-  klasses = ["bi"].append(options.delete(:class)).compact
-  content_tag :svg, options.merge(class: klasses, fill: "currentColor") do
-    content_tag :use, nil, "xlink:href" => "#{ asset_path 'bootstrap-icons/bootstrap-icons.svg' }##{icon}"
+    klasses = ["bi"].append(options.delete(:class)).compact
+    content_tag :svg, options.merge(class: klasses, fill: "currentColor") do
+      content_tag :use, nil, "xlink:href" => "#{ asset_path 'bootstrap-icons/bootstrap-icons.svg' }##{icon}"
+    end
   end
+
+
+  def user_meal_plan_date_ar
+    User
+    .joins(   " INNER JOIN meal_plans on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                INNER JOIN days on meal_plans.id=days.meal_plan_id
+                INNER JOIN meals on days.id=meals.day_id
+                INNER JOIN meal_recipes on meals.id=meal_recipes.meal_id
+                INNER JOIN recipes on meal_recipes.recipe_id=recipes.id"
+                )
+    .select(  " days.date,
+                recipes.id AS recipe_id ")
+    .order( "   days.date ASC")
+  end
+
+
+  def date_array
+      all_dates = []
+      user_meal_plan_date_ar.each do |date|
+        all_dates << date.date
+      end
+      all_dates
+  end
+
   
+
+  def all_meal_recipes(day)
+    # MealRecipe.joins(:meal).where(day: day)
+    MealRecipe.joins( "       INNER JOIN meals on meals.id=meal_recipes.meal_id
+                              INNER JOIN days on days.id=meals.day_id
+                              INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+                              INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                              INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+                              )
+              .select(  "     recipes.id AS recipe_id, meals.id AS meal_id ")
+              .order( "       days.date ASC")
+              
+
+
+  end
+
+  def all_meals(day)
+    Meal.joins( "             INNER JOIN meal_recipes on meals.id=meal_recipes.meal_id
+                              INNER JOIN days on days.id=meals.day_id
+                              INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+                              INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                              INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+                              )
+              .select(  "     recipes.id AS recipe_id, 
+                              meals.id AS meal_id, 
+                              meal_recipes.id AS meal_recipe_id,
+                              meals.name
+                               ")
+              .order( "       days.date ASC")
+
+  end
+
 end
 
 
-end

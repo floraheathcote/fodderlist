@@ -333,3 +333,116 @@ def create_meals_for_day
       meal.save
   end
 end
+
+<%= month_calendar events: @days do |date, days| %>
+    <%= date.day %>
+  
+  
+    <%= link_to (bi_icon 'plus-circle', class: 'ingredient-style'), 
+            new_meal_plan_path(@meal_plan, start_date: date) %>
+  
+  
+    <% days.each do |day| %>
+  
+        <div class="container-fluid rounded bg-dark">
+          
+          <% if day.meals.present? %>
+            <% if day.meals.first.meal_recipes.present? %>
+                MP: <% day.meal_plan.id %> <%= day.meals.first.meal_recipes.first.recipe.name %>
+            <% end %>
+          <% else %>
+              <% day.meal_plan.id %>
+          <% end %>
+  
+  
+                  <%#= day.meals.first.meal_recipes %>
+  
+        </div>
+      
+    <% end %>
+  <% end %>
+
+
+
+  MealRecipe.joins(   " INNER JOIN meals on meal_recipes.meal_id = meals.id
+                          INNER JOIN days on meals.day_id = days.id
+                          INNER JOIN recipes on meal_recipes.recipe_id = Recipe.id
+                          ")
+              .select(  " days.date, recipes.id")
+
+
+
+def all_recipe_ids_for_day(date)
+
+@shopping_list_items_ticked = ShoppingListItem.where(meal_plan: @meal_plan, ticked: true).joins(:ingredient).order(ingredient_category_id: :asc)
+
+
+
+    all_recipe_ids = []
+    formatted_date = date.strftime("%F")
+    ar = User.joins(   "  INNER JOIN meal_plans on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                            INNER JOIN days on meal_plans.id=days.meal_plan_id
+                            INNER JOIN meals on days.id=meals.day_id AND days.date='#{date}'
+                            INNER JOIN meal_recipes on meals.id=meal_recipes.meal_id
+                            INNER JOIN recipes on meal_recipes.recipe_id=recipes.id"
+                            )
+            .select(  "     recipes.id AS recipe_id ")
+            .order( "       days.date ASC")
+
+    ar.each do |recipe|
+    all_recipe_ids << recipe.recipe_id
+    end
+    all_recipe_ids
+end
+
+<%= month_calendar events: @meal_plans do |date, meal_plans| %>
+    <%= date.day %>
+        <%#= all_recipe_ids_for_day(date) %>
+    <%# if date_array.include?(date) %>
+      <%#= all_recipe_ids_for_day(date) %>
+    <%# end %>
+  
+    <%= link_to (bi_icon 'plus-circle', class: 'ingredient-style'), 
+            new_meal_plan_path(@meal_plan, start_date: date) %>
+  
+  
+    <% meal_plans.each do |meal_plan| %>
+  
+        <div class="container-fluid rounded bg-dark">
+          <%= link_to meal_plan.name, meal_plan %>
+        </div>
+      
+    <% end %>
+  <% end %>
+  
+
+
+
+
+
+
+
+
+
+
+  <% all_meals(day).each do |meal| %>
+    <small class="text-muted"><%= meal.name %></small><br>
+      <% meal.meal_recipes.each do |mr| %>
+        <%= image_tag(mr.recipe.main_image, size: '40', style: 'object-fit: cover') %>
+      <% end %>
+  <% end %>
+
+
+
+
+  <% all_meal_recipes(day).each do |mr| %>
+      
+    <% if mr.meal == prev_meal -%>
+    <% else %>
+      <small class="text-muted"><%= mr.meal.name -%></small><br>
+    <% end %>
+    <% prev_meal = mr.meal %>
+
+    <%= image_tag(mr.recipe.main_image, size: '40', style: 'object-fit: cover') -%>
+  
+<% end %>

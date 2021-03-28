@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :pins, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :recipes, -> { order(name: :asc) }
   has_many :meal_plans, dependent: :destroy
+  has_many :days, through: :meal_plans
 
 end

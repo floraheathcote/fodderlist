@@ -6,6 +6,8 @@ class MealPlansController < ApplicationController
   # GET /meal_plans or /meal_plans.json
   def index
     @meal_plans = MealPlan.all
+    @days = current_user.days
+    
   end
 
   # GET /meal_plans/1 or /meal_plans/1.json
