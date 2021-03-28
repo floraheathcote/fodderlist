@@ -1,9 +1,6 @@
-User.create!([
-  {email: "flora.heathcote@gmail.com"}, 
-  {password: "password"},
-  {password_confirmation: "password"},
-  {name: "Flora Heathcote"}
-])
+
+
+User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', :password => 'monday', :password_confirmation => 'monday'
 
 
 Recipe.create!([
