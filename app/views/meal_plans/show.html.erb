@@ -29,7 +29,7 @@ Notes: <%= @meal_plan.notes %><br>
 
       <div class="card-deck">
             <% day.meals.order(created_at: :desc).each do |meal| %>
-                <%= render 'meal_card', meal: meal %>
+                <%= render 'meal_card', meal:meal %>
             <% end %>
 
             <% if @meal_plan.status=="draft" %>

@@ -490,3 +490,17 @@ end
 
 
 User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', :password => 'monday', :password_confirmation => 'monday'
+
+
+<% if meal.meal_recipes.present? %>
+<% meal.meal_image_array.each do |image| %>
+    <div class="col-sm">
+    <%= image_tag(image, class: "rounded-circle", size: '50', style: 'object-fit: cover')  %>
+    </div>
+<% end%>     
+
+<% else %>
+<div class="col-sm">
+<%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '200', style: 'object-fit: cover' ) %>
+</div>
+<% end %>

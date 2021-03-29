@@ -20,16 +20,16 @@ class Meal < ApplicationRecord
     self.meal_ingredients
   end
 
-  def meal_image_array
-    image_array = []
-    if self.meal_recipes.present?
-      self.meal_recipes.each do |mr|
-        image_array << mr.recipe.main_image
-      end
-    else
-      # image_array << image_tag('https://reciping.s3.us-east-2.amazonaws.com/plate.jpg')
-    end
-    image_array
-  end
+  # def meal_image_array
+  #   image_array = []
+  #   if self.meal_recipes.present?
+  #     self.meal_recipes.each do |mr|
+  #       image_array << mr.recipe.main_image
+  #     end
+  #   else
+  #     # image_array << image_tag('https://reciping.s3.us-east-2.amazonaws.com/plate.jpg')
+  #   end
+  #   image_array
+  # end
 
 end

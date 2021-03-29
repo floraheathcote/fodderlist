@@ -1,40 +1,42 @@
 
 
 <div class="card" style="max-width: 18rem;">
-  <div class="card-header">
- 
-  <h5><%= meal.name %></h5>
-    <% if @meal_plan.status=="draft" %>
-        <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
-    <% end %>
-  </div>
+    <div class="card-header">
+        <h5><%= meal.name %></h5>
+        <% if @meal_plan.status=="draft" %>
+            <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
+        <% end %>
+    </div>
 
 
-<div class="container">
-<br>
-  <div class="row">
-    <% if meal.meal_recipes.present? %>
-        <% meal.meal_image_array.each do |image| %>
-            <div class="col-sm">
-            <%= image_tag(image, class: "rounded-circle", size: '50', style: 'object-fit: cover')  %>
+    <div class="card-body">
+    <br>
+  
+    <% unless meal.meal_recipes.present? %>
+        <div class="row">
+            <div class="col-4">
+              <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
             </div>
-        <% end%>     
-
-    <% else %>
-        <div class="col-sm">
-        <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '200', style: 'object-fit: cover' ) %>
+            <div class="col-8">
+              <h6>Add meal using form >></h6>
+            </div>
         </div>
     <% end %>
      
-  </div>
-    </div>
-    <div class="card-body">
+
         <% if meal.notes.present? %>
             Notes: <%= meal.notes %><br><br>
         <% end%>
-      
+
         <% meal.meal_recipes.each do |meal_recipe| %>
-            <h6><%= meal_recipe.recipe.name %></h6> 
+          <div class="row">
+            <div class="col-4">
+            <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+            </div>
+            <div class="col-8">
+            <h6><%= meal_recipe.recipe.name %></h6>
+            </div>
+          </div>
                     <span class="badge bg-light text-dark">
                       <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
                     </span>
@@ -52,11 +54,11 @@
                     <span class="badge bg-light text-dark">
                       <%= link_to "+1", meal_recipe_add_one_portion_path(meal_recipe) -%>
                     </span>    
-<span class="badge bg-light">
+  <span class="badge bg-light">
                     <%= link_to "X", meal_recipe_path(meal_recipe),
             method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %></span>
             <% end %>
-            <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe %>
+            <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
             
 
         <% end %>
