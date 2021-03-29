@@ -485,3 +485,8 @@ end
 <% end %>
 </div>
 <% end %>
+
+
+
+
+User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', :password => 'monday', :password_confirmation => 'monday'
