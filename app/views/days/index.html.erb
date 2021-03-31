@@ -1,45 +1,15 @@
 
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <h1>Days</h1>
-  </div>
-
-  <div class="col-sm-6 text-right">
-  <%= link_to new_day_path, class: 'btn btn-primary' do %>
-    Add New Day
-  <% end %>
-  </div>
-</div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
+    <h1>What's on the menu today?</h1>
     
-
-            <th>Meal plan</th>
-            <th>Date</th>
-            
-          <th></th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
       <% @days.each do |day| %>
-        <%= content_tag :tr, id: dom_id(day), class: dom_class(day) do %>
-          
-
-                      <td><%= day.meal_plan %></td>
-                      <td><%= day.date %></td>
-          
-          
-            <td><%= link_to 'Show', day %></td>
-          
-        <% end %>
+          <% day.meals.each do |meal| %>  
+            <%= meal.name %>    <br>
+            <% meal.meal_recipes.each do |mr| %>    
+                  <%= mr.recipe.name %><br>
+            <% end %>
+          <% end %>
       <% end %>
-    </tbody>
-  </table>
-</div>
+          
+            
+          
+ 

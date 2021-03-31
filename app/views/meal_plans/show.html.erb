@@ -1,21 +1,21 @@
 <div class="page-header">
 
-      <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
+    <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
 
-      <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
-      <% if @meal_plan.status=="draft" %>
-          <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
-                method: :delete, 
-                data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
-      <% end %>
+    <%#= link_to "Edit", edit_meal_plan_path(@meal_plan), class: 'btn btn-primary' %>
+    <% if @meal_plan.status=="draft" %>
+        <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
+              method: :delete, 
+              data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
+    <% end %>
 
-      <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
-                                (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
-      
-                                <% if @meal_plan.status=="draft" %>
-                                  <%= link_to "Add a day", new_meal_plan_day_path(@meal_plan), 
-                                  class: 'btn btn-primary' %>
-                                <% end %>
+    <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
+                              (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
+    
+                              <% if @meal_plan.status=="draft" %>
+                                <%= link_to "Add a day", new_meal_plan_day_path(@meal_plan), 
+                                class: 'btn btn-primary' %>
+                              <% end %>
 </div>
 
 Notes: <%= @meal_plan.notes %><br>
@@ -33,7 +33,8 @@ Notes: <%= @meal_plan.notes %><br>
             <% end %>
 
             <% if @meal_plan.status=="draft" %>
-              <%= render 'add_meal_card', meal: @new_meal, day: day, url: day_meals_path(day), method: :post, :style=>'width:10%' %>
+              <%= render 'add_meal_card', meal: @new_meal, day: day, 
+                    url: day_meals_path(day), method: :post, :style=>'width:10%' %>
             <% end %>
              
       </div>
@@ -45,11 +46,14 @@ Notes: <%= @meal_plan.notes %><br>
 
       <% if @meal_plan.status == "confirmed" %>
             Meal plan status: Closed to editing 
-            <p><%= link_to("View shopping list for this meal_plan", meal_plan_shopping_list_items_url(@meal_plan)) %></p>
-            <p><%= link_to("Delete shopping list for meal plan and continue editing meal plan", meal_plan_delete_shopping_list_path(@meal_plan)) %></p>
+            <p><%= link_to("View shopping list for this meal_plan", 
+                            meal_plan_shopping_list_items_url(@meal_plan)) %></p>
+            <p><%= link_to("Delete shopping list for meal plan and continue editing meal plan", 
+                            meal_plan_delete_shopping_list_path(@meal_plan)) %></p>
       <% else %>
             Meal plan status: Draft 
-            <p><%= link_to("Finalise meal plan and generate shopping list >>", meal_plan_create_shopping_list_path(@meal_plan)) %></p>
+            <p><%= link_to("Finalise meal plan and generate shopping list >>", 
+                            meal_plan_create_shopping_list_path(@meal_plan)) %></p>
       <% end %>
 
 

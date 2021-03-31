@@ -1,18 +1,23 @@
-<div class="page-header">
-  <%= link_to days_path, class: 'btn btn-default' do %>
-    All Days
+Day Show Page
+<br><br>
+
+<% @meals.each do |meal| %>
+  <% meal.meal_recipes.each do |mr| %>
+    <%= mr.recipe.name %>
+    <%# mr.recipe_ingredients.each do |ri| %>
+      <%#= ri.ingredient.name %>
+    <%# end %>
   <% end %>
-  <%= link_to edit_day_path(@day), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1>Show day</h1>
-</div>
+<% end %>
 
-<dl class="dl-horizontal">
-  <dt>Meal plan:</dt>
-  <dd><%= @day.meal_plan %></dd>
+<br><br>
+-----
+<% current_day_current_user.each do |day| %>
+<%= day.day_id %>
+<% end %>
 
-  <dt>Date:</dt>
-  <dd><%= @day.date %></dd>
-
-</dl>
+<br><br>
+-----
+<%= DateTime.now %>
+<br><br>
+<%= current_day_current_user.first %>

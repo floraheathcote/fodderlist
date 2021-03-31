@@ -3,11 +3,12 @@ class DaysController < ApplicationController
 
   # GET /days or /days.json
   def index
-    @days = Day.all
+    @days = Day.user(current_user).today
   end
 
   # GET /days/1 or /days/1.json
   def show
+    @meals = @day.meals
   end
 
   # GET /days/new

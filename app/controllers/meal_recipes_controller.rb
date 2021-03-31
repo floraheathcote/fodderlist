@@ -120,8 +120,10 @@ class MealRecipesController < ApplicationController
             @meal_ingredient.ingredient = recipe_ingredient.ingredient
             @meal_ingredient.quantity = recipe_ingredient.default_amount
             @meal_ingredient.unit = recipe_ingredient.unit
+            @meal_ingredient.preparation = recipe_ingredient.preparation
             @meal_ingredient.meal_recipe = meal_recipe
             @meal_ingredient.meal = meal
+            @meal_ingredient.recipe_ingredient_id = recipe_ingredient.id
             
             if @meal_ingredient.save
             else

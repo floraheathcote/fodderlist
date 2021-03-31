@@ -6,7 +6,11 @@ class Day < ApplicationRecord
   validates :date, presence: true
   before_save :add_holiday_info
 
-# for meal plan index calendar:
+
+  scope :today, -> { where(date: DateTime.current.to_date) }
+
+  scope :user, -> (user) { joins(meal_plan: :user).where( "users.id= #{user.id}" ) }
+
   def start_time
     self.date
   end
