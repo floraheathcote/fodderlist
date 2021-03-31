@@ -11,7 +11,7 @@
   <%= date.day %>
 
   <% unless date_array.include?(date) %>
-          <%= link_to (bi_icon 'plus-circle', class: 'bi-calendar'), 
+          <%= link_to (bi_icon 'plus-circle', class: 'calendar-reciping'), 
               new_meal_plan_path(start_date: date) %>
   <% end %>
 
