@@ -504,3 +504,16 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
 <%= link_to image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '200', style: 'object-fit: cover' ) %>
 </div>
 <% end %>
+
+
+
+
+<% unless date_array.include?(date) %>
+          <%= link_to(bi_icon 'plus-circle width="32" height="32"'), 
+              new_meal_plan_path(start_date: date) %>
+  <% end %>
+
+  <% unless date_array.include?(date) %>
+  <%= link_to icon('fas', 'plus-circle'),
+      new_meal_plan_path(start_date: date) %>
+<% end %>

@@ -8,6 +8,7 @@ class Day < ApplicationRecord
 
 
   scope :today, -> { where(date: DateTime.current.to_date) }
+  scope :this_date, -> (date) { where(date: date) }
 
   scope :user, -> (user) { joins(meal_plan: :user).where( "users.id= #{user.id}" ) }
 

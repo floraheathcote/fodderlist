@@ -9,8 +9,8 @@
         <% end %>
 
         <% if @meal_plan.status=="draft" %>
-        <%= link_to (bi_icon 'pencil', class: 'ingredient-style', color: 'grey'), edit_meal_ingredient_path(meal_ingredient) %>
-        <%= link_to (bi_icon 'x-circle', class: 'ingredient-style', color: 'grey'), meal_ingredient_path(meal_ingredient),
+        <%= link_to icon('fas', 'exchange-alt'), edit_meal_ingredient_path(meal_ingredient) %>
+        <%= link_to icon('fas', 'trash'), meal_ingredient_path(meal_ingredient),
                 method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
         <% end %>
         </li>

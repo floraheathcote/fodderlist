@@ -10,9 +10,8 @@
 <%= month_calendar events: @days do |date, days| %>
   <%= date.day %>
 
-  <% unless date_array.include?(date) %>
-          <%= link_to (bi_icon 'plus-circle', class: 'calendar-reciping'), 
-              new_meal_plan_path(start_date: date) %>
+  <% unless Day.user(current_user).this_date(date).present? %>
+              <%= link_to icon('fas', 'plus-circle'), new_meal_plan_path(start_date: date) %>
   <% end %>
 
   <% days.each do |day| %>
@@ -21,3 +20,5 @@
   <% end %>
 
 <% end %>
+
+
