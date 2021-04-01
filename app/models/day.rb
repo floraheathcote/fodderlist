@@ -9,9 +9,9 @@ class Day < ApplicationRecord
 
   scope :today, -> { where(date: DateTime.current.to_date) }
   scope :this_date, -> (date) { where(date: date) }
-
   scope :user, -> (user) { joins(meal_plan: :user).where( "users.id= #{user.id}" ) }
 
+  # start_time and end_time are required for calendar on meal_plan#index page
   def start_time
     self.date
   end
@@ -52,15 +52,6 @@ class Day < ApplicationRecord
     end
 
   end
-
-
-
-
-
-
-
-
-
 
 end
 

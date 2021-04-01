@@ -3,11 +3,32 @@
     
       <% @days.each do |day| %>
           <% day.meals.each do |meal| %>  
-            <%= meal.name %>    <br>
+            <h2><%= meal.name %></h2><br>
             <% meal.meal_recipes.each do |mr| %>    
                   <%= mr.recipe.name %><br>
+                  <ul>
+                  <% mr.meal_ingredients.each do |mi| %>
+                      <% if mi.ingredient == mi.recipe_ingredient.ingredient %>
+                        <li><%= mi.ingredient.name %> <%= mi.quantity %> <%= mi.unit %></li>
+                      <% else %>
+                        <li><s><%= mi.recipe_ingredient.ingredient.name %><%= mi.quantity %> <%= mi.unit %></s>  
+                          <span class =font_handwriting ><%= mi.ingredient.name %> <%= mi.quantity %> <%= mi.unit %></span> </li>
+                      <% end %>
+
+
+                  <% end %>
+                  </ul>
+
+<br><br>
+
+
+
+
+
             <% end %>
+            <br><br>
           <% end %>
+          <br><br>
       <% end %>
           
             
