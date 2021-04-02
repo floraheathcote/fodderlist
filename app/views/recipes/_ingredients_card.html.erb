@@ -8,14 +8,9 @@
           <ul class="list-group list-group-flush">
                 <% recipe_ingredient_group.recipe_ingredients.each do |recipe_ingredient| %>
         
-                <li class="list-group-item"><td><%= recipe_ingredient.ingredient.name %> 
-                                                <%= recipe_ingredient.default_amount %> 
-                                                <%= recipe_ingredient.unit %>    
-                                                <% if recipe_ingredient.preparation %>
-                                                    (<%= recipe_ingredient.preparation %>)
-                                                <% end %>
-                                                <%= link_to "Edit", edit_recipe_ingredient_path(recipe_ingredient) %>
-                                                <%= link_to "Remove", recipe_ingredient_path(recipe_ingredient),
+                <li class="list-group-item"><td><%= render 'shared/display_ingredient_info', mi_or_ri: recipe_ingredient, include_prep: "yes" %>
+                                                <%= link_to icon('fas', 'pencil-alt'), edit_recipe_ingredient_path(recipe_ingredient) %>
+                                                <%= link_to icon('fas', 'trash'), recipe_ingredient_path(recipe_ingredient),
                                                         method: :delete, class: "text-danger", 
                                                         data: { confirm: 'Are you sure?' } %>
                                                 </td></li>

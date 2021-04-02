@@ -13,6 +13,9 @@ class Recipe < ApplicationRecord
 
 
     has_one_attached :main_image
+    has_rich_text :method
+
+
     before_save do 
         self.name = name.capitalize
       end

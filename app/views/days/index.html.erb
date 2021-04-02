@@ -1,36 +1,25 @@
 
-    <h1>What's on the menu today?</h1>
-    
-      <% @days.each do |day| %>
-          <% day.meals.each do |meal| %>  
-            <h2><%= meal.name %></h2><br>
-            <% meal.meal_recipes.each do |mr| %>    
-                  <%= mr.recipe.name %><br>
-                  <ul>
-                  <% mr.meal_ingredients.each do |mi| %>
-                      <% if mi.ingredient == mi.recipe_ingredient.ingredient %>
-                        <li><%= mi.ingredient.name %> <%= mi.quantity %> <%= mi.unit %></li>
-                      <% else %>
-                        <li><s><%= mi.recipe_ingredient.ingredient.name %><%= mi.quantity %> <%= mi.unit %></s>  
-                          <span class =font_handwriting ><%= mi.ingredient.name %> <%= mi.quantity %> <%= mi.unit %></span> </li>
-                      <% end %>
+<h1>What's on the menu today?</h1>
 
-
-                  <% end %>
-                  </ul>
-
-<br><br>
-
-
-
-
-
-            <% end %>
-            
-          <% end %>
-
+  <% @days.each do |day| %>
+      <% day.meals.each do |meal| %>
+      <% if meal.meal_recipes.present? %>
+        <h2><%= meal.name %></h2><br>
       <% end %>
+            <% meal.meal_recipes.each do |mr| %> 
+
+                <div class="row">
+                    <div class="col-sm-6">
+                      <%= render 'recipes/method_card', recipe: mr.recipe, edit: "no" %>
+                      <br>
+                </div>
+
+                <div class="col-sm-6">
+                <%= render 'meal_recipes/meal_recipe_ingredients', mr: mr %>
+                </div>
+            <% end %>
+      <% end %>
+  <% end %>
           
             
           
- 

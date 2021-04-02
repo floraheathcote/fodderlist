@@ -13,8 +13,13 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :date %>
-    <%= form.date_select :date, :selected => @date, class: 'form-control' %>
+    <%#= form.label :date %>
+    <%#= form.date_select :date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :notes %>
+    <%= form.text_field :notes, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -24,11 +29,12 @@
       </div>
     <% end %>
 
-    <%= form.hidden_field :meal_plan_id, value: @meal_plan.id %>
+    
 
     <%= form.submit class: 'btn btn-primary' %>
 
     <% unless @day.persisted? %>
+    <%= form.hidden_field :meal_plan_id, value: @meal_plan.id %>
       <%= link_to "Cancel", @meal_plan, class: "btn btn-link" %>
     <% end %>
   </div>

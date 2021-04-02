@@ -517,3 +517,16 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
   <%= link_to icon('fas', 'plus-circle'),
       new_meal_plan_path(start_date: date) %>
 <% end %>
+
+
+
+<% if mi.quantity == mi.recipe_ingredient.quantity %>
+                                <%# ingredient different, quantity is same or different %>
+                                    <li><s><%= render 'shared/display_ingredient_info', mi_or_ri:mi.recipe_ingredient, include_prep: "yes" %></s>  
+                                    <span class =font_handwriting ><%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> </li>
+                                <%# else %>
+                                <%# ingredient & quantity different %>
+                                    <li><s><%#= render 'shared/display_ingredient_info', mi_or_ri:mi.recipe_ingredient, include_prep: "yes" %></s>  
+                                    <span class =font_handwriting ><%#= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> </li>
+
+                                <% end %>

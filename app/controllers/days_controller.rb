@@ -43,9 +43,10 @@ class DaysController < ApplicationController
 
   # PATCH/PUT /days/1 or /days/1.json
   def update
+    @meal_plan = @day.meal_plan
     respond_to do |format|
       if @day.update(day_params)
-        format.html { redirect_to @day, notice: "Day was successfully updated." }
+        format.html { redirect_to @meal_plan, notice: "Day was successfully updated." }
         format.json { render :show, status: :ok, location: @day }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,7 +75,7 @@ class DaysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def day_params
-      params.require(:day).permit(:meal_plan_id, :date)
+      params.require(:day).permit(:meal_plan_id, :date, :notes)
     end
 end
 

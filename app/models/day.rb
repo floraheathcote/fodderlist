@@ -22,6 +22,7 @@ class Day < ApplicationRecord
 
 
   def add_holiday_info
+    self.holiday = nil
 
     easter_dates = 
     %w( 4-4-2021 4-17-2022 4-9-2023 3-31-2024 4-20-2025 4-5-2026 3-28-2027 4-16-2028 4-1-2029 4-21-2030 4-13-2031

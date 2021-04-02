@@ -1,0 +1,59 @@
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ingredients</h5>
+            <p class="card-text">
+                <ul style="list-style-position: inside">
+
+                
+
+                    <% mr.meal_ingredients.each do |mi| %>
+                        <% if mi.recipe_ingredient.present? %>
+                        <%# meal ingredient copied from original recipe ingredient (rather than added as an extra) %>
+                            <% if mi.ingredient == mi.recipe_ingredient.ingredient %>
+                            <%# ingredient is same %>
+
+                                <% if mi.quantity == mi.recipe_ingredient.quantity %>
+                                <%# ingredient & quantity is same %>
+                                    <li><%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></li>
+                                <% else %>
+                                <%# ingredient same, quantity is different %>
+                                
+                                    <% if mi.unit.present? %>
+                                        <li><%= mi.ingredient.name%>
+                                        <s><%= pluralize(round_nicely(mi.recipe_ingredient.quantity), mi.recipe_ingredient.unit) %></s>
+                                        <span class =font_handwriting ><%= pluralize(round_nicely(mi.quantity), mi.unit) %></span></li>
+                                    <% else %>   
+                                        <li><s><%= pluralize(round_nicely(mi.recipe_ingredient.quantity), mi.ingredient.name) %></s>
+                                        <span class =font_handwriting ><%= pluralize(round_nicely(mi.quantity), mi.ingredient.name) %></span></li>
+                                    <% end %>
+                                <% end %>
+
+                            <% else %>
+                            <%# ingredient different %>
+                                   <li><s><%= render 'shared/display_ingredient_info', mi_or_ri:mi.recipe_ingredient, include_prep: "yes" %></s>  
+                                    <span class =font_handwriting ><%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> </li>
+                  
+                            <% end %>
+                        <% else %>
+                            <span class =font_handwriting >* <%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> 
+                        <% end %>
+                    <% end %>
+                
+
+
+                <% mr.recipe.recipe_ingredients.each do |ri| %>
+                    <% unless mr.meal_ingredients.pluck(:recipe_ingredient_id).include?(ri.id) %>
+                    
+                            <li><s><%= render 'shared/display_ingredient_info', mi_or_ri:ri, include_prep: "yes" %></s></li>
+
+                    <% end %>
+                <% end %>
+                </ul>
+
+        </div>
+    </div>
+
+<%#= mr.recipe.recipe_ingredients.select(:ingredient).ingredient_category_id %>

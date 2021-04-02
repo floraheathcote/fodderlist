@@ -30,3 +30,5 @@ const Choices = require('choices.js')
 document.addEventListener("turbolinks:load", function() {
     var dropDownSelects = new Choices('#dropdown-choice-select')
 })
+require("trix")
+require("@rails/actiontext")

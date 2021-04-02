@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm">
         <% if day.holiday.present? %>    -----<em><%= day.holiday %><em>-----<br><% end %>
-        <%= link_to "Notes:", edit_day_path(day) %><%= day.notes %>
+        <%= link_to "Notes:", edit_day_path(day) %> <%= day.notes %>
     </div>
     <div class="col-sm">
       <% if @meal_plan.status == "draft" %>

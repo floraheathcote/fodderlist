@@ -4,7 +4,7 @@
         <h5 class="card-title"><%= recipe.name %></h5>
         <p class="card-text"><%= main_image(recipe) %>
 
-      <dt>Meal type:</dt> <dd><%= recipe.meal_type %></dd>
+      
 
       <dt>Method:</dt>
       <dd><%= recipe.method %></dd>
@@ -13,9 +13,12 @@
       <dd><%= recipe.portions%></dd>
 
       <dt>Notes:</dt>
-      <dd><%= recipe.notes %></dd>
+      <dd><%= Rinku.auto_link(recipe.notes, mode=:all, link_attr=nil, skip_tags=nil).html_safe %></dd>
 
         </p>
-              <%= link_to "Edit", edit_recipe_path(recipe), class: 'btn btn-primary' %>
+      <% unless edit == "no" %>
+        <dt>Meal type:</dt> <dd><%= recipe.meal_type %></dd>
+        <%= link_to "Edit", edit_recipe_path(recipe), class: 'btn btn-primary' %>
+      <% end %>
     </div>
 </div>

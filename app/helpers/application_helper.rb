@@ -40,6 +40,10 @@ module ApplicationHelper
     end
   end
 
+
+
+
+
   # def bi_icon(icon, options = {})
   #   klasses = ["bi"].append(options.delete(:class)).compact
   #   content_tag :svg, options.merge(class: klasses, fill: "currentColor") do

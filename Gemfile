@@ -86,3 +86,4 @@ gem 'simple_form'
 
 gem 'rest-client', '>= 2.0.1'
 gem "simple_calendar", "~> 2.4"
+gem 'rinku'
