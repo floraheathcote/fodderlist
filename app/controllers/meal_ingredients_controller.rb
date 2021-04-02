@@ -13,7 +13,7 @@ class MealIngredientsController < ApplicationController
   # GET /meal_ingredients/new
   def new
     @meal_ingredient = MealIngredient.new
-    @meal = Meal.find(params[:meal_id])
+    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
   end
 
   # GET /meal_ingredients/1/edit
@@ -23,9 +23,15 @@ class MealIngredientsController < ApplicationController
   # POST /meal_ingredients or /meal_ingredients.json
   def create
     @meal_ingredient = MealIngredient.new(meal_ingredient_params)
-    @meal_plan = @meal_ingredient.meal.day.meal_plan
+    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+    @meal = @meal_recipe.meal
+    @meal_ingredient.meal_recipe_id = @meal_recipe.id
+    @meal_ingredient.meal = @meal
+    @meal_plan = @meal.day.meal_plan
+    
     respond_to do |format|
       if @meal_ingredient.save
+        
         format.html { redirect_to @meal_plan, notice: "Meal ingredient was successfully created." }
         format.json { render :show, status: :created, location: @meal_ingredient }
       else

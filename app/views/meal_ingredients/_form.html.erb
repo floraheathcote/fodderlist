@@ -1,17 +1,22 @@
 <%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
 
-  <% if @meal_ingredient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meal_ingredient.errors.count, "error") %> prohibited this meal_ingredient from being saved:</h2>
-
-      <ul>
+<% if @meal_ingredient.errors.any? %>
+  <section class="errors">
+    <h2>
+      Oops! Your form could not be saved.
+    </h2>
+    <h3>
+      Please correct the following
+      <%= pluralize(@meal_ingredient.errors.size, "error") %>:
+    </h3>
+    <ul>
       <% @meal_ingredient.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+    </ul>
+  </section>
+<% end %>
+  
   <div class="form-group">
         <% if @meal_ingredient.persisted? %>
           <h5><%= form.label :Ingredient, "Change ingredient:" %></h5>
@@ -43,8 +48,9 @@
 
 
   <% unless @meal_ingredient.persisted? %>
-    <%= form.hidden_field :meal_recipe_id, value: params[:meal_recipe_id] %>
-    <%= form.hidden_field :meal_id, value:meal.id %>
+    <%#= form.hidden_field :meal_recipe_id, value: params[:meal_recipe_id] %>
+    <%#= form.hidden_field :meal_recipe_id, value: session[:meal_recipe_id] %>
+    <%#= form.hidden_field :meal_id, value:meal_id %>
   <% end %>
 
   <div class="form-group">

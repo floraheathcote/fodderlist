@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :meal_recipes do
+    resources :meal_ingredients, only: [:new, :create]
+  end
+
   resources :recipes, :shallow => true do
     resources :recipe_ingredient_groups, :shallow => true do
       resources :recipe_ingredients
