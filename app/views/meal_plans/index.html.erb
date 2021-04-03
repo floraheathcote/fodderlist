@@ -10,8 +10,10 @@
 <%= month_calendar events: @days do |date, days| %>
   <%= date.day %>
 
+  <%= link_to "view day", filtered_days_path(:this_date, date: date) %>
+
   <% unless Day.user(current_user).this_date(date).present? %>
-              <%= link_to icon('fas', 'plus-circle'), new_meal_plan_path(start_date: date) %>
+      <%= link_to icon('fas', 'plus-circle'), new_meal_plan_path(start_date: date) %>
   <% end %>
 
   <% days.each do |day| %>

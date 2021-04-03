@@ -4,6 +4,7 @@ class MealRecipe < ApplicationRecord
   has_many :meal_ingredients, dependent: :destroy
 
   validates :portions, presence: true
+  validates :recipe, presence: true
 
 
   

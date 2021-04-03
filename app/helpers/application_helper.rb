@@ -40,7 +40,9 @@ module ApplicationHelper
     end
   end
 
-
+  def nice_date(date)
+    date.strftime("%A %B %d")
+  end
 
 
 

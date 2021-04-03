@@ -23,21 +23,25 @@ class MealRecipesController < ApplicationController
   # POST /meal_recipes or /meal_recipes.json
   def create
     @meal_recipe = MealRecipe.new(meal_recipe_params)
-    @meal_recipe.portions = @meal_recipe.recipe.portions
+    
     @meal_plan = @meal_recipe.meal.day.meal_plan
     
+    if @meal_recipe.recipe.present?
+      @meal_recipe.portions = @meal_recipe.recipe.portions
+    end
 
     respond_to do |format|
-      if @meal_recipe.save
+      
+      if @meal_recipe.recipe.present? && @meal_recipe.save
           
         create_meal_ingredients_for_recipe(@meal_recipe)
 
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else
-        fail
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @meal_recipe.errors, status: :unprocessable_entity }
+        
+        format.html { redirect_to @meal_plan, notice: "Meal recipe not added, please select recipe from list" }
+        format.json { render :show, status: :created, location: @meal_recipe }
       end
     end
   end

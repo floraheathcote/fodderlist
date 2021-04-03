@@ -5,6 +5,21 @@ class DaysController < ApplicationController
   def index
     @days = Day.user(current_user).today
   end
+  
+
+  def index
+    if params[:filter] == "today"
+          @days = Day.user(current_user).today
+    elsif params[:filter] == nil
+          @days = Day.user(current_user)
+    else
+          date = params[:date]
+          @days = Day.user(current_user).this_date(date)
+    end
+  end
+
+
+
 
   # GET /days/1 or /days/1.json
   def show

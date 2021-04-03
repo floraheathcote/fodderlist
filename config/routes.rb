@@ -33,7 +33,8 @@ Rails.application.routes.draw do
       get 'add_one_portion'
   end
 
-  get '/today', to: 'days#index'
+  # get '/today', to: 'days#index'
+  get 'days/date/:filter' => 'days#index', as: :filtered_days
 
   resources :ingredients
   

@@ -5,6 +5,7 @@ class Day < ApplicationRecord
 
   validates :date, presence: true
   before_save :add_holiday_info
+  default_scope { order('date ASC') }
 
 
   scope :today, -> { where(date: DateTime.current.to_date) }

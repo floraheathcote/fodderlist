@@ -9,7 +9,7 @@
               data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
     <% end %>
 
-    <h3>Meal Plan for period starting: <%= @meal_plan.start_date.strftime("%A, %B %d") %>
+    <h3>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
                               (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h3>
     
                               <% if @meal_plan.status=="draft" %>

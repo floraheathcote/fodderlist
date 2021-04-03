@@ -11,6 +11,6 @@
           <% end %>
           <% prev_meal = mr.meal %>
           
-          <%= image_tag(mr.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle') -%> 
+          <%= link_to image_tag(mr.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle'), filtered_days_path(:this_date, date: day.date) -%> 
         
       <% end %>

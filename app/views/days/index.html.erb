@@ -1,5 +1,10 @@
+<% if @days.first.date == Date.today %>
+  <h1>What's on the menu today?</h1> <h3><span class =font_handwriting>(<%= nice_date(Date.today) %>)</span></h3>
+<% else%>
+  <h1>What's on the menu?</h1> <h3><span class =font_handwriting>(<%= nice_date(@days.first.date) %>)</span></h3>
 
-<h1>What's on the menu today?</h1>
+<% end %>
+<br><br>
 
   <% @days.each do |day| %>
       <% day.meals.each do |meal| %>
@@ -9,17 +14,18 @@
             <% meal.meal_recipes.each do |mr| %> 
 
                 <div class="row">
-                    <div class="col-sm-6">
-                      <%= render 'recipes/method_card', recipe: mr.recipe, edit: "no" %>
+                    <div class="col-sm-7">
+                      <%= render 'recipes/method_card', recipe: mr.recipe, edit: "no", portions: mr.portions %>
                       <br>
-                </div>
+                    </div>
 
-                <div class="col-sm-6">
-                <%= render 'meal_recipes/meal_recipe_ingredients', mr: mr %>
+                    <div class="col-sm-5">
+                    <%= render 'meal_recipes/meal_recipe_ingredients', mr: mr %>
+                    </div>
                 </div>
             <% end %>
       <% end %>
   <% end %>
           
             
-          
+  
