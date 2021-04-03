@@ -1,7 +1,7 @@
 
-
 <%= form_with(scope: :meal_recipe, url: url, local: true, method: method) do |form| %>
 
+<%= render 'shared/errors', object: @new_meal_recipe %>
     
     <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
         {:prompt => 'Add recipe to meal'}, 

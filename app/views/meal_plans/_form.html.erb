@@ -1,15 +1,6 @@
 <%= form_with(model: meal_plan, local: true) do |form| %>
-  <% if meal_plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meal_plan.errors.count, "error") %> prohibited this meal_plan from being saved:</h2>
 
-      <ul>
-      <% meal_plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= render 'shared/errors', object: @meal_plan %>
 
   
 
@@ -24,7 +15,7 @@
 
       <div class="form-group">
         <%= form.label :number_of_days %>
-        <%= form.text_field :number_of_days_from_form, class: 'form-control' %>
+        <%= form.number_field :number_of_days_from_form, class: 'form-control', in: 1.0..31.0, step: 1 %>
       </div>
   <% end %>
 

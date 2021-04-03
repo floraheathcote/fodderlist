@@ -1,17 +1,9 @@
 
 <%= form_with(scope: scope, url: url, local: true, method: method) do |form| %> 
 
-          <% if @recipe_ingredient.errors.any? %>
-                <div id="error_explanation">
-                      <h2><%= pluralize(recipe_ingredient.errors.count, "error") %> prohibited this recipe_ingredient from being saved:</h2>
+<%= render 'shared/errors', object: @recipe_ingredient %>
 
-                      <ul>
-                      <% recipe_ingredient.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                      </ul>
-                </div>
-          <% end %>
+          
 
       <div class="form-group">
         <h5><%= form.label :Ingredient, "add ingredient:" %></h5>

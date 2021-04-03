@@ -39,8 +39,8 @@ class RecipeIngredientsController < ApplicationController
         format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully created." }
         format.json { render :show, status: :created, location: @recipe }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe_ingredient.errors, status: :unprocessable_entity }
+        format.html { redirect_to @recipe, notice: "Ingredient not added - make sure ingredient name and quantity are not blank (unit and preparation can be left blank)" }
+        format.json { render :show, status: :created, location: @recipe }
       end
     end
   end

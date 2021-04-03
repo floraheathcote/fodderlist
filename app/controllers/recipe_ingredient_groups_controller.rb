@@ -19,8 +19,8 @@ class RecipeIngredientGroupsController < ApplicationController
 
   # GET /recipe_ingredient_groups/1/edit
   def edit
-    @new_recipe_ingredient_group = RecipeIngredientGroup.find(params[:id])
-    @recipe = @new_recipe_ingredient_group.recipe
+    @recipe_ingredient_group = RecipeIngredientGroup.find(params[:id])
+    @recipe = @recipe_ingredient_group.recipe
   end
 
   # POST /recipe_ingredient_groups or /recipe_ingredient_groups.json
@@ -34,8 +34,8 @@ class RecipeIngredientGroupsController < ApplicationController
         format.html { redirect_to @recipe, notice: "Recipe ingredient group was successfully created." }
         format.json { render :show, status: :created, location: @recipe_ingredient_group }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe_ingredient_group.errors, status: :unprocessable_entity }
+        format.html { redirect_to @recipe, notice: "Group not added - ingredient group name missing!" }
+        format.json { render :show, status: :created, location: @recipe_ingredient_group }
       end
     end
   end

@@ -530,3 +530,12 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
                                     <span class =font_handwriting ><%#= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> </li>
 
                                 <% end %>
+
+
+
+                                
+<% if meal.persisted? %>
+<%= render 'shared/errors', object: @meal %>
+<% else %>
+<%= render 'shared/errors', object: @new_meal %>
+<% end %>

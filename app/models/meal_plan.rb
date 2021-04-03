@@ -12,8 +12,6 @@ class MealPlan < ApplicationRecord
 #   where(user: Current.user)
 # }
 
-
-
   attr_accessor :start_date_from_form
   attr_accessor :number_of_days_from_form
   attr_accessor :status

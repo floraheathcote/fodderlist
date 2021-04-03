@@ -9,9 +9,10 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1 or /recipes/1.json
   def show
+    @recipe_ingredient_group = RecipeIngredientGroup.new
     @recipe_ingredients = @recipe.recipe_ingredients
     @recipe_ingredient_groups = @recipe.recipe_ingredient_groups
-    @new_recipe_ingredient_group = RecipeIngredientGroup.new
+    
     @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
     

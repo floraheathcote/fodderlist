@@ -18,6 +18,7 @@ class MealsController < ApplicationController
   # GET /meals/1/edit
   def edit
     @day = @meal.day
+  
   end
 
   # POST /meals or /meals.json
@@ -28,6 +29,8 @@ class MealsController < ApplicationController
     @meal = Meal.new(meal_params)
     @meal_plan = @meal.day.meal_plan
     # @meal_plan = @day.meal_plan
+
+    @meal.save
 
     respond_to do |format|
       if @meal.save
@@ -44,8 +47,8 @@ class MealsController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @meal.errors, status: :unprocessable_entity }
+        format.html { redirect_to @meal_plan, notice: "Error saving meal - please fill out all fields." }
+        format.json { render :show, status: :created, location: @meal_plan }
       end
     end
   end

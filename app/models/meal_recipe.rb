@@ -6,6 +6,6 @@ class MealRecipe < ApplicationRecord
   validates :portions, presence: true
 
 
-
+  
 
 end

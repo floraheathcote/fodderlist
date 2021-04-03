@@ -1,21 +1,6 @@
 <%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
 
-<% if @meal_ingredient.errors.any? %>
-  <section class="errors">
-    <h2>
-      Oops! Your form could not be saved.
-    </h2>
-    <h3>
-      Please correct the following
-      <%= pluralize(@meal_ingredient.errors.size, "error") %>:
-    </h3>
-    <ul>
-      <% @meal_ingredient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </section>
-<% end %>
+  <%= render 'shared/errors', object: @meal_ingredient %>
   
   <div class="form-group">
         <% if @meal_ingredient.persisted? %>

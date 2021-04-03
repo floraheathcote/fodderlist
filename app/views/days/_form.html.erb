@@ -1,21 +1,14 @@
 
 <%= form_with(scope: :day, url: url, local: true, method: method) do |form| %>
-  <% if @day.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(day.errors.count, "error") %> prohibited this day from being saved:</h2>
 
-      <ul>
-      <% @day.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render 'shared/errors', object: @day %>
+  
+  <% unless @day.persisted? %>
   <div class="form-group">
-    <%#= form.label :date %>
-    <%#= form.date_select :date, class: 'form-control' %>
+    <%= form.label :date %>
+    <%= form.date_select :date, class: 'form-control' %>
   </div>
+  <% end %>
 
   <div class="form-group">
     <%= form.label :notes %>
