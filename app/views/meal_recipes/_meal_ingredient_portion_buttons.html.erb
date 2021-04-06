@@ -1,0 +1,16 @@
+<span class="badge bg-light text-dark">
+    <%= link_to "x2", meal_recipe_double_portions_path(meal_recipe) -%>
+</span>
+
+<span class="badge bg-light text-dark">
+    <%= link_to "/2", meal_recipe_half_portions_path(meal_recipe) -%>
+</span>
+
+<span class="badge bg-light text-dark">
+    <%= link_to "+1", meal_recipe_add_one_portion_path(meal_recipe) -%>
+</span>    
+
+<span class="badge bg-light">
+<%= link_to "X", meal_recipe_path(meal_recipe),
+    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+</span>

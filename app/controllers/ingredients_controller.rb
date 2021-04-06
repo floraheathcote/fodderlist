@@ -1,10 +1,14 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
+  # require 'openfoodfacts'
+  # require 'fatsecret'
+  # FatSecret.init(:fat_secret, :key => '4dc13d0bb3c7490999fad64eb2d50224', :secret => '777e3432e45c4361b4ec812e235d5474')
 
 
   # GET /ingredients or /ingredients.json
   def index
-    @ingredients = Ingredient.order(:name)
+    @ingredients = Ingredient.order(ingredient_category_id: :asc, name: :asc)
+    @new_ingredient = Ingredient.new
   end
 
   # GET /ingredients/1 or /ingredients/1.json
@@ -15,6 +19,21 @@ class IngredientsController < ApplicationController
   def new
     @ingredient = Ingredient.new
     @ingredient.build_ingredient_category
+
+    # @products = Openfoodfacts::Product.search("chicken breast", locale: 'uk')
+
+    # FoodInfo.establish_connection(:fat_secret, :key => '4dc13d0bb3c7490999fad64eb2d50224', :secret => '777e3432e45c4361b4ec812e235d5474')
+
+    # @fatsecret = FatSecret.search_food('milk')
+
+    # FatSecret.configure do |config|
+    #   config.access_key = 4dc13d0bb3c7490999fad64eb2d50224
+    #   config.consumer_key = 4dc13d0bb3c7490999fad64eb2d50224
+    #   config.shared_secret = 0c37b8cf2f654a08977f9dc308d70ab9
+    #   # config.logger = <your logger> #OPTIONAL
+    # end
+
+    # @fatsecret = FatSecret::Food.search('Milk')
   end
 
   # GET /ingredients/1/edit
@@ -27,8 +46,8 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: "Ingredient was successfully created." }
-        format.json { render :show, status: :created, location: @ingredient }
+        format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
+        format.json { render :show, status: :created, location: ingredients_path }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
@@ -40,11 +59,11 @@ class IngredientsController < ApplicationController
   def update
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to @ingredient, notice: "Ingredient was successfully updated." }
-        format.json { render :show, status: :ok, location: @ingredient }
+        format.html { redirect_to ingredients_path, notice: "Ingredient was successfully updated." }
+        format.json { render :show, status: :ok, location: ingredients_patht }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+        format.json { render json: ingredients_patht.errors, status: :unprocessable_entity }
       end
     end
   end

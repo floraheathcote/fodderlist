@@ -1,16 +1,18 @@
 
 <div class="card">
-<%= image_tag recipe.main_image, class: 'card-img-top height: 30vw'  %>
+<%#= image_tag recipe.main_image, class: 'card-img-top height: 30vw'  %>
 
     <div class="card-body">
         <h5 class="card-title">
         
         <%= recipe.name %>, 
-        <% if portions.present? && portions != recipe.portions %>
-          <s><%= pluralize(round_nicely(recipe.portions), "portion") %></s>
-          <span class =font_handwriting ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
-        <% else %>
-          <%= pluralize(round_nicely(recipe.portions), "portion") %></h5>
+        <% if portions.present? %>
+            <% if portions != recipe.portions %>
+              <s><%= pluralize(round_nicely(recipe.portions), "portion") %></s>
+              <span class =font_handwriting ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
+            <% else %>
+              <%= pluralize(round_nicely(recipe.portions), "portion") %></h5>
+            <% end %>
         <% end %>
       
       

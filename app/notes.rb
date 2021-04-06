@@ -539,3 +539,30 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
 <% else %>
 <%= render 'shared/errors', object: @new_meal %>
 <% end %>
+
+
+
+<div class="card-footer">
+<h6>Add solo ingredient:</h6>
+    <%= form_with(scope: :meal_ingredient, local: true, url: meal_meal_ingredients_path(meal), method: :post) do |form| %>
+        
+          <%= collection_select(:meal_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true, style: ('width:80px')) %>
+        
+
+<div class="row">
+  <div class="col-sm">
+    <div class="form-group">
+      <%= form.label :quantity %>
+      <%= form.text_field :quantity, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="form-group">
+      <%= form.label :unit %>
+      <%= form.text_field :unit, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+<%= form.submit class: 'btn btn-primary' %>
+    <% end %>
+    </div>

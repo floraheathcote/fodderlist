@@ -1,5 +1,5 @@
 class MealIngredient < ApplicationRecord
-  belongs_to :meal_recipe
+  belongs_to :meal_recipe, required: false
   belongs_to :meal
   belongs_to :ingredient
 
@@ -8,6 +8,10 @@ class MealIngredient < ApplicationRecord
 
   validates :quantity, presence: true
   # validates :unit, presence: true
+
+  scope :no_recipe, -> { where( meal_recipe: [nil, ""] )}
+
+ 
 
   before_save do 
     self.unit = unit.singularize

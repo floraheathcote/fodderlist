@@ -1,5 +1,7 @@
 <%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
 
+<%#= form_with(model: [@model, @meal_ingredient], local:true) do |f| %>
+
   <%= render 'shared/errors', object: @meal_ingredient %>
   
   <div class="form-group">

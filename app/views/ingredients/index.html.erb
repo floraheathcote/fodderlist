@@ -9,9 +9,6 @@
   <div class="col-sm-6 text-right">
   <%= link_to "Edit Categories", ingredient_categories_path, class: 'btn btn-primary' %>
 
-    <%= link_to new_ingredient_path, class: 'btn btn-primary' do %>
-    Add New Ingredient
-    <% end %>
   </div>
 </div>
 
@@ -29,17 +26,44 @@
     </thead>
 
     <tbody>
+    <%= form_with(model: @new_ingredient, local: true, url: ingredients_path, method: :post) do |form| %>
+                  <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
+                  <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name) %> </td>
+                  <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                  <td>  
+                        </td>
+    <% end %>
+
+
       <% @ingredients.each do |ingredient| %>
         <%= content_tag :tr, id: dom_id(ingredient), class: dom_class(ingredient) do %>
           
-            <td><%= link_to ingredient.name, ingredient %></td>
+            
+            <%= form_with(model: ingredient, local: true) do |form| %>
+                  <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
+                  <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name, {:selected => ingredient.ingredient_category_id}) %> </td>
+                  <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                  <td>  <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                        </td>
+            <% end %>
+
+            
+            
           
 
-                      <td><%= ingredient.ingredient_category.name %></td>
+                      
           
           
         <% end %>
       <% end %>
+      
+            <%= form_with(model: @new_ingredient, local: true) do |form| %>
+                  <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
+                  <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name) %> </td>
+                  <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                  <td>  
+                        </td>
+            <% end %>
     </tbody>
   </table>
 </div>

@@ -17,6 +17,18 @@ class Ingredient < ApplicationRecord
   end
 
 
+
+  rawjson = RestClient.get 'https://world.openfoodfacts.org/api.json'
+
+
+
+
+
+
+
+
+
+
 private
 
 def acceptable_image

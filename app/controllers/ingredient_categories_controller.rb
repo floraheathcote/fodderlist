@@ -4,7 +4,7 @@ class IngredientCategoriesController < ApplicationController
   # GET /ingredient_categories or /ingredient_categories.json
   def index
     @ingredient_categories = IngredientCategory.order(:name)
-    
+
   end
 
   # GET /ingredient_categories/1 or /ingredient_categories/1.json
@@ -26,8 +26,8 @@ class IngredientCategoriesController < ApplicationController
 
     respond_to do |format|
       if @ingredient_category.save
-        format.html { redirect_to @ingredient_category, notice: "Ingredient category was successfully created." }
-        format.json { render :show, status: :created, location: @ingredient_category }
+        format.html { redirect_to ingredient_categories_path, notice: "Ingredient category was successfully created." }
+        format.json { render :show, status: :created, location: ingredient_categories_path }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ingredient_category.errors, status: :unprocessable_entity }
@@ -39,8 +39,8 @@ class IngredientCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @ingredient_category.update(ingredient_category_params)
-        format.html { redirect_to @ingredient_category, notice: "Ingredient category was successfully updated." }
-        format.json { render :show, status: :ok, location: @ingredient_category }
+        format.html { redirect_to ingredient_categories_path, notice: "Ingredient category was successfully updated." }
+        format.json { render :show, status: :ok, location: ingredient_categories_path }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @ingredient_category.errors, status: :unprocessable_entity }

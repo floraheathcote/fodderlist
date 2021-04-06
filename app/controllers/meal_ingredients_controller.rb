@@ -13,7 +13,28 @@ class MealIngredientsController < ApplicationController
   # GET /meal_ingredients/new
   def new
     @meal_ingredient = MealIngredient.new
-    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+
+
+    if params[:meal_recipe_id].present?
+      @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+      @url = meal_recipe_meal_ingredients_path(@meal_recipe)
+      # @meal_ingredient.meal_recipe_id = @meal_recipe.id
+      # @meal_ingredient.meal = @meal_recipe.meal
+      # @meal_plan = @meal_recipe.meal.day.meal_plan
+    elsif params[:meal_id].present?
+      @meal = Meal.find(params[:meal_id])
+      @url = meal_meal_ingredients_path(@meal)
+      # @meal_ingredient.meal = @meal
+      # @meal_plan = @meal.day.meal_plan
+    end
+
+
+    # if params[:meal_recipe_id].present?
+    #   @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+    # elsif params[:meal_id].present?
+    #   @meal = 
+    # end
+
   end
 
   # GET /meal_ingredients/1/edit
@@ -23,11 +44,31 @@ class MealIngredientsController < ApplicationController
   # POST /meal_ingredients or /meal_ingredients.json
   def create
     @meal_ingredient = MealIngredient.new(meal_ingredient_params)
-    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
-    @meal = @meal_recipe.meal
-    @meal_ingredient.meal_recipe_id = @meal_recipe.id
-    @meal_ingredient.meal = @meal
-    @meal_plan = @meal.day.meal_plan
+
+    if params[:meal_recipe_id].present?
+      @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+      # @model = meal_recipe
+      # @url = meal_recipe_meal_ingredients_path(@meal_recipe)
+      @meal_ingredient.meal_recipe_id = @meal_recipe.id
+      @meal_ingredient.meal = @meal_recipe.meal
+      @meal_plan = @meal_recipe.meal.day.meal_plan
+    elsif params[:meal_id].present?
+      @meal = Meal.find(params[:meal_id])
+      # @model = meal
+      # @url = meal_meal_ingredient_path(@meal)
+      @meal_ingredient.meal = @meal
+      @meal_plan = @meal.day.meal_plan
+    end
+
+    # if params[:meal_id].present?
+    #   @meal = Meal.find(params[:meal_id])
+    # else
+    #   @meal = @meal_recipe.meal
+    # end
+    
+   
+    # @meal_ingredient.meal = @meal
+    # @meal_plan = @meal.day.meal_plan
     
     respond_to do |format|
       if @meal_ingredient.save
@@ -35,6 +76,7 @@ class MealIngredientsController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal ingredient was successfully created." }
         format.json { render :show, status: :created, location: @meal_ingredient }
       else
+        fail
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal_ingredient.errors, status: :unprocessable_entity }
       end

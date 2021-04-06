@@ -1,24 +1,29 @@
 <% meal_plan = day.meal_plan %>
 
-
-  <% if meal_plan.days.count == 1  || day == meal_plan.days.first %> <%# meal plan is only 1 day %>
-             <% if day.meal_plan.status == "draft"%>
-                  <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary btn-block', style: 'color: red' %>
-              <% else %>
-                  <%= link_to "closed", day.meal_plan, class: 'btn btn-success btn-block' %>
-              <% end %>
+    <% if meal_plan.days.count == 1  %> <%# meal plan is only 1 day %>
+                <% if day.meal_plan.status == "draft"%>
+                    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary btn-block' %>
+                <% else %>
+                    <%= link_to "closed", day.meal_plan, class: 'btn btn-success btn-block' %>
+                <% end %>
+    <% elsif day == meal_plan.days.first %> <%# last day of meal plan %>
+                <% if day.meal_plan.status == "draft"%>
+                    <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary btn-block' %>
+                <% else %>
+                    <%= link_to "closed", day.meal_plan, class: 'btn btn-success btn-block' %>
+                <% end %>
   
-  <% elsif day == meal_plan.days.last %> <%# last day of meal plan %>
-              <% if day.meal_plan.status == "draft"%>
-                  <%= link_to " -- ] ", day.meal_plan, class: 'btn btn-secondary btn-block' %>
-              <% else %>
-                  <%= link_to " -- ] ", day.meal_plan, class: 'btn btn-success btn-block' %>
-              <% end %>
-  <% else %> <%# middle day of meal plan %>
-              <% if day.meal_plan.status == "draft"%>
-                  <%= link_to " --- ", day.meal_plan, class: 'btn btn-secondary btn-block' %>
-              <% else %>
-                  <%= link_to " --- ", day.meal_plan, class: 'btn btn-success btn-block' %>
-              <% end %>
-  <% end %>
+    <% elsif day == meal_plan.days.last %> <%# last day of meal plan %>
+                <% if day.meal_plan.status == "draft"%>
+                    <%= link_to " -- ] ", day.meal_plan, class: 'btn btn-secondary btn-block' %>
+                <% else %>
+                    <%= link_to " -- ] ", day.meal_plan, class: 'btn btn-success btn-block' %>
+                <% end %>
+    <% else %> <%# middle day of meal plan %>
+                <% if day.meal_plan.status == "draft"%>
+                    <%= link_to " --- ", day.meal_plan, class: 'btn btn-secondary btn-block' %>
+                <% else %>
+                    <%= link_to " --- ", day.meal_plan, class: 'btn btn-success btn-block' %>
+                <% end %>
+    <% end %>
 

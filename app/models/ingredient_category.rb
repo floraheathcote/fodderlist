@@ -1,5 +1,5 @@
 class IngredientCategory < ApplicationRecord
-    has_many :ingredients
+    has_many :ingredients, dependent: :destroy
     validates :name, presence: true, uniqueness: { case_sensitive: false }
 
     scope :titles_for_recipe, ->(recipe) { where() }

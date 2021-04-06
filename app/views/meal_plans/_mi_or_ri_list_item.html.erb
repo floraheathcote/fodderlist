@@ -1,0 +1,9 @@
+
+
+<li><%= render 'shared/display_ingredient_info', mi_or_ri: meal_ingredient, include_prep: "no" %>
+        <% if @meal_plan.status=="draft" %>
+        <%= link_to icon('fas', 'exchange-alt'), edit_meal_ingredient_path(meal_ingredient) %>
+        <%= link_to icon('fas', 'trash'), meal_ingredient_path(meal_ingredient),
+                method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <% end %>
+</li>

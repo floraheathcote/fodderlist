@@ -41,7 +41,11 @@ module ApplicationHelper
   end
 
   def nice_date(date)
-    date.strftime("%A %B %d")
+    "#{date.strftime("%A %b")} #{date.day.ordinalize}"
+    "#{date.strftime("%A")} #{date.day.ordinalize} #{date.strftime("%b")}"
+
+
+    # date.strftime("%A %-d %b")
   end
 
 

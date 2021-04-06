@@ -4,7 +4,8 @@
         <div class="card-columns">
                 <% recipes.each do |recipe| %>
                         <div class="card">
-                                <%= link_to ( image_tag recipe.main_image, class: 'card-img-top', width: 300 ), recipe %>
+                        
+                                <%= link_to main_image(recipe), recipe, class: 'card-img-top' %>
                                 <div class="card-body">
                                     <h5 class="card-title"><%=recipe.name%></h5>
                                     <p class="card-text"><small class="text-muted">Added <%= time_ago_in_words(recipe.created_at) %> ago</small></p>

@@ -4,20 +4,21 @@
 
 <div class="row">
     <div class="col-sm-7">
-        <%= render 'method_card', recipe: @recipe, edit:"yes" %>
+        <%= render 'method_card', recipe: @recipe, edit:"yes", portions: nil %>
         <br>
     </div>
-      <br><br>
-    <div class="col-sm-5">
-   
-        <%= render 'ingredients_card', recipe_ingredient_groups: @recipe_ingredient_groups %>
       <br>
+    <div class="col-sm-5">
+        <%= render 'recipe_image_card', recipe: @recipe %>
+        <br>
+        <%= render 'ingredients_card', recipe_ingredient_groups: @recipe_ingredient_groups %>
+      
         <%= render 'recipe_ingredient_groups_card', recipe_ingredient_group: @new_recipe_ingredient_group, recipe: @recipe %>
 
   </div> 
     <br>
 </div>
 
-
+    <br>
 
 

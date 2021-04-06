@@ -8,6 +8,11 @@
         <% end %>
     </div>
 
+<% if @meal_plan.status=="draft" %>
+    <div class="card-header">
+          <%= render 'meal_recipes/form', meal: meal, scope: @new_meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
+    </div>
+    <% end %>
 
     <div class="card-body">
     <br>
@@ -29,46 +34,48 @@
         <% end%>
 
         <% meal.meal_recipes.each do |meal_recipe| %>
-          <div class="row">
-            <div class="col-4">
-            <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-            </div>
-            <div class="col-8">
-            <h6><%= meal_recipe.recipe.name %></h6>
-            </div>
-          </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                          <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                        </div>
+                        <div class="col-8">
+                          <h6><%= meal_recipe.recipe.name %></h6>
+                        </div>
+                    </div>
+
                     <span class="badge bg-light text-dark">
                       <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
                     </span>
 
             <% if @meal_plan.status=="draft" %>
-
-                    <span class="badge bg-light text-dark">
-                      <%= link_to "x2", meal_recipe_double_portions_path(meal_recipe) -%>
-                    </span>
-
-                     <span class="badge bg-light text-dark">
-                      <%= link_to "/2", meal_recipe_half_portions_path(meal_recipe) -%>
-                    </span>
-
-                    <span class="badge bg-light text-dark">
-                      <%= link_to "+1", meal_recipe_add_one_portion_path(meal_recipe) -%>
-                    </span>    
-  <span class="badge bg-light">
-                    <%= link_to "X", meal_recipe_path(meal_recipe),
-            method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %></span>
+                    <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
             <% end %>
-            <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
-            
-
+                    
+                    <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
         <% end %>
             
-    </div>
+    
 
-    <% if @meal_plan.status=="draft" %>
-    <div class="card-footer">
-          <%= render 'meal_recipes/form', meal: meal, scope: @new_meal_recipe, url: meal_meal_recipes_path(meal), method: :post %>
+    <br>
+
+   
+        <h6>Other food/drinks in this meal:</h6>
+        <ul>
+        <small class="text-muted">
+        <% meal.meal_ingredients.no_recipe.each do |mi| %>
+            <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
+        <% end %>
+
+            <li><%= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %></li>
+            </small>
+        </ul>
+        
     </div>
-    <% end %>
+    
+
+    
  
 </div>
+
+
