@@ -45,15 +45,35 @@
                   </div>
               </div>
 
-              <span class="badge bg-light text-dark">
-                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-              </span>
-
-              <% if @meal_plan.status=="draft" %>
-                      <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
-              <% end %>
+            
               
-              <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
+
+                <% if @meal_plan.status=="draft" %>
+                    <% if @user_stock_log.meal_recipe(meal_recipe).present? %>
+                        <span class="badge bg-light text-dark">
+                        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                        </span>
+                        <span class="badge bg-success text-light">
+                        eat: <%= round_nicely(meal_recipe.portions - @user_stock_log.meal_recipe(meal_recipe).sum(:portions)) %>
+                        </span>
+                        <%= link_to "save: #{round_nicely(@user_stock_log.meal_recipe(meal_recipe).sum(:portions))}", filtered_leftovers_path(:meal_recipe, meal_recipe: meal_recipe), class:"badge bg-secondary text-light" %>
+                       
+                    <% else %>
+                        <span class="badge bg-light text-dark">
+                        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                        </span>
+                        <%= link_to "no leftovers", new_meal_recipe_stock_log_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
+                        <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+
+                    <% end %>
+                <% else %>
+                    <span class="badge bg-light text-dark">
+                    <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                    </span>
+                <% end %>
+              
+
+              <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
         <% end %>
    
         <h6>Other food/drinks in this meal:</h6>
@@ -68,6 +88,12 @@
         </small>
         </ul>
         
+        <h6>Leftovers available to add to meal:</h6>
+        <ul><small class="text-muted">
+        <% @user_stock_log.as_at_datetime(meal.time).each do |log_entry| %>
+            <li><%#= nice_date(log_entry.datetime) %> <%= log_entry.recipe.name %> <%= pluralize(round_nicely(log_entry.portions), "portion") %></li>
+        <% end %>
+        </small></ul>
     </div>
     
 </div>

@@ -2,9 +2,9 @@ class DaysController < ApplicationController
   before_action :set_day, only: %i[ show edit update destroy ]
 
   # GET /days or /days.json
-  def index
-    @days = Day.user(current_user).today
-  end
+  # def index
+  #   @days = Day.user(current_user).today
+  # end
   
 
   def index

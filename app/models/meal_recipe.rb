@@ -2,7 +2,7 @@ class MealRecipe < ApplicationRecord
   belongs_to :meal
   belongs_to :recipe
   has_many :meal_ingredients, dependent: :destroy
-  has_many :stock_log, dependent: :destroy
+  has_many :stock_logs, dependent: :destroy
 
   validates :portions, presence: true
   validates :recipe, presence: true

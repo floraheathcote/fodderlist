@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :meal_recipes do
-    resources :stock_logs, only: [:new, :create]
+    resources :stock_logs
     resources :meal_ingredients, only: [:new, :create]
   end
 
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   # get '/today', to: 'days#index'
   get 'days/date/:filter' => 'days#index', as: :filtered_days
+  get 'stock_logs/meal_recipe/:filter' => 'stock_logs#index', as: :filtered_leftovers
 
   resources :ingredients
   

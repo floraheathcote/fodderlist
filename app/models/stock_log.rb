@@ -12,6 +12,7 @@ class StockLog < ApplicationRecord
   scope :recipe, ->(recipe) { where(recipe: recipe) }
   scope :as_at_datetime, ->(datetime) { where("datetime < ?", datetime) }
   scope :user, ->(user) { where(user: user) }
+  scope :meal_recipe, ->(meal_recipe) { where(meal_recipe: meal_recipe) }
 
   
 

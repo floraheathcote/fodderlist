@@ -3,7 +3,16 @@ class StockLogsController < ApplicationController
 
   # GET /stock_logs or /stock_logs.json
   def index
-    @stock_logs = StockLog.all
+    # @stock_logs = StockLog.all
+
+    
+    if params[:filter] == nil
+        @stock_logs = StockLog.user(current_user)
+    else
+        meal_recipe = params[:meal_recipe]
+        @stock_logs = StockLog.user(current_user).meal_recipe(meal_recipe)
+    end
+
   end
 
   # GET /stock_logs/1 or /stock_logs/1.json
@@ -72,9 +81,14 @@ class StockLogsController < ApplicationController
 
   # DELETE /stock_logs/1 or /stock_logs/1.json
   def destroy
+
+    if @stock_log.meal_recipe.present?
+      @meal_plan = @stock_log.meal_recipe.meal.day.meal_plan
+    end
+
     @stock_log.destroy
     respond_to do |format|
-      format.html { redirect_to stock_logs_url, notice: "Stock log was successfully destroyed." }
+      format.html { redirect_to @meal_plan, notice: "Stock log was successfully destroyed." }
       format.json { head :no_content }
     end
   end

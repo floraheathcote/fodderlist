@@ -7,9 +7,7 @@
   </div>
 
   <div class="col-sm-6 text-right">
-  <%= link_to new_stock_log_path, class: 'btn btn-primary' do %>
-    Add New Stock log
-  <% end %>
+  
   </div>
 </div>
 
@@ -34,16 +32,18 @@
         <%= content_tag :tr, id: dom_id(stock_log), class: dom_class(stock_log) do %>
           
 
-                      <td><%= stock_log.user %></td>
-                      <td><%= stock_log.recipe %></td>
-                      <td><%= stock_log.datetime %></td>
-                      <td><%= stock_log.quantity %></td>
+                      <td><%= stock_log.user.name %></td>
+                      <td><%= stock_log.recipe.name %></td>
+                      <td><%= nice_date(stock_log.datetime) %></td>
+                      <td><%= pluralize(round_nicely(stock_log.portions), "portion") %></td>
           
           
-            <td><%= link_to 'Show', stock_log %></td>
+            <td><%= link_to 'Delete', meal_recipe_stock_log_path(stock_log.meal_recipe, stock_log), 
+              method: :delete  %></td>
           
         <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
+

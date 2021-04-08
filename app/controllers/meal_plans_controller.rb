@@ -23,7 +23,7 @@ class MealPlansController < ApplicationController
     @array_of_arrays = @array_of_hashes.map {|x| x.values}
     @final_array = organised_ingredients_array(@meal_plan)
     
-
+    @user_stock_log = StockLog.user(current_user)
     # rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
     # @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
     # @response2 = @response['england-and-wales']['events'][0]
