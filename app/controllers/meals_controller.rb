@@ -27,6 +27,7 @@ class MealsController < ApplicationController
     # @day = Day.find_by(params[:id])
     # @meal_plan = MealPlan.find_by(params[:id])
     @meal = Meal.new(meal_params)
+    # @meal.time = @meal.day.date + @meal.time.hour
     @meal_plan = @meal.day.meal_plan
     # @meal_plan = @day.meal_plan
 
@@ -90,6 +91,6 @@ class MealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_params
-      params.require(:meal).permit(:day_id, :portions, :name, :favorite, :notes, :meal_type)
+      params.require(:meal).permit(:day_id, :time, :portions, :name, :favorite, :notes, :meal_type)
     end
 end

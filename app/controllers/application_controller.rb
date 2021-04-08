@@ -30,8 +30,21 @@ def create_meals_for_day(day)
       meal.meal_type = mealtype
       meal.name = mealtype
       meal.day = day
+      if mealtype == "breakfast"
+        meal.time = day.date + 8.hours
+      elsif mealtype == "lunch"
+        meal.time = day.date + 12.hours
+      else
+        meal.time = day.date + 19.hours
+      end
+
       meal.save
+     
   end
+end
+
+def current_recipe_balance(datetime, recipe, user)
+  StockLog.user(user).recipe(recipe).as_at_datetime(datetime).sum(:portions)
 end
 
   protected

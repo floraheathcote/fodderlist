@@ -1,0 +1,24 @@
+<div class="page-header">
+  <%= link_to stock_logs_path, class: 'btn btn-default' do %>
+    All Stock_logs
+  <% end %>
+  <%= link_to edit_stock_log_path(@stock_log), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show stock_log</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @stock_log.user %></dd>
+
+  <dt>Recipe:</dt>
+  <dd><%= @stock_log.recipe %></dd>
+
+  <dt>Datetime:</dt>
+  <dd><%= @stock_log.datetime %></dd>
+
+  <dt>Quantity:</dt>
+  <dd><%= @stock_log.quantity %></dd>
+
+</dl>

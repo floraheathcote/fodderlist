@@ -15,6 +15,7 @@ class MealIngredient < ApplicationRecord
 
   before_save do 
     self.unit = unit.singularize
+    self.quantity = quantity.round(2)
   end
 
   def original_ingredient

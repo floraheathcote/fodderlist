@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
     
-
+    @balance_today = current_recipe_balance(DateTime.now, @recipe, current_user)
   end
 
   # GET /recipes/new

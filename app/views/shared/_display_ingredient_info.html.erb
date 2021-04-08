@@ -1,9 +1,9 @@
 
 
-    <% if include_prep == "no" && mi_or_ri.preparation.present? %>  
+    <% if mi_or_ri.preparation.present? %>  
         <% if mi_or_ri.unit.present? %>    
             <%= mi_or_ri.ingredient.name %>
-            <%= pluralize(round_nicely(mi_or_ri.quantity), mi_or_ri.unit) %> , <% mi_or_ri.preparation %>
+            <%= pluralize(round_nicely(mi_or_ri.quantity), mi_or_ri.unit) %>, <%= mi_or_ri.preparation %>
         <% else %>   
             <%= pluralize(round_nicely(mi_or_ri.quantity), mi_or_ri.ingredient.name) %>
         <% end %>  

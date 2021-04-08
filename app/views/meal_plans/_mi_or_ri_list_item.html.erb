@@ -1,6 +1,6 @@
 
 
-<li><%= render 'shared/display_ingredient_info', mi_or_ri: meal_ingredient, include_prep: "no" %>
+<li><%= render 'shared/display_ingredient_info', mi_or_ri: meal_ingredient   %>
         <% if @meal_plan.status=="draft" %>
         <%= link_to icon('fas', 'exchange-alt'), edit_meal_ingredient_path(meal_ingredient) %>
         <%= link_to icon('fas', 'trash'), meal_ingredient_path(meal_ingredient),

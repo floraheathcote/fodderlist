@@ -14,8 +14,8 @@ class MealPlansController < ApplicationController
   def show
     
     @new_meal = Meal.new
-    @days = @meal_plan.days.order("date ASC")
-    @meals = @meal_plan.meals
+    @days = @meal_plan.days.order(date: :asc)
+    @meals = @meal_plan.meals.order(time: :desc)
     @meal_plan = MealPlan.find(params[:id])
     @new_meal_recipe = MealRecipe.new
     @active_record_ingredients =  @meal_plan.all_meal_plan_ingredients

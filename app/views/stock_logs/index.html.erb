@@ -1,0 +1,49 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Stock_logs</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_stock_log_path, class: 'btn btn-primary' do %>
+    Add New Stock log
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>User</th>
+            <th>Recipe</th>
+            <th>Datetime</th>
+            <th>Quantity</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @stock_logs.each do |stock_log| %>
+        <%= content_tag :tr, id: dom_id(stock_log), class: dom_class(stock_log) do %>
+          
+
+                      <td><%= stock_log.user %></td>
+                      <td><%= stock_log.recipe %></td>
+                      <td><%= stock_log.datetime %></td>
+                      <td><%= stock_log.quantity %></td>
+          
+          
+            <td><%= link_to 'Show', stock_log %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

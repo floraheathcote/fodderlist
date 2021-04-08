@@ -22,12 +22,12 @@
                                 <%# ingredient same, quantity is different %>
                                 
                                     <% if mi.unit.present? %>
-                                        <li><%= mi.ingredient.name%>
+                                        <li><%= mi.ingredient.name%> <%= mi.preparation %>
                                         <s><%= pluralize(round_nicely(mi.recipe_ingredient.quantity), mi.recipe_ingredient.unit) %></s>
                                         <span class =font_handwriting ><%= pluralize(round_nicely(mi.quantity), mi.unit) %></span></li>
                                     <% else %>   
                                         <li><s><%= pluralize(round_nicely(mi.recipe_ingredient.quantity), mi.ingredient.name) %></s>
-                                        <span class =font_handwriting ><%= pluralize(round_nicely(mi.quantity), mi.ingredient.name) %></span></li>
+                                        <span class =font_handwriting ><%= pluralize(round_nicely(mi.quantity), mi.ingredient.name) %> <%= mi.preparation %></span></li>
                                     <% end %>
                                 <% end %>
 
@@ -38,7 +38,7 @@
                   
                             <% end %>
                         <% else %>
-                            <span class =font_handwriting >* <%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> 
+                            <span class =font_handwriting >* <%= render 'shared/display_ingredient_info', mi_or_ri:mi, include_prep: "yes" %></span> <br>
                         <% end %>
                     <% end %>
                 

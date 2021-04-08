@@ -3,6 +3,7 @@
 <div class="card" style="max-width: 18rem;">
     <div class="card-header">
         <h5><%= meal.name %></h5>
+        <p><%= meal.time.strftime('%l:%M%P') %></p>
         <% if @meal_plan.status=="draft" %>
             <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
         <% end %>
@@ -23,7 +24,8 @@
               <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
             </div>
             <div class="col-8">
-              <h6>Add recipe using form below</h6>
+              <h6>Add recipe using form above</h6>
+              <br><br><br><br>
             </div>
         </div>
     <% end %>
@@ -34,48 +36,40 @@
         <% end%>
 
         <% meal.meal_recipes.each do |meal_recipe| %>
+              <div class="row">
+                  <div class="col-4">
+                    <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                  </div>
+                  <div class="col-8">
+                    <h6><%= meal_recipe.recipe.name %></h6>
+                  </div>
+              </div>
 
-                    <div class="row">
-                        <div class="col-4">
-                          <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-                        </div>
-                        <div class="col-8">
-                          <h6><%= meal_recipe.recipe.name %></h6>
-                        </div>
-                    </div>
+              <span class="badge bg-light text-dark">
+                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+              </span>
 
-                    <span class="badge bg-light text-dark">
-                      <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                    </span>
-
-            <% if @meal_plan.status=="draft" %>
-                    <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
-            <% end %>
-                    
-                    <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
+              <% if @meal_plan.status=="draft" %>
+                      <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+              <% end %>
+              
+              <%= render 'meal_plans/meal_recipe_ingredients_list', meal_recipe:meal_recipe, meal:meal %>
         <% end %>
-            
-    
-
-    <br>
-
    
         <h6>Other food/drinks in this meal:</h6>
         <ul>
         <small class="text-muted">
+
         <% meal.meal_ingredients.no_recipe.each do |mi| %>
             <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
         <% end %>
 
             <li><%= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %></li>
-            </small>
+        </small>
         </ul>
         
     </div>
     
-
-    
- 
 </div>
 
 

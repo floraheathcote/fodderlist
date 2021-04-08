@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
+  
+
   # resources :days
   resources :meal_plans, :shallow => true do
     get 'create_shopping_list'
@@ -18,10 +20,12 @@ Rails.application.routes.draw do
   end
 
   resources :meal_recipes do
+    resources :stock_logs, only: [:new, :create]
     resources :meal_ingredients, only: [:new, :create]
   end
 
   resources :recipes, :shallow => true do
+    
     resources :recipe_ingredient_groups, :shallow => true do
       resources :recipe_ingredients
     end
@@ -41,6 +45,8 @@ Rails.application.routes.draw do
   resources :ingredient_categories
 
   resources :pins
+
+  
 
   get '/feed', to: 'pins#feed'
 

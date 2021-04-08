@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_170552) do
+ActiveRecord::Schema.define(version: 2021_04_08_112240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_04_02_170552) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.bigint "day_id", null: false
+    t.datetime "time"
     t.index ["day_id"], name: "index_meals_on_day_id"
   end
 
@@ -213,6 +214,19 @@ ActiveRecord::Schema.define(version: 2021_04_02_170552) do
     t.index ["meal_plan_id"], name: "index_shopping_list_items_on_meal_plan_id"
   end
 
+  create_table "stock_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "datetime"
+    t.decimal "portions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "meal_recipe_id"
+    t.index ["meal_recipe_id"], name: "index_stock_logs_on_meal_recipe_id"
+    t.index ["recipe_id"], name: "index_stock_logs_on_recipe_id"
+    t.index ["user_id"], name: "index_stock_logs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -249,4 +263,7 @@ ActiveRecord::Schema.define(version: 2021_04_02_170552) do
   add_foreign_key "services", "users"
   add_foreign_key "shopping_list_items", "ingredients"
   add_foreign_key "shopping_list_items", "meal_plans"
+  add_foreign_key "stock_logs", "meal_recipes"
+  add_foreign_key "stock_logs", "recipes"
+  add_foreign_key "stock_logs", "users"
 end

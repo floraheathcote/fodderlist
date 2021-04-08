@@ -43,18 +43,6 @@ class MealPlan < ApplicationRecord
     "MP " + self.id.to_s
   end
 
-  # def all_meal_ingredients
-  #   @all_meal_ingredients ||= []
-  #   self.days.each do |day|
-  #     day.meals.each do |meal|
-  #       meal.meal_ingredients.each do |meal_ingredient|
-          
-  #         @all_meal_ingredients << meal_ingredient
-  #       end
-  #     end
-  #   end
-  #   return @all_meal_ingredients
-  # end
 
 
   def status

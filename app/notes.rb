@@ -566,3 +566,24 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
 <%= form.submit class: 'btn btn-primary' %>
     <% end %>
     </div>
+
+
+
+
+
+
+    
+    <div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :recipe_id %>
+    <%= form.text_field :recipe_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :datetime %>
+    <%= form.datetime_select :datetime, class: 'form-control' %>
+  </div>

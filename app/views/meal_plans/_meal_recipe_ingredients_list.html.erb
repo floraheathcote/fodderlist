@@ -2,11 +2,14 @@
 <small class="text-muted">
 <% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
         
-<%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: meal_ingredient %>
+<%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: meal_ingredient  %>
 
 <% end %>
 
 <li><%= link_to "Add ingredient to recipe", new_meal_recipe_meal_ingredient_path(meal_recipe) %></li>
 </ul>
 </small>
-<br>
+
+<%= link_to "log leftovers", new_meal_recipe_stock_log_path(meal_recipe), class:"btn btn-secondary" %>
+
+<br><br>
