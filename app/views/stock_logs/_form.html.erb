@@ -13,7 +13,8 @@
 
 
   <div class="form-group">
-    <%= form.number_field(:portions, in: 0.5..20.0, step: 0.5) %>
+    <%= form.label :portions %>
+    <%= form.number_field(:portions, in: 0.5..@max_portions, step: 0.5) %>
   </div>
 
 
@@ -24,7 +25,7 @@
       </div>
     <% end %>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit "Save", class: 'btn btn-primary' %>
 
    <%= link_to "Cancel", @cancel_url, class: "btn btn-link" %>
    

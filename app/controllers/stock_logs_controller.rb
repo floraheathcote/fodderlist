@@ -24,11 +24,22 @@ class StockLogsController < ApplicationController
     @stock_log = StockLog.new
 
     if params[:meal_recipe_id].present? 
+      @title = "log leftovers that can be added to future meals"
       @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+      @max_portions = @meal_recipe.portions
+      @caption = "Total portions of #{@meal_recipe.recipe.name} this meal: #{@max_portions}"
       @url = meal_recipe_stock_logs_path(@meal_recipe)
       @meal_plan = @meal_recipe.meal.day.meal_plan
       @cancel_url = @meal_plan
-      
+    elsif params[:meal_id].present? 
+      @title = "add leftovers to meal"
+      @meal = Meal.find(params[:meal_id])
+      @recipe = Recipe.find(params[:recipe_id])
+      @max_portions = StockLog.user(current_user).recipe(@recipe).as_at_datetime(@meal.time).sum(:portions)
+      @caption = "total portions of #{@recipe.name} in the fridge: #{@max_portions}"
+      @url = meal_stock_logs_path(@meal)
+      @meal_plan = @meal.day.meal_plan
+      @cancel_url = @meal_plan
     end
   end
 
@@ -38,6 +49,8 @@ class StockLogsController < ApplicationController
 
   # POST /stock_logs or /stock_logs.json
   def create
+    # add if statements to mirror those in New controller.
+
     @stock_log = StockLog.new(stock_log_params)
     @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
     @meal = @meal_recipe.meal
@@ -101,6 +114,6 @@ class StockLogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stock_log_params
-      params.require(:stock_log).permit(:user_id, :recipe_id, :datetime, :portions, :meal_recipe_id)
+      params.require(:stock_log).permit(:user_id, :recipe_id, :datetime, :portions, :meal_recipe_id, :meal_id)
     end
 end
