@@ -60,10 +60,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_attr (0.15.2)
-      actionpack (>= 3.0.2, < 7.0)
-      activemodel (>= 3.0.2, < 7.0)
-      activesupport (>= 3.0.2, < 7.0)
     activejob (6.0.3.6)
       activesupport (= 6.0.3.6)
       globalid (>= 0.3.6)
@@ -150,9 +146,6 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    fat_secret (0.0.6)
-      active_attr
-      activesupport
     ffi (1.15.0)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -420,7 +413,6 @@ DEPENDENCIES
   devise (~> 4.7, >= 4.7.1)
   devise-bootstrapped!
   devise_masquerade (~> 1.2)
-  fat_secret
   font-awesome-sass (~> 5.13)
   friendly_id (~> 5.3)
   image_processing

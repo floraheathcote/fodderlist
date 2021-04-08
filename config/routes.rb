@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :days, :shallow => true do
       resources :meals, :shallow => true do
+        resources :stock_logs
         resources :meal_recipes
         resources :meal_ingredients
       end
