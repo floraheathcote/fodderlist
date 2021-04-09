@@ -1,0 +1,37 @@
+<%= form_with(scope: :leftover, local: true, url: url, method: method) do |form| %>
+  <% if leftover.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(leftover.errors.count, "error") %> prohibited this leftover from being saved:</h2>
+
+      <ul>
+      <% leftover.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+  <div class="form-group">
+    <%= form.label :portions_leftover, in: 0.5..30, step: 0.5 %> (out of <%= round_nicely(@meal_recipe.portions) %> total)
+    <%= form.text_field :max_portions, class: 'form-control' %>
+  </div>
+
+  
+
+  <div class="form-group">
+    <% if leftover.persisted? %>
+      <div class="float-right">
+        <%#= link_to 'Destroy', leftover, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if leftover.persisted? %>
+      <%#= link_to "Cancel", leftover, class: "btn btn-link" %>
+    <% else %>
+      <%#= link_to "Cancel", leftovers_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

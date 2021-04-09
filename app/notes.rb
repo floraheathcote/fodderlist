@@ -587,3 +587,11 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
     <%= form.label :datetime %>
     <%= form.datetime_select :datetime, class: 'form-control' %>
   </div>
+
+
+
+
+
+  <% @user_stock_log.as_at_datetime(meal.time).each do |log_entry| %>
+    <%= link_to "#{log_entry.recipe.name} #{round_nicely(log_entry.portions)}p", new_meal_stock_log_path(meal, recipe_id: log_entry.recipe), class:"badge bg-secondary text-light" %>
+<% end %>

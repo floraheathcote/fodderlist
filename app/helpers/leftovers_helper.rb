@@ -1,0 +1,2 @@
+module LeftoversHelper
+end

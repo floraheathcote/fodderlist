@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  meal_recipe: one
+  recipe: one
+  portions: 9.99
+  stock_level: 9.99
+  date_made: 2021-04-09 08:58:47
+  user: one
+
+two:
+  meal_recipe: two
+  recipe: two
+  portions: 9.99
+  stock_level: 9.99
+  date_made: 2021-04-09 08:58:47
+  user: two

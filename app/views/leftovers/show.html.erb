@@ -1,0 +1,30 @@
+<div class="page-header">
+  <%= link_to leftovers_path, class: 'btn btn-default' do %>
+    All Leftovers
+  <% end %>
+  <%= link_to edit_leftover_path(@leftover), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show leftover</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Meal recipe:</dt>
+  <dd><%= @leftover.meal_recipe %></dd>
+
+  <dt>Recipe:</dt>
+  <dd><%= @leftover.recipe %></dd>
+
+  <dt>Portions:</dt>
+  <dd><%= @leftover.portions %></dd>
+
+  <dt>Stock level:</dt>
+  <dd><%= @leftover.stock_level %></dd>
+
+  <dt>Date made:</dt>
+  <dd><%= @leftover.date_made %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @leftover.user %></dd>
+
+</dl>

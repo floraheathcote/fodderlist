@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   
 
+  # resources :leftovers
   # resources :days
   resources :meal_plans, :shallow => true do
     get 'create_shopping_list'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :meal_recipes do
+    resources :leftovers
     resources :stock_logs
     resources :meal_ingredients, only: [:new, :create]
   end

@@ -2,6 +2,7 @@ class MealIngredient < ApplicationRecord
   belongs_to :meal_recipe, required: false
   belongs_to :meal
   belongs_to :ingredient
+  has_one :leftover, dependent: :destroy
 
   belongs_to :recipe_ingredient, optional: true
   # scope :original_ingredient, -> { where recipe_ingredient_id: RecipeIngredient.id}
