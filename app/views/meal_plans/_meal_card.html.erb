@@ -76,7 +76,7 @@
               <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
 
         <% end %>
-        <br>  <br>
+        <br>
    
         <h6>Other food/drinks in this meal:</h6>
         <ul>
@@ -90,13 +90,45 @@
         </small>
         </ul>
         
-        <h6>Leftovers available to add to meal:</h6>
-
-        <% Leftover.user(current_user).available.made_before(meal.time).each do |leftover| %>
-            <%= link_to "#{leftover.recipe.name} #{round_nicely(leftover.stock_level)}p", "ADD new meal_with_leftover path", class:"badge bg-secondary text-light" %>
+        <br>
+        
+        <% if MealWithLeftover.meal(meal).present? %>
+            <h6>Leftovers added to meal:</h6>
         <% end %>
 
-        
+        <% MealWithLeftover.meal(meal).each do |leftover_meal| %>
+            <div class="row">
+                <div class="col-4">
+                <%= image_tag(leftover_meal.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                </div>
+                <div class="col-8">
+                <small><%= leftover_meal.leftover.recipe.name %></small>
+
+                 <%= link_to "#{pluralize(round_nicely(leftover_meal.portions), "portion")} X", leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
+
+
+                <%#= pluralize(round_nicely(leftover_meal.portions), "portion") %>
+                </div>
+            </div>
+            <br>
+ 
+        <% end %>
+
+
+
+        <% title_already_drawn = false %>
+        <% Leftover.user(current_user).made_before(meal.time).each do |leftover| %>
+            <% if leftover.calculated_stock_level > 0 %>
+                <% if title_already_drawn == false %>
+                    <h6>Leftovers available to add to meal:</h6>
+                    <% title_already_drawn = true %>
+                <% end %>
+                <%= link_to leftover.recipe.name.first(20), new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
+                <%= link_to "#{leftover.recipe.name.first(20)} #{round_nicely(leftover.calculated_stock_level)}p", new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
+            <% end %>
+        <% end %>
+
+
        
     </div>
     

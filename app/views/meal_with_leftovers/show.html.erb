@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%#= link_to meal_with_leftovers_path, class: 'btn btn-default' do %>
+    All Meal_with_leftovers
+  <%# end %>
+  <%#= link_to edit_meal_with_leftover_path(@meal_with_leftover), class: 'btn btn-primary' do %>
+    Edit
+  <%# end %>
+  <h1>Show meal_with_leftover</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Leftovers:</dt>
+  <dd><%= @meal_with_leftover.leftover.meal_recipe.recipe.name %></dd>
+
+  <dt>Meal:</dt>
+  <dd><%= @meal_with_leftover.meal %></dd>
+
+  <dt>Portions:</dt>
+  <dd><%= @meal_with_leftover.portions %></dd>
+
+  
+
+</dl>

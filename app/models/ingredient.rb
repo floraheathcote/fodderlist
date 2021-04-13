@@ -18,7 +18,7 @@ class Ingredient < ApplicationRecord
 
 
 
-  rawjson = RestClient.get 'https://world.openfoodfacts.org/api.json'
+  # rawjson = RestClient.get 'https://world.openfoodfacts.org/api.json'
 
 
 

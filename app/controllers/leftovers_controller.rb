@@ -22,8 +22,11 @@ class LeftoversController < ApplicationController
 
   # GET /leftovers/1/edit
   def edit
-    @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
-    @url = meal_recipe_leftover_path(@meal_recipe, @leftover)
+    
+  @meal_recipe = @leftover.meal_recipe
+
+  @url = meal_recipe_leftover_path(@meal_recipe, @leftover)
+  @meal_plan = @meal_recipe.meal.day.meal_plan
   end
 
   # POST /leftovers or /leftovers.json
@@ -68,9 +71,10 @@ class LeftoversController < ApplicationController
 
   # DELETE /leftovers/1 or /leftovers/1.json
   def destroy
+    @meal_plan = @leftover.meal_recipe.meal.day.meal_plan
     @leftover.destroy
     respond_to do |format|
-      format.html { redirect_to leftovers_url, notice: "Leftover was successfully destroyed." }
+      format.html { redirect_to @meal_plan, notice: "Leftover was successfully deleted." }
       format.json { head :no_content }
     end
   end

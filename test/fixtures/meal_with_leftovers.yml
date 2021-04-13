@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  leftovers: one
+  meal: one
+  portions: 9.99
+  meal_recipe: one
+
+two:
+  leftovers: two
+  meal: two
+  portions: 9.99
+  meal_recipe: two

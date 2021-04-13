@@ -13,8 +13,8 @@
 
   
   <div class="form-group">
-    <%= form.label :portions_leftover, in: 0.5..30, step: 0.5 %> (out of <%= round_nicely(@meal_recipe.portions) %> total)
-    <%= form.text_field :max_portions, class: 'form-control' %>
+    <%= form.label :portions_leftover %> (out of <%= round_nicely(@meal_recipe.portions) %> total)
+    <%= form.text_field :max_portions, in: 0.5..30.0, step: 0.5, class: 'form-control' %>
   </div>
 
   
@@ -22,16 +22,16 @@
   <div class="form-group">
     <% if leftover.persisted? %>
       <div class="float-right">
-        <%#= link_to 'Destroy', leftover, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete', leftover_path, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <% if leftover.meal_with_leftovers.present? %> (note: this will also delete leftovers being assigned to other meals listed below). <% end %>
+      
       </div>
     <% end %>
 
     <%= form.submit class: 'btn btn-primary' %>
 
-    <% if leftover.persisted? %>
-      <%#= link_to "Cancel", leftover, class: "btn btn-link" %>
-    <% else %>
-      <%#= link_to "Cancel", leftovers_path, class: "btn btn-link" %>
-    <% end %>
+    <%= link_to "Cancel", @meal_plan, class: "btn btn-link" %>
+
+    
   </div>
 <% end %>

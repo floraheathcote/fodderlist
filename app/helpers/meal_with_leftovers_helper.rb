@@ -1,0 +1,2 @@
+module MealWithLeftoversHelper
+end

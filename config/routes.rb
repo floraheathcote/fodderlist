@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   
 
+  
   # resources :leftovers
   # resources :days
   resources :meal_plans, :shallow => true do
@@ -18,6 +19,18 @@ Rails.application.routes.draw do
         resources :meal_recipes
         resources :meal_ingredients
       end
+    end
+  end
+
+  resources :meals, only: [] do
+    resources :leftovers, only: [] do
+      resources :meal_with_leftovers, only: [:new, :create]
+    end
+  end
+
+  resources :leftovers do
+    resources :meal_with_leftovers do
+      delete 'destroy_return_leftover'
     end
   end
 
@@ -39,6 +52,8 @@ Rails.application.routes.draw do
       get 'half_portions'
       get 'add_one_portion'
   end
+
+  
 
   # get '/today', to: 'days#index'
   get 'days/date/:filter' => 'days#index', as: :filtered_days

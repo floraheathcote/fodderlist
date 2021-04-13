@@ -1,0 +1,49 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Meal_with_leftovers</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_meal_with_leftover_path, class: 'btn btn-primary' do %>
+    Add New Meal with leftover
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Leftovers</th>
+            <th>Meal</th>
+            <th>Portions</th>
+            <th>Meal recipe</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @meal_with_leftovers.each do |meal_with_leftover| %>
+        <%= content_tag :tr, id: dom_id(meal_with_leftover), class: dom_class(meal_with_leftover) do %>
+          
+
+                      <td><%= meal_with_leftover.leftovers %></td>
+                      <td><%= meal_with_leftover.meal %></td>
+                      <td><%= meal_with_leftover.portions %></td>
+                      <td><%= meal_with_leftover.meal_recipe %></td>
+          
+          
+            <td><%= link_to 'Show', meal_with_leftover %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

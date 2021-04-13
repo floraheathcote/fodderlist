@@ -48,7 +48,7 @@ module ApplicationHelper
     # date.strftime("%A %-d %b")
   end
 
-
+  
 
   # def bi_icon(icon, options = {})
   #   klasses = ["bi"].append(options.delete(:class)).compact

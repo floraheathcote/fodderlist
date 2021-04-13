@@ -37,7 +37,7 @@ private
       unless acceptable_types.include?(main_image.blob.content_type)
           errors.add(:main_image, "must be a png or jpeg")
       end
-  end
+    end
 
 
 #   def add_default_main_image

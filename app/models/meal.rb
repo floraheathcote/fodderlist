@@ -2,6 +2,7 @@ class Meal < ApplicationRecord
   belongs_to :day
   has_many :meal_ingredients, dependent: :destroy
   has_many :meal_recipes, dependent: :destroy
+  has_many :meal_with_leftovers, dependent: :destroy
 
 
   validates :meal_type, presence: true

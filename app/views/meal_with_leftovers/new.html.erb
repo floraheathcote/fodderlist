@@ -1,0 +1,22 @@
+<h4>Add leftovers to <%=@meal.name%> on <%= nice_date(@meal.time) %></h4>
+<br>
+
+
+<div class="row">
+    <div class="col-1">
+        <%= image_tag(@leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %>         
+    </div>
+    <div class="col-4">
+    <h6><%= @leftover.recipe.name %></h6><span class="badge badge-success">Available: <%= pluralize(round_nicely(@leftover.calculated_stock_level), "portion") %></span>
+
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-5">
+    <%= render 'form', meal_with_leftover: @meal_with_leftover, url: @url, method: :post %>
+    </div>
+</div>
+
+
+

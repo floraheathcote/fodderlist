@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_075847) do
+ActiveRecord::Schema.define(version: 2021_04_09_160254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,16 @@ ActiveRecord::Schema.define(version: 2021_04_09_075847) do
     t.decimal "portions"
     t.index ["meal_id"], name: "index_meal_recipes_on_meal_id"
     t.index ["recipe_id"], name: "index_meal_recipes_on_recipe_id"
+  end
+
+  create_table "meal_with_leftovers", force: :cascade do |t|
+    t.bigint "leftover_id", null: false
+    t.bigint "meal_id", null: false
+    t.decimal "portions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["leftover_id"], name: "index_meal_with_leftovers_on_leftover_id"
+    t.index ["meal_id"], name: "index_meal_with_leftovers_on_meal_id"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -273,6 +283,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_075847) do
   add_foreign_key "meal_plans", "users"
   add_foreign_key "meal_recipes", "meals"
   add_foreign_key "meal_recipes", "recipes"
+  add_foreign_key "meal_with_leftovers", "leftovers"
+  add_foreign_key "meal_with_leftovers", "meals"
   add_foreign_key "meals", "days"
   add_foreign_key "pins", "users"
   add_foreign_key "recipe_ingredient_groups", "recipes"
