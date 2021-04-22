@@ -7,16 +7,7 @@
         <%= render 'method_card', recipe: @recipe, edit:"yes", portions: nil %>
         <br>
 
-        Leftover log:
-
-        <ul>
-        <% StockLog.recipe(@recipe).user(current_user).each do |log_entry| %>
-            <li><%= log_entry.recipe.name %><%= log_entry.datetime %> <%= log_entry.portions %></li>
-        <% end %>
-        </ul>
-
-        <br>
-        Balance: <%= @balance_today %>
+        
 
 <%#= current_recipe_balance(DateTime.now, @recipe, current_user) %>
     </div>

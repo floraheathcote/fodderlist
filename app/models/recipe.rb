@@ -3,7 +3,6 @@ class Recipe < ApplicationRecord
     has_many :recipe_ingredients, through: :recipe_ingredient_groups
     has_many :ingredients, through: :recipe_ingredients
     has_many :meal_recipes, dependent: :destroy
-    has_many :stock_logs, dependent: :destroy
 
     belongs_to :user
 
@@ -15,6 +14,8 @@ class Recipe < ApplicationRecord
 
     has_one_attached :main_image
     has_rich_text :method
+    
+    default_scope { order(name: :asc) }
 
 
     before_save do 

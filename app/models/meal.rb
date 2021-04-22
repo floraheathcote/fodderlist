@@ -16,7 +16,7 @@ class Meal < ApplicationRecord
 
   
 
-  MEALTYPES = ["breakfast", "lunch", "evening meal", "snack", "substantial snack", "extra meal"]
+  MEALTYPES = ["breakfast", "lunch", "evening meal", "snack", "substantial snack", "extra meal", "food prep"]
 
   validates :meal_type, inclusion: { in: MEALTYPES, message: "must be a listed meal type" }
 

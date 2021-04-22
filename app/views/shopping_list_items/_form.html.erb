@@ -20,10 +20,8 @@
 
     <%= form.submit class: 'btn btn-primary' %>
 
-    <% if shopping_list_item.persisted? %>
-      <%= link_to "Cancel", shopping_list_item, class: "btn btn-link" %>
-    <% else %>
-      <%= link_to "Cancel", shopping_list_items_path, class: "btn btn-link" %>
-    <% end %>
+    
+      <%= link_to "Cancel", meal_plan_shopping_list_items_path(@meal_plan), class: "btn btn-link" %>
+    
   </div>
 <% end %>

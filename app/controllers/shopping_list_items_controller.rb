@@ -11,6 +11,7 @@ class ShoppingListItemsController < ApplicationController
 
   # GET /shopping_list_items/1 or /shopping_list_items/1.json
   def show
+
   end
 
   # GET /shopping_list_items/new
@@ -21,6 +22,7 @@ class ShoppingListItemsController < ApplicationController
 
   # GET /shopping_list_items/1/edit
   def edit
+    @meal_plan = @shopping_list_item.meal_plan
   end
 
   # POST /shopping_list_items or /shopping_list_items.json

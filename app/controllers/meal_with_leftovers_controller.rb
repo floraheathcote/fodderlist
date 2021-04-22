@@ -29,7 +29,7 @@ class MealWithLeftoversController < ApplicationController
     @meal_with_leftover = MealWithLeftover.new(meal_with_leftover_params)
     @leftover = Leftover.find(params[:leftover_id])
     @meal = Meal.find(params[:meal_id])
-    @meal_plan = @leftover.meal_recipe.meal.day.meal_plan
+    @meal_plan = @meal.day.meal_plan
 
     @meal_with_leftover.leftover = @leftover
     @meal_with_leftover.meal = @meal

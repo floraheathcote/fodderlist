@@ -3,17 +3,17 @@
 <%#= image_tag recipe.main_image, class: 'card-img-top height: 30vw'  %>
 
     <div class="card-body">
-        <h5 class="card-title">
+      <h5 class="card-title">
         
-        <%= recipe.name %>, 
-        <% if portions.present? %>
-            <% if portions != recipe.portions %>
-              <s><%= pluralize(round_nicely(recipe.portions), "portion") %></s>
-              <span class =font_handwriting ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
-            <% else %>
-              <%= pluralize(round_nicely(recipe.portions), "portion") %></h5>
-            <% end %>
-        <% end %>
+      <%= recipe.name %>, 
+      <% if portions.present? %>
+          <% if portions != recipe.portions %>
+            <s><%= pluralize(round_nicely(recipe.portions), "portion") %></s>
+            <span class =font_handwriting ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
+          <% else %>
+            <%= pluralize(round_nicely(recipe.portions), "portion") %></h5>
+          <% end %>
+      <% end %>
       
       
       <% if portions.present? && portions != recipe.portions %>
@@ -22,7 +22,7 @@
         <u><%= pluralize(round_nicely(portions), "portion") %>)</u></span>
       <% end %>
   
-      <%= recipe.method %>
+      <p><%= recipe.method %></p>
 
      Notes:
       <%= Rinku.auto_link(recipe.notes, mode=:all, link_attr=nil, skip_tags=nil).html_safe %>

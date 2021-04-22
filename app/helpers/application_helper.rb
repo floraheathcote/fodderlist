@@ -94,6 +94,22 @@ module ApplicationHelper
               .order( "       days.date ASC")
   end
 
+  def all_leftovers_in_day(day)
+    MealWithLeftover.joins( " INNER JOIN meals on meal_with_leftovers.meal_id=meals.id
+                              INNER JOIN days on days.id=meals.day_id
+                              INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+                              INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                              INNER JOIN leftovers on meal_with_leftovers.leftover_id=leftovers.id
+                              INNER JOIN meal_recipes on leftovers.meal_recipe_id=meal_recipes.id
+
+                              INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+                              )
+              .select(  "     recipes.id AS recipe_id, meals.id AS meal_id, leftovers.id AS leftover_id ")
+              .order( "       days.date ASC")
+  end
+
+
+
   # def current_day_current_user
   #   Day.joins("         INNER JOIN meal_plans on days.meal_plan_id = meal_plans.id 
   #                             INNER JOIN users on meal_plans.user_id = users.id AND users.id='#{current_user.id}'")

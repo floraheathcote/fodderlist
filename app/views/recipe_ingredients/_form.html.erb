@@ -12,18 +12,22 @@
             </div>
       </div>
 
-      <div class="form-group">
-            <%= form.label :preparation, "add preparation (if any - e.g. finely sliced):" %>
-            <%= form.text_field :preparation %>
-      </div>
+
         
       <table>
             <tr>
-                  <td><%= form.text_field :quantity, class: 'form-control', placeholder: "how much" %></td>
-                  <td><%= form.text_field :unit, class: 'form-control', placeholder: "unit - e.g. tablespoons" %></td>
+                  <td><%= form.text_field :quantity, class: 'form-control', placeholder: "qty (numbers only)" %></td>
+                  <td><%= form.text_field :unit, class: 'form-control', placeholder: "unit (if any) - e.g. tbsp" %></td>
             </tr>
+            <tr>
+                  <td><%= form.label :preparation, "add preparation (if any):" %></td>
+                  <td><%= form.text_field :preparation, class: 'form-control', placeholder: "e.g. finely sliced" %></td>
+            </tr>
+
+
       </table>    
       <br>
+      
 
 
     <%= form.submit class: 'btn btn-primary' %>

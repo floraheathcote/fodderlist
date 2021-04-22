@@ -1,10 +1,10 @@
 
 <div class="card">
         <div class="card-body">
-        <h5>Add or edit ingredient groups:</h5>
+        <h5>Add an ingredient group:</h5>
         e.g. "marinade ingredients" or "garnish"
             <% @recipe_ingredient_groups.each do |recipe_ingredient_group| %>
-                <p><%= link_to recipe_ingredient_group.name, edit_recipe_ingredient_group_path(recipe_ingredient_group) %></p>
+                <p><%#= link_to recipe_ingredient_group.name, edit_recipe_ingredient_group_path(recipe_ingredient_group) %></p>
             <% end %>
 
           <p class="card-text">
@@ -15,4 +15,4 @@
         </div>
 </div>
 
-                <%#= render 'recipe_ingredients/form', scope: :recipe_ingredient, url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), method: :post %>
+ <%#= render 'recipe_ingredients/form', scope: :recipe_ingredient, url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), method: :post %>

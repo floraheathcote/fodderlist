@@ -105,7 +105,7 @@
                 <small><%= leftover_meal.leftover.recipe.name %></small>
 
                  <%= link_to "#{pluralize(round_nicely(leftover_meal.portions), "portion")} X", leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
-
+                <%#= link_to "edit", edit_leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal)%>
 
                 <%#= pluralize(round_nicely(leftover_meal.portions), "portion") %>
                 </div>
@@ -124,7 +124,6 @@
                     <% title_already_drawn = true %>
                 <% end %>
                 <%= link_to leftover.recipe.name.first(20), new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
-                <%= link_to "#{leftover.recipe.name.first(20)} #{round_nicely(leftover.calculated_stock_level)}p", new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
             <% end %>
         <% end %>
 

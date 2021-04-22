@@ -35,7 +35,7 @@
   <div class="form-group">
     <% if recipe.persisted? %>
       <div class="float-right">
-        <%= link_to 'Destroy', recipe, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete recipe', recipe, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>
 

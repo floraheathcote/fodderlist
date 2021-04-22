@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     end
     resources :days, :shallow => true do
       resources :meals, :shallow => true do
-        resources :stock_logs
         resources :meal_recipes
         resources :meal_ingredients
       end
@@ -36,7 +35,6 @@ Rails.application.routes.draw do
 
   resources :meal_recipes do
     resources :leftovers
-    resources :stock_logs
     resources :meal_ingredients, only: [:new, :create]
   end
 

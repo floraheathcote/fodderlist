@@ -12,6 +12,5 @@ class User < ApplicationRecord
   has_many :recipes, -> { order(name: :asc) }
   has_many :meal_plans, dependent: :destroy
   has_many :days, through: :meal_plans
-  has_many :stock_logs, -> { order(datetime: :asc) }, dependent: :destroy
 
 end

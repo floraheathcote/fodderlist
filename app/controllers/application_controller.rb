@@ -43,9 +43,7 @@ def create_meals_for_day(day)
   end
 end
 
-def current_recipe_balance(datetime, recipe, user)
-  StockLog.user(user).recipe(recipe).as_at_datetime(datetime).sum(:portions)
-end
+
 
   protected
 
