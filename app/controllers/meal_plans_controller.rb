@@ -7,7 +7,8 @@ class MealPlansController < ApplicationController
   def index
     @meal_plans = current_user.meal_plans
     @days = current_user.days
-    
+
+
   end
 
   # GET /meal_plans/1 or /meal_plans/1.json
@@ -16,21 +17,16 @@ class MealPlansController < ApplicationController
     @new_meal = Meal.new
     @days = @meal_plan.days.order(date: :asc)
     @meals = @meal_plan.meals.order(time: :desc)
-    @meal_plan = MealPlan.find(params[:id])
+    
     @new_meal_recipe = MealRecipe.new
-    @active_record_ingredients =  @meal_plan.all_meal_plan_ingredients
-    @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)
-    @array_of_arrays = @array_of_hashes.map {|x| x.values}
-    @final_array = organised_ingredients_array(@meal_plan)
+
+    # @active_record_ingredients =  @meal_plan.all_meal_plan_ingredients
+    # @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)
+    # @array_of_arrays = @array_of_hashes.map {|x| x.values}
+    # @final_array = organised_ingredients_array(@meal_plan)
 
     
     @leftover = Leftover.user(current_user)
-    # rawjson = RestClient.get 'https://www.gov.uk/bank-holidays.json'
-    # @all_events = ActiveSupport::JSON.decode(rawjson)['england-and-wales']['events']
-    # @response2 = @response['england-and-wales']['events'][0]
-    # @response = JSON.parse(rawjson) 'england-and-wales.events[0].title'
-    
-
   end
 
   # GET /meal_plans/new
@@ -91,23 +87,27 @@ class MealPlansController < ApplicationController
   end
 
   def create_shopping_list
-    #   meal_plan_create_shopping_list_path
     @meal_plan = MealPlan.find(params[:meal_plan_id])
     prev_ingredient_id = nil #@meal_plan.all_meal_plan_ingredients.last # just need a non-nil value that isn't equal to first ingredient
-    @meal_plan.all_meal_plan_ingredients.each do |mpi|
-      if mpi.ingredient_id == prev_ingredient_id
-        @shopping_list_item.total_sum_unit += ( " & " + mpi.sum.round(0.05).to_s + " " + mpi.unit.to_s )
-        # add unit
+    
+    # mi_array = MealIngredient.meal_plan(@meal_plan).group(:ingredient_id, :unit).sum(:quantity).to_a
+
+    @meal_plan.meal_ingredient_array.each do |array_item|
+      qty_unit = view_context.pluralize( round_nicely(array_item[1]), array_item[0][1] )
+      if array_item[0][0] == prev_ingredient_id
+        @shopping_list_item.total_sum_unit += ( " & " + qty_unit.to_s )
       else
-        @shopping_list_item = @meal_plan.shopping_list_items.new
-        @shopping_list_item.meal_plan_id = mpi.id
-        @shopping_list_item.ingredient_id = mpi.ingredient_id   
-        @shopping_list_item.total_sum_unit = mpi.sum.round(0.05).to_s + " " + mpi.unit.to_s
+        @shopping_list_item = ShoppingListItem.new
+        @shopping_list_item.meal_plan = @meal_plan
+        @shopping_list_item.ingredient = Ingredient.find(array_item[0][0])
+        @shopping_list_item.total_sum_unit = qty_unit.to_s
       end
-        unless @shopping_list_item.save
-          fail
-        end
-        prev_ingredient_id = mpi.ingredient_id
+
+      unless @shopping_list_item.save
+        fail
+      end
+      prev_ingredient_id = array_item[0][0]
+
     end
 
     redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list was successfully created."
@@ -150,43 +150,6 @@ class MealPlansController < ApplicationController
           end
         end
     end
-
-    
-
-
-    def organised_ingredients_array(meal_plan)
-      final_array = []
-      current_line = -1
-      prev_cat = ""
-      prev_ing = ""
-      active_record_ingredients =  meal_plan.all_meal_plan_ingredients
-      array_of_hashes =  active_record_ingredients.to_a.map(&:serializable_hash)
-      array_of_arrays = array_of_hashes.map {|x| x.values}
-
-      array_of_arrays.count.times do |index|
-          if @array_of_arrays[index][1] == prev_cat 
-              # stay on current line
-              if @array_of_arrays[index][2] == prev_ing #need to add sum & unit to current ingredient
-                final_array[current_line][1][0][-1] << {sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}
-              else #need to add a new ingredient, then add sum & unit to new ingredient
-                  final_array[current_line][-1] << [[array_of_arrays[index][2]]] # add ingredient name
-                  final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
-                  prev_ing = array_of_arrays[index][2]
-              end
-          else  # increment current_line, add new category name, reset ingredient_address
-              current_line +=1
-              ingredient_index = 0
-              final_array << [[array_of_arrays[index][1]]]  # add category name
-              final_array[current_line] << [[[array_of_arrays[index][2]]]] # add ingredient name
-              final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
-              prev_cat = array_of_arrays[index][1]
-              prev_ing = array_of_arrays[index][2]
-          end
-      end
-      return final_array
-    end
-
-    
 
 
   end

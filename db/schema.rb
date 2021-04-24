@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_160254) do
+ActiveRecord::Schema.define(version: 2021_04_24_095831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,8 +116,10 @@ ActiveRecord::Schema.define(version: 2021_04_09_160254) do
     t.bigint "meal_recipe_id"
     t.string "preparation"
     t.bigint "recipe_ingredient_id"
+    t.bigint "meal_plan_id"
     t.index ["ingredient_id"], name: "index_meal_ingredients_on_ingredient_id"
     t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
+    t.index ["meal_plan_id"], name: "index_meal_ingredients_on_meal_plan_id"
     t.index ["meal_recipe_id"], name: "index_meal_ingredients_on_meal_recipe_id"
     t.index ["recipe_ingredient_id"], name: "index_meal_ingredients_on_recipe_ingredient_id"
   end
@@ -206,10 +208,12 @@ ActiveRecord::Schema.define(version: 2021_04_09_160254) do
     t.string "name"
     t.string "meal_type"
     t.decimal "portions"
-    t.text "notes"
+    t.text "view_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", default: 1, null: false
+    t.boolean "public"
+    t.string "buy_link"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -277,6 +281,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_160254) do
   add_foreign_key "leftovers", "recipes"
   add_foreign_key "leftovers", "users"
   add_foreign_key "meal_ingredients", "ingredients"
+  add_foreign_key "meal_ingredients", "meal_plans"
   add_foreign_key "meal_ingredients", "meal_recipes"
   add_foreign_key "meal_ingredients", "meals"
   add_foreign_key "meal_ingredients", "recipe_ingredients"

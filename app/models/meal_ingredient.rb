@@ -2,6 +2,7 @@ class MealIngredient < ApplicationRecord
   belongs_to :meal_recipe, required: false
   belongs_to :meal
   belongs_to :ingredient
+  belongs_to :meal_plan
   
 
   belongs_to :recipe_ingredient, optional: true
@@ -11,7 +12,7 @@ class MealIngredient < ApplicationRecord
   # validates :unit, presence: true
 
   scope :no_recipe, -> { where( meal_recipe: [nil, ""] )}
-
+  scope :meal_plan, ->(meal_plan) { where( meal_plan_id: meal_plan.id )}
  
 
   before_save do 

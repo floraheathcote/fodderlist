@@ -16,7 +16,6 @@ class RecipesController < ApplicationController
     @recipe_ingredient = RecipeIngredient.new
     @ingredient = Ingredient.new
     
-    @balance_today = current_recipe_balance(DateTime.now, @recipe, current_user)
   end
 
   # GET /recipes/new
@@ -80,6 +79,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :meal_type, :method, :content, :notes, :main_image, :portions)
+      params.require(:recipe).permit(:name, :meal_type, :method, :content, :view_link, :main_image, :portions, :user, :public, :buy_link)
     end
 end

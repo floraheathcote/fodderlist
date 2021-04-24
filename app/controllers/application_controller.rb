@@ -43,7 +43,13 @@ def create_meals_for_day(day)
   end
 end
 
-
+def round_nicely(number)
+  if number.round(1) == number.to_i
+    number.to_i
+  else
+    number.round(1)
+  end
+end
 
   protected
 

@@ -1,34 +1,32 @@
 
-  <% prev_meal = nil %>
-      
-  <% all_meal_recipes(day).each do |mr| %>
-      <% unless mr.meal == prev_meal -%>
-          </div>
-          <div class="row justify-content-center">
-            <small class="text-muted"><br><%= mr.meal.name -%></small><br>
-          </div>
-          <div class="row justify-content-center">
-      <% end %>
 
-      <% prev_meal = mr.meal %>
-      
-      <%= link_to image_tag(mr.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle'), filtered_days_path(:this_date, date: day.date.to_date) -%> 
+<% meal_and_recipe_array = [] %>    
 
-  <% end %>
+<% MealRecipe.day(day).each do |mr| %>
+  <% meal_and_recipe_array << [mr.meal.time, mr.meal.name, mr.recipe] %>
+<% end %>
 
-  <% prev_meal = nil %>
-  <% all_leftovers_in_day(day).each do |mwl| %>
-      <% unless mwl.meal == prev_meal -%>
-          </div>
-          <div class="row justify-content-center">
-            <small class="text-muted"><br><%= mwl.meal.name -%></small><br>
+<% MealWithLeftover.day(day).each do |mwl| %>
+  <% meal_and_recipe_array << [mwl.meal.time, mwl.meal.name, mwl.leftover.recipe] %>
+<% end %>
 
-          </div>
-          <div class="row justify-content-center">
-      <% end %>
+<% prev_meal = nil %>
 
-      <% prev_meal = mwl.meal %>
+<% meal_and_recipe_array.sort {|a,b| a[0] <=> b[0]}.each do |array| %>
 
-      <%= link_to image_tag(mwl.leftover.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle'), filtered_days_path(:this_date, date: day.date.to_date) -%> 
+    <% unless array[1] == prev_meal -%>
+        </div>
+        <div class="row justify-content-center">
+          <small class="text-muted"><br><%= array[1] -%></small><br>
+        </div>
+        <div class="row justify-content-center">
+    <% end %>
 
-  <% end %>
+    <% prev_meal = array[1] %>
+
+    <%= link_to image_tag(array[2].main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle'), filtered_days_path(:this_date, date: day.date.to_date) -%> 
+
+<% end %>
+
+
+ 

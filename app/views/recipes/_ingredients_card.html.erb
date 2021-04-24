@@ -17,7 +17,7 @@
 
                 <% end %>
             </ul></p>
-            
+            <h5>Add ingredient (<%= recipe_ingredient_group.name %>)</h5>
             <%= render 'recipe_ingredients/form', scope: :recipe_ingredient, 
                                 url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), 
                                 method: :post %>

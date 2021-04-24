@@ -6,7 +6,7 @@
           
 
       <div class="form-group">
-        <h5><%= form.label :Ingredient, "add ingredient:" %></h5>
+        <h5><%#= form.label :Ingredient, "add ingredient:" %></h5>
             <div class="dropdown">
               <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
             </div>

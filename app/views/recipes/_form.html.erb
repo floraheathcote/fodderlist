@@ -12,24 +12,34 @@
     <%= form.text_field :meal_type, class: 'form-control' %>
   </div>
 
-<div class="field">
-    <%= form.label :method %>
-    <%= form.rich_text_area :method, class: 'form-control', style:"height: unset !important"%>
-  </div>
-
   <div class="form-group">
     <%= form.label :portions %>
     <%= form.text_field :portions, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :link %>
-    <%= form.text_area :notes, class: 'form-control' %>
+    <%= form.label :buy_the_book %>
+    <%= form.text_field :buy_link, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :link_if_online %>
+    <%= form.text_field :view_link, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :method %>   <br><strong>(NOTE: please respect copyright. Do not enter method details on recipes that are not yours, just include a link where others can view the method or buy the book.)</strong>
+    <%= form.rich_text_area :method, class: 'form-control', style:"height: unset !important"%>
   </div>
 
   <div class="form-group">
     <%= form.label :image %>
     <%= form.file_field :main_image, direct_upload: true, multiple: false %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :uncheck_to_remove_from_public_recipe_search %>
+    <%= form.check_box :public, checked: true, class: 'form-control' %>
   </div>
 
   <div class="form-group">

@@ -118,6 +118,7 @@ class MealRecipesController < ApplicationController
     def create_meal_ingredients_for_recipe(meal_recipe)
       recipe = meal_recipe.recipe
       meal = meal_recipe.meal
+      meal_plan = meal.day.meal_plan
       # if @recipe.present?
         recipe.recipe_ingredients.each do |recipe_ingredient|
             @meal_ingredient = MealIngredient.new
@@ -128,6 +129,7 @@ class MealRecipesController < ApplicationController
             @meal_ingredient.meal_recipe_id = meal_recipe.id
             @meal_ingredient.meal = meal
             @meal_ingredient.recipe_ingredient_id = recipe_ingredient.id
+            @meal_ingredient.meal_plan_id = meal_plan.id
             
             if @meal_ingredient.save
             else

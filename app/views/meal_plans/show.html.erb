@@ -43,26 +43,34 @@ Notes: <%= @meal_plan.notes %><br>
 <% end %>
 
 <br>
-<h2>Ingredients at a glance</h2>
 
-      <% if @meal_plan.status == "confirmed" %>
-            Meal plan status: Closed to editing 
-            <p><%= link_to("View shopping list for this meal_plan", 
-                            meal_plan_shopping_list_items_url(@meal_plan)) %></p>
-            <p><%= link_to("Delete shopping list for meal plan and continue editing meal plan", 
-                            meal_plan_delete_shopping_list_path(@meal_plan)) %></p>
-      <% else %>
-            Meal plan status: Draft 
-            <p><%= link_to("Finalise meal plan and generate shopping list >>", 
-                            meal_plan_create_shopping_list_path(@meal_plan)) %></p>
-      <% end %>
+<% if @meal_plan.status == "confirmed" %>
+    <h2>Meal plan status: Closed to editing </h2>
+    <p><%= link_to("View shopping list for this meal_plan", 
+                    meal_plan_shopping_list_items_url(@meal_plan)) %></p>
+    <p><%= link_to("Delete shopping list for meal plan and continue editing meal plan", 
+                    meal_plan_delete_shopping_list_path(@meal_plan)) %></p>
+<% else %>
+    <h2>Meal plan status: DRAFT </h2>
+    <p><%= link_to("Finalise meal plan and generate shopping list >>", 
+                    meal_plan_create_shopping_list_path(@meal_plan)) %></p>
+<% end %>
+
+<%#<h2>Ingredients at a glance</h2>
 
 
- <div class="card-group">
-    <% @final_array.each do |cat_array| %>
-        <%= render 'ingredient_category_card', cat_array: cat_array %>
-    <% end %>
-</div>
+    <%# @final_array.each do |cat_array| %>
+        <%#= render 'ingredient_category_card', cat_array: cat_array %>
+    <%# end %>
+
 
 <br><br><br>
 
+<% MealIngredient.meal_plan(@meal_plan).group(:ingredient_id, :unit).sum(:quantity).to_a.each do |array_item| %>
+    Ingredient name: <%= Ingredient.find(array_item[0][0]).name %>, 
+    Unit: <%= array_item[0][1] %>,
+    Qty: <%= round_nicely(array_item[1]) %>
+    <br>
+<% end %>
+
+<br><br><br>

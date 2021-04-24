@@ -13,6 +13,7 @@ class MealIngredientsController < ApplicationController
   # GET /meal_ingredients/new
   def new
     @meal_ingredient = MealIngredient.new
+    
 
 
     if params[:meal_recipe_id].present?
@@ -47,28 +48,16 @@ class MealIngredientsController < ApplicationController
 
     if params[:meal_recipe_id].present?
       @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
-      # @model = meal_recipe
-      # @url = meal_recipe_meal_ingredients_path(@meal_recipe)
       @meal_ingredient.meal_recipe_id = @meal_recipe.id
       @meal_ingredient.meal = @meal_recipe.meal
       @meal_plan = @meal_recipe.meal.day.meal_plan
     elsif params[:meal_id].present?
       @meal = Meal.find(params[:meal_id])
-      # @model = meal
-      # @url = meal_meal_ingredient_path(@meal)
       @meal_ingredient.meal = @meal
       @meal_plan = @meal.day.meal_plan
     end
 
-    # if params[:meal_id].present?
-    #   @meal = Meal.find(params[:meal_id])
-    # else
-    #   @meal = @meal_recipe.meal
-    # end
-    
-   
-    # @meal_ingredient.meal = @meal
-    # @meal_plan = @meal.day.meal_plan
+    @meal_ingredient.meal_plan = @meal_plan
     
     respond_to do |format|
       if @meal_ingredient.save

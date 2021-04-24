@@ -595,3 +595,106 @@ User.create! :name => 'Flora Heathcote', :email => 'flora.heathcote@gmail.com', 
   <% @user_stock_log.as_at_datetime(meal.time).each do |log_entry| %>
     <%= link_to "#{log_entry.recipe.name} #{round_nicely(log_entry.portions)}p", new_meal_stock_log_path(meal, recipe_id: log_entry.recipe), class:"badge bg-secondary text-light" %>
 <% end %>
+
+
+
+# def organised_ingredients_array(meal_plan)
+#   final_array = []
+#   current_line = -1
+#   prev_cat = ""
+#   prev_ing = ""
+#   active_record_ingredients =  meal_plan.all_meal_plan_ingredients
+#   array_of_hashes =  active_record_ingredients.to_a.map(&:serializable_hash)
+#   array_of_arrays = array_of_hashes.map {|x| x.values}
+
+#   array_of_arrays.count.times do |index|
+#       if @array_of_arrays[index][1] == prev_cat 
+#           # stay on current line
+#           if @array_of_arrays[index][2] == prev_ing #need to add sum & unit to current ingredient
+#             final_array[current_line][1][0][-1] << {sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}
+#           else #need to add a new ingredient, then add sum & unit to new ingredient
+#               final_array[current_line][-1] << [[array_of_arrays[index][2]]] # add ingredient name
+#               final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
+#               prev_ing = array_of_arrays[index][2]
+#           end
+#       else  # increment current_line, add new category name, reset ingredient_address
+#           current_line +=1
+#           ingredient_index = 0
+#           final_array << [[array_of_arrays[index][1]]]  # add category name
+#           final_array[current_line] << [[[array_of_arrays[index][2]]]] # add ingredient name
+#           final_array[current_line][1][-1] << [{sum: array_of_arrays[index][3], unit: array_of_arrays[index][4]}]
+#           prev_cat = array_of_arrays[index][1]
+#           prev_ing = array_of_arrays[index][2]
+#       end
+#   end
+#   return final_array
+# end
+
+
+# def all_meal_plan_ingredients
+  #       MealPlan
+  #       .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id AND meal_plans.id='#{self.id}'
+  #                   INNER JOIN meals on days.id=meals.day_id
+  #                   INNER JOIN meal_ingredients on meals.id=meal_ingredients.meal_id
+  #                   INNER JOIN ingredients on meal_ingredients.ingredient_id=ingredients.id
+  #                   INNER JOIN ingredient_categories on ingredients.ingredient_category_id = ingredient_categories.id")
+  #       .select(  " meal_plans.id, 
+  #                   ingredient_categories.name AS cat_name,
+  #                   ingredients.name AS ing_name,
+  #                   SUM(meal_ingredients.quantity),
+  #                   meal_ingredients.unit,
+  #                   ingredients.id AS ingredient_id")
+  #       .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredients.id, ingredient_categories.id')
+  #       .order(     'cat_name ASC, ing_name ASC')
+  #       # .where(     "meal_plans.id = '#{self.id}'")
+  # end
+
+
+  <% all_meal_recipes(day).each do |mr| %>
+    <% unless mr.meal == prev_meal -%>
+        </div>
+        <div class="row justify-content-center">
+          <small class="text-muted"><br><%= mr.meal.name -%></small><br>
+        </div>
+        <div class="row justify-content-center">
+    <% end %>
+
+    <% prev_meal = mr.meal %>
+    
+    <%= link_to image_tag(mr.recipe.main_image, size: '50', style: 'object-fit: cover; padding:2px', class: 'rounded-circle'), filtered_days_path(:this_date, date: day.date.to_date) -%> 
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+def all_meal_recipes(day)
+  MealRecipe.joins( "       INNER JOIN meals on meals.id=meal_recipes.meal_id
+                            INNER JOIN days on days.id=meals.day_id
+                            INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+                            INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                            INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+                            )
+            .select(  "     recipes.id AS recipe_id, meals.id AS meal_id ")
+            .order( "       days.date ASC")
+end
+
+def all_leftovers_in_day(day)
+  MealWithLeftover.joins( " INNER JOIN meals on meal_with_leftovers.meal_id=meals.id
+                            INNER JOIN days on days.id=meals.day_id
+                            INNER JOIN meal_plans on meal_plans.id=days.meal_plan_id AND days.id='#{day.id}'
+                            INNER JOIN users on users.id=meal_plans.user_id AND users.id='#{current_user.id}'
+                            INNER JOIN leftovers on meal_with_leftovers.leftover_id=leftovers.id
+                            INNER JOIN meal_recipes on leftovers.meal_recipe_id=meal_recipes.id
+
+                            INNER JOIN recipes on recipes.id=meal_recipes.recipe_id"
+                            )
+            .select(  "     recipes.id AS recipe_id, meals.id AS meal_id, leftovers.id AS leftover_id ")
+            .order( "       days.date ASC")
+end

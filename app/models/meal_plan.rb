@@ -4,6 +4,7 @@ class MealPlan < ApplicationRecord
   has_many :days, dependent: :destroy
   has_many :meals, through: :days
   has_many :shopping_list_items, dependent: :destroy
+  has_many :meal_ingredients
 
   attr_accessor :start_date_from_form
   attr_accessor :number_of_days_from_form
@@ -53,26 +54,9 @@ class MealPlan < ApplicationRecord
     end
   end
 
-  def all_meal_plan_ingredients
-        MealPlan
-        .joins(   " INNER JOIN days on meal_plans.id=days.meal_plan_id AND meal_plans.id='#{self.id}'
-                    INNER JOIN meals on days.id=meals.day_id
-                    INNER JOIN meal_ingredients on meals.id=meal_ingredients.meal_id
-                    INNER JOIN ingredients on meal_ingredients.ingredient_id=ingredients.id
-                    INNER JOIN ingredient_categories on ingredients.ingredient_category_id = ingredient_categories.id")
-        .select(  " meal_plans.id, 
-                    ingredient_categories.name AS cat_name,
-                    ingredients.name AS ing_name,
-                    SUM(meal_ingredients.quantity),
-                    meal_ingredients.unit,
-                    ingredients.id AS ingredient_id")
-        .group(     'meal_ingredients.ingredient_id, meal_plans.id, meal_ingredients.unit, ingredients.name, ingredients.id, ingredient_categories.id')
-        .order(     'cat_name ASC, ing_name ASC')
-        # .where(     "meal_plans.id = '#{self.id}'")
+  def meal_ingredient_array
+    MealIngredient.meal_plan(self).group(:ingredient_id, :unit).sum(:quantity).to_a
   end
-
-
-  
 
 end
 
