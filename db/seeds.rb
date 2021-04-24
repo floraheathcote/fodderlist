@@ -121,7 +121,7 @@ Ingredient.create!([
   {name: "sauerkraut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
   {name: "apple", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
   {name: "honey", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "white basmati rice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish")3, user_id: User.first.id},
+  {name: "white basmati rice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
   {name: "lime", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
   {name: "fresh coriander / cilantro", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
   {name: "avocado", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
