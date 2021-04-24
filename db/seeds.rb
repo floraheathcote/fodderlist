@@ -118,7 +118,7 @@ Ingredient.create!([
   {name: "pomegranate molass", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
   {name: "rye bread", ingredient_category_id: IngredientCategory.find_by(name: "bakery"), user_id: User.first.id},
   {name: "smoked salmon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sauerkraut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id}
+  {name: "sauerkraut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
   {name: "apple", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
   {name: "honey", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
   {name: "white basmati rice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish")3, user_id: User.first.id},
