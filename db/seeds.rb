@@ -15,516 +15,289 @@ IngredientCategory.create!([
   {name: "world food"}
 ])
 
-Ingredient.create!([
-  {name: "beef fillet steak", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "skin-on chicken thigh", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "aubergine", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "pistachio", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "brazil nut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "dried goji berry", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "beef short rib", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "macadamia nut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sprouted seed", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "feta cheese", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "fresh basil", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "sirloin steak", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "buratum", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "bufallo mozzarrela", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "caper", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "kalamata olife", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "flax seed", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "soy sauce (fermented)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "green pepper", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "balsamic vinegar", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "turkey thigh", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "lamb rib", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "bone-in canned salmon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "anchovy", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "canned mackerel", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "avocado oil", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sardines (in olive oil)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "apple cider vinegar", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "worcestershire sauce", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "tobasco / hot chilli sauce", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "low sugar ketchup", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "mustard - english", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "onion", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "mustard powder", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "wholegrain mustard", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "dijon mustard", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "mayonnaise (avocado oil)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "cracker", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "thai curry paste", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "maple syrup", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "jalepenos (pickled)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "tomato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "beef tomato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "garlic", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "buckwheat kernels (dried)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sea salt (unrefined)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sun-dried tomatoes (jar)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh rosemary", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "fresh thyme", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "bay leaf", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "red wine", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "black pepper", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "butter - salted", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "bacon - smoked streaky", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh ginger", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "bacon - unsmoked streaky", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "bacon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "tomato puree", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "shallot", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "pure water", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "new potato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "plain flour", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "pomegranate", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "rocket leafe", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "whole fresh artichoke", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "brocolli", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "pork shoulder, bone-in, skin-on", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "vegetable stock", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "red onion", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "chinese cabbage", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "asian chilli powder", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "nutmeg", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "allspice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "brandy", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "mace", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "butter", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "red pepper", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "turmeric (fresh)", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "cinnamon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "paprika", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "garlic granule", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "creme fraiche", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "lamb chop", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "horseradish (fresh)", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "fennel bulb", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "blood orange", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "skin-on salmon fillet", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh dill", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "flakey sea salt", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "samphire", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "kimchee", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chicken carcass", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "kefir", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "cumin seed", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "coriander seed", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chilli flake", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "watercress", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "red chilli", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "greek yogurt", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "pomegranate molass", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "rye bread", ingredient_category_id: IngredientCategory.find_by(name: "bakery"), user_id: User.first.id},
-  {name: "smoked salmon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sauerkraut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "apple", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "honey", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "white basmati rice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "lime", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "fresh coriander / cilantro", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "avocado", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "cucumber", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "cherry tomato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "lemon", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "sausage", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chicken breast", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "frozen peas", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh trout", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chicken liver", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "lamb mince", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh mackerel", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "wild alaskan smoked salmon", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "egg", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "potato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "sesame seed", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sesame oil", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "spring onion", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "courgette", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "butter - unsalted", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "pork shoulder", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sweet potato", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "tomatoes - tinned", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "beef stock", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chicken stock", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "coconut oil", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "lamb shoulder", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "pork sausage", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "milk", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "plain yogurt", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "cheddar cheese", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "cheese curd (live cultures)", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "white cabbage", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "red cabbage", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "fresh beetroot", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "blueberries - pack", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "carrot", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "lamb shank", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "sourdough - white", ingredient_category_id: IngredientCategory.find_by(name: "bakery"), user_id: User.first.id},
-  {name: "wild rice", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "pork spare rib", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "beef burger", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "almond", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "walnut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "spring greens.", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "cavolo nero", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "spinach", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "parsnip", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "coriander/cilantro", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "cornflour", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "red kidney beans (tinned)", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "seed", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "butternut squash", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "beef mince", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "olive oil", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "chickpea", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "green bean", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "mushroom", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "turkey mince", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "ribeye beef steak", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "wild alaskan salmon fillet", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "coconut milk", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "rice noodle", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "fresh tortellini", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "double cream", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "cottage cheese (live cultures)", ingredient_category_id: IngredientCategory.find_by(name: "dairy & eggs"), user_id: User.first.id},
-  {name: "cashew", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "pecan nut", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "ginger", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "orange", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "whole oat", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "melon", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "smoked mackerel", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "dried chilli", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "mixed salad leafe", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "celery", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-  {name: "corn tortilla", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "wheat wrap", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "prawn", ingredient_category_id: IngredientCategory.find_by(name: "fresh meat & fish"), user_id: User.first.id},
-  {name: "bok choy", ingredient_category_id: IngredientCategory.find_by(name: "fruit, veg, salad"), user_id: User.first.id},
-])
+user = user
+ic = IngredientCategory.find_by(name: "bakery")
+  ic.ingredients.create!( name:  "rye bread", user_id: user )
+  ic.ingredients.create!( name:  "sourdough - white", user_id: user )
+
+ic = IngredientCategory.find_by(name: "dairy & eggs")
+  ic.ingredients.create!( name:  "feta cheese", user_id: user )
+  ic.ingredients.create!( name:  "buratum", user_id: user )
+  ic.ingredients.create!( name:  "bufallo mozzarrela", user_id: user )
+  ic.ingredients.create!( name:  "butter - salted", user_id: user )
+  ic.ingredients.create!( name:  "butter", user_id: user )
+  ic.ingredients.create!( name:  "creme fraiche", user_id: user )
+  ic.ingredients.create!( name:  "kefir", user_id: user )
+  ic.ingredients.create!( name:  "greek yogurt", user_id: user )
+  ic.ingredients.create!( name:  "egg", user_id: user )
+  ic.ingredients.create!( name:  "butter - unsalted", user_id: user )
+  ic.ingredients.create!( name:  "milk", user_id: user )
+  ic.ingredients.create!( name:  "plain yogurt", user_id: user )
+  ic.ingredients.create!( name:  "cheddar cheese", user_id: user )
+  ic.ingredients.create!( name:  "cheese curd (live cultures)", user_id: user )
+  ic.ingredients.create!( name:  "double cream", user_id: user )
+  ic.ingredients.create!( name:  "cottage cheese (live cultures)", user_id: user )
+
+ic = IngredientCategory.find_by(name: "fresh meat & fish")
+  ic.ingredients.create!( name:  "beef fillet steak", user_id: user )
+  ic.ingredients.create!( name:  "skin-on chicken thigh", user_id: user )
+  ic.ingredients.create!( name:  "pistachio", user_id: user )
+  ic.ingredients.create!( name:  "brazil nut", user_id: user )
+  ic.ingredients.create!( name:  "dried goji berry", user_id: user )
+  ic.ingredients.create!( name:  "beef short rib", user_id: user )
+  ic.ingredients.create!( name:  "macadamia nut", user_id: user )
+  ic.ingredients.create!( name:  "sirloin steak", user_id: user )
+  ic.ingredients.create!( name:  "caper", user_id: user )
+  ic.ingredients.create!( name:  "kalamata olife", user_id: user )
+  ic.ingredients.create!( name:  "flax seed", user_id: user )
+  ic.ingredients.create!( name:  "soy sauce (fermented)", user_id: user )
+  ic.ingredients.create!( name:  "balsamic vinegar", user_id: user )
+  ic.ingredients.create!( name:  "turkey thigh", user_id: user )
+  ic.ingredients.create!( name:  "lamb rib", user_id: user )
+  ic.ingredients.create!( name:  "bone-in canned salmon", user_id: user )
+  ic.ingredients.create!( name:  "anchovy", user_id: user )
+  ic.ingredients.create!( name:  "canned mackerel", user_id: user )
+  ic.ingredients.create!( name:  "avocado oil", user_id: user )
+  ic.ingredients.create!( name:  "sardines (in olive oil)", user_id: user )
+  ic.ingredients.create!( name:  "apple cider vinegar", user_id: user )
+  ic.ingredients.create!( name:  "worcestershire sauce", user_id: user )
+  ic.ingredients.create!( name:  "tobasco / hot chilli sauce", user_id: user )
+  ic.ingredients.create!( name:  "low sugar ketchup", user_id: user )
+  ic.ingredients.create!( name:  "mustard - english", user_id: user )
+  ic.ingredients.create!( name:  "mustard powder", user_id: user )
+  ic.ingredients.create!( name:  "wholegrain mustard", user_id: user )
+  ic.ingredients.create!( name:  "dijon mustard", user_id: user )
+  ic.ingredients.create!( name:  "mayonnaise (avocado oil)", user_id: user )
+  ic.ingredients.create!( name:  "cracker", user_id: user )
+  ic.ingredients.create!( name:  "thai curry paste", user_id: user )
+  ic.ingredients.create!( name:  "maple syrup", user_id: user )
+  ic.ingredients.create!( name:  "jalepenos (pickled)", user_id: user )
+  ic.ingredients.create!( name:  "buckwheat kernels (dried)", user_id: user )
+  ic.ingredients.create!( name:  "sea salt (unrefined)", user_id: user )
+  ic.ingredients.create!( name:  "sun-dried tomatoes (jar)", user_id: user )
+  ic.ingredients.create!( name:  "red wine", user_id: user )
+  ic.ingredients.create!( name:  "black pepper", user_id: user )
+  ic.ingredients.create!( name:  "bacon - smoked streaky", user_id: user )
+  ic.ingredients.create!( name:  "bacon - unsmoked streaky", user_id: user )
+  ic.ingredients.create!( name:  "bacon", user_id: user )
+  ic.ingredients.create!( name:  "tomato puree", user_id: user )
+  ic.ingredients.create!( name:  "pure water", user_id: user )
+  ic.ingredients.create!( name:  "plain flour", user_id: user )
+  ic.ingredients.create!( name:  "asian chilli powder", user_id: user )
+  ic.ingredients.create!( name:  "nutmeg", user_id: user )
+  ic.ingredients.create!( name:  "allspice", user_id: user )
+  ic.ingredients.create!( name:  "brandy", user_id: user )
+  ic.ingredients.create!( name:  "mace", user_id: user )
+  ic.ingredients.create!( name:  "cinnamon", user_id: user )
+  ic.ingredients.create!( name:  "paprika", user_id: user )
+  ic.ingredients.create!( name:  "garlic granule", user_id: user )
+  ic.ingredients.create!( name:  "lamb chop", user_id: user )
+  ic.ingredients.create!( name:  "skin-on salmon fillet", user_id: user )
+  ic.ingredients.create!( name:  "flakey sea salt", user_id: user )
+  ic.ingredients.create!( name:  "kimchee", user_id: user )
+  ic.ingredients.create!( name:  "chicken carcass", user_id: user )
+  ic.ingredients.create!( name:  "cumin seed", user_id: user )
+  ic.ingredients.create!( name:  "coriander seed", user_id: user )
+  ic.ingredients.create!( name:  "chilli flake", user_id: user )
+  ic.ingredients.create!( name:  "pomegranate molass", user_id: user )
+  ic.ingredients.create!( name:  "smoked salmon", user_id: user )
+  ic.ingredients.create!( name:  "sauerkraut", user_id: user )
+  ic.ingredients.create!( name:  "honey", user_id: user )
+  ic.ingredients.create!( name:  "white basmati rice", user_id: user )
+  ic.ingredients.create!( name:  "sausage", user_id: user )
+  ic.ingredients.create!( name:  "chicken breast", user_id: user )
+  ic.ingredients.create!( name:  "frozen peas", user_id: user )
+  ic.ingredients.create!( name:  "fresh trout", user_id: user )
+  ic.ingredients.create!( name:  "chicken liver", user_id: user )
+  ic.ingredients.create!( name:  "lamb mince", user_id: user )
+  ic.ingredients.create!( name:  "fresh mackerel", user_id: user )
+  ic.ingredients.create!( name:  "wild alaskan smoked salmon", user_id: user )
+  ic.ingredients.create!( name:  "sesame seed", user_id: user )
+  ic.ingredients.create!( name:  "sesame oil", user_id: user )
+  ic.ingredients.create!( name:  "pork shoulder", user_id: user )
+  ic.ingredients.create!( name:  "tomatoes - tinned", user_id: user )
+  ic.ingredients.create!( name:  "beef stock", user_id: user )
+  ic.ingredients.create!( name:  "chicken stock", user_id: user )
+  ic.ingredients.create!( name:  "coconut oil", user_id: user )
+  ic.ingredients.create!( name:  "lamb shoulder", user_id: user )
+  ic.ingredients.create!( name:  "pork sausage", user_id: user )
+  ic.ingredients.create!( name:  "lamb shank", user_id: user )
+  ic.ingredients.create!( name:  "wild rice", user_id: user )
+  ic.ingredients.create!( name:  "pork spare rib", user_id: user )
+  ic.ingredients.create!( name:  "beef burger", user_id: user )
+  ic.ingredients.create!( name:  "almond", user_id: user )
+  ic.ingredients.create!( name:  "walnut", user_id: user )
+  ic.ingredients.create!( name:  "cornflour", user_id: user )
+  ic.ingredients.create!( name:  "red kidney beans (tinned)", user_id: user )
+  ic.ingredients.create!( name:  "seed", user_id: user )
+  ic.ingredients.create!( name:  "beef mince", user_id: user )
+  ic.ingredients.create!( name:  "olive oil", user_id: user )
+  ic.ingredients.create!( name:  "chickpea", user_id: user )
+  ic.ingredients.create!( name:  "turkey mince", user_id: user )
+  ic.ingredients.create!( name:  "ribeye beef steak", user_id: user )
+  ic.ingredients.create!( name:  "wild alaskan salmon fillet", user_id: user )
+  ic.ingredients.create!( name:  "coconut milk", user_id: user )
+  ic.ingredients.create!( name:  "rice noodle", user_id: user )
+  ic.ingredients.create!( name:  "fresh tortellini", user_id: user )
+  ic.ingredients.create!( name:  "cashew", user_id: user )
+  ic.ingredients.create!( name:  "pecan nut", user_id: user )
+  ic.ingredients.create!( name:  "whole oat", user_id: user )
+  ic.ingredients.create!( name:  "smoked mackerel", user_id: user )
+  ic.ingredients.create!( name:  "dried chilli", user_id: user )
+  ic.ingredients.create!( name:  "corn tortilla", user_id: user )
+  ic.ingredients.create!( name:  "wheat wrap", user_id: user )
+  ic.ingredients.create!( name:  "prawn", user_id: user )
+  ic.ingredients.create!( name:  "pork shoulder, bone-in, skin-on", user_id: user )
+
+ic = IngredientCategory.find_by(name: "fruit, veg, salad")
+  ic.ingredients.create!( name:  "aubergine", user_id: user )
+  ic.ingredients.create!( name:  "sprouted seed", user_id: user )
+  ic.ingredients.create!( name:  "fresh basil", user_id: user )
+  ic.ingredients.create!( name:  "green pepper", user_id: user )
+  ic.ingredients.create!( name:  "onion", user_id: user )
+  ic.ingredients.create!( name:  "tomato", user_id: user )
+  ic.ingredients.create!( name:  "beef tomato", user_id: user )
+  ic.ingredients.create!( name:  "garlic", user_id: user )
+  ic.ingredients.create!( name:  "fresh rosemary", user_id: user )
+  ic.ingredients.create!( name:  "fresh thyme", user_id: user )
+  ic.ingredients.create!( name:  "bay leaf", user_id: user )
+  ic.ingredients.create!( name:  "fresh ginger", user_id: user )
+  ic.ingredients.create!( name:  "shallot", user_id: user )
+  ic.ingredients.create!( name:  "new potato", user_id: user )
+  ic.ingredients.create!( name:  "pomegranate", user_id: user )
+  ic.ingredients.create!( name:  "rocket leafe", user_id: user )
+  ic.ingredients.create!( name:  "whole fresh artichoke", user_id: user )
+  ic.ingredients.create!( name:  "brocolli", user_id: user )
+  ic.ingredients.create!( name:  "vegetable stock", user_id: user )
+  ic.ingredients.create!( name:  "red onion", user_id: user )
+  ic.ingredients.create!( name:  "chinese cabbage", user_id: user )
+  ic.ingredients.create!( name:  "red pepper", user_id: user )
+  ic.ingredients.create!( name:  "turmeric (fresh)", user_id: user )
+  ic.ingredients.create!( name:  "horseradish (fresh)", user_id: user )
+  ic.ingredients.create!( name:  "fennel bulb", user_id: user )
+  ic.ingredients.create!( name:  "blood orange", user_id: user )
+  ic.ingredients.create!( name:  "fresh dill", user_id: user )
+  ic.ingredients.create!( name:  "samphire", user_id: user )
+  ic.ingredients.create!( name:  "watercress", user_id: user )
+  ic.ingredients.create!( name:  "red chilli", user_id: user )
+  ic.ingredients.create!( name:  "apple", user_id: user )
+  ic.ingredients.create!( name:  "lime", user_id: user )
+  ic.ingredients.create!( name:  "fresh coriander / cilantro", user_id: user )
+  ic.ingredients.create!( name:  "avocado", user_id: user )
+  ic.ingredients.create!( name:  "cucumber", user_id: user )
+  ic.ingredients.create!( name:  "cherry tomato", user_id: user )
+  ic.ingredients.create!( name:  "lemon", user_id: user )
+  ic.ingredients.create!( name:  "potato", user_id: user )
+  ic.ingredients.create!( name:  "spring onion", user_id: user )
+  ic.ingredients.create!( name:  "courgette", user_id: user )
+  ic.ingredients.create!( name:  "sweet potato", user_id: user )
+  ic.ingredients.create!( name:  "white cabbage", user_id: user )
+  ic.ingredients.create!( name:  "red cabbage", user_id: user )
+  ic.ingredients.create!( name:  "fresh beetroot", user_id: user )
+  ic.ingredients.create!( name:  "blueberries - pack", user_id: user )
+  ic.ingredients.create!( name:  "carrot", user_id: user )
+  ic.ingredients.create!( name:  "spring greens.", user_id: user )
+  ic.ingredients.create!( name:  "cavolo nero", user_id: user )
+  ic.ingredients.create!( name:  "spinach", user_id: user )
+  ic.ingredients.create!( name:  "parsnip", user_id: user )
+  ic.ingredients.create!( name:  "coriander/cilantro", user_id: user )
+  ic.ingredients.create!( name:  "butternut squash", user_id: user )
+  ic.ingredients.create!( name:  "green bean", user_id: user )
+  ic.ingredients.create!( name:  "mushroom", user_id: user )
+  ic.ingredients.create!( name:  "ginger", user_id: user )
+  ic.ingredients.create!( name:  "orange", user_id: user )
+  ic.ingredients.create!( name:  "melon", user_id: user )
+  ic.ingredients.create!( name:  "mixed salad leafe", user_id: user )
+  ic.ingredients.create!( name:  "celery", user_id: user )
+  ic.ingredients.create!( name:  "bok choy", user_id: user )
+
+
+
 
 Recipe.create!([
-  {name: "15 minute sesame seared salmon", meal_type: "Main meal", portions: "2.0", view_link: "http://kiwiandbean.com/15-minute-sesame-seared-salmon/", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Avocado & tomato salad", meal_type: "Side salad", portions: "2.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Becs' simple slow cooker beef short ribs", meal_type: "Main meal", portions: "4.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Braised short ribs with sun-dried tomatoes & herbs", meal_type: "Main meal", portions: "2.0", view_link: "https://freshrootsfarmmb.com/braised-short-ribs-with-sun-dried-tomatoes-herbs/", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Chicken liver pate with orange zest", meal_type: "Side dish", portions: "4.0", view_link: "https://www.deliciousmagazine.co.uk/recipes/chicken-liver-and-orange-pate/", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Chicken stock", meal_type: "Side dish", portions: "4.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Classic french chicken liver pate recipe", meal_type: "Side dish", portions: "4.0", view_link: "https://www.houseandgarden.co.uk/recipe/chicken-liver-pate", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Cumin-coriander roast carrots with pomegranates & avocado", meal_type: "Side dish", portions: "6.0", view_link: "https://www.splendidtable.org/story/2019/03/11/cumin-coriander-roast-carrots-with-pomegranates-avocado", user_id: User.first.id, public: true, buy_link: "https://read.amazon.co.uk/kp/embed?asin=B01ELUSWJU&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_BA8F80346NDX8783W4RA"},
-  {name: "James martin's chicken liver pâté", meal_type: "Side dish", portions: "4.0", view_link: "https://www.bbcgoodfood.com/recipes/chicken-liver-pate", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Jamie's 6-hour slow-roasted pork shoulder", meal_type: "Main meal", portions: "4.0", view_link: "https://www.jamieoliver.com/recipes/pork-recipes/6-hour-slow-roasted-pork-shoulder/", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Kimchee with chinese cabbage", meal_type: "Side dish", portions: "20.0", view_link: "Recipe credit: Amy Levin", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Lamb chops and veg", meal_type: "Main meal", portions: "1.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Roasted salmon with jalapeño, honey and lime", meal_type: "Main meal", portions: "4.0", view_link: "https://cooking.nytimes.com/recipes/1020713-roasted-salmon-with-jalapeno-honey-and-lime", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Scrambled eggs", meal_type: "Main meal", portions: "1.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Slow cooker lamb shanks", meal_type: "Main meal", portions: "4.0", view_link: "https://www.bbc.co.uk/food/recipes/slow_cooker_braised_lamb_01950", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Slow-roasted salmon with fennel, citrus, and chillies", meal_type: "Main meal", portions: "6.0", view_link: "https://www.bonappetit.com/recipe/slow-roasted-salmon-with-fennel-citrus-and-chiles", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Smoked mackerel and avo pate", meal_type: "Main meal", portions: "4.0", view_link: "", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Smoked mackerel pate", meal_type: "Side dish", portions: "2.0", view_link: "https://www.bbc.co.uk/food/recipes/smoked_mackerel_pt_with_36210", user_id: User.first.id, public: nil, buy_link: nil},
-  {name: "Turmeric sauerkraut", meal_type: "Side dish", portions: "4.0", view_link: "https://www.feastingathome.com/turmeric-sauerkraut/", user_id: User.first.id, public: nil, buy_link: nil}
-])
-
-RecipeIngredientGroup.create!([
-  {name: "Main ingredients15", recipe_id: Recipe.find_by(name: "Roasted salmon with jalapeño, honey and lime")},
-  {name: "Veg", recipe_id: Recipe.find_by(name: "Avocado & tomato salad")},
-  {name: "Dressing", recipe_id: Recipe.find_by(name: "Avocado & tomato salad")},
-  {name: "Main ingredients22", recipe_id: Recipe.find_by(name: "Lamb chops and veg")},
-  {name: "other", recipe_id: Recipe.find_by(name: "Avocado & tomato salad")},
-  {name: "Main ingredients26", recipe_id: Recipe.find_by(name: "Braised short ribs with sun-dried tomatoes & herbs")},
-  {name: "Main ingredients27", recipe_id: Recipe.find_by(name: "Slow cooker lamb shanks")},
-  {name: "Main ingredients28", recipe_id: Recipe.find_by(name: "Jamie's 6-hour slow-roasted pork shoulder")},
-  {name: "Main ingredients29", recipe_id: Recipe.find_by(name: "Kimchee with chinese cabbage")},
-  {name: "Main ingredients30", recipe_id: Recipe.find_by(name: "James martin's chicken liver pâté")},
-  {name: "For butter finish", recipe_id: Recipe.find_by(name: "James martin's chicken liver pâté")},
-  {name: "Main ingredients32", recipe_id: Recipe.find_by(name: "Chicken liver pate with orange zest")},
-  {name: "Main ingredients33", recipe_id: Recipe.find_by(name: "Turmeric sauerkraut")},
-  {name: "Main ingredients34", recipe_id: Recipe.find_by(name: "Becs' simple slow cooker beef short ribs")},
-  {name: "Main ingredients35", recipe_id: Recipe.find_by(name: "Smoked mackerel and avo pate")},
-  {name: "Main ingredients36", recipe_id: Recipe.find_by(name: "Smoked mackerel pate")},
-  {name: "to serve", recipe_id: Recipe.find_by(name: "Smoked mackerel pate")},
-  {name: "Main ingredients38", recipe_id: Recipe.find_by(name: "Slow-roasted salmon with fennel, citrus, and chillies")},
-  {name: "Main ingredients39", recipe_id: Recipe.find_by(name: "15 minute sesame seared salmon")},
-  {name: "Main ingredients40", recipe_id: Recipe.find_by(name: "Scrambled eggs")},
-  {name: "Main ingredients41", recipe_id: Recipe.find_by(name: "Classic french chicken liver pate recipe")},
-  {name: "Main ingredients42", recipe_id: Recipe.find_by(name: "Chicken stock")},
-  {name: "For the salad", recipe_id: Recipe.find_by(name: "Cumin-coriander roast carrots with pomegranates & avocado")},
-  {name: "for the dressing", recipe_id: Recipe.find_by(name: "Cumin-coriander roast carrots with pomegranates & avocado")},
-  {name: "to serve", recipe_id: Recipe.find_by(name: "Roasted salmon with jalapeño, honey and lime")}
+  {name: "15 minute sesame seared salmon", meal_type: "Main meal", portions: "2.0", view_link: "http://kiwiandbean.com/15-minute-sesame-seared-salmon/", user_id: user, public: nil, buy_link: nil},
+  {name: "Avocado & tomato salad", meal_type: "Side salad", portions: "2.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Becs' simple slow cooker beef short ribs", meal_type: "Main meal", portions: "4.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Braised short ribs with sun-dried tomatoes & herbs", meal_type: "Main meal", portions: "2.0", view_link: "https://freshrootsfarmmb.com/braised-short-ribs-with-sun-dried-tomatoes-herbs/", user_id: user, public: nil, buy_link: nil},
+  {name: "Chicken liver pate with orange zest", meal_type: "Side dish", portions: "4.0", view_link: "https://www.deliciousmagazine.co.uk/recipes/chicken-liver-and-orange-pate/", user_id: user, public: nil, buy_link: nil},
+  {name: "Chicken stock", meal_type: "Side dish", portions: "4.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Classic french chicken liver pate recipe", meal_type: "Side dish", portions: "4.0", view_link: "https://www.houseandgarden.co.uk/recipe/chicken-liver-pate", user_id: user, public: nil, buy_link: nil},
+  {name: "Cumin-coriander roast carrots with pomegranates & avocado", meal_type: "Side dish", portions: "6.0", view_link: "https://www.splendidtable.org/story/2019/03/11/cumin-coriander-roast-carrots-with-pomegranates-avocado", user_id: user, public: true, buy_link: "https://read.amazon.co.uk/kp/embed?asin=B01ELUSWJU&preview=newtab&linkCode=kpe&ref_=cm_sw_r_kb_dp_BA8F80346NDX8783W4RA"},
+  {name: "James martin's chicken liver pâté", meal_type: "Side dish", portions: "4.0", view_link: "https://www.bbcgoodfood.com/recipes/chicken-liver-pate", user_id: user, public: nil, buy_link: nil},
+  {name: "Jamie's 6-hour slow-roasted pork shoulder", meal_type: "Main meal", portions: "4.0", view_link: "https://www.jamieoliver.com/recipes/pork-recipes/6-hour-slow-roasted-pork-shoulder/", user_id: user, public: nil, buy_link: nil},
+  {name: "Kimchee with chinese cabbage", meal_type: "Side dish", portions: "20.0", view_link: "Recipe credit: Amy Levin", user_id: user, public: nil, buy_link: nil},
+  {name: "Lamb chops and veg", meal_type: "Main meal", portions: "1.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Roasted salmon with jalapeño, honey and lime", meal_type: "Main meal", portions: "4.0", view_link: "https://cooking.nytimes.com/recipes/1020713-roasted-salmon-with-jalapeno-honey-and-lime", user_id: user, public: nil, buy_link: nil},
+  {name: "Scrambled eggs", meal_type: "Main meal", portions: "1.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Slow cooker lamb shanks", meal_type: "Main meal", portions: "4.0", view_link: "https://www.bbc.co.uk/food/recipes/slow_cooker_braised_lamb_01950", user_id: user, public: nil, buy_link: nil},
+  {name: "Slow-roasted salmon with fennel, citrus, and chillies", meal_type: "Main meal", portions: "6.0", view_link: "https://www.bonappetit.com/recipe/slow-roasted-salmon-with-fennel-citrus-and-chiles", user_id: user, public: nil, buy_link: nil},
+  {name: "Smoked mackerel and avo pate", meal_type: "Main meal", portions: "4.0", view_link: "", user_id: user, public: nil, buy_link: nil},
+  {name: "Smoked mackerel pate", meal_type: "Side dish", portions: "2.0", view_link: "https://www.bbc.co.uk/food/recipes/smoked_mackerel_pt_with_36210", user_id: user, public: nil, buy_link: nil},
+  {name: "Turmeric sauerkraut", meal_type: "Side dish", portions: "4.0", view_link: "https://www.feastingathome.com/turmeric-sauerkraut/", user_id: user, public: nil, buy_link: nil}
 ])
 
 
-# RecipeIngredient.create!([
-#   {id: 69, ingredient_id: 59, quantity: "4.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "", preparation: ""},
-#   {id: 71, ingredient_id: 13, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "", preparation: "sliced"},
-#   {id: 72, ingredient_id: 145, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "", preparation: ""},
-#   {id: 73, ingredient_id: 46, quantity: "300.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "ml", preparation: ""},
-#   {id: 70, ingredient_id: 156, quantity: "100.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "g", preparation: "seasoned with salt & pepper"},
-#   {id: 74, ingredient_id: 160, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "kg", preparation: ""},
-#   {id: 37, ingredient_id: 26, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"), unit: "", preparation: nil},
-#   {id: 46, ingredient_id: 18, quantity: "4.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"), unit: "", preparation: nil},
-#   {id: 75, ingredient_id: 162, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "", preparation: ""},
-#   {id: 76, ingredient_id: 58, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "", preparation: ""},
-#   {id: 38, ingredient_id: 28, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Dressing"), unit: "", preparation: "juiced"},
-#   {id: 47, ingredient_id: 20, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"), unit: "cup", preparation: ""},
-#   {id: 77, ingredient_id: 95, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "stick", preparation: ""},
-#   {id: 35, ingredient_id: 25, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"), unit: "", preparation: ""},
-#   {id: 53, ingredient_id: 105, quantity: "1.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "kg", preparation: "bone-in"},
-#   {id: 54, ingredient_id: 141, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "tsp", preparation: ""},
-#   {id: 55, ingredient_id: 147, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "tsp", preparation: ""},
-#   {id: 56, ingredient_id: 41, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "tb", preparation: ""},
-#   {id: 57, ingredient_id: 151, quantity: "50.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "g", preparation: "finely chopped"},
-#   {id: 58, ingredient_id: 58, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "", preparation: "peeled & diced"},
-#   {id: 59, ingredient_id: 95, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "stick", preparation: ""},
-#   {id: 60, ingredient_id: 13, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "", preparation: ""},
-#   {id: 61, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "clove", preparation: ""},
-#   {id: 62, ingredient_id: 142, quantity: "50.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "g", preparation: ""},
-#   {id: 63, ingredient_id: 143, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "tbsp", preparation: "chopped"},
-#   {id: 64, ingredient_id: 144, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "tbsp", preparation: ""},
-#   {id: 65, ingredient_id: 146, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "cup", preparation: ""},
-#   {id: 66, ingredient_id: 45, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "cup", preparation: ""},
-#   {id: 67, ingredient_id: 145, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"), unit: "", preparation: ""},
-#   {id: 68, ingredient_id: 74, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"), unit: "tbsp", preparation: ""},
-#   {id: 78, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "bulb", preparation: ""},
-#   {id: 79, ingredient_id: 145, quantity: "6.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "", preparation: ""},
-#   {id: 80, ingredient_id: 161, quantity: "600.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"), unit: "ml", preparation: ""},
-#   {id: 81, ingredient_id: 163, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "head", preparation: "cut into 1-2\" chunks"},
-#   {id: 82, ingredient_id: 141, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "tbsp", preparation: ""},
-#   {id: 83, ingredient_id: 88, quantity: "50.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "g", preparation: "peeled & roughly chopped"},
-#   {id: 84, ingredient_id: 14, quantity: "5.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "clofe", preparation: "chopped"},
-#   {id: 85, ingredient_id: 19, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "", preparation: "de-seeded - to preference"},
-#   {id: 86, ingredient_id: 164, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"), unit: "tbsp", preparation: "optional"},
-#   {id: 87, ingredient_id: 74, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "tbsp", preparation: ""},
-#   {id: 88, ingredient_id: 153, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "", preparation: "finely chopped"},
-#   {id: 89, ingredient_id: 144, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "sprig", preparation: "leaves only"},
-#   {id: 90, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "clove", preparation: "crushed"},
-#   {id: 91, ingredient_id: 165, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "pinch", preparation: "freshly grated"},
-#   {id: 92, ingredient_id: 166, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "tsp", preparation: "ground"},
-#   {id: 93, ingredient_id: 89, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "", preparation: "zest only"},
-#   {id: 94, ingredient_id: 32, quantity: "400.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "g", preparation: "trimmed of any membrane and gristle, roughly chopped"},
-#   {id: 95, ingredient_id: 167, quantity: "50.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "ml", preparation: ""},
-#   {id: 96, ingredient_id: 84, quantity: "100.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "ml", preparation: ""},
-#   {id: 97, ingredient_id: 41, quantity: "120.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"), unit: "g", preparation: "cubed"},
-#   {id: 98, ingredient_id: 41, quantity: "80.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"), unit: "g", preparation: ""},
-#   {id: 99, ingredient_id: 168, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"), unit: "pinch", preparation: "ground"},
-#   {id: 100, ingredient_id: 89, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"), unit: "", preparation: "zest only"},
-#   {id: 101, ingredient_id: 144, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"), unit: "sprig", preparation: "leaves only"},
-#   {id: 102, ingredient_id: 169, quantity: "100.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "g", preparation: ""},
-#   {id: 103, ingredient_id: 13, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "", preparation: "small, chopped"},
-#   {id: 104, ingredient_id: 32, quantity: "250.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "g", preparation: ""},
-#   {id: 105, ingredient_id: 89, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "", preparation: "zest & juice"},
-#   {id: 106, ingredient_id: 167, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "tbsp", preparation: "(optional)"},
-#   {id: 107, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"), unit: "clove", preparation: "crushed"},
-#   {id: 108, ingredient_id: 54, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "", preparation: "finely sliced, or shredded"},
-#   {id: 109, ingredient_id: 13, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "", preparation: "finely sliced"},
-#   {id: 110, ingredient_id: 14, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "clofe", preparation: "minced"},
-#   {id: 111, ingredient_id: 141, quantity: "1.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "tsp", preparation: ""},
-#   {id: 112, ingredient_id: 88, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "tsp", preparation: "finely chopped"},
-#   {id: 113, ingredient_id: 170, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"), unit: "tsp", preparation: "grated"},
-#   {id: 114, ingredient_id: 105, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "kg", preparation: ""},
-#   {id: 115, ingredient_id: 173, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "tbsp", preparation: ""},
-#   {id: 116, ingredient_id: 172, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "tsp", preparation: ""},
-#   {id: 117, ingredient_id: 171, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "tsp", preparation: ""},
-#   {id: 118, ingredient_id: 141, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "tsp", preparation: ""},
-#   {id: 36, ingredient_id: 27, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"), unit: "pack", preparation: ""},
-#   {id: 120, ingredient_id: 92, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "fillet", preparation: "pulled apart into small pieces"},
-#   {id: 121, ingredient_id: 25, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "", preparation: "chopped"},
-#   {id: 122, ingredient_id: 74, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "tbsp", preparation: ""},
-#   {id: 123, ingredient_id: 174, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "tbsp", preparation: "(or mayo or yogurt)"},
-#   {id: 124, ingredient_id: 28, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "", preparation: "juiced"},
-#   {id: 125, ingredient_id: 4, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"), unit: "", preparation: "(optional)"},
-#   {id: 126, ingredient_id: 176, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"), unit: "", preparation: ""},
-#   {id: 127, ingredient_id: 40, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"), unit: "", preparation: ""},
-#   {id: 128, ingredient_id: 17, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"), unit: "", preparation: ""},
-#   {id: 129, ingredient_id: 92, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "whole", preparation: ""},
-#   {id: 130, ingredient_id: 177, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "tsp", preparation: "grated"},
-#   {id: 131, ingredient_id: 147, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "pinch", preparation: "fresh ground"},
-#   {id: 132, ingredient_id: 174, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "tbsp", preparation: ""},
-#   {id: 133, ingredient_id: 28, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "", preparation: "juice only"},
-#   {id: 134, ingredient_id: 41, quantity: "100.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "g", preparation: "chopped"},
-#   {id: 135, ingredient_id: 4, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"), unit: "", preparation: "chopped"},
-#   {id: 136, ingredient_id: 6, quantity: "4.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"), unit: "slice", preparation: ""},
-#   {id: 137, ingredient_id: 178, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "", preparation: "thinly sliced"},
-#   {id: 138, ingredient_id: 28, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "", preparation: "very thinly sliced, seeds removed"},
-#   {id: 139, ingredient_id: 19, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "", preparation: "with seeds, thinly sliced"},
-#   {id: 140, ingredient_id: 180, quantity: "5.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "sprig", preparation: ""},
-#   {id: 141, ingredient_id: 80, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "kg", preparation: "skinless, whole fillet"},
-#   {id: 142, ingredient_id: 80, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"), unit: "", preparation: ""},
-#   {id: 143, ingredient_id: 39, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"), unit: "tbsp", preparation: ""},
-#   {id: 144, ingredient_id: 47, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"), unit: "tbsp", preparation: ""},
-#   {id: 145, ingredient_id: 38, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"), unit: "tablespoon", preparation: ""},
-#   {id: 146, ingredient_id: 36, quantity: "4.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients40"), unit: "", preparation: ""},
-#   {id: 147, ingredient_id: 183, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients40"), unit: "tbsp", preparation: ""},
-#   {id: 148, ingredient_id: 32, quantity: "400.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "g", preparation: "trimmed"},
-#   {id: 150, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "clove", preparation: ""},
-#   {id: 151, ingredient_id: 13, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "", preparation: "finely chopped"},
-#   {id: 152, ingredient_id: 144, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "tsp", preparation: ""},
-#   {id: 153, ingredient_id: 167, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "tbsp", preparation: ""},
-#   {id: 154, ingredient_id: 165, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "tsp", preparation: "grated"},
-#   {id: 149, ingredient_id: 169, quantity: "350.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"), unit: "g", preparation: "diced"},
-#   {id: 155, ingredient_id: 184, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients42"), unit: "", preparation: ""},
-#   {id: 156, ingredient_id: 13, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients42"), unit: "", preparation: "skin-on, halved"},
-#   {id: 157, ingredient_id: 58, quantity: "20.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "", preparation: "young carrots, ideally slim"},
-#   {id: 158, ingredient_id: 74, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "cup", preparation: ""},
-#   {id: 159, ingredient_id: 186, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "tsp", preparation: ""},
-#   {id: 160, ingredient_id: 187, quantity: "1.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "tsp", preparation: "crushed"},
-#   {id: 161, ingredient_id: 188, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "tsp", preparation: ""},
-#   {id: 162, ingredient_id: 25, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "", preparation: "ripe"},
-#   {id: 164, ingredient_id: 189, quantity: "100.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "g", preparation: "coarse stalks removed"},
-#   {id: 165, ingredient_id: 24, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "small bunch", preparation: "leaves only"},
-#   {id: 163, ingredient_id: 64, quantity: "25.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "g", preparation: "toasted pieces"},
-#   {id: 166, ingredient_id: 190, quantity: "250.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "g", preparation: ""},
-#   {id: 167, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "clove", preparation: "crushed"},
-#   {id: 168, ingredient_id: 157, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "", preparation: "seeds"},
-#   {id: 169, ingredient_id: 191, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"), unit: "tbsp", preparation: ""},
-#   {id: 170, ingredient_id: 14, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"), unit: "clove", preparation: "crushed"},
-#   {id: 171, ingredient_id: 132, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"), unit: "tsp", preparation: ""},
-#   {id: 172, ingredient_id: 20, quantity: "0.25", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"), unit: "tsp", preparation: ""},
-#   {id: 173, ingredient_id: 28, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"), unit: "", preparation: "squeeze of juice"},
-#   {id: 119, ingredient_id: 147, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"), unit: "generous sprinkling", preparation: ""},
-#   {id: 174, ingredient_id: 179, quantity: "1.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"), unit: "", preparation: ""},
-#   {id: 175, ingredient_id: 74, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Dressing"), unit: "tbsp", preparation: ""},
-#   {id: 176, ingredient_id: 125, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"), unit: "tbsp", preparation: ""},
-#   {id: 177, ingredient_id: 19, quantity: "3.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"), unit: "", preparation: "sliced into rings"},
-#   {id: 178, ingredient_id: 23, quantity: "0.5", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"), unit: "", preparation: ""},
-#   {id: 179, ingredient_id: 132, quantity: "2.0", recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"), unit: "tsp", preparation: ""}
-# ])
+recipe = Recipe.find_by(name: "Roasted salmon with jalapeño,  honey and lime")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients15")
+
+recipe = Recipe.find_by(name: "15 minute sesame seared salmon")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients39")
+
+recipe = Recipe.find_by(name: "Avocado & tomato salad")
+  recipe.recipe_ingredient_groups.create!(name: "Veg")
+  recipe.recipe_ingredient_groups.create!(name: "Dressing")
+  recipe.recipe_ingredient_groups.create!(name: "other")
+
+recipe = Recipe.find_by(name: "Becs' simple slow cooker beef short ribs")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients34")
+
+recipe = Recipe.find_by(name: "Chicken liver pate with orange zest")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients32")
+
+recipe = Recipe.find_by(name: "Chicken stock")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients42")
+
+recipe = Recipe.find_by(name: "Classic french chicken liver pate recipe")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients41")
+
+recipe = Recipe.find_by(name: "Cumin-coriander roast carrots with pomegranates & avocado")
+  recipe.recipe_ingredient_groups.create!(name: "For the salad")
+  recipe.recipe_ingredient_groups.create!(name: "for the dressing")
+
+recipe = Recipe.find_by(name: "James martin's chicken liver pâté")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients30")
+  recipe.recipe_ingredient_groups.create!(name: "For butter finish")
+
+recipe = Recipe.find_by(name: "Jamie's 6-hour slow-roasted pork shoulder")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients28")
+
+recipe = Recipe.find_by(name: "Kimchee with chinese cabbage")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients29")
+  
+recipe = Recipe.find_by(name: "Lamb chops and veg")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients22") 
+
+recipe = Recipe.find_by(name: "Roasted salmon with jalapeño,  honey and lime")
+  recipe.recipe_ingredient_groups.create!(name: "to serve")
+
+recipe = Recipe.find_by(name: "Scrambled eggs")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients40")
+
+recipe = Recipe.find_by(name: "Slow cooker lamb shanks")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients27")
+  
+recipe = Recipe.find_by(name: "Slow-roasted salmon with fennel, citrus and chillies")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients38")
+
+recipe = Recipe.find_by(name: "Smoked mackerel and avo pate")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients35")
+
+recipe = Recipe.find_by(name: "Smoked mackerel pate")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients36")
+  recipe.recipe_ingredient_groups.create!(name: "to serve")
+
+recipe = Recipe.find_by(name: "Turmeric sauerkraut")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients33")
 
 
-RecipeIngredient.create!([
-{ingredient_id: Ingredient.find_by(name: "lamb shank"),  quantity: "4.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "",  preparation: "sliced"},
-{ingredient_id: Ingredient.find_by(name: "bay leaf"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "chicken stock"),  quantity: "300.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "ml",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "plain flour"),  quantity: "100.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "g",  preparation: "seasoned with salt & pepper"},
-{ingredient_id: Ingredient.find_by(name: "pork shoulder"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "kg",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "cucumber"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"),  unit: "",  preparation: nil},
-{ingredient_id: Ingredient.find_by(name: "skin-on salmon fillet"),  quantity: "4.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"),  unit: "",  preparation: nil},
-{ingredient_id: Ingredient.find_by(name: "red onion"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "carrot"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "lemon"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Dressing"),  unit: "",  preparation: "juiced"},
-{ingredient_id: Ingredient.find_by(name: "honey"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"),  unit: "cup",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "celery"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "stick",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "avocado"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "beef short rib"),  quantity: "1.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "kg",  preparation: "bone-in"},
-{ingredient_id: Ingredient.find_by(name: "sea salt (unrefined)"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "black pepper"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "butter - unsalted"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "tb",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "bacon"),  quantity: "50.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "g",  preparation: "finely chopped"},
-{ingredient_id: Ingredient.find_by(name: "carrot"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "",  preparation: "peeled & diced"},
-{ingredient_id: Ingredient.find_by(name: "celery"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "stick",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "clove",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "sun-dried tomatoes (jar)"),  quantity: "50.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "g",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "fresh rosemary"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "tbsp",  preparation: "chopped"},
-{ingredient_id: Ingredient.find_by(name: "fresh thyme"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "red wine"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "cup",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "beef stock"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "cup",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "bay leaf"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients26"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "olive oil"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients27"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "bulb",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "bay leaf"),  quantity: "6.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "vegetable stock"),  quantity: "600.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients28"),  unit: "ml",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "chinese cabbage"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "head",  preparation: "cut into 1-2\" chunks"},
-{ingredient_id: Ingredient.find_by(name: "sea salt (unrefined)"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "ginger"),  quantity: "50.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "g",  preparation: "peeled & roughly chopped"},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "5.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "clofe",  preparation: "chopped"},
-{ingredient_id: Ingredient.find_by(name: "red chilli"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "",  preparation: "de-seeded - to preference"},
-{ingredient_id: Ingredient.find_by(name: "asian chilli powder"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients29"),  unit: "tbsp",  preparation: "optional"},
-{ingredient_id: Ingredient.find_by(name: "olive oil"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "shallot"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "",  preparation: "finely chopped"},
-{ingredient_id: Ingredient.find_by(name: "fresh thyme"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "sprig",  preparation: "leaves only"},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "clove",  preparation: "crushed"},
-{ingredient_id: Ingredient.find_by(name: "nutmeg"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "pinch",  preparation: "freshly grated"},
-{ingredient_id: Ingredient.find_by(name: "allspice"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "tsp",  preparation: "ground"},
-{ingredient_id: Ingredient.find_by(name: "orange"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "",  preparation: "zest only"},
-{ingredient_id: Ingredient.find_by(name: "chicken liver"),  quantity: "400.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "g",  preparation: "trimmed of any membrane and gristle"},
-{ingredient_id: Ingredient.find_by(name: "brandy"),  quantity: "50.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "ml",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "double cream"),  quantity: "100.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "ml",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "butter - unsalted"),  quantity: "120.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients30"),  unit: "g",  preparation: "cubed"},
-{ingredient_id: Ingredient.find_by(name: "butter - unsalted"),  quantity: "80.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"),  unit: "g",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "mace"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"),  unit: "pinch",  preparation: "ground"},
-{ingredient_id: Ingredient.find_by(name: "orange"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"),  unit: "",  preparation: "zest only"},
-{ingredient_id: Ingredient.find_by(name: "fresh thyme"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For butter finish"),  unit: "sprig",  preparation: "leaves only"},
-{ingredient_id: Ingredient.find_by(name: "butter"),  quantity: "100.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "g",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "",  preparation: "small"},
-{ingredient_id: Ingredient.find_by(name: "chicken liver"),  quantity: "250.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "g",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "orange"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "",  preparation: "zest & juice"},
-{ingredient_id: Ingredient.find_by(name: "brandy"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "tbsp",  preparation: "(optional)"},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients32"),  unit: "clove",  preparation: "crushed"},
-{ingredient_id: Ingredient.find_by(name: "white cabbage"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "",  preparation: "finely sliced"},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "",  preparation: "finely sliced"},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "clofe",  preparation: "minced"},
-{ingredient_id: Ingredient.find_by(name: "sea salt (unrefined)"),  quantity: "1.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "ginger"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "tsp",  preparation: "finely chopped"},
-{ingredient_id: Ingredient.find_by(name: "turmeric (fresh)"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients33"),  unit: "tsp",  preparation: "grated"},
-{ingredient_id: Ingredient.find_by(name: "beef short rib"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "kg",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "garlic granule"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "paprika"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "cinnamon"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "sea salt (unrefined)"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "cherry tomato"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Veg"),  unit: "pack",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "smoked mackerel"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "fillet",  preparation: "pulled apart into small pieces"},
-{ingredient_id: Ingredient.find_by(name: "avocado"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "",  preparation: "chopped"},
-{ingredient_id: Ingredient.find_by(name: "olive oil"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "creme fraiche"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "tbsp",  preparation: "(or mayo or yogurt)"},
-{ingredient_id: Ingredient.find_by(name: "lemon"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "",  preparation: "juiced"},
-{ingredient_id: Ingredient.find_by(name: "spring onion"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients35"),  unit: "",  preparation: "(optional)"},
-{ingredient_id: Ingredient.find_by(name: "lamb chop"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "courgette"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "red pepper"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients22"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "smoked mackerel"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "whole",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "horseradish (fresh)"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "tsp",  preparation: "grated"},
-{ingredient_id: Ingredient.find_by(name: "black pepper"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "pinch",  preparation: "fresh ground"},
-{ingredient_id: Ingredient.find_by(name: "creme fraiche"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "lemon"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "",  preparation: "juice only"},
-{ingredient_id: Ingredient.find_by(name: "butter - unsalted"),  quantity: "100.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "g",  preparation: "chopped"},
-{ingredient_id: Ingredient.find_by(name: "spring onion"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"),  unit: "",  preparation: "chopped"},
-{ingredient_id: Ingredient.find_by(name: "sourdough - white"),  quantity: "4.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"),  unit: "slice",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "fennel bulb"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "",  preparation: "thinly sliced"},
-{ingredient_id: Ingredient.find_by(name: "lemon"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "",  preparation: "very thinly sliced"},
-{ingredient_id: Ingredient.find_by(name: "red chilli"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "",  preparation: "with seeds"},
-{ingredient_id: Ingredient.find_by(name: "fresh dill"),  quantity: "5.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "sprig",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "wild alaskan salmon fillet"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "kg",  preparation: "skinless"},
-{ingredient_id: Ingredient.find_by(name: "wild alaskan salmon fillet"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "sesame oil"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "coconut oil"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "sesame seed"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients39"),  unit: "tablespoon",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "egg"),  quantity: "4.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients40"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "kimchee"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients40"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "chicken liver"),  quantity: "400.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "g",  preparation: "trimmed"},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "clove",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "",  preparation: "finely chopped"},
-{ingredient_id: Ingredient.find_by(name: "fresh thyme"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "brandy"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "nutmeg"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "tsp",  preparation: "grated"},
-{ingredient_id: Ingredient.find_by(name: "butter"),  quantity: "350.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients41"),  unit: "g",  preparation: "diced"},
-{ingredient_id: Ingredient.find_by(name: "chicken carcass"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients42"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "onion"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients42"),  unit: "",  preparation: "skin-on"},
-{ingredient_id: Ingredient.find_by(name: "carrot"),  quantity: "20.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "",  preparation: "young carrots"},
-{ingredient_id: Ingredient.find_by(name: "olive oil"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "cup",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "cumin seed"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "coriander seed"),  quantity: "1.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "tsp",  preparation: "crushed"},
-{ingredient_id: Ingredient.find_by(name: "chilli flake"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "avocado"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "",  preparation: "ripe"},
-{ingredient_id: Ingredient.find_by(name: "watercress"),  quantity: "100.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "g",  preparation: "coarse stalks removed"},
-{ingredient_id: Ingredient.find_by(name: "fresh coriander / cilantro"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "small bunch",  preparation: "leaves only"},
-{ingredient_id: Ingredient.find_by(name: "walnut"),  quantity: "25.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "g",  preparation: "toasted pieces"},
-{ingredient_id: Ingredient.find_by(name: "greek yogurt"),  quantity: "250.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "g",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "clove",  preparation: "crushed"},
-{ingredient_id: Ingredient.find_by(name: "pomegranate"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "",  preparation: "seeds"},
-{ingredient_id: Ingredient.find_by(name: "pomegranate molass"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "garlic"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"),  unit: "clove",  preparation: "crushed"},
-{ingredient_id: Ingredient.find_by(name: "dijon mustard"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "honey"),  quantity: "0.25",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "for the dressing"),  unit: "tsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "lemon"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "For the salad"),  unit: "",  preparation: "squeeze of juice"},
-{ingredient_id: Ingredient.find_by(name: "black pepper"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients34"),  unit: "generous sprinkling",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "blood orange"),  quantity: "1.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients38"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "olive oil"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Dressing"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "apple cider vinegar"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"),  unit: "tbsp",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "red chilli"),  quantity: "3.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients15"),  unit: "",  preparation: "sliced into rings"},
-{ingredient_id: Ingredient.find_by(name: "lime"),  quantity: "0.5",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "to serve"),  unit: "",  preparation: ""},
-{ingredient_id: Ingredient.find_by(name: "dijon mustard"),  quantity: "2.0",  recipe_ingredient_group_id: RecipeIngredientGroup.find_by(name: "Main ingredients36"),  unit: "tsp",  preparation: ""}
-])
+
