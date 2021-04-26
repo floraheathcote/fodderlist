@@ -1,5 +1,6 @@
 class ShoppingListItemsController < ApplicationController
   before_action :set_shopping_list_item, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :update]
 
   # GET /shopping_list_items or /shopping_list_items.json
   def index

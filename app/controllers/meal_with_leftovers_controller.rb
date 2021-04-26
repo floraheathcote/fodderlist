@@ -1,5 +1,6 @@
 class MealWithLeftoversController < ApplicationController
   before_action :set_meal_with_leftover, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /meal_with_leftovers or /meal_with_leftovers.json
   def index

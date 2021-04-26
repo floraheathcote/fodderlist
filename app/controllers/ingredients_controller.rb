@@ -1,5 +1,7 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index]
+
   # require 'openfoodfacts'
   # require 'fatsecret'
   # FatSecret.init(:fat_secret, :key => '4dc13d0bb3c7490999fad64eb2d50224', :secret => '777e3432e45c4361b4ec812e235d5474')

@@ -1,5 +1,6 @@
 class RecipeIngredientGroupsController < ApplicationController
   before_action :set_recipe_ingredient_group, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /recipe_ingredient_groups or /recipe_ingredient_groups.json
   def index

@@ -1,5 +1,6 @@
 class LeftoversController < ApplicationController
   before_action :set_leftover, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /leftovers or /leftovers.json
   def index

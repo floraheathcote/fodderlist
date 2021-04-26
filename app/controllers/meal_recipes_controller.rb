@@ -1,5 +1,6 @@
 class MealRecipesController < ApplicationController
   before_action :set_meal_recipe, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /meal_recipes or /meal_recipes.json
   def index

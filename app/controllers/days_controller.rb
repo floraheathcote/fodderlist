@@ -1,5 +1,6 @@
 class DaysController < ApplicationController
   before_action :set_day, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /days or /days.json
   # def index
