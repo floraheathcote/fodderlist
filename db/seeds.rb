@@ -237,7 +237,7 @@ Recipe.create!([
 ])
 
 
-recipe = Recipe.find_by(name: "Roasted salmon with jalapeño,  honey and lime")
+recipe = Recipe.find_by(name: "Roasted salmon with jalapeño, honey and lime")
   recipe.recipe_ingredient_groups.create!(name: "Main ingredients15")
 
 recipe = Recipe.find_by(name: "15 minute sesame seared salmon")
@@ -277,7 +277,7 @@ recipe = Recipe.find_by(name: "Kimchee with chinese cabbage")
 recipe = Recipe.find_by(name: "Lamb chops and veg")
   recipe.recipe_ingredient_groups.create!(name: "Main ingredients22") 
 
-recipe = Recipe.find_by(name: "Roasted salmon with jalapeño,  honey and lime")
+recipe = Recipe.find_by(name: "Roasted salmon with jalapeño, honey and lime")
   recipe.recipe_ingredient_groups.create!(name: "to serve")
 
 recipe = Recipe.find_by(name: "Scrambled eggs")
