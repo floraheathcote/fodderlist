@@ -1,6 +1,17 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:show, :index]
+  
+
+
+  def recipe_owner
+    unless @job.user_id == current_user.id || current_user.admin?
+     flash[:notice] = 'Access denied as you are not owner of this Recipe'
+     redirect_to recipes_path
+    end
+   end
+
+
 
   # GET /recipes or /recipes.json
   def index

@@ -7,8 +7,9 @@
   </div>
 
   <div class="col-sm-6 text-right">
-  <%= link_to "Edit Categories", ingredient_categories_path, class: 'btn btn-primary' %>
-
+  <% if current_user.admin? %>
+    <%= link_to "Edit Categories", ingredient_categories_path, class: 'btn btn-primary' %>
+  <% end %>
   </div>
 </div>
 
@@ -30,8 +31,7 @@
                   <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
                   <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name) %> </td>
                   <td> <%= form.submit class: 'btn btn-primary' %> </td>
-                  <td>  
-                        </td>
+                  
     <% end %>
 
 
@@ -42,9 +42,23 @@
             <%= form_with(model: ingredient, local: true) do |form| %>
                   <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
                   <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name, {:selected => ingredient.ingredient_category_id}) %> </td>
-                  <td> <%= form.submit class: 'btn btn-primary' %> </td>
-                  <td>  <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-                        </td>
+                  
+                  
+                  <% if ingredient.persisted? %>
+                    <% if current_user.admin? || Recipe.not_user(current_user).ingredient(ingredient).empty? %>
+                      <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                    <% else %>
+                      <td> Contact admin to edit.</td>
+                    <% end %>
+                  <% else %>
+                    <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                  <% end %>
+
+                  
+                  <% if current_user.admin? %>
+                    <td> <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                          </td>
+                  <% end %>
             <% end %>
 
             

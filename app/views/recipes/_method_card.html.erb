@@ -36,7 +36,7 @@
       <%= Rinku.auto_link(recipe.buy_link, mode=:all, link_attr=nil, skip_tags=nil).html_safe %><br><br>
     <% end %>
      
-      <% unless edit == "no" %>
+      <% unless edit == "no" || recipe.user != current_user %>
         Meal type: <%= recipe.meal_type %><br><br>
         <%= link_to "Edit", edit_recipe_path(recipe), class: 'btn btn-primary' %>
       <% end %>

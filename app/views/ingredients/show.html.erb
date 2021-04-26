@@ -1,10 +1,10 @@
 <div class="page-header">
-  <%= link_to ingredients_path, class: 'btn btn-default' do %>
-    All Ingredients
+  <%= link_to "All ingredients", ingredients_path, class: 'btn btn-default' %>
+
+  <% unless current_user.admin? || Recipe.not_user(current_user).ingredient(@ingredient).present? %>
+    <%= link_to "Edit", edit_ingredient_path(@ingredient), class: 'btn btn-primary'  %>
   <% end %>
-  <%= link_to edit_ingredient_path(@ingredient), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
+  
   <h1>Show ingredient</h1>
 </div>
 

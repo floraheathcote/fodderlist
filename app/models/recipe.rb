@@ -17,6 +17,11 @@ class Recipe < ApplicationRecord
     
     default_scope { order(name: :asc) }
 
+    scope :ingredient, ->(ingredient) { joins(recipe_ingredient_groups: :recipe_ingredients).where( "ingredient_id= #{ingredient.id}" )}
+    scope :not_user, ->(user) { where(user != user)}
+
+
+
 
     before_save do 
         self.name = name.capitalize

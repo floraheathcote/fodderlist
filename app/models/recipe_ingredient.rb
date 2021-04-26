@@ -3,6 +3,7 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :ingredient
   
   
+  
   validates :quantity, presence: true
   # validates :unit, presence: true
   validates :ingredient_id, presence: true
