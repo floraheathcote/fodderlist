@@ -230,7 +230,7 @@ Recipe.create!([
   {name: "Roasted salmon with jalapeño, honey and lime", meal_type: "Main meal", portions: "4.0", view_link: "https://cooking.nytimes.com/recipes/1020713-roasted-salmon-with-jalapeno-honey-and-lime", user_id: user.id, public: nil, buy_link: nil},
   {name: "Scrambled eggs", meal_type: "Main meal", portions: "1.0", view_link: "", user_id: user.id, public: nil, buy_link: nil},
   {name: "Slow cooker lamb shanks", meal_type: "Main meal", portions: "4.0", view_link: "https://www.bbc.co.uk/food/recipes/slow_cooker_braised_lamb_01950", user_id: user.id, public: nil, buy_link: nil},
-  {name: "Slow-roasted salmon with fennel, citrus, and chillies", meal_type: "Main meal", portions: "6.0", view_link: "https://www.bonappetit.com/recipe/slow-roasted-salmon-with-fennel-citrus-and-chiles", user_id: user.id, public: nil, buy_link: nil},
+  {name: "Slow-roasted salmon with fennel, citrus and chillies", meal_type: "Main meal", portions: "6.0", view_link: "https://www.bonappetit.com/recipe/slow-roasted-salmon-with-fennel-citrus-and-chiles", user_id: user.id, public: nil, buy_link: nil},
   {name: "Smoked mackerel and avo pate", meal_type: "Main meal", portions: "4.0", view_link: "", user_id: user.id, public: nil, buy_link: nil},
   {name: "Smoked mackerel pate", meal_type: "Side dish", portions: "2.0", view_link: "https://www.bbc.co.uk/food/recipes/smoked_mackerel_pt_with_36210", user_id: user.id, public: nil, buy_link: nil},
   {name: "Turmeric sauerkraut", meal_type: "Side dish", portions: "4.0", view_link: "https://www.feastingathome.com/turmeric-sauerkraut/", user_id: user.id, public: nil, buy_link: nil}
