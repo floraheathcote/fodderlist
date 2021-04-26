@@ -251,6 +251,9 @@ recipe = Recipe.find_by(name: "Avocado & tomato salad")
 recipe = Recipe.find_by(name: "Becs' simple slow cooker beef short ribs")
   recipe.recipe_ingredient_groups.create!(name: "Main ingredients34")
 
+recipe = Recipe.find_by(name: "Braised short ribs with sun-dried tomatoes & herbs")
+  recipe.recipe_ingredient_groups.create!(name: "Main ingredients26")
+
 recipe = Recipe.find_by(name: "Chicken liver pate with orange zest")
   recipe.recipe_ingredient_groups.create!(name: "Main ingredients32")
 
@@ -488,3 +491,347 @@ RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group
 ingredient = Ingredient.find_by(name: "cumin seed")
  recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
 RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "dijon mustard")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "for the dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "dijon mustard")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients36")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "double cream")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "100.0",  unit: "ml",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "egg")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients40")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "4.0",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "fennel bulb")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients38")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "thinly sliced" }])
+
+ingredient = Ingredient.find_by(name: "fresh coriander / cilantro")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "small bunch",  preparation: "leaves only" }])
+
+ingredient = Ingredient.find_by(name: "fresh dill")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients38")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "5.0",  unit: "sprig",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "fresh rosemary")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "chopped" }])
+
+ingredient = Ingredient.find_by(name: "fresh thyme")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "fresh thyme")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "3.0",  unit: "sprig",  preparation: "leaves only" }])
+
+ingredient = Ingredient.find_by(name: "fresh thyme")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For butter finish")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "sprig",  preparation: "leaves only" }])
+
+ingredient = Ingredient.find_by(name: "fresh thyme")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients41")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "garlic granule")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients34")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients28")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "bulb",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients29")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "5.0",  unit: "clofe",  preparation: "chopped" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "crushed" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients32")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "crushed" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "clofe",  preparation: "minced" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients41")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "crushed" }])
+
+ingredient = Ingredient.find_by(name: "garlic")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "for the dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "clove",  preparation: "crushed" }])
+
+ingredient = Ingredient.find_by(name: "ginger")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients29")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "50.0",  unit: "g",  preparation: "peeled & roughly chopped" }])
+
+ingredient = Ingredient.find_by(name: "ginger")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tsp",  preparation: "finely chopped" }])
+
+ingredient = Ingredient.find_by(name: "greek yogurt")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "250.0",  unit: "g",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "honey")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients15")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "cup",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "honey")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "for the dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "horseradish (fresh)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients36")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tsp",  preparation: "grated" }])
+
+ingredient = Ingredient.find_by(name: "kimchee")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients40")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "lamb chop")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients22")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "lamb shank")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients27")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "4.0",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "lemon")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "juiced" }])
+
+ingredient = Ingredient.find_by(name: "lemon")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients35")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "juiced" }])
+
+ingredient = Ingredient.find_by(name: "lemon")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients36")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "juice only" }])
+
+ingredient = Ingredient.find_by(name: "lemon")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients38")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "very thinly sliced" }])
+
+ingredient = Ingredient.find_by(name: "lemon")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "squeeze of juice" }])
+
+ingredient = Ingredient.find_by(name: "lime")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "to serve")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "mace")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For butter finish")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "pinch",  preparation: "ground" }])
+
+ingredient = Ingredient.find_by(name: "nutmeg")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "pinch",  preparation: "freshly grated" }])
+
+ingredient = Ingredient.find_by(name: "nutmeg")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients41")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tsp",  preparation: "grated" }])
+
+ingredient = Ingredient.find_by(name: "olive oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients27")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "olive oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "olive oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients35")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "olive oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "cup",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "olive oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients27")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "sliced" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients32")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "small" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "",  preparation: "finely sliced" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients41")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "finely chopped" }])
+
+ingredient = Ingredient.find_by(name: "onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients42")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "skin-on" }])
+
+ingredient = Ingredient.find_by(name: "orange")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "zest only" }])
+
+ingredient = Ingredient.find_by(name: "orange")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For butter finish")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "zest only" }])
+
+ingredient = Ingredient.find_by(name: "orange")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients32")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "zest & juice" }])
+
+ingredient = Ingredient.find_by(name: "paprika")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients34")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "plain flour")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients27")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "100.0",  unit: "g",  preparation: "seasoned with salt & pepper" }])
+
+ingredient = Ingredient.find_by(name: "pomegranate molass")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "for the dressing")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "pomegranate")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "seeds" }])
+
+ingredient = Ingredient.find_by(name: "pork shoulder")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients28")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "kg",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "red chilli")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients29")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "3.0",  unit: "",  preparation: "de-seeded - to preference" }])
+
+ingredient = Ingredient.find_by(name: "red chilli")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients38")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "with seeds" }])
+
+ingredient = Ingredient.find_by(name: "red chilli")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients15")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "3.0",  unit: "",  preparation: "sliced into rings" }])
+
+ingredient = Ingredient.find_by(name: "red onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients28")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "red pepper")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients22")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "red wine")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "cup",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sea salt (unrefined)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.25",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sea salt (unrefined)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients29")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sea salt (unrefined)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.5",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sea salt (unrefined)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients34")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "tsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sesame oil")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients39")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tbsp",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sesame seed")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients39")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tablespoon",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "shallot")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients30")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "finely chopped" }])
+
+ingredient = Ingredient.find_by(name: "skin-on salmon fillet")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients15")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "4.0",  unit: "",  preparation: nil }])
+
+ingredient = Ingredient.find_by(name: "smoked mackerel")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients35")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "fillet",  preparation: "pulled apart into small pieces" }])
+
+ingredient = Ingredient.find_by(name: "smoked mackerel")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients36")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "whole",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "sourdough - white")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "to serve")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "4.0",  unit: "slice",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "spring onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients35")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "(optional)" }])
+
+ingredient = Ingredient.find_by(name: "spring onion")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "to serve")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "3.0",  unit: "",  preparation: "chopped" }])
+
+ingredient = Ingredient.find_by(name: "sun-dried tomatoes (jar)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients26")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "50.0",  unit: "g",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "turmeric (fresh)")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "tsp",  preparation: "grated" }])
+
+ingredient = Ingredient.find_by(name: "vegetable stock")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients28")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "600.0",  unit: "ml",  preparation: "" }])
+
+ingredient = Ingredient.find_by(name: "walnut")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "25.0",  unit: "g",  preparation: "toasted pieces" }])
+
+ingredient = Ingredient.find_by(name: "watercress")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "For the salad")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "100.0",  unit: "g",  preparation: "coarse stalks removed" }])
+
+ingredient = Ingredient.find_by(name: "white cabbage")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients33")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "0.5",  unit: "",  preparation: "finely sliced" }])
+
+ingredient = Ingredient.find_by(name: "wild alaskan salmon fillet")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients38")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "1.0",  unit: "kg",  preparation: "skinless" }])
+
+ingredient = Ingredient.find_by(name: "wild alaskan salmon fillet")
+ recipe_ingredient_group = RecipeIngredientGroup.find_by(name: "Main ingredients39")
+RecipeIngredient.create!([{ingredient_id: ingredient.id, recipe_ingredient_group_id: recipe_ingredient_group.id,  quantity: "2.0",  unit: "",  preparation: "" }])
