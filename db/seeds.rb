@@ -15,7 +15,7 @@ IngredientCategory.create!([
   {name: "world food"}
 ])
 
-user = user
+user = User.first
 ic = IngredientCategory.find_by(name: "bakery")
   ic.ingredients.create!( name:  "rye bread", user_id: user )
   ic.ingredients.create!( name:  "sourdough - white", user_id: user )
