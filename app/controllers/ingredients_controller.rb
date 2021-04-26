@@ -45,6 +45,7 @@ class IngredientsController < ApplicationController
   # POST /ingredients or /ingredients.json
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.user = current_user
 
     respond_to do |format|
       if @ingredient.save
@@ -87,6 +88,6 @@ class IngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_category_id, :main_image, ingredient_category_attributes: [:name, :id])
+      params.require(:ingredient).permit(:user, :name, :ingredient_category_id, :main_image, ingredient_category_attributes: [:name, :id])
     end
 end

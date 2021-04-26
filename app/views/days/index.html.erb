@@ -1,4 +1,5 @@
 <% if @days.present? %>
+<%= link_to "view full meal plan", meal_plan_path(@meal_plan) %>
     <% if @days.first.date == Date.today %>
       <h1>What's on the menu today?</h1> <h3><span class =font_handwriting>(<%= nice_date(Date.today) %>)</span></h3>
     <% else%>

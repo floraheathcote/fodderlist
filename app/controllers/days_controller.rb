@@ -11,12 +11,14 @@ class DaysController < ApplicationController
   def index
     if params[:filter] == "today"
           @days = Day.user(current_user).today
+          
     elsif params[:filter] == nil
           @days = Day.user(current_user)
     else
           date = params[:date]
           @days = Day.user(current_user).this_date(date)
     end
+    @meal_plan = @days.first.meal_plan
   end
 
 

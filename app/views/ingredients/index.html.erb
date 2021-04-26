@@ -45,7 +45,9 @@
                   
                   
                   <% if ingredient.persisted? %>
-                    <% if current_user.admin? || Recipe.not_user(current_user).ingredient(ingredient).empty? %>
+                    <% if current_user.admin? %>
+                      <td> <%= form.submit class: 'btn btn-primary' %> </td>
+                    <% elsif Recipe.not_user(current_user).ingredient(ingredient).empty? && ingredient.user == current_user %>
                       <td> <%= form.submit class: 'btn btn-primary' %> </td>
                     <% else %>
                       <td> Contact admin to edit.</td>
