@@ -1,5 +1,7 @@
 <% meal_plan = day.meal_plan %>
 
+
+
     <% if meal_plan.days.count == 1  %> <%# meal plan is only 1 day %>
                 <% if day.meal_plan.status == "draft"%>
                     <%= link_to day.meal_plan.status, day.meal_plan, class: 'btn btn-secondary btn-block' %>

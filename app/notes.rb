@@ -698,3 +698,33 @@ def all_leftovers_in_day(day)
             .select(  "     recipes.id AS recipe_id, meals.id AS meal_id, leftovers.id AS leftover_id ")
             .order( "       days.date ASC")
 end
+
+
+
+
+
+ingredient_category_card
+
+
+
+<div class="card border-primary mb-3">
+          <div class="card-header"><%= cat_array[0].join %></div>
+
+                <div class="card-body">
+                      <p class="card-text">
+                      <ul class="list-group">
+                      <% cat_array[1].each do |ing_array| %>
+
+                            <li class="list-group-item">
+                            <%= ing_array[0].join %>
+
+                            <% ing_array[1].each do |sum_qty_hash| %>
+                                <%= sum_qty_hash[:sum].to_d.round(1) %> <%= sum_qty_hash[:unit] %>  <% unless sum_qty_hash == ing_array[1].last %> + <% end %>
+                            <% end %>
+                            </li>
+                      </ul></p>
+
+                      <% end %>
+                </div>
+          
+    </div>

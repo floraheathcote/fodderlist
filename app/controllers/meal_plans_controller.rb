@@ -7,17 +7,16 @@ class MealPlansController < ApplicationController
   # GET /meal_plans or /meal_plans.json
   def index
     @meal_plans = current_user.meal_plans
-    @days = current_user.days
-
-
+    @days = current_user.days.includes(:meal_plan)
   end
 
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
     
+ 
     @new_meal = Meal.new
-    @days = @meal_plan.days.order(date: :asc)
-    @meals = @meal_plan.meals.order(time: :desc)
+    @days = @meal_plan.days.order(date: :asc).includes(:meals)
+    @meals = @meal_plan.meals.order(time: :desc).includes(:meal_recipes, :meal_ingredients)
     
     @new_meal_recipe = MealRecipe.new
 
@@ -27,7 +26,7 @@ class MealPlansController < ApplicationController
     # @final_array = organised_ingredients_array(@meal_plan)
 
     
-    @leftover = Leftover.user(current_user)
+    @leftover = Leftover.user(current_user).includes(:meal_recipe)
   end
 
   # GET /meal_plans/new

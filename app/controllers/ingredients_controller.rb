@@ -2,11 +2,6 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index]
 
-  # require 'openfoodfacts'
-  # require 'fatsecret'
-  # FatSecret.init(:fat_secret, :key => '4dc13d0bb3c7490999fad64eb2d50224', :secret => '777e3432e45c4361b4ec812e235d5474')
-
-
   # GET /ingredients or /ingredients.json
   def index
     @ingredients = Ingredient.order(ingredient_category_id: :asc, name: :asc)
@@ -21,21 +16,6 @@ class IngredientsController < ApplicationController
   def new
     @ingredient = Ingredient.new
     @ingredient.build_ingredient_category
-
-    # @products = Openfoodfacts::Product.search("chicken breast", locale: 'uk')
-
-    # FoodInfo.establish_connection(:fat_secret, :key => '4dc13d0bb3c7490999fad64eb2d50224', :secret => '777e3432e45c4361b4ec812e235d5474')
-
-    # @fatsecret = FatSecret.search_food('milk')
-
-    # FatSecret.configure do |config|
-    #   config.access_key = 4dc13d0bb3c7490999fad64eb2d50224
-    #   config.consumer_key = 4dc13d0bb3c7490999fad64eb2d50224
-    #   config.shared_secret = 0c37b8cf2f654a08977f9dc308d70ab9
-    #   # config.logger = <your logger> #OPTIONAL
-    # end
-
-    # @fatsecret = FatSecret::Food.search('Milk')
   end
 
   # GET /ingredients/1/edit

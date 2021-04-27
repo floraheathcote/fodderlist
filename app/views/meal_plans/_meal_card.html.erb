@@ -96,7 +96,7 @@
             <h6>Leftovers added to meal:</h6>
         <% end %>
 
-        <% MealWithLeftover.meal(meal).each do |leftover_meal| %>
+        <% MealWithLeftover.meal(meal).includes(:leftover).each do |leftover_meal| %>
             <div class="row">
                 <div class="col-4">
                 <%= image_tag(leftover_meal.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
