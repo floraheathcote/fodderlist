@@ -728,3 +728,17 @@ ingredient_category_card
                 </div>
           
     </div>
+
+
+
+
+
+
+<br><br><br>
+
+<% MealIngredient.meal_plan(@meal_plan).group(:ingredient_id, :unit).sum(:quantity).to_a.each do |array_item| %>
+    Ingredient name: <%= Ingredient.find(array_item[0][0]).name %>, 
+    Unit: <%= array_item[0][1] %>,
+    Qty: <%= round_nicely(array_item[1]) %>
+    <br>
+<% end %>

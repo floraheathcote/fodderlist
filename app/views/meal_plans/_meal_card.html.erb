@@ -2,8 +2,15 @@
 
 <div class="card" style="max-width: 18rem;">
     <div class="card-header">
-        <h5><%= meal.name %></h5>
-        <p><%= meal.time.strftime('%l:%M%P') %></p>
+        <div class="row">
+            <div class="col-sm">
+                <h5><%= meal.name %></h5>
+            </div>
+            <div class="col-sm">
+                <%= meal.time.strftime('%l:%M%P') %>
+            </div>
+        </div>
+        
         <% if @meal_plan.status=="draft" %>
             <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
         <% end %>
