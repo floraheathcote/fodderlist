@@ -742,3 +742,8 @@ ingredient_category_card
     Qty: <%= round_nicely(array_item[1]) %>
     <br>
 <% end %>
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="//fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans&display=swap" rel="stylesheet">
