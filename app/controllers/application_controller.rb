@@ -8,12 +8,6 @@ class ApplicationController < ActionController::Base
 
 
 
-# def set_meal_plan_start_and_days(meal_plan)
-#   start_date = meal_plan.days.order(:date).first
-#   number_of_days = meal_plan.days.count
-#       meal_plan.update_attributes(start_date: start_date)
-#       meal_plan.update_attributes(number_of_days: number_of_days)
-# end
 
 def get_meal_plan_last_day(meal_plan)
   if meal_plan.days.first.id.present?
