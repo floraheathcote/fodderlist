@@ -18,7 +18,9 @@ class DaysController < ApplicationController
           date = params[:date]
           @days = Day.user(current_user).this_date(date)
     end
-    @meal_plan = @days.first.meal_plan
+    if @days.present?
+      @meal_plan = @days.first.meal_plan
+    end
   end
 
 
