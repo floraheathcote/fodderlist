@@ -2,11 +2,11 @@
 
 <% meal_and_recipe_array = [] %>    
 
-<% MealRecipe.day(day).each do |mr| %>
+<% MealRecipe.day(day).includes(:meal, :recipe).each do |mr| %>
   <% meal_and_recipe_array << [mr.meal.time, mr.meal.name, mr.recipe] %>
 <% end %>
 
-<% MealWithLeftover.day(day).each do |mwl| %>
+<% MealWithLeftover.day(day).includes(:meal, :leftover => :recipe).each do |mwl| %>
   <% meal_and_recipe_array << [mwl.meal.time, mwl.meal.name, mwl.leftover.recipe] %>
 <% end %>
 

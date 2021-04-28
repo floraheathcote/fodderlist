@@ -1,6 +1,6 @@
 <ul>
 <small class="text-muted">
-<% meal_recipe.meal_ingredients.each do |meal_ingredient| %>
+<% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
         
 <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: meal_ingredient  %>
 

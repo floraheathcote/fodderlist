@@ -1,6 +1,7 @@
 class MealWithLeftover < ApplicationRecord
   belongs_to :leftover
   belongs_to :meal
+  
 
 
   scope :leftover, ->(leftover) { where(leftover: leftover) }
