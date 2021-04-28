@@ -16,7 +16,7 @@
         <br>
         <%= render 'ingredients_card', recipe_ingredient_groups: @recipe_ingredient_groups %>
       
-    <% if @recipe.user == current_user %>
+    <% if @recipe.user == current_user || current_user.admin? %>
         <%= render 'recipe_ingredient_groups_card', recipe_ingredient_group: @new_recipe_ingredient_group, recipe: @recipe %>
     <% end %>
   </div> 
