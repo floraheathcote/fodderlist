@@ -1,9 +1,9 @@
 <% if @days.present? %>
 <%= link_to "view full meal plan", meal_plan_path(@meal_plan) %>
     <% if @days.first.date.present? && @days.first.date == Date.today %>
-      <h1>What's on the menu today?</h1> <h3><span class =font_handwriting>(<%= nice_date(Date.today) %>)</span></h3>
+      <h1>What's on the menu today?</h1> <h3><span style = "font-family:Nothing You Could Do">(<%= nice_date(Date.today) %>)</span></h3>
     <% else%>
-      <h1>What's on the menu?</h1> <h3><span class =font_handwriting>(<%= nice_date(@days.first.date) %>)</span></h3>
+      <h1>What's on the menu?</h1> <h3><span style = "font-family:Nothing You Could Do">(<%= nice_date(@days.first.date) %>)</span></h3>
     <% end %>
   <% else %>
     <h1>There's nothing on the menu today :-( </h1> 
@@ -48,7 +48,7 @@
                             Other things to have with this meal:
                           </div>
                           <p class="card-text">
-                            <ul><span class =font_handwriting >
+                            <ul><span style = "font-family:Nothing You Could Do" >
                             <% meal.meal_ingredients.no_recipe.each do |mi| %>
                                 <li><%= render 'shared/display_ingredient_info', mi_or_ri: mi   %>
                             <% end %>

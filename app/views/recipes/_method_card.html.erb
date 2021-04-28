@@ -9,7 +9,7 @@
     <% if portions.present? %>
         <% if portions != recipe.portions %>
           <s><%= pluralize(round_nicely(recipe.portions), "portion") %></s>
-          <span class =font_handwriting ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
+          <span style = "font-family:Nothing You Could Do" ><%= pluralize(round_nicely(portions), "portion") %> </span></h5>
         <% else %>
           <%= pluralize(round_nicely(recipe.portions), "portion") %></h5>
         <% end %>
@@ -17,7 +17,7 @@
     
     
     <% if portions.present? && portions != recipe.portions %>
-      <span class =font_handwriting > (note - method is for 
+      <span style = "font-family:Nothing You Could Do" > (note - method is for 
       <%= pluralize(round_nicely(recipe.portions), "portion") %>, you're making 
       <u><%= pluralize(round_nicely(portions), "portion") %>)</u></span>
     <% end %>
