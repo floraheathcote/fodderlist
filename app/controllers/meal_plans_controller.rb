@@ -93,7 +93,7 @@ class MealPlansController < ApplicationController
     # mi_array = MealIngredient.meal_plan(@meal_plan).group(:ingredient_id, :unit).sum(:quantity).to_a
 
     @meal_plan.meal_ingredient_array.each do |array_item|
-      qty_unit = view_context.pluralize( round_nicely(array_item[1]), array_item[0][1] )
+      qty_unit = view_context.pluralize( round_nicely( array_item[1]), array_item[0][1] )
       if array_item[0][0] == prev_ingredient_id
         @shopping_list_item.total_sum_unit += ( " & " + qty_unit.to_s )
       else
