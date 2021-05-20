@@ -1,4 +1,7 @@
-<%= form_with(model: ingredient, local: true) do |form| %>
+<%#= turbo_frame_tag(dom_id(ingredient)) do %>
+
+
+<%= form_with(model: ingredient, local: false) do |form| %>
   
   <%= render 'shared/errors', object: ingredient %>
 
@@ -41,5 +44,7 @@
     <% end %>
   </div>
 <% end %>
+
+<%# end %>
 
  <br>  <br> 

@@ -20,15 +20,7 @@ $(document).on("turbolinks:load", () => {
   $('[data-toggle="popover"]').popover()
 })
 
-// below from https://aswinmohan.me/posts/implementing-autocomplete-in-rails-6/
-// Import css from js for webpack to process it correctly
-// import 'application.css.scss'
 
-// Add Choices Dropdown
-const Choices = require('choices.js')
-document.addEventListener("turbolinks:load", function() {
-    var dropDownSelects = new Choices('#dropdown-choice-select')
-})
 require("trix")
 require("@rails/actiontext")
 import "controllers"
