@@ -1,5 +1,5 @@
 {
-  "name": "reciping",
+  "name": "fodderlist",
   "private": true,
   "dependencies": {
     "@babel/core@": "^7.0.0-0",
