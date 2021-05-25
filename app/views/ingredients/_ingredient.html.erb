@@ -1,0 +1,10 @@
+
+<%= turbo_frame_tag(dom_id(ingredient)) do %>
+
+<li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
+
+    <%= link_to "Edit", edit_ingredient_path(ingredient) %>
+
+</li>
+
+<% end %>

@@ -92,3 +92,4 @@ gem "simple_calendar", "~> 2.4"
 gem 'rinku'
 
 gem 'rename'
+gem "turbo-rails", "~> 0.5.9"

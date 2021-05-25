@@ -457,6 +457,7 @@ DEPENDENCIES
   sitemap_generator (~> 6.1, >= 6.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
+  turbo-rails (~> 0.5.9)
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
