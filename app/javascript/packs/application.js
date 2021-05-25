@@ -6,7 +6,6 @@
 //= require masonry/jquery.masonry
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("local-time").start()
@@ -32,3 +31,4 @@ document.addEventListener("turbolinks:load", function() {
 })
 require("trix")
 require("@rails/actiontext")
+import "controllers"
