@@ -17,8 +17,10 @@ class Ingredient < ApplicationRecord
     self.name = name.downcase.singularize
   end
 
-
-
+  after_create_commit { broadcast_prepend_to "ingredients" }
+  after_update_commit { broadcast_replace_to "ingredients" }
+  after_destroy_commit { broadcast_remove_to "ingredients" }
+  
 
 private
 

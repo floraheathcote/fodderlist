@@ -9,17 +9,21 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("local-time").start()
+require("@hotwired/turbo-rails")
+require("@rails/actiontext")
+require("trix")
 
 window.Rails = Rails
 
 import 'bootstrap'
 import 'data-confirm-modal'
 
-$(document).on("turbolinks:load", () => {
+$(document).on("turbo:load", () => {
+  // console.log("turbo!!")
   $('[data-toggle="tooltip"]').tooltip()
   $('[data-toggle="popover"]').popover()
 })
 
-require("trix")
-require("@rails/actiontext")
-import "controllers"
+
+
+// import "controllers"

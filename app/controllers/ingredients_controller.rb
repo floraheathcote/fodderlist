@@ -2,6 +2,8 @@ class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index]
 
+
+
   # GET /ingredients or /ingredients.json
   def index
     @ingredients = Ingredient.order(ingredient_category_id: :asc, name: :asc)
@@ -32,6 +34,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
+        # format.turbo_stream
         format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: ingredients_path }
       else
@@ -57,8 +60,10 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1 or /ingredients/1.json
   def destroy
     @ingredient.destroy
+
     respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
+      format.turbo_stream
+      # format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
       format.json { head :no_content }
     end
   end
