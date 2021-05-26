@@ -25,8 +25,16 @@
 
     <%= form.submit class: 'btn btn-primary' %>
 
+    
+
+
+
+
     <% if ingredient.persisted? %>
-      <%= link_to "Cancel", ingredient, class: "btn btn-link" %>
+      <%= link_to(
+              "Cancel",
+              ingredient_path(ingredient, inline: true)
+              ) %>
     <% else %>
       <%= link_to "Cancel", ingredients_path, class: "btn btn-link" %>
     <% end %>

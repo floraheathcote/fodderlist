@@ -10,6 +10,9 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1 or /ingredients/1.json
   def show
+    if params[:inline]
+      render(@ingredient)
+    end
   end
 
   # GET /ingredients/new
