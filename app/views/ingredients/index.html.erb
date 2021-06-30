@@ -1,4 +1,4 @@
-<%= turbo_stream_from "ingredients_bakery" %>
+<%#= turbo_stream_from "ingredients_bakery" %>
 
 <%= turbo_frame_tag "ingredient_form" do %>
   <%= render "ingredients/form", ingredient: @ingredient %>
@@ -12,12 +12,44 @@
 <%# <% end %>
 
 
+<%= turbo_stream_from "bakery" %>
+<%= turbo_frame_tag "bakery" do %>
+
+  <%#= render @ingredients %>
+  <% @bakery_ingredients.each do |ingredient| %>
+
+    <%= turbo_frame_tag(dom_id(ingredient)) do %>
+
+      <li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
+          <%= link_to "Edit", edit_ingredient_path(ingredient) %>
+      </li>
+
+    <% end %>
+
+  <% end %>
+
+<% end %>
+
 ----------------------
 
 <%= turbo_stream_from "ingredients" %>
 <%= turbo_frame_tag "ingredients" do %>
-  <%= render @ingredients %>
+
+  <%#= render @ingredients %>
+  <% @ingredients.each do |ingredient| %>
+
+    <%= turbo_frame_tag(dom_id(ingredient)) do %>
+
+      <li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
+          <%= link_to "Edit", edit_ingredient_path(ingredient) %>
+      </li>
+
+    <% end %>
+
+  <% end %>
+
 <% end %>
+
 
 
 <br>--------<br>
