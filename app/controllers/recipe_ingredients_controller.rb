@@ -68,7 +68,8 @@ class RecipeIngredientsController < ApplicationController
     
     @recipe_ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully destroyed." }
+      format.turbo_stream
+      # format.html { redirect_to @recipe, notice: "Recipe ingredient was successfully destroyed." }
       format.json { head :no_content }
     end
   end

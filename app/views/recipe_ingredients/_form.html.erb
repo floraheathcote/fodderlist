@@ -1,5 +1,6 @@
-
+<%#= form_with(model: [recipe_ingredient_group, recipe_ingredient], local: true) do |form| %>
 <%= form_with(scope: scope, url: url, local: true, method: method) do |form| %> 
+
 
 <%= render 'shared/errors', object: @recipe_ingredient %>
 

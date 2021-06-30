@@ -1,5 +1,7 @@
 <h1>Edit Recipe_ingredient</h1>
 
-<%= render 'form', scope: :recipe_ingredient, url: recipe_ingredient_path(@recipe_ingredient), method: :patch %>
+<%= turbo_frame_tag(dom_id(@recipe_ingredient)) do %>
+    <%= render 'form', scope: :recipe_ingredient, url: recipe_ingredient_path(@recipe_ingredient), method: :patch %>
+<% end %>
 
 <%= link_to "Remove", recipe_ingredient_path(@recipe_ingredient), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>

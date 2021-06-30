@@ -8,23 +8,36 @@
         <% end %>
           <p class="card-text">
           <ul class="list-group list-group-flush">
-                <% recipe_ingredient_group.recipe_ingredients.each do |recipe_ingredient| %>
-        
-                    <li class="list-group-item"><td><%= render 'shared/display_ingredient_info', mi_or_ri: recipe_ingredient, include_prep: "yes" %>
-                    <% if recipe_ingredient_group.recipe.user == current_user %>
-                            <%= link_to icon('fas', 'pencil-alt'), edit_recipe_ingredient_path(recipe_ingredient) %>
-                            <%= link_to icon('fas', 'trash'), recipe_ingredient_path(recipe_ingredient),
-                                    method: :delete, class: "text-danger", 
-                                    data: { confirm: 'Are you sure?' } %>
-                            </td></li>
 
-                    <% end %>
-                <% end %>
+                <%#= turbo_stream_from "recipe_ingredients" %>
+                <%#= turbo_frame_tag "recipe_ingredients" do %>
+                  <% recipe_ingredient_group.recipe_ingredients.each do |recipe_ingredient| %>
+          
+                    <%= turbo_frame_tag(dom_id(recipe_ingredient)) do %>
+
+                          <li class="list-group-item"><td><%= render 'shared/display_ingredient_info', mi_or_ri: recipe_ingredient, include_prep: "yes" %>
+                          <% if recipe_ingredient_group.recipe.user == current_user %>
+                                  <%= link_to icon('fas', 'pencil-alt'), edit_recipe_ingredient_path(recipe_ingredient) %>
+                                  <%= link_to icon('fas', 'trash'), recipe_ingredient_path(recipe_ingredient),
+                                          method: :delete, class: "text-danger", 
+                                          data: { confirm: 'Are you sure?' } %>
+                                  </td></li>
+
+                          <% end %>
+
+                      <% end %>
+                  <% end %>
+                <%# end %>
             </ul></p>
+
+
           <% if recipe_ingredient_group.recipe.user == current_user %>
 
             <h5>Add ingredient (<%= recipe_ingredient_group.name %>)</h5>
-            <%= render 'recipe_ingredients/form', scope: :recipe_ingredient, 
+            <%= turbo_frame_tag(dom_id(recipe_ingredient_group)) do %>
+                <%= link_to "Add ingredient", new_recipe_ingredient_group_recipe_ingredient_path(recipe_ingredient_group) %>
+            <% end %>
+            <%#= render 'recipe_ingredients/form', scope: :recipe_ingredient, 
                                 url: recipe_ingredient_group_recipe_ingredients_path(recipe_ingredient_group), 
                                 method: :post %>
           <% end %>

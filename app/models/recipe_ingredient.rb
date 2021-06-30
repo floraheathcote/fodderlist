@@ -12,4 +12,8 @@ class RecipeIngredient < ApplicationRecord
     self.unit = unit.singularize
   end
 
+  after_create_commit { broadcast_prepend_to "recipe_ingredients" }
+  after_update_commit { broadcast_replace_to "recipe_ingredients" }
+  after_destroy_commit { broadcast_remove_to "recipe_ingredients" }
+
 end

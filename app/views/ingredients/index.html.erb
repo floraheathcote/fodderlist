@@ -1,17 +1,26 @@
+<%= turbo_stream_from "ingredients_bakery" %>
 
-<%= form_with(model: @new_ingredient, local: true, url: ingredients_path, method: :post) do |form| %>
-              <td> <%= form.text_field :name, class: 'form-control', autofocus: true %> </td>
-              <td> <%= collection_select(:ingredient, :ingredient_category_id, IngredientCategory.all, :id, :name) %> </td>
-              <td> <%= form.submit class: 'btn btn-primary' %> </td>
-              
+<%= turbo_frame_tag "ingredient_form" do %>
+  <%= render "ingredients/form", ingredient: @ingredient %>
 <% end %>
+
+
+
+<%# <%= turbo_frame_tag "ingredients_bakery" do %>
+<%#      Bakery Ingredients: <br>
+<%#      <%= render @bakery_ingredients %>
+<%# <% end %>
+
+
+----------------------
 
 <%= turbo_stream_from "ingredients" %>
 <%= turbo_frame_tag "ingredients" do %>
   <%= render @ingredients %>
 <% end %>
 
-----------------------
+
+<br>--------<br>
 <div class="row">
   <div class="col-sm-6">
     <h1>Ingredients</h1>

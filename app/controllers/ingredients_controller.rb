@@ -7,7 +7,9 @@ class IngredientsController < ApplicationController
   # GET /ingredients or /ingredients.json
   def index
     @ingredients = Ingredient.order(ingredient_category_id: :asc, name: :asc)
-    @new_ingredient = Ingredient.new
+    @bakery_ingredients = @ingredients.where(ingredient_category_id: 3)
+    # @bakery_ingredient = Ingredient.new
+    @ingredient = Ingredient.new
   end
 
   # GET /ingredients/1 or /ingredients/1.json
@@ -20,7 +22,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new
   def new
     @ingredient = Ingredient.new
-    @ingredient.build_ingredient_category
+    # @ingredient.build_ingredient_category
   end
 
   # GET /ingredients/1/edit
@@ -34,10 +36,10 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        # format.turbo_stream
         format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: ingredients_path }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@ingredient, partial: "ingredients/form", locals: { ingredient: @ingredient })}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
       end
@@ -62,8 +64,8 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     respond_to do |format|
-      format.turbo_stream
-      # format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
+      # format.turbo_stream
+      format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
       format.json { head :no_content }
     end
   end
