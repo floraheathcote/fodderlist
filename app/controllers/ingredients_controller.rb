@@ -33,9 +33,20 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
+    @new_ingredient = Ingredient.new
+
 
     respond_to do |format|
       if @ingredient.save
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend(:bakery, partial: "ingredients/bakery_ingredient",
+            locals: { bakery_ingredient: @ingredient })
+
+          # render turbo_stream: turbo_stream.replace(partial: "ingredients/form", 
+          #   locals: { ingredient: Ingredient.new })
+        end
+    
         format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: ingredients_path }
       else
