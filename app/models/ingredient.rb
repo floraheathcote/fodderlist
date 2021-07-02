@@ -21,6 +21,8 @@ class Ingredient < ApplicationRecord
   # after_update_commit { broadcast_replace_to "ingredients" }
   # after_destroy_commit { broadcast_remove_to "ingredients" }
   
+  # scope :meal_recipe, ->(meal_recipe) { where(meal_recipe: meal_recipe) }
+  scope :category, ->(category) { where(ingredient_category: category) }
   
 
 private

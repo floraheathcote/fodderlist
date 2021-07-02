@@ -23,8 +23,19 @@
       </div>
     <% end %>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%#= form.submit class: 'btn btn-primary' %>
 
+    <% if ingredient.persisted? %>
+          <% if current_user.admin? %>
+              <td> <%= form.submit class: 'btn btn-primary' %> </td>
+              <% elsif Recipe.not_user(current_user).ingredient(ingredient).empty? && ingredient.user == current_user %>
+                <td> <%= form.submit class: 'btn btn-primary' %> </td>
+              <% else %>
+                <td> Contact admin to edit.</td>
+          <% end %>
+    <% else %>
+            <td> <%= form.submit class: 'btn btn-primary' %> </td>
+    <% end %>
     
 
 

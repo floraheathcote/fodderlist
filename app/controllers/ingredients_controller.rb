@@ -10,6 +10,7 @@ class IngredientsController < ApplicationController
     @bakery_ingredients = @ingredients.where(ingredient_category_id: 3)
     # @bakery_ingredient = Ingredient.new
     @ingredient = Ingredient.new
+    @categories = IngredientCategory.all
   end
 
   # GET /ingredients/1 or /ingredients/1.json
@@ -33,15 +34,16 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
-    @new_ingredient = Ingredient.new
+    # @new_ingredient = Ingredient.new
+    @category = @ingredient.ingredient_category.name
 
 
     respond_to do |format|
       if @ingredient.save
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend(:bakery, partial: "ingredients/bakery_ingredient",
-            locals: { bakery_ingredient: @ingredient })
+          render turbo_stream: turbo_stream.prepend("#{@category}", partial: "ingredients/ingredient",
+            locals: { ingredient: @ingredient })
 
           # render turbo_stream: turbo_stream.replace(partial: "ingredients/form", 
           #   locals: { ingredient: Ingredient.new })

@@ -11,44 +11,31 @@
 <%#      <%= render @bakery_ingredients %>
 <%# <% end %>
 
+<% @categories.each do |category| %>
 
-<%= turbo_stream_from "bakery" %>
-<%= turbo_frame_tag "bakery" do %>
+<h2> <%= category.name %></h2>
 
-  <%#= render @ingredients %>
-  <% @bakery_ingredients.each do |ingredient| %>
+      <%= turbo_stream_from "#{category.name}" %>
+      <%= turbo_frame_tag "#{category.name}" do %>
 
-    <%= turbo_frame_tag(dom_id(ingredient)) do %>
+        <%#= render @ingredients %>
+        <% Ingredient.category(category).each do |ingredient| %>
+        <%# @bakery_ingredients.each do |ingredient| %>
 
-      <li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
-          <%= link_to "Edit", edit_ingredient_path(ingredient) %>
-      </li>
+          <%= turbo_frame_tag(dom_id(ingredient)) do %>
 
-    <% end %>
+            
+            <%= render "ingredients/ingredient", ingredient: ingredient %>
 
-  <% end %>
+          <% end %>
+
+        <% end %>
+
+      <% end %>
 
 <% end %>
 
 ----------------------
-
-<%= turbo_stream_from "ingredients" %>
-<%= turbo_frame_tag "ingredients" do %>
-
-  <%#= render @ingredients %>
-  <% @ingredients.each do |ingredient| %>
-
-    <%= turbo_frame_tag(dom_id(ingredient)) do %>
-
-      <li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
-          <%= link_to "Edit", edit_ingredient_path(ingredient) %>
-      </li>
-
-    <% end %>
-
-  <% end %>
-
-<% end %>
 
 
 
