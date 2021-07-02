@@ -1,8 +1,8 @@
 
 
 //= link_tree ../images
-//= link_directory ../stylesheets.css
+
 //= link administrate/application.css
 //= link administrate/application.js
 
-//= link_directory ../../../node_modules/bootstrap-icons.svg
+//= link_directory ../../../node_modules/bootstrap-icons .svg
