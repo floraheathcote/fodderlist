@@ -48,6 +48,7 @@ class IngredientsController < ApplicationController
           # render turbo_stream: turbo_stream.replace(partial: "ingredients/form", 
           #   locals: { ingredient: Ingredient.new })
         end
+        
     
         format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: ingredients_path }
@@ -77,7 +78,7 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
 
     respond_to do |format|
-      # format.turbo_stream
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@ingredient) }
       format.html { redirect_to ingredients_url, notice: "Ingredient was successfully destroyed." }
       format.json { head :no_content }
     end

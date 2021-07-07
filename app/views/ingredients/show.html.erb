@@ -18,3 +18,8 @@
   <%#= main_image(@ingredient) %>
 
 </dl>
+
+<%#= code below useful for separate Cancel buton if not using one already in form partial
+<%#= turbo_frame_tag dom_id(@ingredient) do %> 
+  <%#= render @ingredient %>
+<%# end %>

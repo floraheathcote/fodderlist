@@ -4,9 +4,8 @@
 <li><%= ingredient.name %>, (<%= ingredient.ingredient_category.name %>)
 
     <%= link_to "Edit", edit_ingredient_path(ingredient) %>
-    <% if current_user.admin? %>
-                    <td> <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-                          </td>
+    <% if current_user&.admin? %>
+           <td> <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger" %></td>           
     <% end %>  
 
 </li>

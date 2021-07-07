@@ -1,36 +1,20 @@
-<%#= turbo_stream_from "ingredients_bakery" %>
+
 
 <%= turbo_frame_tag "ingredient_form" do %>
   <%= render "ingredients/form", ingredient: @ingredient %>
 <% end %>
 
-
-
-<%# <%= turbo_frame_tag "ingredients_bakery" do %>
-<%#      Bakery Ingredients: <br>
-<%#      <%= render @bakery_ingredients %>
-<%# <% end %>
-
 <% @categories.each do |category| %>
 
-<h2> <%= category.name %></h2>
+      <h2> <%= category.name %></h2>
 
       <%= turbo_stream_from "#{category.name}" %>
       <%= turbo_frame_tag "#{category.name}" do %>
-
-        <%#= render @ingredients %>
         <% Ingredient.category(category).each do |ingredient| %>
-        <%# @bakery_ingredients.each do |ingredient| %>
-
           <%= turbo_frame_tag(dom_id(ingredient)) do %>
-
-            
             <%= render "ingredients/ingredient", ingredient: ingredient %>
-
           <% end %>
-
         <% end %>
-
       <% end %>
 
 <% end %>
@@ -46,7 +30,7 @@
   </div>
 
   <div class="col-sm-6 text-right">
-  <% if current_user.admin? %>
+  <% if current_user&.admin? %>
     <%= link_to "Edit Categories", ingredient_categories_path, class: 'btn btn-primary' %>
   <% end %>
   </div>
@@ -84,7 +68,7 @@
                   
                   
                   <% if ingredient.persisted? %>
-                    <% if current_user.admin? %>
+                    <% if current_user&.admin? %>
                       <td> <%= form.submit class: 'btn btn-primary' %> </td>
                     <% elsif Recipe.not_user(current_user).ingredient(ingredient).empty? && ingredient.user == current_user %>
                       <td> <%= form.submit class: 'btn btn-primary' %> </td>
@@ -96,7 +80,7 @@
                   <% end %>
 
                   
-                  <% if current_user.admin? %>
+                  <% if current_user&.admin? %>
                     <td> <%= link_to 'Destroy', ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
                           </td>
                   <% end %>
