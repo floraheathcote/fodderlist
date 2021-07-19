@@ -12,15 +12,15 @@
 
   <% @days.each do |day| %>
       <% day.meals.each do |meal| %>
+      
       <% if meal.meal_recipes.present? %>
         <nav class="navbar navbar-light bg-light">
           <span class="navbar-brand mb-0 h1"><%= meal.name %></span>
         </nav>
         <br>
-
+      <% end %>
 
         
-      <% end %>
             <% meal.meal_recipes.each do |mr| %> 
 
                 <div class="row">
@@ -84,7 +84,8 @@
 
             </div><br>
           
-      <% end %>
+        
+      <% end %> 
   <% end %>
           
             

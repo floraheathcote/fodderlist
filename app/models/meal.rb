@@ -5,7 +5,8 @@ class Meal < ApplicationRecord
   has_many :meal_with_leftovers, dependent: :destroy
 
 
-  validates :meal_type, presence: true
+  validates :meal_type, :name, :day, :time, presence: true
+ 
 
   before_save :add_day_date_to_time
 

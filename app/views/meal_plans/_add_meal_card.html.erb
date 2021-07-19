@@ -1,10 +1,12 @@
 
 
-<div class="card" style="max-width: 18rem;">
-<div class="card-header">Add a meal or snack to <%= nice_date(day.date) %></p></div>
+    <div class="card" style="max-width: 18rem;">
+    <div class="card-header">Add a meal or snack to <%= nice_date(day.date) %></p></div>
 
-  <div class="card-body">
-            <p class="card-text"><%= render 'meals/form', day: day, scope: meal, url: url, button_text: "Add Meal", method: method %></p>
-        </div>
-  
-</div>
+      <div class="card-body">
+                <p class="card-text">
+                
+                  <%= render 'meals/form', day: day, scope: meal, url: url, button_text: "Add Meal", method: method %></p>         
+      </div>
+      
+    </div>

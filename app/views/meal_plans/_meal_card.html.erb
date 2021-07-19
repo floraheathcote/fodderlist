@@ -25,120 +25,121 @@
     <div class="card-body">
     <br>
   
-    <% unless meal.meal_recipes.present? %>
-        <div class="row">
-            <div class="col-4">
-              <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
-            </div>
-            <div class="col-8">
-              <h6>Add recipe using form above</h6>
-              <br><br><br><br>
-            </div>
-        </div>
-    <% end %>
-     
-
-    <% if meal.notes.present? %>
-        Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
-    <% end%>
-
-    <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
+        <% unless meal.meal_recipes.present? %>
             <div class="row">
                 <div class="col-4">
-                <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
                 </div>
                 <div class="col-8">
-                <h6><%= meal_recipe.recipe.name %></h6>
+                <h6>Add recipe using form above</h6>
+                <br><br><br><br>
                 </div>
             </div>
-
+        <% end %>
         
-            <% leftover = @leftover.meal_recipe(meal_recipe).first %>
 
-            <% if @meal_plan.status=="draft" %>
-                <% if @leftover.meal_recipe(meal_recipe).present? %>
-                    <span class="badge bg-light text-dark">
-                    <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                    </span>
-                    <span class="badge bg-success text-light">
-                    eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
-                    </span>
-                    <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
-                    
-                <% else %>
-                    <span class="badge bg-light text-dark">
-                    <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                    </span>
-                    <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
-                    <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+        <% if meal.notes.present? %>
+            Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
+        <% end%>
 
-                <% end %>
-            <% else %>
-                <span class="badge bg-light text-dark">
-                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                </span>
+      
+            <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
+                <%#= turbo_stream_from(dom_id(meal_recipe)) %>
+                <%#= turbo_frame_tag(dom_id(meal_recipe)) do %>
+                    <div class="row">
+                        <div class="col-4">
+                        <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                        </div>
+                        <div class="col-8">
+                        <h6><%= meal_recipe.recipe.name %></h6>
+                        </div>
+                    </div>
+                <%# end %>
+                
+                    <% leftover = @leftover.meal_recipe(meal_recipe).first %>
+
+                    <% if @meal_plan.status=="draft" %>
+                        <% if @leftover.meal_recipe(meal_recipe).present? %>
+                            <span class="badge bg-light text-dark">
+                            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                            </span>
+                            <span class="badge bg-success text-light">
+                            eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
+                            </span>
+                            <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
+                        <% else %>
+                            <span class="badge bg-light text-dark">
+                            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                            </span>
+                            <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
+                            <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+                        <% end %>
+                    <% else %>
+                        <span class="badge bg-light text-dark">
+                        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                        </span>
+                    <% end %>
+                
+
+                    <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
+
             <% end %>
-            
-
-            <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
-
-    <% end %>
-    <br>
-
-    <h6>Other food/drinks in this meal:</h6>
-    <ul>
-    <small class="text-muted">
-
-    <% meal.meal_ingredients.no_recipe.each do |mi| %>
-        <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
-    <% end %>
-
-        <li><%= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %></li>
-    </small>
-    </ul>
-    
-    <br>
-    
-    <% if MealWithLeftover.meal(meal).present? %>
-        <h6>Leftovers added to meal:</h6>
-    <% end %>
-
-
-
-
-    <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |leftover_meal| %>
-        <div class="row">
-            <div class="col-4">
-            <%= image_tag(leftover_meal.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-            </div>
-            <div class="col-8">
-            <small><%= leftover_meal.leftover.recipe.name %></small>
-
-                <%= link_to "#{pluralize(round_nicely(leftover_meal.portions), "portion")} X", leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
-            <%#= link_to "edit", edit_leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal)%>
-
-            <%#= pluralize(round_nicely(leftover_meal.portions), "portion") %>
-            </div>
-        </div>
+       
         <br>
 
-    <% end %>
-
-
-
-    <% title_already_drawn = false %>
-    <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
-        <% if leftover.calculated_stock_level > 0 %>
-            <% if title_already_drawn == false %>
-                <h6>Leftovers available to add to meal:</h6>
-                <% title_already_drawn = true %>
+        <h6>Other food/drinks in this meal:</h6>
+        <ul>
+        <small class="text-muted">
+            <% meal.meal_ingredients.no_recipe.each do |mi| %>
+                <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
             <% end %>
-            <%= link_to leftover.recipe.name.first(20), new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
+
+            <li><%= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %></li>
+        </small>
+        </ul>
+        
+        <br>
+        
+        <% if MealWithLeftover.meal(meal).present? %>
+            <h6>Leftovers added to meal:</h6>
         <% end %>
-    <% end %>
 
 
-       
+
+
+        <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |leftover_meal| %>
+            <div class="row">
+                <div class="col-4">
+                <%= image_tag(leftover_meal.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                </div>
+                <div class="col-8">
+                <small><%= leftover_meal.leftover.recipe.name %></small>
+
+                    <%= link_to "#{pluralize(round_nicely(leftover_meal.portions), "portion")} X", leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
+                <%#= link_to "edit", edit_leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal)%>
+
+                <%#= pluralize(round_nicely(leftover_meal.portions), "portion") %>
+                </div>
+            </div>
+            <br>
+
+        <% end %>
+
+
+
+        <% title_already_drawn = false %>
+        <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
+            <% if leftover.calculated_stock_level > 0 %>
+                <% if title_already_drawn == false %>
+                    <h6>Leftovers available to add to meal:</h6>
+                    <% title_already_drawn = true %>
+                <% end %>
+                <%= link_to leftover.recipe.name.first(20), new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
+            <% end %>
+        <% end %>
+
+
+        
     </div>
     
 </div>

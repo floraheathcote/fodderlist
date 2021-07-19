@@ -25,30 +25,29 @@ class MealsController < ApplicationController
   # POST /meals or /meals.json
   def create
     
-    # @day = Day.find_by(params[:id])
+    
     # @meal_plan = MealPlan.find_by(params[:id])
     @meal = Meal.new(meal_params)
     # @meal.time = @meal.day.date + @meal.time.hour
     @meal_plan = @meal.day.meal_plan
     # @meal_plan = @day.meal_plan
-
+    # @meal.save
+    # @day = Day.find(params[:day_id])
+    
     @meal.save
 
     respond_to do |format|
       if @meal.save
-
-        # @recipe = @meal.recipe
-        #   if @recipe.present?
-        #     @recipe.recipe_ingredients.each do |recipe_ingredient|
-        #         @meal_ingredient = MealIngredient.new
-        #         @meal_ingredient.ingredient = recipe_ingredient.ingredient
-        #         @meal_ingredient.quantity = recipe_ingredient.portions
-        #     end
-        #   end
+        
+        # format.turbo_stream do
+        #   render turbo_stream: turbo_stream.prepend(dom_id(@day), partial: "meal_plans/meal_card",
+        #     locals: { meal: @meal })
+        # end 
 
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
+        # format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal, partial: "meals/form", locals: { meal: @meal, url: day_meals_path(58643), method: :post })}
         format.html { redirect_to @meal_plan, notice: "Error saving meal - please fill out all fields." }
         format.json { render :show, status: :created, location: @meal_plan }
       end
