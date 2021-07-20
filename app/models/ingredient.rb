@@ -17,7 +17,16 @@ class Ingredient < ApplicationRecord
     self.name = name.downcase.singularize
   end
 
-  # after_create_commit { broadcast_prepend_to :bakery }
+  # after_create_commit  -> {
+  #     broadcast_prepend_later_to "#{self.ingredient_category.name}", :ingredients
+  # }
+
+  # after_create_commit  -> {
+  #   render turbo_stream: turbo_stream.prepend("#{@ingredient_category.name}", partial: "ingredients/ingredient",
+  #   locals: { ingredient: @ingredient })
+  # }
+
+  # after_create_commit { broadcast_prepend_to "#{self.ingredient_category.name}", :ingredients }
   # after_update_commit { broadcast_replace_to "ingredients" }
   # after_destroy_commit { broadcast_remove_to "ingredients" }
   

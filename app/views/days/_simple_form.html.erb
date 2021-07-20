@@ -1,5 +1,5 @@
 
-<%= form_with(model: [meal_plan, day], local:true) do |form| %>
+<%= form_with(model: day, url: meal_plan_days_path(@meal_plan), id: dom_id(day)) do |form| %>
 
   <%= render 'shared/errors', object: day %>
   
@@ -21,6 +21,7 @@
         <%= link_to 'Destroy', day, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>
+   </div>
 
     <%= form.submit class: 'btn btn-primary' %>
 

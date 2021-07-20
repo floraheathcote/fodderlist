@@ -40,10 +40,12 @@ class MealsController < ApplicationController
     respond_to do |format|
       if @meal.save
         
-        # format.turbo_stream do
-        #   render turbo_stream: turbo_stream.prepend(dom_id(@day), partial: "meal_plans/meal_card",
-        #     locals: { meal: @meal })
-        # end 
+  
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend(dom_id(@day), partial: "meal_plans/meal_card",
+            locals: { meal: @meal })
+        end
 
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }

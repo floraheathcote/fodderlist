@@ -50,13 +50,21 @@ class DaysController < ApplicationController
     @meal_plan = MealPlan.find(params[:meal_plan_id])
     @day = Day.new(day_params)
     @day.meal_plan = @meal_plan
+    @new_meal = Meal.new
 
     respond_to do |format|
       if @day.save
         create_meals_for_day(@day)
+
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend("meal_plan#{@meal_plan.id}", partial: "meal_plans/day_in_meal_plan",
+            locals: { day: @day, new_meal: @new_meal })
+        end
+
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Day was successfully created." }
         format.json { render :show, status: :created, location: @day }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@day, partial: "days/simple_form", locals: { day: @day })}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @day.errors, status: :unprocessable_entity }
       end

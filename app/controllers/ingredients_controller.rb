@@ -35,23 +35,22 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @ingredient.user = current_user
     # @new_ingredient = Ingredient.new
-    @category = @ingredient.ingredient_category.name
+    @ingredient_category = @ingredient.ingredient_category
 
 
     respond_to do |format|
       if @ingredient.save
 
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend("#{@category}", partial: "ingredients/ingredient",
-            locals: { ingredient: @ingredient })
+        # respond_to do |format|
 
-          # render turbo_stream: turbo_stream.replace(partial: "ingredients/form", 
-          #   locals: { ingredient: Ingredient.new })
-        end
-        
-    
-        format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
-        format.json { render :show, status: :created, location: ingredients_path }
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.prepend("#{@ingredient_category.name}", partial: "ingredients/ingredient",
+              locals: { ingredient: @ingredient })
+          end
+          
+          format.html { redirect_to ingredients_path, notice: "Ingredient was successfully created." }
+          format.json { render :show, status: :created, location: ingredients_path }
+        # end
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@ingredient, partial: "ingredients/form", locals: { ingredient: @ingredient })}
         format.html { render :new, status: :unprocessable_entity }

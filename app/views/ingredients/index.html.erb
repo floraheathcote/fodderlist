@@ -4,13 +4,13 @@
   <%= render "ingredients/form", ingredient: @ingredient %>
 <% end %>
 
-<% @categories.each do |category| %>
+<% @categories.each do |ingredient_category| %>
 
-      <h2> <%= category.name %></h2>
+      <h2> <%= ingredient_category.name %></h2>
 
-      <%= turbo_stream_from "#{category.name}" %>
-      <%= turbo_frame_tag "#{category.name}" do %>
-        <% Ingredient.category(category).each do |ingredient| %>
+      <%= turbo_stream_from "#{ingredient_category.name}" %>
+      <%= turbo_frame_tag "#{ingredient_category.name}" do %>
+        <% Ingredient.category(ingredient_category).each do |ingredient| %>
           <%= turbo_frame_tag(dom_id(ingredient)) do %>
             <%= render "ingredients/ingredient", ingredient: ingredient %>
           <% end %>
