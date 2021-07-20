@@ -13,7 +13,7 @@ class MealPlansController < ApplicationController
   # GET /meal_plans/1 or /meal_plans/1.json
   def show
     
- 
+    @new_day = Day.new
     @new_meal = Meal.new
     @days = @meal_plan.days.order(date: :asc).includes(:meals)
     @meals = @meal_plan.meals.order(time: :desc).includes(:meal_recipes, :meal_ingredients)

@@ -33,22 +33,36 @@
 
 <br>
 
+<%= turbo_frame_tag "day_form" do %>
+    <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
+<% end %>
+
+<br><br>
+
 <% @days.each do |day| %>
+
 <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
+
+
 
     <%= render 'day_header_bar', day: day %>
 
     <br>
 
-    <div class="card-deck">
-            <%#= turbo_stream_from(dom_id(day)) %>
-            <%#= turbo_frame_tag(dom_id(day)) do %>
+    <%= turbo_frame_tag "meal_form" do %>
+        <%= render "meals/simple_form", day: day, meal: @new_meal %>
+    <% end %>
 
-                <% day.meals.order(:time).each do |meal| %>
+<br><br>
+    <div class="card-deck">
+
+
+
+            <% day.meals.order(:time).each do |meal| %>
 
                     <%#= turbo_stream_from(dom_id(meal)) %>
                     <%#= turbo_frame_tag(dom_id(meal)) do %>  
-                            <%= render 'meal_card', meal:meal %>
+                        <%= render 'meal_card', meal:meal %>
                     <%# end %>
                 <%# end %>
             <% end %>

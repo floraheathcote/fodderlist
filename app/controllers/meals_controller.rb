@@ -25,14 +25,15 @@ class MealsController < ApplicationController
   # POST /meals or /meals.json
   def create
     
-    
+    debug
     # @meal_plan = MealPlan.find_by(params[:id])
     @meal = Meal.new(meal_params)
     # @meal.time = @meal.day.date + @meal.time.hour
-    @meal_plan = @meal.day.meal_plan
-    # @meal_plan = @day.meal_plan
-    # @meal.save
-    # @day = Day.find(params[:day_id])
+    # @meal_plan = @meal.day.meal_plan
+    @day = Day.find(params[:day_id])
+    @meal_plan = @day.meal_plan
+    # @meal_plan = MealPlan.find(params[:id])
+
     
     @meal.save
 
