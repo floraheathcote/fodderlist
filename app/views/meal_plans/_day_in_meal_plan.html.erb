@@ -13,17 +13,17 @@
         <% end %>
 
             <br><br>
-            <div class="card-deck">
+            
             <%#= turbo_stream_from "mealsinday#{day.id}" %>
             <%#= turbo_stream_from "day#{day.id}" %>
             <%= turbo_frame_tag "meallist#{day.id}" do %> 
-                    <% day.meals.order(:time).each do |meal| %>  
-
-                                <%= render 'meal_plans/meal_card', meal:meal %>
-                    <% end %>
+                <% day.meals.order(:time).each do |meal| %>  
+                    <%= render 'meal_plans/meal_card', meal:meal -%>
+                    
+                <% end %>
             <% end %>
 
-            </div>
+            
             <br>     
     </div>
     <br><br>

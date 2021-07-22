@@ -90,6 +90,7 @@ class DaysController < ApplicationController
     @meal_plan = @day.meal_plan
     @day.destroy
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@day) }
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Day was successfully destroyed." }
       format.json { head :no_content }
     end
