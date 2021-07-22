@@ -47,6 +47,9 @@ class MealsController < ApplicationController
             locals: { meal: @meal })
         end
 
+        # format.turbo_stream { turbo_stream.prepend("day#{@day.id}", "<template><p> Some html content you want to show </p></template>")}
+
+
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
