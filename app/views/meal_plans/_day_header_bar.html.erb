@@ -10,10 +10,9 @@
     <div class="col-sm">
       <% if @meal_plan.status == "draft" %>
             <%= link_to "Delete day & all meals in it", day_path(day), 
-                    class: 'btn btn-default', 
                     method: :delete, class: "text-danger", 
-                    data: { confirm: 'Are you sure? This will delete the remove the day and delete any meals in it.' } %>
-    <% end %>
+                    data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>
+      <% end %>
     </div>
   </div>
 </div>

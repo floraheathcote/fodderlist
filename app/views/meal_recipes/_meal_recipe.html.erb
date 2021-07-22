@@ -1,0 +1,39 @@
+<%= turbo_frame_tag("meal_recipe#{meal_recipe.id}") do %>
+
+    <div class="row">
+        <div class="col-1">
+        <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+        </div>
+        <div class="col-4">
+        <h6><%= meal_recipe.recipe.name %></h6>
+        </div>
+    </div>
+
+    <% first_leftover = leftover.meal_recipe(meal_recipe).first %>
+
+    <% if @meal_plan.status=="draft" %>
+        <% if @leftover.meal_recipe(meal_recipe).present? %>
+            <span class="badge bg-light text-dark">
+            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+            </span>
+            <span class="badge bg-success text-light">
+            eat: <%= round_nicely(meal_recipe.portions - first_leftover.max_portions) %>
+            </span>
+            <%= link_to "save: #{round_nicely(first_leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
+        <% else %>
+            <span class="badge bg-light text-dark">
+            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+            </span>
+            <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
+            <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+        <% end %>
+    <% else %>
+        <span class="badge bg-light text-dark">
+        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+        </span>
+    <% end %>
+
+
+    <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
+
+<% end %>

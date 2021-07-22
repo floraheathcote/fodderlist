@@ -2,40 +2,38 @@
 
 <div class="card-deck">
 
-
-
-
     <div class="card" ">
         <div class="card-header">
             <div class="row">
                 <div class="col-sm">
                     <h5><%= meal.name %></h5>
                     <% if @meal_plan.status=="draft" %>
-                        <%= link_to "Edit/Delete meal", edit_meal_path(meal) %>
-                    <% end %>
+                        <%= link_to "Edit meal", edit_meal_path(meal) %>
+                        <%= link_to "Delete meal", meal_path(meal), 
+                                method: :delete, class: "text-danger", 
+                                data: { confirm: 'Are you sure you want to delete the meal?' } %>
+                         <% end %>
                 </div>
                 <div class="col-sm">
                     <%= meal.time.strftime('%l:%M%P') %>
                 </div>
                 <div class="col-sm">
                     <% if @meal_plan.status=="draft" %>
-                            <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @new_meal_recipe %>
+                        <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @new_meal_recipe %>
                     <% end %>                
                 </div>
             </div>
-              
         </div>
-
 
         <div class="card-body">
         <br>
     
             <% unless meal.meal_recipes.present? %>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-1">
                     <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
                     </div>
-                    <div class="col-8">
+                    <div class="col-4">
                     <h6>Add recipe using form above</h6>
                     <br><br><br><br>
                     </div>
@@ -47,48 +45,13 @@
                 Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
             <% end%>
 
-        
+            <%= turbo_stream_from("meal_recipe_list#{meal.id}") %>
+            <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
                 <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-                    <%#= turbo_stream_from(dom_id(meal_recipe)) %>
-                    <%#= turbo_frame_tag(dom_id(meal_recipe)) do %>
-                        <div class="row">
-                            <div class="col-4">
-                            <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-                            </div>
-                            <div class="col-8">
-                            <h6><%= meal_recipe.recipe.name %></h6>
-                            </div>
-                        </div>
-                    <%# end %>
                     
-                        <% leftover = @leftover.meal_recipe(meal_recipe).first %>
-
-                        <% if @meal_plan.status=="draft" %>
-                            <% if @leftover.meal_recipe(meal_recipe).present? %>
-                                <span class="badge bg-light text-dark">
-                                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                                </span>
-                                <span class="badge bg-success text-light">
-                                eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
-                                </span>
-                                <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
-                            <% else %>
-                                <span class="badge bg-light text-dark">
-                                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                                </span>
-                                <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
-                                <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
-                            <% end %>
-                        <% else %>
-                            <span class="badge bg-light text-dark">
-                            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                            </span>
-                        <% end %>
-                    
-
-                        <%= render 'meal_plans/meal_recipe_info', meal_recipe:meal_recipe, meal:meal %>
-
+                    <%= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
                 <% end %>
+            <% end %>
         
             <br>
 

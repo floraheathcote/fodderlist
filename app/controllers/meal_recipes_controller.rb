@@ -26,6 +26,8 @@ class MealRecipesController < ApplicationController
     @meal_recipe = MealRecipe.new(meal_recipe_params)
     
     @meal_plan = @meal_recipe.meal.day.meal_plan
+    @meal = @meal_recipe.meal
+    @leftover = Leftover.user(current_user).includes(:meal_recipe)
     
     if @meal_recipe.recipe.present?
       @meal_recipe.portions = @meal_recipe.recipe.portions
@@ -37,6 +39,10 @@ class MealRecipesController < ApplicationController
           
         create_meal_ingredients_for_recipe(@meal_recipe)
 
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend("meal_recipe_list#{@meal.id}", partial: "meal_recipes/meal_recipe",
+            locals: { meal: @meal, meal_recipe: @meal_recipe, leftover: @leftover })
+        end
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else
@@ -66,6 +72,7 @@ class MealRecipesController < ApplicationController
     @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal_recipe.destroy
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_recipe#{@meal_recipe.id}") }
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal recipe was successfully destroyed." }
       format.json { head :no_content }
     end
