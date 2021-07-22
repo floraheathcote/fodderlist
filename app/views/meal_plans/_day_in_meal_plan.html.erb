@@ -15,7 +15,7 @@
             <br><br>
             
             <%#= turbo_stream_from "mealsinday#{day.id}" %>
-            <%#= turbo_stream_from "day#{day.id}" %>
+            <%= turbo_stream_from "meallist#{day.id}" %>
             <%= turbo_frame_tag "meallist#{day.id}" do %> 
                 <% day.meals.order(:time).each do |meal| %>  
                     <%= render 'meal_plans/meal_card', meal:meal -%>

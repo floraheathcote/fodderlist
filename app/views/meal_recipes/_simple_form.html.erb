@@ -1,0 +1,22 @@
+<%= turbo_frame_tag "meal_recipe_form" do %>
+    <%= form_with(model: meal_recipe, url: meal_meal_recipes_path(meal), id: "meal_recipe#{meal_recipe.id}") do |form| %>
+
+    <%= render 'shared/errors', object: @new_meal_recipe %>
+        
+        <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
+            {:prompt => 'Add recipe to meal'}, 
+            {:class=>'input',
+            :style=>'width:100%', 
+            :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
+        
+        <%#= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
+
+
+        <%= form.hidden_field :meal_id, value: meal.id %>
+
+        <br>
+        <%= form.submit "Add recipe", class: 'btn btn-primary' %>
+
+    <% end %>
+
+<% end %>

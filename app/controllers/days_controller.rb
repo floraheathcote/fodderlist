@@ -51,6 +51,7 @@ class DaysController < ApplicationController
     @day = Day.new(day_params)
     @day.meal_plan = @meal_plan
     @new_meal = Meal.new
+    @new_meal_recipe = MealRecipe.new
 
     respond_to do |format|
       if @day.save
@@ -58,7 +59,7 @@ class DaysController < ApplicationController
 
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend("meal_plan#{@meal_plan.id}", partial: "meal_plans/day_in_meal_plan",
-            locals: { day: @day, new_meal: @new_meal })
+            locals: { day: @day, new_meal: @new_meal, meal_recipe: @new_meal_recipe })
         end
 
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Day was successfully created." }
@@ -90,7 +91,7 @@ class DaysController < ApplicationController
     @meal_plan = @day.meal_plan
     @day.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@day) }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("day#{@day.id}") }
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Day was successfully destroyed." }
       format.json { head :no_content }
     end

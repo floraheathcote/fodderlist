@@ -1,30 +1,30 @@
 <%= turbo_frame_tag "day_form" do %>
-<%= form_with(model: day, url: meal_plan_days_path(@meal_plan), id: dom_id(day)) do |form| %>
+  <%= form_with(model: day, url: meal_plan_days_path(@meal_plan), id: "day#{day.id}") do |form| %>
 
-  <%= render 'shared/errors', object: day %>
-  
-  <% unless day.persisted? %>
-  <div class="form-group">
-    <%= form.label :date %>
-    <%= form.date_select :date, class: 'form-control' %>
-  </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= form.label :notes %>
-    <%= form.text_field :notes, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <% if day.persisted? %>
-      <div class="float-right">
-        <%= link_to 'Destroy', day, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-      </div>
+    <%= render 'shared/errors', object: day %>
+    
+    <% unless day.persisted? %>
+    <div class="form-group">
+      <%= form.label :date %>
+      <%= form.date_select :date, class: 'form-control' %>
+    </div>
     <% end %>
-   </div>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <div class="form-group">
+      <%= form.label :notes %>
+      <%= form.text_field :notes, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <% if day.persisted? %>
+        <div class="float-right">
+          <%= link_to 'Destroy', day, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+    </div>
+
+      <%= form.submit class: 'btn btn-primary' %>
 
 
-<% end %>
+  <% end %>
 <% end %>

@@ -34,6 +34,7 @@ class MealsController < ApplicationController
     @meal_plan = @day.meal_plan
     # @meal_plan = MealPlan.find(params[:id])
     @meal.day = @day
+    @new_meal_recipe = MealRecipe.new
     
     # @meal.save
 
@@ -44,7 +45,7 @@ class MealsController < ApplicationController
 
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal_plans/meal_card",
-            locals: { meal: @meal })
+            locals: { meal: @meal, meal_recipe: @new_meal_recipe })
         end
 
         # format.turbo_stream { turbo_stream.prepend("day#{@day.id}", "<template><p> Some html content you want to show </p></template>")}
