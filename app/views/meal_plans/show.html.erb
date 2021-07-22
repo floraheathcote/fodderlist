@@ -41,9 +41,9 @@
 
 
     <% if @meal_plan.status=="draft" %>
-        <%= turbo_frame_tag "day_form" do %>
+        <%#= turbo_frame_tag "day_form" do %>
             <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
-        <% end %>
+        <%# end %>
     <% end %>
     <br><br>
 
