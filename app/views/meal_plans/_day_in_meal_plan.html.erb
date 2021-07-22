@@ -1,38 +1,30 @@
-<%= turbo_frame_tag "day#{day.id}" do %> 
+<%#= turbo_frame_tag "day#{day.id}" do %> 
     
     <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
 
             <%= render 'meal_plans/day_header_bar', day: day %>
 
             <br>
-
+        
+        <% if @meal_plan.status=="draft" %>
             <%= turbo_frame_tag "meal_form" do %>
                 <%= render "meals/simple_form", day: day, meal: new_meal %>
             <% end %>
+        <% end %>
 
             <br><br>
             <div class="card-deck">
+            <%#= turbo_stream_from "mealsinday#{day.id}" %>
+            <%#= turbo_stream_from "day#{day.id}" %>
+            <%= turbo_frame_tag "meallist#{day.id}" do %> 
+                    <% day.meals.order(:time).each do |meal| %>  
 
-                    <% day.meals.order(:time).each do |meal| %>
-
-                            <%#= turbo_stream_from(dom_id(meal)) %>
-                            <%#= turbo_frame_tag(dom_id(meal)) do %>  
                                 <%= render 'meal_plans/meal_card', meal:meal %>
-                            <%# end %>
-                        <%# end %>
                     <% end %>
+            <% end %>
 
-                    <%# if @meal_plan.status=="draft" %>
-
-                    
-                        <%#= turbo_frame_tag "add_meal_form" do %>
-                                <%#= render 'add_meal_card', meal: @new_meal, day: day, 
-                                        url: day_meals_path(day), method: :post, :style=>'width:10%' %>
-                        <%# end %>
-                    <%# end %>
-                    
             </div>
             <br>     
     </div>
     <br><br>
-<% end %>
+<%# end %>

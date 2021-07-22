@@ -43,7 +43,7 @@ class MealsController < ApplicationController
   
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend("day#{@day.id}", partial: "meal_plans/meal_card",
+          render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal_plans/meal_card",
             locals: { meal: @meal })
         end
 
