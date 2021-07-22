@@ -1,4 +1,4 @@
-
+<%= turbo_frame_tag "day_form" do %>
 <%= form_with(model: day, url: meal_plan_days_path(@meal_plan), id: dom_id(day)) do |form| %>
 
   <%= render 'shared/errors', object: day %>
@@ -26,4 +26,5 @@
     <%= form.submit class: 'btn btn-primary' %>
 
 
+<% end %>
 <% end %>

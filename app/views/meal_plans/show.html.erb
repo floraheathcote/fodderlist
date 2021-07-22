@@ -47,12 +47,12 @@
     <% end %>
     <br><br>
 
-<%= turbo_stream_from "meal_plan#{@meal_plan.id}", :days %>
+<%= turbo_stream_from "meal_plan#{@meal_plan.id}" %>
 <%= turbo_frame_tag "meal_plan#{@meal_plan.id}" do %>  
      
 
             <% @days.each do |day| %>
-                <%= turbo_stream_from(dom_id(day)), :meals %>
+                <%= turbo_stream_from "day#{day.id}" %>
                 <%#= turbo_frame_tag(dom_id(day)) do %>  
                     <%= render "meal_plans/day_in_meal_plan", day: day, new_meal: @new_meal %>
                 <%# end %>

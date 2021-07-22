@@ -25,7 +25,7 @@ class MealsController < ApplicationController
   # POST /meals or /meals.json
   def create
     
-    debug
+    
     # @meal_plan = MealPlan.find_by(params[:id])
     @meal = Meal.new(meal_params)
     # @meal.time = @meal.day.date + @meal.time.hour
@@ -33,9 +33,9 @@ class MealsController < ApplicationController
     @day = Day.find(params[:day_id])
     @meal_plan = @day.meal_plan
     # @meal_plan = MealPlan.find(params[:id])
-
+    @meal.day = @day
     
-    @meal.save
+    # @meal.save
 
     respond_to do |format|
       if @meal.save
@@ -50,7 +50,8 @@ class MealsController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
-        # format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal, partial: "meals/form", locals: { meal: @meal, url: day_meals_path(58643), method: :post })}
+        
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal, partial: "meals/simple_form", locals: { meal: @meal, day: @day })}
         format.html { redirect_to @meal_plan, notice: "Error saving meal - please fill out all fields." }
         format.json { render :show, status: :created, location: @meal_plan }
       end

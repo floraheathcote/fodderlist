@@ -1,4 +1,4 @@
-<%= turbo_frame_tag(dom_id(day)) do %> 
+<%= turbo_frame_tag "day#{day.id}" do %> 
     
     <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
 
@@ -6,9 +6,9 @@
 
             <br>
 
-            <%#= turbo_frame_tag "meal_form" do %>
-                <%#= render "meals/simple_form", day: day, meal: new_meal %>
-            <%# end %>
+            <%= turbo_frame_tag "meal_form" do %>
+                <%= render "meals/simple_form", day: day, meal: new_meal %>
+            <% end %>
 
             <br><br>
             <div class="card-deck">

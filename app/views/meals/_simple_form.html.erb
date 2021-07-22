@@ -1,6 +1,9 @@
+<%= turbo_frame_tag "meal_form" do %>
+<%= form_with(model: [day, meal], id: dom_id(meal)) do |form| %>
+<%#= form_with(model: meal, url: day_meals_path(day), id: dom_id(meal)) do |form| %>
 
-<%= form_with(model: [day, meal], local:true) do |form| %>
-<%#= form_with(model: meal, url: day_meals_path(day)) do |form| %>
+  <%= render 'shared/errors', object: meal %>
+
 
     <div class="form-group">
       <%= form.text_field :name, class: 'form-control', placeholder: "Meal name - e.g. Nana's chicken with side salads" %>
@@ -29,4 +32,5 @@
     <%= form.submit class: 'btn btn-primary' %>
 
   
+  <% end %>
   <% end %>
