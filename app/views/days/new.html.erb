@@ -1,4 +1,6 @@
 <h1>New day</h1>
 
-<%= render 'form', date: @date, url: meal_plan_days_path(@meal_plan), method: :post %>
+<%#= render 'form', date: @date, url: meal_plan_days_path(@meal_plan), method: :post %>
 
+
+<%= render "simple_form", meal_plan: @meal_plan, day: @day %>

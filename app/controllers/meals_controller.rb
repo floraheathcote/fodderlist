@@ -9,6 +9,8 @@ class MealsController < ApplicationController
 
   # GET /meals/1 or /meals/1.json
   def show
+    @meal_plan = @meal.day.meal_plan
+    @meal_recipe = MealRecipe.new
   end
 
   # GET /meals/new
@@ -44,12 +46,11 @@ class MealsController < ApplicationController
   
 
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal_plans/meal_card",
+          render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal",
             locals: { meal: @meal, meal_recipe: @new_meal_recipe })
         end
 
         # format.turbo_stream { turbo_stream.prepend("day#{@day.id}", "<template><p> Some html content you want to show </p></template>")}
-
 
         format.html { redirect_to @meal_plan, notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }

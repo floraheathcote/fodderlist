@@ -14,7 +14,7 @@ class MealPlansController < ApplicationController
   def show
     
     @new_day = Day.new
-    @new_meal = Meal.new
+    @meal = Meal.new
     @days = @meal_plan.days.order(date: :asc).includes(:meals)
     @meals = @meal_plan.meals.order(time: :desc).includes(:meal_recipes, :meal_ingredients)
     

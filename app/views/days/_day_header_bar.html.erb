@@ -8,7 +8,7 @@
         <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span>
     </div>
     <div class="col-sm">
-      <% if @meal_plan.status == "draft" %>
+      <% if meal_plan.status == "draft" %>
             <%= link_to "Delete day & all meals in it", day_path(day), 
                     method: :delete, class: "text-danger", 
                     data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>

@@ -1,0 +1,23 @@
+( was Day Show Page)
+<br><br>
+
+<% @meals.each do |meal| %>
+  <% meal.meal_recipes.each do |mr| %>
+    <%= mr.recipe.name %>
+    <%# mr.recipe_ingredients.each do |ri| %>
+      <%#= ri.ingredient.name %>
+    <%# end %>
+  <% end %>
+<% end %>
+
+<br><br>
+-----
+<% current_day_current_user.each do |day| %>
+<%= day.day_id %>
+<% end %>
+
+<br><br>
+-----
+<%= DateTime.now %>
+<br><br>
+<%= current_day_current_user.first %>

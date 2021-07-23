@@ -9,6 +9,8 @@ class Day < ApplicationRecord
   default_scope { order('date ASC') }
 
 
+  # after_create_commit { broadcast_prepend_to "meal_plan#{self.meal_plan.id}" , partial: "days/day", locals: { day: self, meal: Meal.new, meal_plan: self.meal_plan }}
+
   scope :today, -> { where(date: DateTime.current.to_date) }
   scope :this_date, -> (date) { where(date: date) }
   scope :user, -> (user) { joins(meal_plan: :user).where( "users.id= #{user.id}" ) }

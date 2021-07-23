@@ -6,10 +6,8 @@
             <div class="col-sm">
             <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %><br><br>
 
-
-                <h5>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
+            <h5>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
                             (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h5>
-
                             
             <% if @meal_plan.notes.present? %> <br><br>Notes: <%= @meal_plan.notes %> <% end %>
             </div>
@@ -53,17 +51,13 @@
 
             <% @days.each do |day| %>
                 <%#= turbo_stream_from "day#{day.id}" %>
-                
-                
-                    <%= render "meal_plans/day_in_meal_plan", day: day, new_meal: @new_meal %>
-                
+             
+                    DAY: <%= day.id %>
+                    <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :lazy do %>
+                            Loading...
+                    <% end %>
             <% end %>
-
-  
-
-    
-
-    <br>
-
-
+<br>
 <% end %>
+
+
