@@ -1,15 +1,17 @@
 <h1>Edit Leftover</h1>
 
-<%= render 'form', leftover: @leftover, url: @url, method: :put %>
+<%= turbo_frame_tag "mr_ingredients_list#{@meal_recipe.id}" do %>
+    <%= render 'form', leftover: @leftover, url: @url, method: :put %>
 
-<% if @leftover.meal_with_leftovers.present? %>
-    <h4>You have already assigned leftovers from this recipe to these meals: </h4>
-    <ul>
-    <% @leftover.meal_with_leftovers.each do |meal_with| %>
-        <li><%= meal_with.meal.name %>, <%= nice_date(meal_with.meal.time) %>, <%= pluralize(round_nicely(meal_with.portions), "portion") %>
-        <%#= link_to "edit portions"ß %>
-        <%= link_to 'remove from meal', leftover_meal_with_leftover_destroy_return_leftover_path(@leftover, meal_with), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-        </li>
+    <% if @leftover.meal_with_leftovers.present? %>
+        <h4>You have already assigned leftovers from this recipe to these meals: </h4>
+        <ul>
+        <% @leftover.meal_with_leftovers.each do |meal_with| %>
+            <li><%= meal_with.meal.name %>, <%= nice_date(meal_with.meal.time) %>, <%= pluralize(round_nicely(meal_with.portions), "portion") %>
+            <%#= link_to "edit portions"ß %>
+            <%= link_to 'remove from meal', leftover_meal_with_leftover_destroy_return_leftover_path(@leftover, meal_with), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+            </li>
+        <% end %>
+        </ul>
     <% end %>
-    </ul>
 <% end %>

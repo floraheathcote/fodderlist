@@ -45,7 +45,7 @@ class LeftoversController < ApplicationController
 
     respond_to do |format|
       if @leftover.save
-        format.html { redirect_to @meal_plan, notice: "Leftover was successfully created." }
+        format.html { redirect_to @meal_recipe, notice: "Leftover was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class LeftoversController < ApplicationController
     
     respond_to do |format|
       if @leftover.update(leftover_params)
-        format.html { redirect_to @meal_plan, notice: "Leftover was successfully updated." }
+        format.html { redirect_to @meal_recipe, notice: "Leftover was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -73,9 +73,11 @@ class LeftoversController < ApplicationController
   # DELETE /leftovers/1 or /leftovers/1.json
   def destroy
     @meal_plan = @leftover.meal_recipe.meal.day.meal_plan
+    @meal_recipe = @leftover.meal_recipe
     @leftover.destroy
     respond_to do |format|
-      format.html { redirect_to @meal_plan, notice: "Leftover was successfully deleted." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@leftover) }
+      format.html { redirect_to @meal_recipe, notice: "Leftover was successfully deleted." }
       format.json { head :no_content }
     end
   end
