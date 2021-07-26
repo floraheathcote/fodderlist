@@ -53,7 +53,7 @@ class DaysController < ApplicationController
     @day = Day.new(day_params)
     @day.meal_plan = @meal_plan
     @meal = Meal.new
-    @new_meal_recipe = MealRecipe.new
+    @meal_recipe = MealRecipe.new
 
     respond_to do |format|
       if @day.save

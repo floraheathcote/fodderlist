@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-sm">
                     <% if @meal_plan.status=="draft" %>
-                        <%#= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @new_meal_recipe %>
+                        <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @meal_recipe %>
                     <% end %>                
                 </div>
             </div>
@@ -28,7 +28,7 @@
         <div class="card-body">
         <br>
     
-            <% unless meal.meal_recipes.present? %>
+            <% unless meal_recipes.present? %>
                 <div class="row">
                     <div class="col-1">
                     <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
@@ -47,10 +47,14 @@
 
             <%= turbo_stream_from("meal_recipe_list#{meal.id}") %>
             <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
+                
                 <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-                    
-                    <%= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
-                <% end %>
+                    <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :lazy do %>
+                        Loading <%= meal_recipe.id %>
+                        <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
+                    <% end %>
+                <% end%>
+               
             <% end %>
         
             <br>

@@ -40,9 +40,9 @@
             <%= turbo_frame_tag "meallist#{day.id}" do %> 
                 <% day.meals.order(:time).each do |meal| %>  
                     <%#= render 'card', meal:meal %>
-                    MEAL: <%= meal.id %>
+                    
                     <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :lazy do %>
-                        Loading...
+                        Loading MEAL: <%= meal.id %><br>
                     <% end %>
                 <% end %>
             <% end %>

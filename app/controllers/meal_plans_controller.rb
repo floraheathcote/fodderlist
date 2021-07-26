@@ -15,10 +15,12 @@ class MealPlansController < ApplicationController
     
     @new_day = Day.new
     @meal = Meal.new
-    @days = @meal_plan.days.order(date: :asc).includes(:meals)
-    @meals = @meal_plan.meals.order(time: :desc).includes(:meal_recipes, :meal_ingredients)
+    # @days = @meal_plan.days.order(date: :asc).includes(:meals)
+    @days = @meal_plan.days.order(date: :asc)
+    # @meals = @meal_plan.meals.order(time: :desc).includes(:meal_recipes, :meal_ingredients)
+    @meals = @meal_plan.meals.order(time: :desc)
     
-    @new_meal_recipe = MealRecipe.new
+    @meal_recipe = MealRecipe.new
 
     # @active_record_ingredients =  @meal_plan.all_meal_plan_ingredients
     # @array_of_hashes = @active_record_ingredients.to_a.map(&:serializable_hash)

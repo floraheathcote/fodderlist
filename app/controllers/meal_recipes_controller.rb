@@ -9,6 +9,9 @@ class MealRecipesController < ApplicationController
 
   # GET /meal_recipes/1 or /meal_recipes/1.json
   def show
+    @meal = @meal_recipe.meal
+    @meal_plan = @meal.day.meal_plan
+    @leftover = Leftover.meal_recipe(@meal_recipe).first
   end
 
   # GET /meal_recipes/new
@@ -27,7 +30,7 @@ class MealRecipesController < ApplicationController
     
     @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal = @meal_recipe.meal
-    @leftover = Leftover.user(current_user).includes(:meal_recipe)
+    # @leftover = Leftover.user(current_user).includes(:meal_recipe)
     
     if @meal_recipe.recipe.present?
       @meal_recipe.portions = @meal_recipe.recipe.portions
@@ -41,7 +44,7 @@ class MealRecipesController < ApplicationController
 
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend("meal_recipe_list#{@meal.id}", partial: "meal_recipes/meal_recipe",
-            locals: { meal: @meal, meal_recipe: @meal_recipe, leftover: @leftover })
+            locals: { meal_plan: @meal_plan, meal_recipe: @meal_recipe, meal:@meal, leftover: @leftover})
         end
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
@@ -83,7 +86,7 @@ class MealRecipesController < ApplicationController
     multiply_portions_and_ingredients(2)
 
     respond_to do |format|
-      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.html { redirect_to meal_recipe_path(@meal_recipe), notice: "Portions and ingredient amounts updated" }
       format.json { head :no_content }
     end
   end
@@ -91,7 +94,7 @@ class MealRecipesController < ApplicationController
   def half_portions
     multiply_portions_and_ingredients(0.5)
     respond_to do |format|
-      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.html { redirect_to meal_recipe_path(@meal_recipe), notice: "Portions and ingredient amounts updated" }
       format.json { head :no_content }
     end
   end
@@ -104,7 +107,7 @@ class MealRecipesController < ApplicationController
     multiply_portions_and_ingredients(ratio_increase)
 
     respond_to do |format|
-      format.html { redirect_to meal_plan_path(@meal_plan), notice: "Portions and ingredient amounts updated" }
+      format.html { redirect_to meal_recipe_path(@meal_recipe), notice: "Portions and ingredient amounts updated" }
       format.json { head :no_content }
     end
   end

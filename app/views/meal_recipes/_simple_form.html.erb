@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "meal_recipe_form" do %>
     <%= form_with(model: meal_recipe, url: meal_meal_recipes_path(meal), id: "meal_recipe#{meal_recipe.id}") do |form| %>
 
-    <%= render 'shared/errors', object: @new_meal_recipe %>
+    <%= render 'shared/errors', object: @meal_recipe %>
         
         <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
             {:prompt => 'Add recipe to meal'}, 

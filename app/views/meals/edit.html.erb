@@ -1,4 +1,6 @@
 <h1>Edit Meal</h1>
 
-<%= render 'meals/form', scope: @meal, url: meal_path(@meal), day: @day, button_text: "Save", method: :put %>
+<%= turbo_frame_tag "meal#{@meal.id}" do %> 
+    <%= render 'meals/form', scope: @meal, url: meal_path(@meal), day: @day, button_text: "Save", method: :put %>
+<% end %>
 <%= link_to "Delete", meal_path(@meal), method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' }%>

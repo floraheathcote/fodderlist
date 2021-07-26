@@ -9,6 +9,7 @@ class MealIngredientsController < ApplicationController
 
   # GET /meal_ingredients/1 or /meal_ingredients/1.json
   def show
+    @meal_plan = @meal_ingredient.meal.day.meal_plan
   end
 
   # GET /meal_ingredients/new
@@ -81,7 +82,7 @@ class MealIngredientsController < ApplicationController
     respond_to do |format|
       
       if @meal_ingredient.update(meal_ingredient_params)
-        format.html { redirect_to meal_plan_url(meal_plan), notice: "Meal ingredient was successfully updated." }
+        format.html { redirect_to meal_ingredient_path(@meal_ingredient), notice: "Meal ingredient was successfully updated." }
         format.json { render :show, status: :ok, location: meal_plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -95,6 +96,7 @@ class MealIngredientsController < ApplicationController
     meal_plan = @meal_ingredient.meal.day.meal_plan
     @meal_ingredient.destroy
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_ingredient#{@meal_ingredient.id}") }
       format.html { redirect_to meal_plan_url(meal_plan), notice: "Meal ingredient was successfully destroyed." }
       format.json { head :no_content }
     end

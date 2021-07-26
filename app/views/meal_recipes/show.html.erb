@@ -1,18 +1,1 @@
-<div class="page-header">
-  <%= link_to meal_recipes_path, class: 'btn btn-default' do %>
-    All Meal_recipes
-  <% end %>
-  <%= link_to edit_meal_recipe_path(@meal_recipe), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1>Show meal_recipe</h1>
-</div>
-
-<dl class="dl-horizontal">
-  <dt>Meal:</dt>
-  <dd><%= @meal_recipe.meal %></dd>
-
-  <dt>Recipe:</dt>
-  <dd><%= @meal_recipe.recipe %></dd>
-
-</dl>
+<%= render 'meal_recipe', meal_plan: @meal_plan, meal_recipe: @meal_recipe, meal:@meal, leftover: @leftover %>

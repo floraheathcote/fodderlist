@@ -11,6 +11,7 @@ class MealsController < ApplicationController
   def show
     @meal_plan = @meal.day.meal_plan
     @meal_recipe = MealRecipe.new
+    @meal_recipes = @meal.meal_recipes
   end
 
   # GET /meals/new
@@ -36,7 +37,7 @@ class MealsController < ApplicationController
     @meal_plan = @day.meal_plan
     # @meal_plan = MealPlan.find(params[:id])
     @meal.day = @day
-    @new_meal_recipe = MealRecipe.new
+    @meal_recipe = MealRecipe.new
     
     # @meal.save
 
@@ -47,7 +48,7 @@ class MealsController < ApplicationController
 
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal",
-            locals: { meal: @meal, meal_recipe: @new_meal_recipe })
+            locals: { meal: @meal, meal_recipe: @meal_recipe, meal_recipes: @meal_recipes })
         end
 
         # format.turbo_stream { turbo_stream.prepend("day#{@day.id}", "<template><p> Some html content you want to show </p></template>")}
@@ -69,7 +70,7 @@ class MealsController < ApplicationController
 
     respond_to do |format|
       if @meal.update(meal_params)
-        format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal was successfully updated." }
+        format.html { redirect_to meal_path(@meal), notice: "Meal was successfully updated." }
         format.json { render :show, status: :ok, location: @meal }
       else
         format.html { render :edit, status: :unprocessable_entity }
