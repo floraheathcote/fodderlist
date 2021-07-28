@@ -1,0 +1,10 @@
+    
+        <%#= render 'meal_ingredients/mi_or_ri_list_item', meal_ingredient: meal_ingredient, meal_plan: meal_plan %>
+    
+<%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}" do %>
+    <%#= turbo_frame_tag "meal_ingredient_form#{meal_ingredient.id}" do %>
+    <small class="text-muted">
+         <%= render 'meal_ingredients/mi_or_ri_list_item', meal_ingredient: meal_ingredient, meal_plan: meal_plan %>
+    </small>
+    <%# end %>
+<% end %>

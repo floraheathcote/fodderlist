@@ -13,46 +13,55 @@
     <%= turbo_stream_from("mr_ingredients_list#{meal_recipe.id}") %>
     <%= turbo_frame_tag "mr_ingredients_list#{meal_recipe.id}" do %>
 
-    <% if meal_plan.status=="draft" %>
-        <% if leftover.present? %>
-            <span class="badge bg-light text-dark">
-            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-            </span>
-            <span class="badge bg-success text-light">
-            eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
-            </span>
-            <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
-            <%= link_to "X", meal_recipe_leftover_path(meal_recipe, leftover), method: :delete, class:"badge bg-secondary text-light" %>
+        <% if meal_plan.status=="draft" %>
+            <% if leftover.present? %>
+                <span class="badge bg-light text-dark">
+                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                </span>
+                <span class="badge bg-success text-light">
+                eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
+                </span>
+                <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
+                <%= link_to "X", meal_recipe_leftover_path(meal_recipe, leftover), method: :delete, class:"badge bg-secondary text-light" %>
 
+            <% else %>
+                <span class="badge bg-light text-dark">
+                <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                </span>
+                <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
+                <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+            <% end %>
         <% else %>
             <span class="badge bg-light text-dark">
             <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
             </span>
-            <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
-            <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
         <% end %>
-    <% else %>
-        <span class="badge bg-light text-dark">
-        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-        </span>
-    <% end %>
 
-   
+        <%#= turbo_stream_from("mr_ingredients_bullets#{meal_recipe.id}") %>
+        <%#= turbo_frame_tag "mr_ingredients_bullets#{meal_recipe.id}" do %>
 
 
         <%#= render 'meal_ingredients/meal_ingredient', meal_recipe:meal_recipe, meal:meal %>
-        <small class="text-muted">
+        
             <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
                 <%#= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: meal_ingredient  %>
+                <%#= turbo_stream_from("meal_ingredient#{meal_ingredient.id}") %>
                 <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
-                        Loading MEAL_INGREDIENT: <%= meal_ingredient.id %><br>
+                        Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
                 <% end %>
             <% end %>
 
-            <li><%= link_to "Add ingredient to recipe", new_meal_recipe_meal_ingredient_path(meal_recipe) %></li>
-            </ul>
-            </small>
-
     <% end %>
+        <%#= turbo_stream_from("meal_ingredient_form#{meal_recipe.id}") %>
+        <%#= turbo_frame_tag "meal_ingredient_form#{meal_recipe.id}" do %>
+           <%#= link_to "Add ingredient to recipe", new_meal_recipe_meal_ingredient_path(meal_recipe) %>
+            
+           
+            <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post %>
+            <br>
+        <%# end %>
+         
+
+    
 
 <% end %>

@@ -12,6 +12,7 @@ class MealRecipesController < ApplicationController
     @meal = @meal_recipe.meal
     @meal_plan = @meal.day.meal_plan
     @leftover = Leftover.meal_recipe(@meal_recipe).first
+    @meal_ingredient = MealIngredient.new
   end
 
   # GET /meal_recipes/new
@@ -49,7 +50,6 @@ class MealRecipesController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else
-        
         format.html { redirect_to @meal_plan, notice: "Meal recipe not added, please select recipe from list" }
         format.json { render :show, status: :created, location: @meal_recipe }
       end

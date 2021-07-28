@@ -1,54 +1,48 @@
-<%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
 
-<%#= form_with(model: [@model, @meal_ingredient], local:true) do |f| %>
+<%#= turbo_frame_tag "meal_ingredient_form#{@meal_recipe.id}" do %>
 
-  <%= render 'shared/errors', object: @meal_ingredient %>
-  
-  <div class="form-group">
+    <%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
+
+    <%#= form_with(model: [@model, @meal_ingredient], local:true) do |f| %>
+
+      <%= render 'shared/errors', object: @meal_ingredient %>
+      
+
         <% if @meal_ingredient.persisted? %>
-          <h5><%= form.label :Ingredient, "Change ingredient:" %></h5>
+          <%= form.label :Ingredient, "Change ingredient:" %>
         <% else %>
-          <h5><%= form.label :Ingredient, "Add ingredient:" %></h5>
+          <%= form.label :Ingredient, "Add ingredient:" %>
         <% end %>
-            <div class="dropdown">
-              <%= collection_select(:meal_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
-            </div>
-    </div>
-
-  <div class="form-group">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :unit %>
-    <%= form.text_field :unit, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-      <%= form.label :preparation, "preparation (if any - e.g. finely sliced):" %>
-      <%= form.text_field :preparation %>
-  </div>
-
-    <%#= form.label :meal_id %>
-    <%#= form.hidden_field :meal_id, class: 'form-control' %>
+                
+        <%= collection_select(:meal_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
+           
 
 
-  <% unless @meal_ingredient.persisted? %>
-    <%#= form.hidden_field :meal_recipe_id, value: params[:meal_recipe_id] %>
-    <%#= form.hidden_field :meal_recipe_id, value: session[:meal_recipe_id] %>
-    <%#= form.hidden_field :meal_id, value:meal_id %>
-  <% end %>
+        <%= form.text_field :quantity, placeholder: "Quantity" %>
+        <%= form.text_field :unit, placeholder: "unit (optional)" %>
+        <%= form.text_field :preparation, placeholder: "preparation (if any)" %>
 
-  <div class="form-group">
-    <% if @meal_ingredient.persisted? %>
-      <div class="float-right">
-        <%= link_to 'Destroy', @meal_ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+
+        <%#= form.label :meal_id %>
+        <%#= form.hidden_field :meal_id, class: 'form-control' %>
+
+
+      <% unless @meal_ingredient.persisted? %>
+        <%#= form.hidden_field :meal_recipe_id, value: params[:meal_recipe_id] %>
+        <%#= form.hidden_field :meal_recipe_id, value: session[:meal_recipe_id] %>
+        <%#= form.hidden_field :meal_id, value:meal_id %>
+      <% end %>
+
+
+        <% if @meal_ingredient.persisted? %>
+          <div class="float-right">
+            <%= link_to 'Destroy', @meal_ingredient, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+
+        <%= form.submit class: 'btn btn-primary' %>
+
+        
       </div>
     <% end %>
-
-    <%= form.submit class: 'btn btn-primary' %>
-
-    
-  </div>
-<% end %>
+<%# end %>

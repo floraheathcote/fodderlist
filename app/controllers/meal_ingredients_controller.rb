@@ -10,6 +10,7 @@ class MealIngredientsController < ApplicationController
   # GET /meal_ingredients/1 or /meal_ingredients/1.json
   def show
     @meal_plan = @meal_ingredient.meal.day.meal_plan
+    @meal_recipe = @meal_ingredient.meal_recipe
   end
 
   # GET /meal_ingredients/new
@@ -42,6 +43,7 @@ class MealIngredientsController < ApplicationController
 
   # GET /meal_ingredients/1/edit
   def edit
+    @meal_recipe = @meal_ingredient.meal_recipe
   end
 
   # POST /meal_ingredients or /meal_ingredients.json
@@ -63,11 +65,13 @@ class MealIngredientsController < ApplicationController
     
     respond_to do |format|
       if @meal_ingredient.save
-        
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append("mr_ingredients_list#{@meal_recipe.id}", partial: "meal_ingredient",
+            locals: { meal_ingredient: @meal_ingredient, meal_plan: @meal_plan })
+        end
         format.html { redirect_to @meal_plan, notice: "Meal ingredient was successfully created." }
         format.json { render :show, status: :created, location: @meal_ingredient }
       else
-        fail
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal_ingredient.errors, status: :unprocessable_entity }
       end

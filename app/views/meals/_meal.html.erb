@@ -62,6 +62,8 @@
             <h6>Other food/drinks in this meal:</h6>
             <ul>
             <small class="text-muted">
+
+            
                 <% meal.meal_ingredients.no_recipe.each do |mi| %>
                     <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
                 <% end %>
