@@ -12,6 +12,7 @@ class MealsController < ApplicationController
     @meal_plan = @meal.day.meal_plan
     @meal_recipe = MealRecipe.new
     @meal_recipes = @meal.meal_recipes
+    @meal_ingredient = MealIngredient.new
   end
 
   # GET /meals/new
@@ -44,8 +45,6 @@ class MealsController < ApplicationController
     respond_to do |format|
       if @meal.save
         
-  
-
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend("meallist#{@day.id}", partial: "meal",
             locals: { meal: @meal, meal_recipe: @meal_recipe, meal_recipes: @meal_recipes })

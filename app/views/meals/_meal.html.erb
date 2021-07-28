@@ -63,12 +63,19 @@
             <ul>
             <small class="text-muted">
 
-            
-                <% meal.meal_ingredients.no_recipe.each do |mi| %>
-                    <%= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
+                <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
+                <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
+                        <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
+                            <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
+                                Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
+                                <%#= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
+                            <% end %>
+                        <% end %>
                 <% end %>
 
-                <li><%= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %></li>
+                <%#= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %>
+                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: @meal_ingredient, method: :post %>
+
             </small>
             </ul>
             

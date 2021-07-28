@@ -37,31 +37,15 @@
             </span>
         <% end %>
 
-        <%#= turbo_stream_from("mr_ingredients_bullets#{meal_recipe.id}") %>
-        <%#= turbo_frame_tag "mr_ingredients_bullets#{meal_recipe.id}" do %>
 
-
-        <%#= render 'meal_ingredients/meal_ingredient', meal_recipe:meal_recipe, meal:meal %>
-        
             <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-                <%#= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: meal_ingredient  %>
-                <%#= turbo_stream_from("meal_ingredient#{meal_ingredient.id}") %>
                 <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
                         Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
                 <% end %>
             <% end %>
 
     <% end %>
-        <%#= turbo_stream_from("meal_ingredient_form#{meal_recipe.id}") %>
-        <%#= turbo_frame_tag "meal_ingredient_form#{meal_recipe.id}" do %>
-           <%#= link_to "Add ingredient to recipe", new_meal_recipe_meal_ingredient_path(meal_recipe) %>
-            
-           
+    
             <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post %>
             <br>
-        <%# end %>
-         
-
-    
-
 <% end %>
