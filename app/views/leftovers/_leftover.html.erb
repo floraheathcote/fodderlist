@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "leftover#{leftover.id}" do %>
+    <div class = "container">
+        <div class="row">   
+            <div class="col-4">
+                <%= image_tag(leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %>         
+            </div>
+            <div class="col">
+            <small><%= leftover.recipe.name %></small><span class="badge badge-success">Available: <%= pluralize(round_nicely(leftover.calculated_stock_level), "portion") %></span>
+            </div>
+        </div>
+    </div>
+
+<% end %>

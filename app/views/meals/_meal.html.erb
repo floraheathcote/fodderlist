@@ -1,5 +1,9 @@
 <%= turbo_frame_tag "meal#{meal.id}" do %> 
-
+<a href="#"
+  data-reflex="click->Counter#increment"
+  data-step="1" 
+  data-count="<%= @count.to_i %>"
+>Increment <%= @count.to_i %></a> 
 <div class="card-deck">
 
     <div class="card" ">
@@ -61,23 +65,25 @@
 
             <h6>Other food/drinks in this meal:</h6>
             <ul>
-            <small class="text-muted">
+            
 
                 <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
                 <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
                         <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
-                            <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
-                                Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
+                            <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
+                            <%#= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
+                                
                                 <%#= render 'meal_plans/mi_or_ri_list_item.html', meal_ingredient: mi %>
-                            <% end %>
+                            <%# end %>
                         <% end %>
                 <% end %>
 
                 <%#= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %>
-                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: @meal_ingredient, method: :post %>
-
-            </small>
             </ul>
+                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post %>
+
+         
+            
             
             <br>
             
@@ -85,28 +91,15 @@
                 <h6>Leftovers added to meal:</h6>
             <% end %>
 
-
-
-
-            <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |leftover_meal| %>
-                <div class="row">
-                    <div class="col-4">
-                    <%= image_tag(leftover_meal.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-                    </div>
-                    <div class="col-8">
-                    <small><%= leftover_meal.leftover.recipe.name %></small>
-
-                        <%= link_to "#{pluralize(round_nicely(leftover_meal.portions), "portion")} X", leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
-                    <%#= link_to "edit", edit_leftover_meal_with_leftover_path(leftover_meal.leftover, leftover_meal)%>
-
-                    <%#= pluralize(round_nicely(leftover_meal.portions), "portion") %>
-                    </div>
-                </div>
-                <br>
-
+            <%= turbo_stream_from("added_leftovers_list#{meal.id}") %>
+            <%= turbo_frame_tag "added_leftovers_list#{meal.id}" do %>
+                    <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |meal_with_leftover| %>
+                            <%= turbo_frame_tag "meal_with_leftover#{meal_with_leftover.id}", src: leftover_meal_with_leftover_path(meal_with_leftover.leftover, meal_with_leftover), loading: :eager do %>
+                                    LOADING meal_with_leftover: <%= meal_with_leftover.id %>
+                            <% end %>
+                        <br>
+                    <% end %>
             <% end %>
-
-
 
             <% title_already_drawn = false %>
             <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
@@ -115,7 +108,18 @@
                         <h6>Leftovers available to add to meal:</h6>
                         <% title_already_drawn = true %>
                     <% end %>
-                    <%= link_to leftover.recipe.name.first(20), new_meal_leftover_meal_with_leftover_path(meal, leftover), class:"badge bg-secondary text-light" %>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <%= render "leftovers/leftover", leftover: leftover %>                                    
+                            </div>
+
+                            <div class="col"> 
+                                <%= render 'meal_with_leftovers/simple_form', leftover: leftover, meal: meal %>
+                            </div>
+                        </div>
+                    </div>
+
                 <% end %>
             <% end %>
 

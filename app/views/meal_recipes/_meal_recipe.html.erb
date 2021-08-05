@@ -39,13 +39,14 @@
 
 
             <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-                <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :lazy do %>
+                <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :eager do %>
                         Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
                 <% end %>
             <% end %>
 
     <% end %>
-    
-            <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post %>
+                <%= turbo_frame_tag "meal_ingredients_form#{meal_recipe.id}" do %>
+                    <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post %>
+                <% end %>
             <br>
 <% end %>

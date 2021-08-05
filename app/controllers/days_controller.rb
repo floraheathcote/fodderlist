@@ -67,7 +67,7 @@ class DaysController < ApplicationController
         format.html { redirect_to meal_plan_url(@meal_plan), notice: "Day was successfully created." }
         format.json { render :show, status: :created, location: @day }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@day, partial: "days/simple_form", locals: { day: @day, meal_plan: @meal_plan })}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("day#{day}meal#{day}", partial: "days/simple_form", locals: { day: @day, meal_plan: @meal_plan })}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @day.errors, status: :unprocessable_entity }
       end

@@ -27,3 +27,5 @@ $(document).on("turbo:load", () => {
 
 
 // import "controllers"
+
+import "controllers"

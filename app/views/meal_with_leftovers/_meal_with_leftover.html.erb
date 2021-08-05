@@ -1,0 +1,15 @@
+
+<%= turbo_frame_tag "meal_with_leftover#{meal_with_leftover.id}" do %>
+
+    <div class = "container">
+        <div class="row">
+            <div class="col-2">
+            <%= image_tag(meal_with_leftover.leftover.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+            </div>
+            <div class="col">
+            <small><%= meal_with_leftover.leftover.recipe.name %></small>
+                <%= link_to "#{pluralize(round_nicely(meal_with_leftover.portions), "portion")} X", leftover_meal_with_leftover_path(meal_with_leftover.leftover, meal_with_leftover), method: :delete, class: "text-danger", data: { confirm: 'Remove leftover from meal?' }, class:"badge bg-secondary text-light" %><br>
+            </div>
+        </div>
+    </div>
+<% end %>

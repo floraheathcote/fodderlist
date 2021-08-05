@@ -1,7 +1,7 @@
 
 <%#= turbo_frame_tag "meal_ingredient_form#{@meal_recipe.id}" do %>
 
-    <%= form_with(scope: :meal_ingredient, local: true, url: url, method: method) do |form| %>
+    <%= form_with(scope: :meal_ingredient, url: url, id: dom_id(meal_ingredient)) do |form| %>
 
     <%#= form_with(model: [@model, @meal_ingredient], local:true) do |f| %>
 

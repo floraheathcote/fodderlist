@@ -9,6 +9,8 @@ class MealWithLeftoversController < ApplicationController
 
   # GET /meal_with_leftovers/1 or /meal_with_leftovers/1.json
   def show
+    @leftover = Leftover.find(params[:leftover_id])
+ 
   end
 
   # GET /meal_with_leftovers/new
@@ -37,11 +39,18 @@ class MealWithLeftoversController < ApplicationController
 
     respond_to do |format|
       if @meal_with_leftover.save
+        
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.prepend("added_leftovers_list#{@meal.id}", partial: 'meal_with_leftovers/meal_with_leftover',
+            locals: { leftover: @leftover, meal_with_leftover: @meal_with_leftover })
+        end
+
         format.html { redirect_to @meal_plan, notice: "Meal with leftover was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_with_leftover, partial: "meal_with_leftovers/simple_form", locals: {meal_with_leftover: @meal_with_leftover, meal: @meal, leftover: @leftover })}
         format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @meal_with_leftover.errors, status: :unprocessable_entity }
+        format.json { render json: @meal_with_leftover.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,7 +78,11 @@ class MealWithLeftoversController < ApplicationController
   def destroy
     @meal_plan = @meal_with_leftover.leftover.meal_recipe.meal.day.meal_plan
     @meal_with_leftover.destroy
+
     respond_to do |format|
+
+   
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_with_leftover#{@meal_with_leftover.id}") }
       format.html { redirect_to meal_plan_url(@meal_plan), notice: "Leftover deleted." }
       format.json { head :no_content }
     end
@@ -81,6 +94,7 @@ class MealWithLeftoversController < ApplicationController
 
     @meal_with_leftover.destroy
     respond_to do |format|
+      
       format.html { redirect_to edit_leftover_url(@leftover), notice: "Leftover deleted." }
       format.json { head :no_content }
     end

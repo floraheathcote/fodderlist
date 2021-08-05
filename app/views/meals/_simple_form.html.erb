@@ -1,5 +1,6 @@
-<%= turbo_frame_tag "meal_form" do %>
-  <%= form_with(model: [day, meal], id: dom_id(meal)) do |form| %>
+<%= turbo_frame_tag "meal_form#{day.id}" do %>
+  <%= form_with(model: [day, meal], :html=> {:id => "day#{day.id}meal#{meal.id}"}) do |form| %>
+  <%#= form_with(model: [day, meal], id: dom_id(meal), namespace: day) do |form| %>
   <%#= form_with(model: meal, url: day_meals_path(day), id: dom_id(meal)) do |form| %>
 
     <%= render 'shared/errors', object: meal %>

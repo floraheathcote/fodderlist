@@ -16,6 +16,8 @@ class Leftover < ApplicationRecord
   scope :user, ->(user) { where(user: user) }
   scope :made_before, ->(datetime) { where("date_made < ?", datetime) }
   scope :meal_recipe, ->(meal_recipe) { where(meal_recipe: meal_recipe) }
+  # scope :has_stock, -> { where(max_portions - meal_with_leftovers.sum(:portions))}
+
   # scope :available, ->{
   #   :conditions => {'total_portions_available - total_assigned_portions > 0'}, 
   #   :joins => "INNER JOIN meal_with_leftover ON leftover.id = meal_with_leftovers.leftover_id ", 

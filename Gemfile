@@ -93,3 +93,5 @@ gem 'rinku'
 
 gem 'rename'
 gem "turbo-rails", "~> 0.5.9"
+
+gem "stimulus_reflex", "~> 3.4"

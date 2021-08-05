@@ -80,6 +80,15 @@ class MealIngredientsController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal ingredient was successfully created." }
         format.json { render :show, status: :created, location: @meal_ingredient }
       else
+        if params[:meal_recipe_id].present?
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_ingredient, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
+              url:  meal_recipe_meal_ingredients_path(@meal_recipe)})}
+
+        elsif params[:meal_id].present?
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_ingredient, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
+              url:  meal_meal_ingredients_path(@meal)})}
+
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal_ingredient.errors, status: :unprocessable_entity }
       end
