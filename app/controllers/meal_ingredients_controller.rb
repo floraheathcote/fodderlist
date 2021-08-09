@@ -44,6 +44,7 @@ class MealIngredientsController < ApplicationController
   # GET /meal_ingredients/1/edit
   def edit
     @meal_recipe = @meal_ingredient.meal_recipe
+    
   end
 
   # POST /meal_ingredients or /meal_ingredients.json
@@ -55,10 +56,12 @@ class MealIngredientsController < ApplicationController
       @meal_ingredient.meal_recipe_id = @meal_recipe.id
       @meal_ingredient.meal = @meal_recipe.meal
       @meal_plan = @meal_recipe.meal.day.meal_plan
+      @id = "mealrecipe#{@meal_recipe.id}mealingredient#{@meal_ingredient.id}"
     elsif params[:meal_id].present?
       @meal = Meal.find(params[:meal_id])
       @meal_ingredient.meal = @meal
       @meal_plan = @meal.day.meal_plan
+      @id = @id = "meal#{@meal.id}mealingredient#{@meal_ingredient.id}"
     end
 
     @meal_ingredient.meal_plan = @meal_plan
@@ -81,12 +84,12 @@ class MealIngredientsController < ApplicationController
         format.json { render :show, status: :created, location: @meal_ingredient }
       else
         if params[:meal_recipe_id].present?
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_ingredient, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
-              url:  meal_recipe_meal_ingredients_path(@meal_recipe)})}
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@id, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
+              url:  meal_recipe_meal_ingredients_path(@meal_recipe), id: "mealrecipe#{@meal_recipe.id}mealingredient#{@meal_ingredient.id}"})}
 
         elsif params[:meal_id].present?
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_ingredient, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
-              url:  meal_meal_ingredients_path(@meal)})}
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@id, partial: "meal_ingredients/form", locals: { meal_ingredient: @meal_ingredient,
+              url:  meal_meal_ingredients_path(@meal), id: "meal#{@meal.id}mealingredient#{@meal_ingredient.id}"})}
 
         end
         format.html { render :new, status: :unprocessable_entity }

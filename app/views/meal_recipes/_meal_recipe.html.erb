@@ -45,8 +45,8 @@
             <% end %>
 
     <% end %>
-                <%= turbo_frame_tag "meal_ingredients_form#{meal_recipe.id}" do %>
-                    <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post %>
+                <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{@meal_recipe.id}" do %>
+                    <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{@meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
                 <% end %>
             <br>
 <% end %>

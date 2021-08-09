@@ -53,7 +53,7 @@
             <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
                 
                 <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-                    <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :lazy do %>
+                    <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
                         Loading <%= meal_recipe.id %>
                         <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
                     <% end %>
@@ -80,7 +80,7 @@
 
                 <%#= link_to "Add ingredient that isn't part of a recipe", new_meal_meal_ingredient_path(meal) %>
             </ul>
-                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post %>
+                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post, id: "meal#{meal.id}mealingredient#{meal_ingredient.id}" %>
 
          
             
