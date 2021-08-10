@@ -101,9 +101,14 @@
             <% end %>
 
             <%# title_already_drawn = false %>
-            <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
-                <%= turbo_stream_from("available_leftover#{leftover.id}") %>
-                <%= render "available_leftover", leftover: leftover, meal: meal %>
+            <h6>Leftovers available to add to meal:</h6>
+   
+            <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
+            <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
+                <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
+                    <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
+                    <%= render "available_leftover", leftover: leftover, meal: meal %>
+                <% end %>
             <% end %>
 
 

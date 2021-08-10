@@ -1,5 +1,7 @@
 <h1>New leftover</h1>
-
 <%= turbo_frame_tag("mr_ingredients_list#{@meal_recipe.id}") do %>
+<%= turbo_frame_tag "portion_info_mr#{@meal_recipe.id}" do %>
+
     <%= render 'form', leftover: @leftover, url: @url, method: :post %>
+<% end %>
 <% end %>

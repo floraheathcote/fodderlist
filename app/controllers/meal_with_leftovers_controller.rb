@@ -74,11 +74,10 @@ class MealWithLeftoversController < ApplicationController
   def destroy
     @meal_plan = @meal_with_leftover.leftover.meal_recipe.meal.day.meal_plan
     @meal_with_leftover.destroy
+    @leftover = @meal_with_leftover.leftover
 
     respond_to do |format|
-
-   
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_with_leftover#{@meal_with_leftover.id}") }
+      format.turbo_stream
       format.html { redirect_to meal_plan_url(@meal_plan), notice: "Leftover deleted." }
       format.json { head :no_content }
     end

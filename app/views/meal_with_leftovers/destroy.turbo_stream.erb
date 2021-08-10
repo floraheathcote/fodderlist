@@ -1,0 +1,8 @@
+
+
+<%= turbo_stream.remove("meal_with_leftover#{@meal_with_leftover.id}") %>
+
+<% @meal_plan.meals.each do |meal| %>
+    <%= turbo_stream.replace("meal#{meal.id}available_leftover#{@leftover.id}", partial: 'meals/available_leftover',
+                locals: { leftover: @leftover, meal: meal }) %>
+<% end %>

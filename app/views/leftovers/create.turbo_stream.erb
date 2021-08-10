@@ -1,0 +1,10 @@
+
+<%= turbo_stream.replace("portion_info_mr#{@meal_recipe.id}", partial: 'meal_recipes/meal_recipe_portion_info',
+                locals: { leftover: @leftover, meal_recipe: @meal_recipe }) %>
+
+<% @meal_plan.meals.each do |meal| %>
+    <% if meal.time > @leftover.date_made %>
+        <%= turbo_stream.append("available_leftover_list#{meal.id}", partial: 'meals/available_leftover',
+                    locals: { leftover: @leftover, meal: meal }) %>
+    <% end %>
+<% end %>

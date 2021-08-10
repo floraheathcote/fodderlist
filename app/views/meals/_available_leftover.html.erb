@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "meal#{meal.id}available_leftover#{leftover.id}" do %>
     <% if leftover.calculated_stock_level > 0 %>
         <%# if title_already_drawn == false %>
-            <h6>Leftovers available to add to meal:</h6>
+            
             <%# title_already_drawn = true %>
         <%# end %>
         
@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="col"> 
-                    <%= render 'meal_with_leftovers/simple_form', leftover: leftover, meal: meal %>
+                    <%= render 'meal_with_leftovers/simple_form', leftover: leftover, meal: meal, meal_with_leftover: MealWithLeftover.new  %>
                 </div>
             </div>
        

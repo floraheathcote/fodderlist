@@ -45,6 +45,7 @@ class LeftoversController < ApplicationController
 
     respond_to do |format|
       if @leftover.save
+        format.turbo_stream
         format.html { redirect_to @meal_recipe, notice: "Leftover was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
@@ -61,6 +62,7 @@ class LeftoversController < ApplicationController
     
     respond_to do |format|
       if @leftover.update(leftover_params)
+        format.turbo_stream
         format.html { redirect_to @meal_recipe, notice: "Leftover was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_plan }
       else
@@ -76,7 +78,7 @@ class LeftoversController < ApplicationController
     @meal_recipe = @leftover.meal_recipe
     @leftover.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@leftover) }
+      format.turbo_stream
       format.html { redirect_to @meal_recipe, notice: "Leftover was successfully deleted." }
       format.json { head :no_content }
     end
