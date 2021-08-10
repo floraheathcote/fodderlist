@@ -41,7 +41,7 @@
                 <% day.meals.order(:time).each do |meal| %>  
                     <%#= render 'card', meal:meal %>
                     
-                    <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :lazy do %>
+                    <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
                         Loading MEAL: <%= meal.id %><br>
                     <% end %>
                 <% end %>

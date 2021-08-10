@@ -40,11 +40,7 @@ class MealWithLeftoversController < ApplicationController
     respond_to do |format|
       if @meal_with_leftover.save
         
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend("added_leftovers_list#{@meal.id}", partial: 'meal_with_leftovers/meal_with_leftover',
-            locals: { leftover: @leftover, meal_with_leftover: @meal_with_leftover })
-        end
-
+        format.turbo_stream
         format.html { redirect_to @meal_plan, notice: "Meal with leftover was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else

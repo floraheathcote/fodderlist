@@ -68,18 +68,7 @@ class MealIngredientsController < ApplicationController
     
     respond_to do |format|
       if @meal_ingredient.save
-        format.turbo_stream do
-
-          if params[:meal_recipe_id].present?
-                render turbo_stream: turbo_stream.append("mr_ingredients_list#{@meal_recipe.id}", partial: "meal_ingredient",
-                  locals: { meal_ingredient: @meal_ingredient, meal_plan: @meal_plan })
-          elsif params[:meal_id].present?
-                render turbo_stream: turbo_stream.append("orphan_ingredients_list#{@meal.id}", partial: "meal_ingredient",
-                  locals: { meal_ingredient: @meal_ingredient, meal_plan: @meal_plan })
-
-          end
-
-        end
+        format.turbo_stream
         format.html { redirect_to @meal_plan, notice: "Meal ingredient was successfully created." }
         format.json { render :show, status: :created, location: @meal_ingredient }
       else

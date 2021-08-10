@@ -1,0 +1,4 @@
+
+
+<%= turbo_stream.prepend("day-list#{@meal_plan.id}", partial: "day", locals: { day: @day, meal: @meal, meal_plan: @meal_plan }
+          ) %>

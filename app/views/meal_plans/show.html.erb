@@ -45,15 +45,15 @@
     <% end %>
     <br><br>
 
-<%= turbo_stream_from "meal_plan#{@meal_plan.id}" %>
-<%= turbo_frame_tag "meal_plan#{@meal_plan.id}" do %>  
+<%= turbo_stream_from "day-list#{@meal_plan.id}" %>
+<%= turbo_frame_tag "day-list#{@meal_plan.id}" do %>  
      
 
             <% @days.each do |day| %>
                 <%#= turbo_stream_from "day#{day.id}" %>
              
                     DAY: <%= day.id %>
-                    <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :lazy do %>
+                    <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :eager do %>
                             Loading...
                     <% end %>
             <% end %>

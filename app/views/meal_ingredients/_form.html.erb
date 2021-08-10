@@ -1,6 +1,6 @@
 
 
-    <%= form_with(scope: :meal_ingredient, url: url, :html=> {:id => id}) do |form| %>
+    <%= form_with(scope: :meal_ingredient, url: url, :html=> {:id => id}, data: {controller: 'hello', action: 'turbo:submit-end->hello#reset'}) do |form| %>
 
     <%#= form_with(model: [@model, @meal_ingredient], local:true) do |f| %>
 

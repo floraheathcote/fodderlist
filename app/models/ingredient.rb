@@ -15,6 +15,7 @@ class Ingredient < ApplicationRecord
 
   before_save do 
     self.name = name.downcase.singularize
+    # validates :name, uniqueness: { case_sensitive: false }
   end
 
   # after_create_commit  -> {

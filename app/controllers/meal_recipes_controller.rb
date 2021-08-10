@@ -43,10 +43,7 @@ class MealRecipesController < ApplicationController
           
         create_meal_ingredients_for_recipe(@meal_recipe)
 
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend("meal_recipe_list#{@meal.id}", partial: "meal_recipes/meal_recipe",
-            locals: { meal_plan: @meal_plan, meal_recipe: @meal_recipe, meal:@meal, leftover: @leftover})
-        end
+        format.turbo_stream
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
       else

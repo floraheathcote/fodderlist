@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "day_form" do %>
 
-  <%= form_with(model: day, url: meal_plan_days_path(meal_plan), id: "day#{day.id}") do |form| %>
+  <%= form_with(model: day, url: meal_plan_days_path(meal_plan), id: "form-day#{day.id}") do |form| %>
 
     <%= render 'shared/errors', object: day %>
     
