@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "meal_with_leftover_form" do %>
 
-    <%= form_with(scope: :meal_with_leftover, url:meal_leftover_meal_with_leftovers_path(meal, leftover), id: dom_id(meal_with_leftover) ) do |form| %>
+    <%= form_with(scope: :meal_with_leftover, url:meal_leftover_meal_with_leftovers_path(meal, leftover), :html=> {:id => "meal#{meal.id}leftover#{leftover.id}"}, data: {controller: 'hello', action: 'turbo:submit-end->hello#reset'} ) do |form| %>
 
     <%#= form_with(model: [meal, meal_with_leftover], id: dom_id(meal_with_leftover)) do |form| %>
 

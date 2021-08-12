@@ -1,7 +1,13 @@
 
+<% @meal_with_leftover_ids.each do |meal_with_leftover_id| %>   
+    <%= turbo_stream.remove("meal_with_leftover#{meal_with_leftover_id}") %>
+<% end %>
+
 <%= turbo_stream.replace("portion_info_mr#{@meal_recipe.id}", partial: 'meal_recipes/meal_recipe_portion_info',
                 locals: { leftover: nil, meal_recipe: @meal_recipe }) %>
 
 <% @meal_plan.meals.each do |meal| %>
     <%= turbo_stream.remove("meal#{meal.id}available_leftover#{@leftover.id}") %>
 <% end %>
+
+

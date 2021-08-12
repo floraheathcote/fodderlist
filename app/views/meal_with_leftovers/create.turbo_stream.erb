@@ -6,3 +6,8 @@
     <%= turbo_stream.replace("meal#{meal.id}available_leftover#{@leftover.id}", partial: 'meals/available_leftover',
                 locals: { leftover: @leftover, meal: meal }) %>
 <% end %>
+
+<%= turbo_stream.remove("error explanation") %>
+
+<%= turbo_stream.replace("portion_info_mr#{@meal_recipe.id}", partial: 'meal_recipes/meal_recipe_portion_info',
+                locals: { leftover: @leftover, meal_recipe: @meal_recipe }) %>

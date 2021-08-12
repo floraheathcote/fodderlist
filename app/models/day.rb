@@ -4,7 +4,7 @@ class Day < ApplicationRecord
   has_many :meal_recipes, through: :meals
 
   validates :date, presence: true
-  validates :notes, presence: true
+  # validates :notes, presence: true
   before_save :add_holiday_info
   default_scope { order('date ASC') }
 

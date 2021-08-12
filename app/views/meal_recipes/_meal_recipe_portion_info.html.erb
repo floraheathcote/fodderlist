@@ -9,8 +9,12 @@
             eat: <%= round_nicely(meal_recipe.portions - leftover.max_portions) %>
             </span>
             <%= link_to "save: #{round_nicely(leftover.max_portions)}", edit_meal_recipe_leftover_path(meal_recipe, leftover), class:"badge bg-secondary text-light" %>
-            <%= link_to "X", meal_recipe_leftover_path(meal_recipe, leftover), method: :delete, class:"badge bg-secondary text-light" %>
-
+            <% if leftover.meal_with_leftovers.present? %>
+                <%= link_to "X", meal_recipe_leftover_path(meal_recipe, leftover), method: :delete, class:"badge bg-secondary text-light", 
+                        data: { confirm: "Are you sure? #{leftover.meal_recipe.recipe.name} has already been added to #{ pluralize(leftover.meal_with_leftovers.count, 'meal') } " } %>
+            <% else %>
+                <%= link_to "X", meal_recipe_leftover_path(meal_recipe, leftover), method: :delete, class:"badge bg-secondary text-light" %>
+            <% end %>
         <% else %>
             <span class="badge bg-light text-dark">
             <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>

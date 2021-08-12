@@ -76,6 +76,10 @@ class LeftoversController < ApplicationController
   def destroy
     @meal_plan = @leftover.meal_recipe.meal.day.meal_plan
     @meal_recipe = @leftover.meal_recipe
+    @meal_with_leftover_ids = MealWithLeftover.leftover(@leftover).ids
+    # respond_to do |format|
+    #   format.turbo_stream
+    # end
     @leftover.destroy
     respond_to do |format|
       format.turbo_stream

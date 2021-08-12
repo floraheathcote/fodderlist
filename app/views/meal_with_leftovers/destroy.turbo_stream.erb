@@ -3,6 +3,11 @@
 <%= turbo_stream.remove("meal_with_leftover#{@meal_with_leftover.id}") %>
 
 <% @meal_plan.meals.each do |meal| %>
-    <%= turbo_stream.replace("meal#{meal.id}available_leftover#{@leftover.id}", partial: 'meals/available_leftover',
+    <% if @leftover.calculated_stock_level - @meal_with_leftover.portions == 0 %>
+        <%= turbo_stream.append("available_leftover_list#{meal.id}", partial: 'meals/available_leftover',
+            locals: { leftover: @leftover, meal: meal }) %>
+    <% else %>
+        <%= turbo_stream.replace("meal#{meal.id}available_leftover#{@leftover.id}", partial: 'meals/available_leftover',
                 locals: { leftover: @leftover, meal: meal }) %>
+    <% end %>
 <% end %>

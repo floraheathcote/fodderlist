@@ -33,6 +33,7 @@ class MealWithLeftoversController < ApplicationController
     @leftover = Leftover.find(params[:leftover_id])
     @meal = Meal.find(params[:meal_id])
     @meal_plan = @meal.day.meal_plan
+    @meal_recipe = @leftover.meal_recipe
 
     @meal_with_leftover.leftover = @leftover
     @meal_with_leftover.meal = @meal
@@ -44,7 +45,7 @@ class MealWithLeftoversController < ApplicationController
         format.html { redirect_to @meal_plan, notice: "Meal with leftover was successfully created." }
         format.json { render :show, status: :created, location: @meal_plan }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@meal_with_leftover, partial: "meal_with_leftovers/simple_form", locals: {meal_with_leftover: @meal_with_leftover, meal: @meal, leftover: @leftover })}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("meal#{@meal.id}leftover#{@leftover.id}", partial: "meal_with_leftovers/simple_form", locals: {meal_with_leftover: @meal_with_leftover, meal: @meal, leftover: @leftover })}
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @meal_with_leftover.errors, status: :unprocessable_entity }
       end
@@ -72,10 +73,10 @@ class MealWithLeftoversController < ApplicationController
 
   # DELETE /meal_with_leftovers/1 or /meal_with_leftovers/1.json
   def destroy
-    @meal_plan = @meal_with_leftover.leftover.meal_recipe.meal.day.meal_plan
-    @meal_with_leftover.destroy
+    @meal_plan = @meal_with_leftover.meal.day.meal_plan
     @leftover = @meal_with_leftover.leftover
 
+    @meal_with_leftover.destroy
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to meal_plan_url(@meal_plan), notice: "Leftover deleted." }
