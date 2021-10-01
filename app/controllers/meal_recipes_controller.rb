@@ -57,6 +57,7 @@ class MealRecipesController < ApplicationController
   def update
     respond_to do |format|
       if @meal_recipe.update(meal_recipe_params)
+        format.turbo_stream
         format.html { redirect_to @meal_recipe, notice: "Meal recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_recipe }
       else
@@ -72,7 +73,7 @@ class MealRecipesController < ApplicationController
     @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal_recipe.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_recipe#{@meal_recipe.id}") }
+      format.turbo_stream
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal recipe was successfully destroyed." }
       format.json { head :no_content }
     end

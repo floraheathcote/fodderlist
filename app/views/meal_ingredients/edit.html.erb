@@ -1,4 +1,4 @@
 <h1>Edit Meal_ingredient</h1>
 <%= turbo_frame_tag "meal_ingredient#{@meal_ingredient.id}" do %>
-    <%= render 'form',  url: meal_ingredient_path(@meal_ingredient), method: :put, id: dom_id(@meal_ingredient) %>
+    <%= render 'form',  url: meal_ingredient_path(@meal_ingredient), method: :patch, id: dom_id(@meal_ingredient) %>
 <% end %>

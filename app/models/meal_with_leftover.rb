@@ -6,6 +6,8 @@ class MealWithLeftover < ApplicationRecord
   validates :portions, numericality: {only_integer: false, greater_than_or_equal_to: 0.5}
 
   validate :stock_never_negative
+  validate :leftover_not_already_in_meal
+
 
   scope :leftover, ->(leftover) { where(leftover: leftover) }
   scope :meal, ->(meal) { where(meal: meal) }
@@ -23,5 +25,11 @@ class MealWithLeftover < ApplicationRecord
         errors.add(:meal_with_leftover, "- there's not enough leftovers, enter a lower amount")
     end
   end
+
+  def leftover_not_already_in_meal
+    if MealWithLeftover.meal(self.meal).leftover(self.leftover).present?
+      errors.add(:meal_with_leftover, "- you've already added this leftover to this meal")
+    end 
+  end 
 end
 

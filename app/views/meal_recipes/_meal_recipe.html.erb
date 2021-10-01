@@ -23,16 +23,22 @@
             </span>
         <% end %>
 
-
+        <small class="text-muted">
+        
+        <%= turbo_frame_tag "mr_ingredients_bullets#{meal_recipe.id}" do %>
             <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-                <%= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :eager do %>
-                        Loading MEAL_INGREDIENT: <%= meal_ingredient.id %>
-                <% end %>
+      
+                <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
+
             <% end %>
+        <% end %>
+        </small>
 
     <% end %>
-                <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{@meal_recipe.id}" do %>
-                    <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{@meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
-                <% end %>
-            <br>
+
+    <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{@meal_recipe.id}" do %>
+        <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(@meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{@meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
+    <% end %>
+    <br>
+
 <% end %>

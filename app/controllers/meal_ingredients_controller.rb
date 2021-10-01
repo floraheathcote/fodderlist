@@ -109,7 +109,7 @@ class MealIngredientsController < ApplicationController
     meal_plan = @meal_ingredient.meal.day.meal_plan
     @meal_ingredient.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("meal_ingredient#{@meal_ingredient.id}") }
+      format.turbo_stream
       format.html { redirect_to meal_plan_url(meal_plan), notice: "Meal ingredient was successfully destroyed." }
       format.json { head :no_content }
     end

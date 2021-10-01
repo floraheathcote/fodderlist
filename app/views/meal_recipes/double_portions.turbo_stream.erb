@@ -1,0 +1,2 @@
+debug
+<%= turbo_stream.replace "mr_ingredients_bullets#{@meal_recipe.id}", partial: "ingredient_list", locals: { meal_irecipe: @meal_recipe, meal_plan: @meal_plan } %>

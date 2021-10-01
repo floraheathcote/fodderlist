@@ -1,0 +1,26 @@
+{
+  "application.js": "/packs/js/application-5e3c8972d9d0d7aac83f.js",
+  "application.js.map": "/packs/js/application-5e3c8972d9d0d7aac83f.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-5e3c8972d9d0d7aac83f.js"
+      ],
+      "js.map": [
+        "/packs/js/application-5e3c8972d9d0d7aac83f.js.map"
+      ]
+    },
+    "imagesloaded": {
+      "js": [
+        "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js"
+      ],
+      "js.map": [
+        "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map"
+      ]
+    }
+  },
+  "imagesloaded.js": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js",
+  "imagesloaded.js.map": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map",
+  "vendors~actioncable.js": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js",
+  "vendors~actioncable.js.map": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js.map"
+}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default {\n  logger: self.console,\n  WebSocket: self.WebSocket\n};","map":null,"metadata":{},"sourceType":"module"}
