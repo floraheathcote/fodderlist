@@ -30,6 +30,8 @@
                           <% else %>
                               <%= link_to("tick off", shopping_list_item_toggle_tick_path(item) ) %>
                           <% end %>
+
+                          <%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
         </td>
     </tr>
     <% end %>
