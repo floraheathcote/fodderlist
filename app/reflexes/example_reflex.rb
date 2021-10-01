@@ -33,7 +33,8 @@ class ExampleReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
 
   def toggle
-    item = Item.find(element.dataset[:id])
+    item = ShoppingListItem.find(element.dataset[:id])
+    # item.ticked = true
     item.update(ticked: (item.ticked? ? false : true ))
   end
 

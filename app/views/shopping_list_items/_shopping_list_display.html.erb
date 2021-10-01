@@ -13,27 +13,27 @@
     </tr>
   </thead>
   <tbody>
-  <% shopping_list_items.each do |item| %>
-    <tr>
-        <th scope="row">  <% unless item.ingredient.ingredient_category == prev_category -%>
-                            <%= item.ingredient.ingredient_category.name %>
-                          <% end -%></th>
-                          <% prev_category = item.ingredient.ingredient_category -%>
-        <td><%= item.ingredient.name -%>:</td>
-        <td><%= item.total_sum_unit %></td>
-        <td>              
-                          <% unless item.ticked %><%= link_to("edit quantity", edit_shopping_list_item_path(item) ) %><% end %>
-        </td>
-        <td>
-                          <% if item.ticked %>
-                              <%= link_to("un-tick", shopping_list_item_toggle_tick_path(item) ) %>
-                          <% else %>
-                              <%= link_to("tick off", shopping_list_item_toggle_tick_path(item) ) %>
-                          <% end %>
+    <% shopping_list_items.each do |item| %>
+      <tr>
+          <th scope="row">  <% unless item.ingredient.ingredient_category == prev_category -%>
+                              <%= item.ingredient.ingredient_category.name %>
+                            <% end -%></th>
+                            <% prev_category = item.ingredient.ingredient_category -%>
+          <td><%= item.ingredient.name -%>:</td>
+          <td><%= item.total_sum_unit %></td>
+          <td>              
+                            <% unless item.ticked %><%= link_to("edit quantity", edit_shopping_list_item_path(item) ) %><% end %>
+          </td>
+          <td>
+                            <% if item.ticked %>
+                                <%= link_to("un-tick", shopping_list_item_toggle_tick_path(item) ) %>
+                            <% else %>
+                                <%= link_to("tick off", shopping_list_item_toggle_tick_path(item) ) %>
+                            <% end %>
 
-                          <%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
-        </td>
-    </tr>
+                            <%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
+          </td>
+      </tr>
     <% end %>
-  </tbody>
+    </tbody>
 </table>
