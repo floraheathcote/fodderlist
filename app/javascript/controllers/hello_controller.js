@@ -10,4 +10,11 @@ export default class extends Controller {
     this.element.reset();
   }
 
+
+  // connect() {
+  //   console.log("The controller is connected")
+  // }
+
+
+
 }
