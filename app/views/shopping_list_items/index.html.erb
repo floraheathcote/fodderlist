@@ -21,9 +21,12 @@ Hide Button
 
 <br><br><br>
 
-<div data-controller="toggle">
-    <button type="button" class="btn btn-primary" data-action="click->toggle#toggle">Hide</button>
-    <div id="tohide" data-toggle-target="content">Some special content</div>
+<div data-controller="toggle" data-toggle-visible-value="true">
+    <button type="button" class="btn btn-primary" 
+        data-action="click->toggle#toggle"
+        data-toggle-target="buttonText">
+        Hide</button>
+    <div data-toggle-target="content">Some special content</div>
 </div>
 
 <br><br>

@@ -3,7 +3,8 @@ import { Controller } from "stimulus"
 // export default class extends Controller {
 
 export default class ToggleController extends Controller {
-  static targets = ["content"];
+  static targets = ["content", "buttonText"];
+  static values  = { visible: Boolean }
 
   connect() {
     console.log("The toggle controller is connected")
@@ -11,19 +12,41 @@ export default class ToggleController extends Controller {
 
   
 
-  toggle() {
-    // this.contentTarget.classList.toggle("hidden");
-    // var x = document.getElementById("tohide");
-    this.contentTarget.classList.add('d-none')
-      // if (this.class === "d-none") {
-      //   this.class = "d-block";
-      // } else {
-      //   this.class = "d-none";
-      // }
+  // toggle() {
+  //   this.contentTarget.classList.toggle('d-none') 
+  // }
+
+  // showhide() {
+  //   console.log("Click!")
+  // }
+
+  connect() {
+    this.updateHiddenClass()
+    this.updateButtonText()
   }
 
-  showhide() {
-    console.log("Click!")
+  toggle() {
+    this.flipState()
+    this.updateHiddenClass()
+    this.updateButtonText()
   }
+    
+  flipState() {
+    this.visibleValue = !this.visibleValue
+  }
+
+  updateHiddenClass() {
+    this.contentTarget.classList.toggle("d-none", !this.visibleValue)
+  }
+
+  newText() {
+    return this.visibleValue ? "Hide" : "Show"
+  }
+
+  updateButtonText() {
+    this.buttonTextTarget.innerText = this.newText()
+  }
+
+
 
 }
