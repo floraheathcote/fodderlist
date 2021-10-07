@@ -14,7 +14,7 @@ export default class ToggleController extends Controller {
   toggle() {
     // this.contentTarget.classList.toggle("hidden");
     // var x = document.getElementById("tohide");
-    this.contentTarget.classList.add('text-danger')
+    this.contentTarget.classList.add('d-none')
       // if (this.class === "d-none") {
       //   this.class = "d-block";
       // } else {
