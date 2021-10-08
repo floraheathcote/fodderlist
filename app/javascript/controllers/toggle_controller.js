@@ -40,7 +40,7 @@ export default class ToggleController extends Controller {
   }
 
   newText() {
-    return this.visibleValue ? "Hide" : "Show"
+    return this.visibleValue ? this.data.get("hideText") : this.data.get("showText")
   }
 
   updateButtonText() {
