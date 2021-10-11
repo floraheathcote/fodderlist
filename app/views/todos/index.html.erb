@@ -1,0 +1,20 @@
+<table>
+  <% @todos.each do |todo| %>
+    <tr data-controller="todo" 
+          data-todo-update-url="<%= todo_path(todo) %>">
+      <td>
+        <input type="checkbox" 
+                    data-action="todo#toggle" 
+                    data-target="todo.completed" 
+                    <% if todo.completed %> checked <% end %> >
+        <%= todo.title %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<% @todos.each do |todo| %>
+  <% if todo.completed? %>
+    <%= todo.title %> has been completed
+  <% end %>
+<% end %>

@@ -14,19 +14,17 @@ Hide Button
 <h3>To buy:</h3>
 <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_unticked %>
 <%#= render 'shopping_list_display', shopping_list_items: @shopping_list_items %>
-<br><br><br>
+<br><br>
 
-<h3>Ticked off:</h3>
-<%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
-
-<br><br><br>
-
-<div data-controller="toggle" data-toggle-visible-value="true" data-toggle-hide-text="HideX" data-toggle-show-text="ShowX">
+<div data-controller="toggle" data-toggle-visible-value="true" data-toggle-hide-text="Hide ticked off items" data-toggle-show-text="Show ticked off items">
     <button type="button" class="btn btn-primary" 
-        data-action="click->toggle#toggle"
+        data-action="click->toggle#showhide"
         data-toggle-target="buttonText">
-        Hide</button>
-    <div data-toggle-target="content">Some special content</div>
+    </button>
+    <div data-toggle-target="content">
+        <h3>Ticked off:</h3>
+        <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
+    </div>
 </div>
 
 <br><br>

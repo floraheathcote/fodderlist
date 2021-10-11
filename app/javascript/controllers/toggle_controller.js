@@ -25,7 +25,7 @@ export default class ToggleController extends Controller {
     this.updateButtonText()
   }
 
-  toggle() {
+  showhide() {
     this.flipState()
     this.updateHiddenClass()
     this.updateButtonText()
@@ -47,6 +47,9 @@ export default class ToggleController extends Controller {
     this.buttonTextTarget.innerText = this.newText()
   }
 
-
+  tickUntick() {
+    item = ShoppingListItem.find(this.contentTarget.id)
+    item.toggle( false , true )
+  }
 
 }

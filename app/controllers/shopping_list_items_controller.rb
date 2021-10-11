@@ -66,11 +66,14 @@ class ShoppingListItemsController < ApplicationController
   # PATCH/PUT /shopping_list_items/1 or /shopping_list_items/1.json
   def update
     @meal_plan = @shopping_list_item.meal_plan
+    
     respond_to do |format|
       if @shopping_list_item.update(shopping_list_item_params)
+        format.js
         format.html { redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list item was successfully updated." }
         format.json { render :show, status: :ok, location: @shopping_list_item }
       else
+        format.js
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @shopping_list_item.errors, status: :unprocessable_entity }
       end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
 
   
+  resources :todos
   # resources :leftovers
   # resources :days
   resources :meal_plans, :shallow => true do
