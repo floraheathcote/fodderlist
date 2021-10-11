@@ -14,8 +14,7 @@
   </thead>
   <tbody>
     <% shopping_list_items.each do |item| %>
-      <tr data-controller="checkbox" 
-          data-checkbox-update-url="<%= shopping_list_item_path(id: item.id) %>">
+      <tr>
           
           <th scope="row">  <% unless item.ingredient.ingredient_category == prev_category -%>
                               <%= item.ingredient.ingredient_category.name %>
@@ -33,32 +32,11 @@
                                 <%= link_to("tick off", shopping_list_item_toggle_tick_path(item) ) %>
                             <% end %>
 
-                            <input type="checkbox" 
-                                data-action="checkbox#toggle" 
-                                data-checkbox-target="ticked"
-                                <% if item.ticked %> checked <% end %>     >                    
-                            <%#= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
+                                             
+                            <%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
 
          </td>
       </tr>
     <% end %>
     </tbody>
-</table>
-
-<table>
-<% @shopping_list_items.each do |item| %>
-
-      <tr data-controller="checkbox" 
-          data-checkbox-update-url="<%= shopping_list_item_path(id: item.id) %>">
-            <td>
-              <input type="checkbox" 
-                                data-action="checkbox#toggle" 
-                                data-checkbox-target="ticked"
-                                <% if item.ticked %> checked <% end %>     >  
-            </td>
-            <td>
-            <%= item.ingredient.name%>
-            </td>
-          </tr>
-<% end %>
 </table>
