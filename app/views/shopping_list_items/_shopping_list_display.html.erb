@@ -1,42 +1,20 @@
 
 
-<% prev_category = nil %>
+    <% prev_category = nil %>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Category</th>
-      <th scope="col">Ingredient</th>
-      <th scope="col">Amount</th>
-      <th scope="col"></th>
-      <th scope="col">Done?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% shopping_list_items.each do |item| %>
-      <tr>
+    
+        <% shopping_list_items.each do |item| %>
+          <tr>
+          <%= turbo_frame_tag "shopping_list_item-row#{item.id}" do %>   
+              
+              <th scope="row">  <% unless item.ingredient.ingredient_category == prev_category -%>
+                                  <br><h5><%= item.ingredient.ingredient_category.name %></h2>
+                                <% end -%></th>
+                                <% prev_category = item.ingredient.ingredient_category -%>
           
-          <th scope="row">  <% unless item.ingredient.ingredient_category == prev_category -%>
-                              <%= item.ingredient.ingredient_category.name %>
-                            <% end -%></th>
-                            <% prev_category = item.ingredient.ingredient_category -%>
-          <td><%= item.ingredient.name -%>:</td>
-          <td><%= item.total_sum_unit %></td>
-          <td>              
-                            <% unless item.ticked %><%= link_to("edit quantity", edit_shopping_list_item_path(item) ) %><% end %>
-          </td>
-          <td>
-                            <% if item.ticked %>
-                                <%= link_to("un-tick", shopping_list_item_toggle_tick_path(item) ) %>
-                            <% else %>
-                                <%= link_to("tick off", shopping_list_item_toggle_tick_path(item) ) %>
-                            <% end %>
+          <%= render "shopping_list_item", item: item %>
+          <% end %>
+          </tr>
+          <br>
+        <% end %>
 
-                                             
-                            <%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
-
-         </td>
-      </tr>
-    <% end %>
-    </tbody>
-</table>

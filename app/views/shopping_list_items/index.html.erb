@@ -5,13 +5,8 @@
 
 <br><br><br>
 
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-Hide Button
-</button>
 
-
-
-<h3>To buy:</h3>
+<h4>To buy:</h4>
 <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_unticked %>
 <%#= render 'shopping_list_display', shopping_list_items: @shopping_list_items %>
 <br><br>
@@ -23,8 +18,11 @@ Hide Button
         Hide completed items
     </button>
     <div data-toggle-target="content">
-        <h3>Ticked off:</h3>
-        <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
+    <br>
+        <h4>Ticked off:</h4>
+        <small>
+            <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
+        </small>
     </div>
 </div>
 

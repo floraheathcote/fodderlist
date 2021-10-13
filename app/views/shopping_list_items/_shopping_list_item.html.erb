@@ -1,0 +1,14 @@
+ <%= turbo_frame_tag "shopping_list_item#{item.id}" do %>   
+   
+<%= check_box_tag nil, nil, item.ticked, data: { reflex: "click->ExampleReflex#toggle", id: item.id}%>
+  <small>
+  <td><%= item.ingredient.name -%>:</td>
+    <td><%= item.total_sum_unit %></td>
+    <td>              
+        <%= turbo_frame_tag "shopping_list_item#{item.id}" do %>
+                    <% unless item.ticked %><%= link_to("edit", edit_shopping_list_item_path(item) ) %><% end %>
+        <% end %>
+    </td>
+
+    </small>
+   <% end %>

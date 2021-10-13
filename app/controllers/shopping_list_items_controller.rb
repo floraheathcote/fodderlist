@@ -69,6 +69,7 @@ class ShoppingListItemsController < ApplicationController
     
     respond_to do |format|
       if @shopping_list_item.update(shopping_list_item_params)
+        format.turbo_stream
         format.js
         format.html { redirect_to meal_plan_shopping_list_items_url(@meal_plan), notice: "Shopping list item was successfully updated." }
         format.json { render :show, status: :ok, location: @shopping_list_item }
