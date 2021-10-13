@@ -4,11 +4,8 @@ import { Controller } from "stimulus"
 
 export default class ToggleController extends Controller {
   static targets = ["content", "buttonText"];
-  static values  = { visible: Boolean }
+  static values  = { visible: Boolean, hideOnLoad: Boolean }
 
-  connect() {
-    console.log("The toggle controller is connected")
-  }
 
   
 
@@ -21,8 +18,13 @@ export default class ToggleController extends Controller {
   // }
 
   connect() {
+    console.log("The toggle controller is connected")
     this.updateHiddenClass()
-    this.updateButtonText()
+    // this.updateButtonText()
+    if (this.hideOnLoadValue) {this.showhide()}
+    window.scrollTo(0,0)
+    console.log("hideOnLoad value:") 
+    console.log(this.hideOnLoadValue)
   }
 
   showhide() {
@@ -47,9 +49,9 @@ export default class ToggleController extends Controller {
     this.buttonTextTarget.innerText = this.newText()
   }
 
-  tickUntick() {
-    item = ShoppingListItem.find(this.contentTarget.id)
-    item.toggle( false , true )
-  }
+  // tickUntick() {
+  //   item = ShoppingListItem.find(this.contentTarget.id)
+  //   item.toggle( false , true )
+  // }
 
 }

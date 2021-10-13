@@ -11,7 +11,9 @@
 <%#= render 'shopping_list_display', shopping_list_items: @shopping_list_items %>
 <br><br>
 
-<div data-controller="toggle" data-toggle-visible-value="true" data-toggle-hide-text="Hide ticked off items" data-toggle-show-text="Show ticked off items">
+<div data-controller="toggle" data-toggle-visible-value="true" 
+        data-toggle-hide-text="Hide ticked off items" 
+        data-toggle-show-text="Show ticked off items">
     <button type="button" class="btn btn-primary" 
         data-action="click->toggle#showhide"
         data-toggle-target="buttonText">

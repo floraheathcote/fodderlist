@@ -47,17 +47,29 @@
 
 <%= turbo_stream_from "day-list#{@meal_plan.id}" %>
 <%= turbo_frame_tag "day-list#{@meal_plan.id}" do %>  
-     
 
             <% @days.each do |day| %>
-                <%#= turbo_stream_from "day#{day.id}" %>
-             
-                    DAY: <%= day.id %>
-                    <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :eager do %>
-                            Loading...
-                    <% end %>
+
+                <div data-controller="toggle" data-toggle-visible-value="show" 
+                        data-toggle-hide-text="Hide <%= nice_date(day.date) %>" 
+                        data-toggle-show-text="Show <%= nice_date(day.date) %>"
+                        data-toggle-hide-on-load-value=true>
+                    <button type="button" class="btn btn-primary btn-primary-spacing" 
+                        data-action="click->toggle#showhide"
+                        data-toggle-target="buttonText">
+                        Hide day
+                    </button>
+                    <br>
+                    <div data-toggle-target="content">
+                    <br>
+                        <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :eager do %>
+                                            Loading...
+                        <% end %>
+                    </div>
+                </div>
             <% end %>
 <br>
 <% end %>
+
 
 
