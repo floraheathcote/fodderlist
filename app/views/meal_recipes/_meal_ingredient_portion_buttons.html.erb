@@ -14,3 +14,15 @@
 <%= link_to "X", meal_recipe_path(meal_recipe),
     method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
 </span>
+
+<tr>
+<div data-controller="portion" 
+    data-portion-update-url="<%= meal_recipe_double_portions_path(meal_recipe) %>">
+
+    <button type="button" class="badge bg-light text-dark" 
+        data-action="click->portion#double">
+        X2 TEST
+    </button>
+
+</div>
+</tr>

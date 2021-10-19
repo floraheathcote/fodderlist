@@ -1,55 +1,53 @@
 <%= turbo_frame_tag "day#{day.id}" do %> 
-    
     <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
 
-            <%#= render 'day_header_bar', day: day, meal_plan: meal_plan %>
-
-
-
-    <div class="container rounded p-3 my-3 bg-light" style="border:0px solid black">
-        <div class="row">
-            <div class="col-sm">
-                <h3><%= nice_date(day.date) %></h3>
-            </div>
-            <div class="col-sm">
-                <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
-                <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span>
-            </div>
-            <div class="col-sm">
-            <% if meal_plan.status == "draft" %>
-                    <%= link_to "Delete day & all meals in it", day_path(day), 
-                            method: :delete, class: "text-danger", 
-                            data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>
-            <% end %>
-            </div>
-        </div>
-    </div>
-
-            <br>
-        
-        <% if meal_plan.status=="draft" %>
-            <%#= turbo_frame_tag "meal_form" do %>
-                <%= render "meals/simple_form", day: day, meal: meal %>
-            <%# end %>
-        <% end %>
-
-            <br><br>
+        <div data-controller="toggle" data-toggle-visible-value="show" 
+                            data-toggle-hide-text="Hide <%= nice_date(@day.date) %>" 
+                            data-toggle-show-text="Show <%= nice_date(@day.date) %>"
+                            data-toggle-hide-on-load-value=true>
             
           
-            <%= turbo_stream_from "meallist#{day.id}" %>
-            <%= turbo_frame_tag "meallist#{day.id}" do %> 
-                <% day.meals.order(:time).each do |meal| %>  
-                    <%#= render 'card', meal:meal %>
-                    
-                    <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
-                        Loading MEAL: <%= meal.id %><br>
-                    <% end %>
-                <% end %>
-            <% end %>
-
+                <div class="container rounded p-3 my-3 bg-light" style="border:0px solid black">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h3><%= nice_date(day.date) %></h3>
+                            <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide"
+                                data-toggle-target="buttonText">
+                                Hide day
+                            </button>
+                        </div>
+                        <div class="col-sm">
+                            <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
+                            <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span>
+                        </div>
+                        <div class="col-sm">
+                        <% if meal_plan.status == "draft" %>
+                                <%= link_to "Delete day & all meals in it", day_path(day), 
+                                        method: :delete, class: "text-danger", 
+                                        data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>
+                        <% end %>
+                        </div>
+                    </div>
+                </div>
+            <div data-toggle-target="content">
+                <br>
             
-            <br>     
-    </div>
-    <br><br>
+                <% if meal_plan.status=="draft" %>
+                        <%= render "meals/simple_form", day: day, meal: meal %>
+                <% end %><br><br>
+                
+                <%= turbo_stream_from "meallist#{day.id}" %>
+                <%= turbo_frame_tag "meallist#{day.id}" do %> 
+                    <% day.meals.order(:time).each do |meal| %>  
+                        <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
+                            Loading MEAL: <%= meal.id %><br>
+                        <% end %>
+                    <% end %>
+                <% end %><br>     
+
+            </div>
+        </div>
+    </div><br>
 <% end %>
 

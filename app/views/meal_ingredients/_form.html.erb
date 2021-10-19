@@ -6,11 +6,11 @@
       <%= render 'shared/errors', object: @meal_ingredient %>
       
 
-        <% if @meal_ingredient.persisted? %>
-          <%= form.label :Ingredient, "Change ingredient:" %>
-        <% else %>
-          <%= form.label :Ingredient, "Add ingredient:" %>
-        <% end %>
+        <%# if @meal_ingredient.persisted? %>
+          <%#= form.label :Ingredient, "Change ingredient:" %>
+        <%# else %>
+          <%#= form.label :Ingredient, "Add ingredient:" %>
+        <%# end %>
                 
         <%= collection_select(:meal_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
            
@@ -39,8 +39,5 @@
         <% end %>
 
         <%= form.submit class: 'btn btn-primary' %>
-
-        
-      </div>
 
 <% end %>

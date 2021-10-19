@@ -1,5 +1,6 @@
 import { Controller } from "stimulus"
 export default class extends Controller {
+    
     static targets = [ "completed" ]
     toggle(event) {
         let formData = new FormData()

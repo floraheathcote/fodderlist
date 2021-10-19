@@ -84,6 +84,7 @@ class MealRecipesController < ApplicationController
     multiply_portions_and_ingredients(2)
 
     respond_to do |format|
+      format.js
       format.html { redirect_to meal_recipe_path(@meal_recipe), notice: "Portions and ingredient amounts updated" }
       format.json { head :no_content }
     end
