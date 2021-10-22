@@ -72,17 +72,31 @@
                         <br>
 
                         <h6>Other food/drinks in this meal:</h6>
-                        <ul>
-                            <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
-                            <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
-                                    <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
-                                        <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %> 
-                                    <% end %>
-                            <% end %>
-                        </ul>
-                            
-                            <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post, id: "meal#{meal.id}mealingredient#{meal_ingredient.id}" %><br>
                         
+                        <div data-controller="toggle" data-toggle-visible-value="show" 
+                                data-toggle-hide-text="Hide ingredients" 
+                                data-toggle-show-text="Show/add ingredients"
+                                data-toggle-hide-on-load-value=true>
+                            
+                            <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide"
+                                data-toggle-target="buttonText">
+                                Show/add ingredients
+                            </button><br>
+
+                            <div data-toggle-target="content">
+                                <ul>
+                                    <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
+                                    <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
+                                            <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
+                                                <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %> 
+                                            <% end %>
+                                    <% end %>
+                                </ul>
+                                
+                                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post, id: "meal#{meal.id}mealingredient#{meal_ingredient.id}" %><br>
+                            </div>
+
                         <% if MealWithLeftover.meal(meal).present? %>
                             <h6>Leftovers added to meal:</h6>
                         <% end %>
@@ -98,17 +112,30 @@
                         <% end %>
 
                         <%# title_already_drawn = false %>
-                        <h6>Leftovers available to add to meal:</h6>
+                        <br><h6>Leftovers available to add to meal:</h6>
             
-                        <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
-                        <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
-                            <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
-                                <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
-                                <%= render "available_leftover", leftover: leftover, meal: meal %>
-                            <% end %>
-                        <% end %>
+                        <div data-controller="toggle" data-toggle-visible-value="show" 
+                                data-toggle-hide-text="Hide leftovers" 
+                                data-toggle-show-text="Show/add leftovers"
+                                data-toggle-hide-on-load-value=true>
+                            
+                            <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide"
+                                data-toggle-target="buttonText">
+                                Show/add leftovers
+                            </button><br>
 
+                            <div data-toggle-target="content">
+                                <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
+                                <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
+                                    <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
+                                        <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
+                                        <%= render "available_leftover", leftover: leftover, meal: meal %>
+                                    <% end %>
+                                <% end %>
+                            </div>
 
+                        </div>
                         
                     </div>
                 </div>

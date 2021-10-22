@@ -1,49 +1,59 @@
 
 
-    <div class="page-header">
+<div class="page-header">
 
-        <div class="row">
-            <div class="col-sm">
-            <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %><br><br>
+    <div class="row">
+        <div class="col-sm">
+        <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %><br><br>
 
-            <h5>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
-                            (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h5>
-                            
-            <% if @meal_plan.notes.present? %> <br><br>Notes: <%= @meal_plan.notes %> <% end %>
-            </div>
+        <h5>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
+                        (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h5>
+                        
+        <% if @meal_plan.notes.present? %> <br><br>Notes: <%= @meal_plan.notes %> <% end %>
+        </div>
 
-            <div class="col-sm">
-                <div class="container rounded p-3 bg-light" style="border:1px solid grey">
-                    <% if @meal_plan.status == "confirmed" %>
-                        <strong>Meal plan status: Closed to editing </strong><br><br>
-                        <p><%= link_to("View shopping list", 
-                                        meal_plan_shopping_list_items_url(@meal_plan), class: 'btn btn-primary') %></p>
-                        <p><%= link_to("Return meal plan to draft", 
-                                        meal_plan_delete_shopping_list_path(@meal_plan), class: 'btn btn-danger',
-                                        data: { confirm: "Are you sure? This will delete the shopping list and lose any edits you've made or items you've ticked off." }) %></p>
-                    <% else %>
-                        <strong>Meal plan status: DRAFT </strong><br><br>
-                        <%= link_to("Finalise meal plan & generate shopping list", meal_plan_create_shopping_list_path(@meal_plan), class: 'btn btn-primary') %><br><br>
-                        <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
-                                method: :delete, 
-                                data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
-                    <% end %>
-                </div> 
-            </div>
+        <div class="col-sm">
+            <div class="container rounded p-3 bg-light" style="border:1px solid grey">
+                <% if @meal_plan.status == "confirmed" %>
+                    <strong>Meal plan status: Closed to editing </strong><br><br>
+                    <p><%= link_to("View shopping list", 
+                                    meal_plan_shopping_list_items_url(@meal_plan), class: 'btn btn-primary') %></p>
+                    <p><%= link_to("Return meal plan to draft", 
+                                    meal_plan_delete_shopping_list_path(@meal_plan), class: 'btn btn-danger',
+                                    data: { confirm: "Are you sure? This will delete the shopping list and lose any edits you've made or items you've ticked off." }) %></p>
+                <% else %>
+                    <strong>Meal plan status: DRAFT </strong><br><br>
+                    <%= link_to("Finalise meal plan & generate shopping list", meal_plan_create_shopping_list_path(@meal_plan), class: 'btn btn-primary') %><br><br>
+                    <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
+                            method: :delete, 
+                            data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
+                <% end %>
+            </div> 
         </div>
     </div>
+</div>
 
 
-    <br>
+<br>
 
+<div data-controller="toggle" data-toggle-visible-value="show" 
+        data-toggle-hide-text="Hide" 
+        data-toggle-show-text="Add day to meal plan"
+        data-toggle-hide-on-load-value=true>
+    
+    <button type="button" class="btn btn-primary " 
+        data-action="click->toggle#showhide"
+        data-toggle-target="buttonText">
+        Add day to meal plan
+    </button><br>
 
-
-    <% if @meal_plan.status=="draft" %>
-        <%#= turbo_frame_tag "day_form" do %>
-            <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
-        <%# end %>
-    <% end %>
-    <br><br>
+    <div data-toggle-target="content"><br>
+        <% if @meal_plan.status=="draft" %>
+                <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
+        <% end %>
+    </div>
+</div>
+<br><br>
 
 <%= turbo_stream_from "day-list#{@meal_plan.id}" %>
 <%= turbo_frame_tag "day-list#{@meal_plan.id}" do %>  

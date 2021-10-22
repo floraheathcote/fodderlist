@@ -1,9 +1,10 @@
  
 
 <% if params[:meal_recipe_id].present? %>
-        <%= turbo_stream.append("mr_ingredients_list#{@meal_recipe.id}", partial: "meal_ingredient",
+        <%= turbo_stream.append("meal_recipe_ingredients_list#{@meal_recipe.id}", partial: "meal_ingredient",
                 locals: { meal_ingredient: @meal_ingredient, meal_plan: @meal_plan }) %>
 <% elsif params[:meal_id].present? %>
         <%= turbo_stream.append("orphan_ingredients_list#{@meal.id}", partial: "meal_ingredient",
                 locals: { meal_ingredient: @meal_ingredient, meal_plan: @meal_plan }) %> 
 <% end %>
+
