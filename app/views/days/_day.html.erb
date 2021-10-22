@@ -33,10 +33,23 @@
             <div data-toggle-target="content">
                 <br>
             
-            
-                <% if meal_plan.status=="draft" %>
-                        <%= render "meals/simple_form", day: day, meal: meal %>
-                <% end %><br><br>
+                <div data-controller="toggle" data-toggle-visible-value="show" 
+                        data-toggle-hide-text="Hide form" 
+                        data-toggle-show-text="Add meal to day"
+                        data-toggle-hide-on-load-value=true>
+                    
+                    <button type="button" class="btn btn-primary " 
+                        data-action="click->toggle#showhide"
+                        data-toggle-target="buttonText">
+                        Show/add ingredients
+                    </button><br><br>
+
+                    <div data-toggle-target="content">
+                        <% if meal_plan.status=="draft" %>
+                                <%= render "meals/simple_form", day: day, meal: meal %>
+                        <% end %><br><br>
+                    </div>
+                </div>
                 
                 <%= turbo_stream_from "meallist#{day.id}" %>
                 <%= turbo_frame_tag "meallist#{day.id}" do %> 

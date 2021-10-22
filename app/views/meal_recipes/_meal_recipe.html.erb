@@ -27,12 +27,13 @@
             data-action="click->toggle#showhide"
             data-toggle-target="buttonText">
             Show/add ingredients
-        </button>
+        </button><br>
 
         <div data-toggle-target="content">
             <small class="text-muted">
                 <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
                 <%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
+                <br>
                     <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
                         <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
                     <% end %>
