@@ -40,9 +40,7 @@ class MealRecipesController < ApplicationController
     respond_to do |format|
       
       if @meal_recipe.recipe.present? && @meal_recipe.save
-          
         create_meal_ingredients_for_recipe(@meal_recipe)
-
         format.turbo_stream
         format.html { redirect_to @meal_plan, notice: "Meal recipe was successfully created." }
         format.json { render :show, status: :created, location: @meal_recipe }
@@ -55,16 +53,33 @@ class MealRecipesController < ApplicationController
 
   # PATCH/PUT /meal_recipes/1 or /meal_recipes/1.json
   def update
+    @meal = @meal_recipe.meal
+    @meal_plan = @meal.day.meal_plan
+    @leftover = Leftover.meal_recipe(@meal_recipe).first
+    @meal_ingredient = MealIngredient.new
+
     respond_to do |format|
+      if params[:meal_recipe][:multiply].present?
+        multiply_portions_and_ingredients(params[:meal_recipe][:multiply].to_d)
+      end
+
+      if params[:meal_recipe][:add].present?
+        # @meal_recipe = MealRecipe.find(params[:id])
+        @portions = @meal_recipe.portions
+        ratio_increase = 1 + 1/@portions
+        multiply_portions_and_ingredients(ratio_increase)
+      end
+
+      
       if @meal_recipe.update(meal_recipe_params)
         format.turbo_stream
         format.html { redirect_to @meal_recipe, notice: "Meal recipe was successfully updated." }
         format.json { render :show, status: :ok, location: @meal_recipe }
       else
-        
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @meal_recipe.errors, status: :unprocessable_entity }
       end
+      
     end
   end
 
@@ -82,9 +97,12 @@ class MealRecipesController < ApplicationController
 
   def double_portions
     multiply_portions_and_ingredients(2)
+    # render turbo_stream: turbo_stream.remove("mr_ingredients_bullets#{@meal_recipe.id}") }
 
     respond_to do |format|
-      format.js
+      # format.js
+      # format.turbo_stream { render turbo_stream: turbo_stream.remove("mr_ingredients_bullets#{@meal_recipe.id}") }
+
       format.html { redirect_to meal_recipe_path(@meal_recipe), notice: "Portions and ingredient amounts updated" }
       format.json { head :no_content }
     end
@@ -122,7 +140,7 @@ class MealRecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meal_recipe_params
-      params.require(:meal_recipe).permit(:meal_id, :recipe_id, :portions)
+      params.require(:meal_recipe).permit(:meal_id, :recipe_id, :portions, :maths)
     end
 
     def create_meal_ingredients_for_recipe(meal_recipe)
@@ -151,7 +169,7 @@ class MealRecipesController < ApplicationController
 
 
     def multiply_portions_and_ingredients(multiply_by)
-      @meal_recipe = MealRecipe.find(params[:meal_recipe_id])
+      @meal_recipe = MealRecipe.find(params[:id])
       @meal_plan = @meal_recipe.meal.day.meal_plan
       meal_ingredients = @meal_recipe.meal_ingredients
       @meal_recipe.portions *= multiply_by

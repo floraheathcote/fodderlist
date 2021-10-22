@@ -4,6 +4,8 @@ class MealRecipe < ApplicationRecord
   has_many :meal_ingredients, dependent: :destroy
   has_one :leftover, dependent: :destroy
 
+  attr_accessor :maths
+
   validates :portions, presence: true
   validates :recipe, presence: true
 

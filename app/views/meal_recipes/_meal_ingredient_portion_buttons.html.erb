@@ -1,28 +1,36 @@
-<span class="badge bg-light text-dark">
-    <%= link_to "x2", meal_recipe_double_portions_path(meal_recipe) -%>
-</span>
 
-<span class="badge bg-light text-dark">
-    <%= link_to "/2", meal_recipe_half_portions_path(meal_recipe) -%>
-</span>
 
-<span class="badge bg-light text-dark">
-    <%= link_to "+1", meal_recipe_add_one_portion_path(meal_recipe) -%>
-</span>    
-
-<span class="badge bg-light">
-<%= link_to "X", meal_recipe_path(meal_recipe),
-    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-</span>
-
-<tr>
-<div data-controller="portion" 
-    data-portion-update-url="<%= meal_recipe_double_portions_path(meal_recipe) %>">
-
-    <button type="button" class="badge bg-light text-dark" 
-        data-action="click->portion#double">
-        X2 TEST
-    </button>
-
+<div class="container">
+    <div class="row">
+        <div class="col-1.5">
+            <%= form_with(model: meal_recipe ) do |form| %>
+                <%= form.hidden_field :multiply, value: 2 %> <br>
+                <span class="badge bg-light text-dark">
+                    <%= form.submit "x2" %>
+                </span>
+            <% end %>
+        </div>
+        <div class="col-1.5">
+            <%= form_with(model: meal_recipe ) do |form| %>
+                <%= form.hidden_field :multiply, value: 0.5 %> <br>
+                <span class="badge bg-light text-dark">
+                    <%= form.submit "/2" %>
+                </span>
+            <% end %>
+        </div>
+        <div class="col-1.5">
+            <%= form_with(model: meal_recipe ) do |form| %>
+                <%= form.hidden_field :add, value: 1 %> <br>
+                <span class="badge bg-light text-dark">
+                    <%= form.submit "+1" %>
+                </span>
+            <% end %>
+        </div>
+        <div class="col-1.5">
+            <span class="badge bg-light text-dark">
+                <%= link_to "X", meal_recipe_path(meal_recipe),
+                    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+            </span>
+        </div>
+    </div>
 </div>
-</tr>
