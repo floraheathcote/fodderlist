@@ -17,34 +17,31 @@
         </span>
     <% end %>
 
+    <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
+    <%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
 
-    <div data-controller="toggle" data-toggle-visible-value="show" 
-                                data-toggle-hide-text="Hide ingredients" 
-                                data-toggle-show-text="Show/add ingredients"
-                                data-toggle-hide-on-load-value=true>
-        <br>
-        <button type="button" class="btn btn-primary " 
-            data-action="click->toggle#showhide"
-            data-toggle-target="buttonText">
-            Show/add ingredients
-        </button><br>
+        <div data-controller="toggle" data-toggle-visible-value="false" 
+                                    data-toggle-hide-text="Hide ingredients" 
+                                    data-toggle-show-text="Show/add ingredients"><br>
+            
+            <button type="button" class="btn btn-primary " 
+                data-action="click->toggle#showhide"
+                data-toggle-target="buttonText">
+                Show/add ingredients
+            </button><br><br>
 
-        <div data-toggle-target="content">
-            <small class="text-muted">
-                <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
-                <%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
-                <br>
-                    <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-                        <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
-                    <% end %>
-                <% end %>
-            </small>
+            <div data-toggle-target="content" class="d-none">
+                <small class="text-muted">
+                        <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
+                            <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
+                        <% end %>
+                </small>
 
-            <small> Add ingredient to this recipe: </small>
-            <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{meal_recipe.id}" do %>
-                <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
-            <% end %><br>
+                <small> Add ingredient to this recipe: </small>
+                <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{meal_recipe.id}" do %>
+                    <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
+                <% end %><br>
+            </div>
         </div>
-    </div>
-
+    <% end %>
 <% end %>

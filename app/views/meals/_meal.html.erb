@@ -1,8 +1,7 @@
 <%= turbo_frame_tag "meal#{meal.id}" do %> 
-    <div data-controller="toggle" data-toggle-visible-value="show" 
+    <div data-controller="toggle" data-toggle-visible-value="false" 
                                 data-toggle-hide-text="Hide <%= meal.name %>" 
-                                data-toggle-show-text="Show <%= meal.name %>"
-                                data-toggle-hide-on-load-value=true>
+                                data-toggle-show-text="Show <%= meal.name %>">
         <div class="card-deck">
 
             <div class="card">
@@ -20,7 +19,7 @@
                             <button type="button" class="btn btn-primary " 
                                 data-action="click->toggle#showhide"
                                 data-toggle-target="buttonText">
-                                Hide meal
+                                Show meal
                             </button>
 
 
@@ -36,7 +35,7 @@
                     </div>
                 </div>
 
-                <div data-toggle-target="content">
+                <div data-toggle-target="content" class="d-none">
                     <div class="card-body">
                     <br>
                 
@@ -73,10 +72,9 @@
 
                         <h6>Other food/drinks in this meal:</h6>
                         
-                        <div data-controller="toggle" data-toggle-visible-value="show" 
+                        <div data-controller="toggle" data-toggle-visible-value="false" 
                                 data-toggle-hide-text="Hide ingredients" 
-                                data-toggle-show-text="Show/add ingredients"
-                                data-toggle-hide-on-load-value=true>
+                                data-toggle-show-text="Show/add ingredients">
                             
                             <button type="button" class="btn btn-primary " 
                                 data-action="click->toggle#showhide"
@@ -84,7 +82,7 @@
                                 Show/add ingredients
                             </button><br>
 
-                            <div data-toggle-target="content">
+                            <div data-toggle-target="content" class="d-none">
                                 <ul>
                                     <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
                                     <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
@@ -114,10 +112,9 @@
                         <%# title_already_drawn = false %>
                         <br><h6>Leftovers available to add to meal:</h6>
             
-                        <div data-controller="toggle" data-toggle-visible-value="show" 
+                        <div data-controller="toggle" data-toggle-visible-value="false" 
                                 data-toggle-hide-text="Hide leftovers" 
-                                data-toggle-show-text="Show/add leftovers"
-                                data-toggle-hide-on-load-value=true>
+                                data-toggle-show-text="Show/add leftovers">
                             
                             <button type="button" class="btn btn-primary " 
                                 data-action="click->toggle#showhide"
@@ -125,7 +122,7 @@
                                 Show/add leftovers
                             </button><br>
 
-                            <div data-toggle-target="content">
+                            <div data-toggle-target="content" class="d-none">
                                 <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
                                 <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
                                     <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>

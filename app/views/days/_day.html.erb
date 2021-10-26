@@ -1,10 +1,9 @@
 <%= turbo_frame_tag "day#{day.id}" do %> 
     <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
 
-        <div data-controller="toggle" data-toggle-visible-value="show" 
+        <div data-controller="toggle" data-toggle-visible-value="false" 
                             data-toggle-hide-text="Hide <%= nice_date(@day.date) %>" 
-                            data-toggle-show-text="Show <%= nice_date(@day.date) %>"
-                            data-toggle-hide-on-load-value=true>
+                            data-toggle-show-text="Show <%= nice_date(@day.date) %>">
             
           
                 <div class="container rounded p-3 my-3 bg-light" style="border:0px solid black">
@@ -14,7 +13,7 @@
                             <button type="button" class="btn btn-primary " 
                                 data-action="click->toggle#showhide"
                                 data-toggle-target="buttonText">
-                                Hide day
+                                Show day
                             </button>
                         </div>
                         <div class="col-sm">
@@ -30,21 +29,20 @@
                         </div>
                     </div>
                 </div>
-            <div data-toggle-target="content">
+            <div data-toggle-target="content" class="d-none">
                 <br>
             
-                <div data-controller="toggle" data-toggle-visible-value="show" 
+                <div data-controller="toggle" data-toggle-visible-value="false" 
                         data-toggle-hide-text="Hide form" 
-                        data-toggle-show-text="Add meal to day"
-                        data-toggle-hide-on-load-value=true>
+                        data-toggle-show-text="Add meal to day">
                     
                     <button type="button" class="btn btn-primary " 
                         data-action="click->toggle#showhide"
                         data-toggle-target="buttonText">
-                        Show/add ingredients
+                        Add meal to day
                     </button><br><br>
 
-                    <div data-toggle-target="content">
+                    <div data-toggle-target="content" class="d-none">
                         <% if meal_plan.status=="draft" %>
                                 <%= render "meals/simple_form", day: day, meal: meal %>
                         <% end %><br><br>

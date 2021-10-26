@@ -36,10 +36,9 @@
 
 <br>
 
-<div data-controller="toggle" data-toggle-visible-value="show" 
+<div data-controller="toggle" data-toggle-visible-value="false" 
         data-toggle-hide-text="Hide" 
-        data-toggle-show-text="Add day to meal plan"
-        data-toggle-hide-on-load-value=true>
+        data-toggle-show-text="Add day to meal plan">
     
     <button type="button" class="btn btn-primary " 
         data-action="click->toggle#showhide"
@@ -47,7 +46,7 @@
         Add day to meal plan
     </button><br>
 
-    <div data-toggle-target="content"><br>
+    <div data-toggle-target="content" class="d-none"><br>
         <% if @meal_plan.status=="draft" %>
                 <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
         <% end %>

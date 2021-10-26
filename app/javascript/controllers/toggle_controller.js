@@ -6,9 +6,9 @@ export default class ToggleController extends Controller {
 
   connect() {
     // console.log("The toggle controller is connected")
-    this.updateHiddenClass()
-    if (this.hideOnLoadValue) {this.showhide()}
-    window.scrollTo(0,0)
+        // this.updateHiddenClass()
+        // if (this.hideOnLoadValue) {this.showhide()}
+        // window.scrollTo(0,0)
     // console.log("hideOnLoad value:") 
     // console.log(this.hideOnLoadValue)
   }
