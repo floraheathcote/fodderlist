@@ -36,37 +36,39 @@
                 </div>
 
                 <div data-toggle-target="content" class="d-none">
-                    <div class="card-body">
-                    <br>
+                    
                 
                         <% unless meal_recipes.present? %>
                             <div class="row">
                                 <div class="col-1">
-                                <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
+                                    <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
                                 </div>
                                 <div class="col-4">
-                                <h6>Add recipe using form above</h6>
-                                <br><br><br><br>
+                                    <h6>Add recipe using form above</h6><br><br><br><br>
                                 </div>
                             </div>
                         <% end %>
-                        
 
                         <% if meal.notes.present? %>
                             Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
                         <% end%>
 
+
                         <%= turbo_stream_from("meal_recipe_list#{meal.id}") %>
                         <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
-                            
-                            <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-                                <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
-                                    Loading <%= meal_recipe.id %>
-                                    <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
-                                <% end %>
-                            <% end%>
-                        
+
+                            <div class="row">
+                                <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
+                                <div class="col-3">
+                                    <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
+                                        Loading <%= meal_recipe.id %>
+                                        <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
+                                    <% end %>
+                                </div>
+                                <% end%>
+                            </div>
                         <% end %>
+
                     
                         <br>
 
@@ -116,7 +118,7 @@
                                 data-toggle-hide-text="Hide leftovers" 
                                 data-toggle-show-text="Show/add leftovers">
                             
-                            <button type="button" class="btn btn-primary " 
+                            <button type="button" class="btn btn-primary" 
                                 data-action="click->toggle#showhide"
                                 data-toggle-target="buttonText">
                                 Show/add leftovers
@@ -127,14 +129,14 @@
                                 <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
                                     <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
                                         <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
-                                        <%= render "available_leftover", leftover: leftover, meal: meal %>
+                                        <%= render "meals/available_leftover", leftover: leftover, meal: meal %>
                                     <% end %>
                                 <% end %>
                             </div>
 
                         </div>
                         
-                    </div>
+                    
                 </div>
             </div>
         </div>

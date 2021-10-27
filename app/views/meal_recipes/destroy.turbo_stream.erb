@@ -1,1 +1,4 @@
-<%= turbo_stream.remove("meal_recipe#{@meal_recipe.id}") %>
+<%#= turbo_stream.remove("meal_recipe#{@meal_recipe.id}") %>
+
+<%= turbo_stream.replace("meal#{@meal.id}", partial: "meals/meal",
+            locals: { meal: @meal, meal_recipe: @meal_recipe, meal_recipes: @meal_recipes, meal_ingredient: @meal_ingredient }) %>

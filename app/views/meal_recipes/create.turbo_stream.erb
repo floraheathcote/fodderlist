@@ -1,2 +1,6 @@
-<%= turbo_stream.prepend("meal_recipe_list#{@meal.id}", partial: "meal_recipes/meal_recipe",
+<%#= turbo_stream.prepend("meal_recipe_list#{@meal.id}", partial: "meal_recipes/meal_recipe",
             locals: { meal_plan: @meal_plan, meal_recipe: @meal_recipe, meal: @meal, leftover: @leftover}) %>
+
+
+<%= turbo_stream.replace("meal#{@meal.id}", partial: "meals/meal",
+            locals: { meal: @meal, meal_recipe: @meal_recipe, meal_recipes: @meal_recipes, meal_ingredient: @meal_ingredient }) %>

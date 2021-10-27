@@ -31,6 +31,8 @@ class MealRecipesController < ApplicationController
     
     @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal = @meal_recipe.meal
+    # @day = @meal.day
+    @meal_ingredient = MealIngredient.new
     # @leftover = Leftover.user(current_user).includes(:meal_recipe)
     
     if @meal_recipe.recipe.present?
@@ -85,8 +87,14 @@ class MealRecipesController < ApplicationController
 
   # DELETE /meal_recipes/1 or /meal_recipes/1.json
   def destroy
+
+    @meal = @meal_recipe.meal
+  
+    @meal_ingredient = MealIngredient.new
     @meal_plan = @meal_recipe.meal.day.meal_plan
     @meal_recipe.destroy
+
+
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to meal_plan_path(@meal_plan), notice: "Meal recipe was successfully destroyed." }
