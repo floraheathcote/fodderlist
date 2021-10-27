@@ -1,8 +1,8 @@
 import { Controller } from "stimulus"
 
 export default class ToggleController extends Controller {
-  static targets = ["content", "buttonText"];
-  static values  = { visible: Boolean, hideOnLoad: Boolean }
+  static targets = ["content", "initialcontent", "hiddencontent", "buttonText"];
+  static values  = { visible: Boolean }
 
   connect() {
     // console.log("The toggle controller is connected")
@@ -22,10 +22,13 @@ export default class ToggleController extends Controller {
     
   flipState() {
     this.visibleValue = !this.visibleValue
+    // this.initialvisibleValue = !this.initialvisibleValue
+    // this.hiddenvisibleValue = !this.hiddenvisibleValue
   }
 
   updateHiddenClass() {
     this.contentTarget.classList.toggle("d-none", !this.visibleValue)
+    this.initialcontentTarget.classList.toggle("d-none", this.visibleValue)
   }
 
   newText() {

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-
+                <div data-toggle-target="initialcontent" >initial content</div>
                 <div data-toggle-target="content" class="d-none">
                     
                         <% unless meal_recipes.present? %>
@@ -50,13 +50,15 @@
 
                         <% if meal.notes.present? %>
                             Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
-                        <% end%>
+                        <% end%><br>
 
                         <%= render "meal_recipe_list", meal: meal %> <br>
 
                         <h6>Other food/drinks in this meal:</h6>
                         
                         <div data-controller="toggle" data-toggle-visible-value="false" 
+                                data-toggle-initialvisible-value="true"
+                                data-toggle-hiddenvisible-value="false"
                                 data-toggle-hide-text="Hide ingredients" 
                                 data-toggle-show-text="Show/add ingredients">
                             
@@ -65,6 +67,8 @@
                                 data-toggle-target="buttonText">
                                 Show/add ingredients
                             </button><br>
+
+                            <div data-toggle-target="initialcontent" >initial content</div>
 
                             <div data-toggle-target="content" class="d-none">
                                 <ul>

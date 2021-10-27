@@ -29,6 +29,7 @@
                         </div>
                     </div>
                 </div>
+            <div data-toggle-target="initialcontent" >initial content</div>
             <div data-toggle-target="content" class="d-none">
                 <br>
             
@@ -42,6 +43,7 @@
                         Add meal to day
                     </button><br><br>
 
+                    <div data-toggle-target="initialcontent" >initial content</div>
                     <div data-toggle-target="content" class="d-none">
                         <% if meal_plan.status=="draft" %>
                                 <%= render "meals/simple_form", day: day, meal: meal %>

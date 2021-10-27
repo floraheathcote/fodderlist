@@ -1,13 +1,15 @@
 <%= turbo_stream_from("meal_recipe_list#{meal.id}") %>
 <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
 
-    <div class="row">
+    <div class="card-columns">
         <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-        <div class="col-3">
-            <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
-                Loading <%= meal_recipe.id %>
-                <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
-            <% end %>
+        <div class="card">
+            <div class="card-body">
+                <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
+                    Loading <%= meal_recipe.id %>
+                    <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
+                <% end %>
+            </div>
         </div>
         <% end%>
     </div>
