@@ -2,5 +2,4 @@
             locals: { meal_plan: @meal_plan, meal_recipe: @meal_recipe, meal: @meal, leftover: @leftover}) %>
 
 
-<%= turbo_stream.replace("meal#{@meal.id}", partial: "meals/meal",
-            locals: { meal: @meal, meal_recipe: @meal_recipe, meal_recipes: @meal_recipes, meal_ingredient: @meal_ingredient }) %>
+<%= turbo_stream.replace("meal_recipe_list#{@meal.id}", partial: "meals/meal_recipe_list", locals: { meal: @meal}) %>

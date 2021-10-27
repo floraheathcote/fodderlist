@@ -37,7 +37,6 @@
 
                 <div data-toggle-target="content" class="d-none">
                     
-                
                         <% unless meal_recipes.present? %>
                             <div class="row">
                                 <div class="col-1">
@@ -53,24 +52,7 @@
                             Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
                         <% end%>
 
-
-                        <%= turbo_stream_from("meal_recipe_list#{meal.id}") %>
-                        <%= turbo_frame_tag("meal_recipe_list#{meal.id}") do %>
-
-                            <div class="row">
-                                <% meal.meal_recipes.includes(:recipe).each do |meal_recipe| %>
-                                <div class="col-3">
-                                    <%= turbo_frame_tag "meal_recipe#{meal_recipe.id}", src: meal_recipe_path(meal_recipe.id), loading: :eager do %>
-                                        Loading <%= meal_recipe.id %>
-                                        <%#= render 'meal_recipes/meal_recipe', meal_recipe: meal_recipe, meal: meal, leftover: @leftover %>
-                                    <% end %>
-                                </div>
-                                <% end%>
-                            </div>
-                        <% end %>
-
-                    
-                        <br>
+                        <%= render "meal_recipe_list", meal: meal %> <br>
 
                         <h6>Other food/drinks in this meal:</h6>
                         
