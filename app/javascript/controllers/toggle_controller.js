@@ -21,7 +21,7 @@ export default class ToggleController extends Controller {
     console.log("showHide")
     this.flipState()
     this.updateHiddenClass()
-    this.updateButtonText()
+    // this.updateButtonText()
   }
     
   flipState() {
@@ -35,17 +35,14 @@ export default class ToggleController extends Controller {
     this.visibleOnLoadTarget.classList.toggle("d-none", this.visible)
   }
 
-  newText() {
-    return this.visible ? this.data.get("hideText") : this.data.get("showText")
-  }
-
-  updateButtonText() {
-    this.buttonTextTarget.innerText = this.newText()
-  }
-
-  // tickUntick() {
-  //   item = ShoppingListItem.find(this.contentTarget.id)
-  //   item.toggle( false , true )
+  // newText() {
+  //   return this.visible ? this.data.get("hideText") : this.data.get("showText")
   // }
+
+  // updateButtonText() {
+  //   this.buttonTextTarget.innerText = this.newText()
+  // }
+
+
 
 }

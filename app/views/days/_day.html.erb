@@ -1,20 +1,14 @@
 <%= turbo_frame_tag "day#{day.id}" do %> 
     <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
 
-        <div data-controller="toggle"  
-                            data-toggle-hide-text="Hide <%= nice_date(@day.date) %>" 
-                            data-toggle-show-text="Show <%= nice_date(@day.date) %>">
+        <div data-controller="toggle">
             
           
                 <div class="container rounded p-3 my-3 bg-light" style="border:0px solid black">
                     <div class="row">
                         <div class="col-sm">
                             <h3><%= nice_date(day.date) %></h3>
-                            <button type="button" class="btn btn-primary " 
-                                data-action="click->toggle#showhide"
-                                data-toggle-target="buttonText">
-                                Show day
-                            </button>
+                            
                         </div>
                         <div class="col-sm">
                             <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
@@ -29,22 +23,37 @@
                         </div>
                     </div>
                 </div>
-            <div data-toggle-target="visibleOnLoad" >initial content</div>
+            <div data-toggle-target="visibleOnLoad" >initial content
+                <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide">
+                                Show day
+                </button>
+            </div>
             <div data-toggle-target="hiddenOnLoad" class="d-none">
+                <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide">
+                                Hide day
+                </button>
                 <br>
             
                 <div data-controller="toggle"  
                         data-toggle-hide-text="Hide form" 
                         data-toggle-show-text="Add meal to day">
                     
-                    <button type="button" class="btn btn-primary " 
-                        data-action="click->toggle#showhide"
-                        data-toggle-target="buttonText">
-                        Add meal to day
-                    </button><br><br>
+                    <br>
 
-                    <div data-toggle-target="visibleOnLoad" >initial content</div>
+                    <div data-toggle-target="visibleOnLoad" >
+                    initial content
+                    <button type="button" class="btn btn-primary " 
+                        data-action="click->toggle#showhide">
+                        Add meal to day
+                    </button></div>
+
                     <div data-toggle-target="hiddenOnLoad" class="d-none">
+                    <button type="button" class="btn btn-primary " 
+                        data-action="click->toggle#showhide">
+                        Hide form
+                    </button>
                         <% if meal_plan.status=="draft" %>
                                 <%= render "meals/simple_form", day: day, meal: meal %>
                         <% end %><br><br>

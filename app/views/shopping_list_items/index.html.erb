@@ -11,21 +11,11 @@
 <%#= render 'shopping_list_display', shopping_list_items: @shopping_list_items %>
 <br><br>
 
-<div data-controller="toggle" data-toggle-visible-value="true" 
-        data-toggle-hide-text="Hide ticked off items" 
-        data-toggle-show-text="Show ticked off items">
-    <button type="button" class="btn btn-primary" 
-        data-action="click->toggle#showhide"
-        data-toggle-target="buttonText">
-        Hide completed items
-    </button>
-    <div data-toggle-target="hiddenOnLoad" class="d-none">
-    <br>
-        <h4>Ticked off:</h4>
-        <small>
-            <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
-        </small>
-    </div>
-</div>
+
+<h4>Ticked off:</h4>
+<small>
+    <%= render 'shopping_list_display', shopping_list_items: @shopping_list_items_ticked %>
+</small>
+    
 
 <br><br>
