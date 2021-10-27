@@ -20,9 +20,9 @@
     <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
     <%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
 
-        <div data-controller="toggle" data-toggle-visible-value="false" 
-                                    data-toggle-hide-text="Hide ingredients" 
-                                    data-toggle-show-text="Show/add ingredients"><br>
+        <div data-controller="toggle" 
+                        data-toggle-hide-text="Hide ingredients" 
+                        data-toggle-show-text="Show/add ingredients"><br>
             
             <button type="button" class="btn btn-primary " 
                 data-action="click->toggle#showhide"
@@ -30,7 +30,7 @@
                 Show/add ingredients
             </button><br><br>
 
-            <div data-toggle-target="content" class="d-none">
+            <div data-toggle-target="hiddenOnLoad" class="d-none">
                 <small class="text-muted">
                         <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
                             <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
