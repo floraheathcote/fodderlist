@@ -1,78 +1,49 @@
 
-
-<div class="page-header">
-
-    <div class="row">
-        <div class="col-sm">
-        <%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %><br><br>
-
-        <h5>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
+<%= link_to "<< all meal plans", meal_plans_path, class: 'btn btn-default' %>
+<h6>Meal Plan for period starting: <%= nice_date(@meal_plan.start_date) %>
                         (<%= pluralize(@meal_plan.number_of_days, "day") %>)</h5>
-                        
-        <% if @meal_plan.notes.present? %> <br><br>Notes: <%= @meal_plan.notes %> <% end %>
-        </div>
+<% if @meal_plan.notes.present? %> <br><small>Notes: <%= @meal_plan.notes %></small><% end %>
 
-        <div class="col-sm">
-            <div class="container rounded p-3 bg-light" style="border:1px solid grey">
-                <% if @meal_plan.status == "confirmed" %>
-                    <strong>Meal plan status: Closed to editing </strong><br><br>
-                    <p><%= link_to("View shopping list", 
-                                    meal_plan_shopping_list_items_url(@meal_plan), class: 'btn btn-primary') %></p>
-                    <p><%= link_to("Return meal plan to draft", 
-                                    meal_plan_delete_shopping_list_path(@meal_plan), class: 'btn btn-danger',
-                                    data: { confirm: "Are you sure? This will delete the shopping list and lose any edits you've made or items you've ticked off." }) %></p>
-                <% else %>
-                    <strong>Meal plan status: DRAFT </strong><br><br>
-                    <%= link_to("Finalise meal plan & generate shopping list", meal_plan_create_shopping_list_path(@meal_plan), class: 'btn btn-primary') %><br><br>
-                    <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), class: 'btn btn-danger', 
-                            method: :delete, 
-                            data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
-                <% end %>
-            </div> 
-        </div>
-    </div>
-</div>
+<% if @meal_plan.status == "confirmed" %>
+    Meal plan status: <strong>Closed to editing </strong>
+    | <%= link_to("View shopping list", meal_plan_shopping_list_items_url(@meal_plan)) %>
+    | <%= link_to("Return meal plan to draft", 
+                    meal_plan_delete_shopping_list_path(@meal_plan),
+                    data: { confirm: "Are you sure? This will delete the shopping list and lose any edits you've made or items you've ticked off." }) %></p>
+<% else %>
+    Meal plan status: <strong> DRAFT </strong>
+    | <%= link_to("Finalise meal plan & generate shopping list", meal_plan_create_shopping_list_path(@meal_plan)) %>
+    | <%= link_to "Delete Meal Plan", meal_plan_path(@meal_plan), 
+            method: :delete, 
+            data: { confirm: 'Are you sure? This will delete the meal plan and all days and meals in it.' } %>
+<% end %>
 
-
-<br>
-
-<div data-controller="toggle">
-    
-
-
-    <div data-toggle-target="visibleOnLoad">
-    initial content
-    <button type="button" class="btn btn-primary " 
-        data-action="click->toggle#showhide">
-        Add day to meal plan
-    </button>
-    </div>
-
-    <div data-toggle-target="hiddenOnLoad" class="d-none"><br>
-    <button type="button" class="btn btn-primary " 
-        data-action="click->toggle#showhide">
-        Hide form
-    </button>
-        <% if @meal_plan.status=="draft" %>
-                <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
-        <% end %>
-    </div>
-</div>
 <br><br>
 
 <%= turbo_stream_from "day-list#{@meal_plan.id}" %>
 <%= turbo_frame_tag "day-list#{@meal_plan.id}" do %>  
-
-            <% @days.each do |day| %>
-
-                
-                        <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :eager do %>
-                                            Loading...
-                        <% end %>
-            
-            <% end %>
-<br>
+    <% @days.each do |day| %>
+        <%= turbo_frame_tag "day#{day.id}", src: day_path(day), loading: :eager do %>
+            Loading...
+        <% end %>
+    <% end %><br>
 <% end %>
 
+<% if @meal_plan.status=="draft" %>
+    <div data-controller="toggle">
+        <div data-toggle-target="visibleOnLoad">
+            <button type="button" class="btn btn-primary " 
+                data-action="click->toggle#showhide">
+                Add day to meal plan
+            </button>
+        </div>
 
-
+        <div data-toggle-target="hiddenOnLoad" class="d-none"><br>
+            <button type="button" class="btn btn-primary " 
+                data-action="click->toggle#showhide">
+                Hide form
+            </button>
+            <%= render "days/simple_form", meal_plan: @meal_plan, day: @new_day %>
+        </div>
+    </div>
+<% end %>

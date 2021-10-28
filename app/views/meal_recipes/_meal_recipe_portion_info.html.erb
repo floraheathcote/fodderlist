@@ -18,8 +18,10 @@
             <span class="badge bg-light text-dark">
             <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
             </span>
-            <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
-            <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+           
+                <%= link_to "no leftovers", new_meal_recipe_leftover_path(meal_recipe), class:"badge bg-secondary text-light" %><br>
+                <%= render 'meal_recipes/meal_ingredient_portion_buttons', meal_recipe: meal_recipe %>
+             
         <% end %>
 
 <% end %>

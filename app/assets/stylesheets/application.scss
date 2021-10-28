@@ -86,6 +86,18 @@ body > .alert {
   margin-right: 5px;
   margin-bottom: 5px !important;
 }
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 // .font_handwriting {
 // font-family: 'Nothing You Could Do', cursive;
 // color: blue;

@@ -1,76 +1,95 @@
-<%= turbo_frame_tag "day#{day.id}" do %> 
-    <div class="container rounded p-3 bg-transparent" style="border:2px solid green">
-
-        <div data-controller="toggle">
-            
-          
-                <div class="container rounded p-3 my-3 bg-light" style="border:0px solid black">
-                    <div class="row">
-                        <div class="col-sm">
-                            <h3><%= nice_date(day.date) %></h3>
-                            
-                        </div>
-                        <div class="col-sm">
-                            <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
-                            <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span>
-                        </div>
-                        <div class="col-sm">
+<%= turbo_frame_tag "day#{day.id}" do %>
+    <div data-controller="toggle">
+        
+        <div data-toggle-target="visibleOnLoad">
+            <div class="card-group">
+                <div class="card bg-info mb-3" style="max-width: 10rem;">
+                    <div class="card-body">
+                        <%= nice_date(day.date) %><br>
+                        <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
+                        <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span><br>
+                        
                         <% if meal_plan.status == "draft" %>
                                 <%= link_to "Delete day & all meals in it", day_path(day), 
                                         method: :delete, class: "text-danger", 
                                         data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>
-                        <% end %>
-                        </div>
+                        <% end %><br>
+                        <button type="button" class="btn btn-link " 
+                                data-action="click->toggle#showhide">
+                                Expand
+                        </button>
                     </div>
                 </div>
-            <div data-toggle-target="visibleOnLoad" >initial content
-                <button type="button" class="btn btn-primary " 
-                                data-action="click->toggle#showhide">
-                                Show day
-                </button>
-            </div>
-            <div data-toggle-target="hiddenOnLoad" class="d-none">
-                <button type="button" class="btn btn-primary " 
-                                data-action="click->toggle#showhide">
-                                Hide day
-                </button>
-                <br>
-            
-                <div data-controller="toggle"  
-                        data-toggle-hide-text="Hide form" 
-                        data-toggle-show-text="Add meal to day">
-                    
-                    <br>
 
+                <div class="card text-white bg-light mb-3" style="max-width: 45rem;">
+                    <div class="card-body">
+                        <%= turbo_stream_from "meallist#{day.id}" %>
+                        <%= turbo_frame_tag "meallist#{day.id}" do %> 
+                            <div class = "row">
+                                <% day.meals.order(:time).each do |meal| %>  
+                                    <div class = "col">
+                                        <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
+                                            Loading MEAL: <%= meal.id %><br>
+                                        <% end %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div><br>
+        </div>
+
+        <div data-toggle-target="hiddenOnLoad" class="d-none">
+            <div class="col-3">
+                <div class="container rounded bg-light" style="border:0px solid black">
+                    <%= nice_date(day.date) %><br>
+                    <% if day.holiday.present? %>    -----<em><span style = "font-family:Nothing You Could Do"><%= day.holiday %><em></span>-----<br><% end %>
+                    <%= link_to "Notes:", edit_day_path(day) %> <span style = "font-family:Nothing You Could Do"><%= day.notes %></span><br>
+                    
+                    <% if meal_plan.status == "draft" %>
+                            <%= link_to "Delete day & all meals in it", day_path(day), 
+                                    method: :delete, class: "text-danger", 
+                                    data: { confirm: 'Are you sure? This will remove the day and all meals in it.' } %>
+                    <% end %>
+                </div>
+            </div><br>
+            
+            <%= turbo_stream_from "meallist#{day.id}" %>
+            <%= turbo_frame_tag "meallist#{day.id}" do %> 
+                <% day.meals.order(:time).each do |meal| %>  
+                    <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
+                        Loading MEAL: <%= meal.id %><br>
+                    <% end %>
+                <% end %>
+            <% end %><br>  
+
+            <button type="button" class="btn btn-link" 
+                            data-action="click->toggle#showhide">
+                            Hide details
+            </button>
+
+            <% if meal_plan.status=="draft" %>
+                <div data-controller="toggle">
+                    <br>
                     <div data-toggle-target="visibleOnLoad" >
-                    initial content
-                    <button type="button" class="btn btn-primary " 
-                        data-action="click->toggle#showhide">
-                        Add meal to day
-                    </button></div>
+                        <button type="button" class="btn btn-primary " 
+                            data-action="click->toggle#showhide">
+                            Add meal to day
+                        </button>
+                    </div>
 
                     <div data-toggle-target="hiddenOnLoad" class="d-none">
-                    <button type="button" class="btn btn-primary " 
-                        data-action="click->toggle#showhide">
-                        Hide form
-                    </button>
-                        <% if meal_plan.status=="draft" %>
-                                <%= render "meals/simple_form", day: day, meal: meal %>
-                        <% end %><br><br>
+                        <button type="button" class="btn btn-primary " 
+                            data-action="click->toggle#showhide">
+                            Hide form
+                        </button>
+                        <%= render "meals/simple_form", day: day, meal: meal %>
                     </div>
                 </div>
-                
-                <%= turbo_stream_from "meallist#{day.id}" %>
-                <%= turbo_frame_tag "meallist#{day.id}" do %> 
-                    <% day.meals.order(:time).each do |meal| %>  
-                        <%= turbo_frame_tag "meal#{meal.id}", src: meal_path(meal.id), loading: :eager do %>
-                            Loading MEAL: <%= meal.id %><br>
-                        <% end %>
-                    <% end %>
-                <% end %><br>     
+            <% end %>
 
-            </div>
         </div>
-    </div><br>
+    </div>
 <% end %>
 

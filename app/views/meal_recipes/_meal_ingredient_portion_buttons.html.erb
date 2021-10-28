@@ -1,36 +1,31 @@
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-1.5">
-            <%= form_with(model: meal_recipe ) do |form| %>
-                <%= form.hidden_field :multiply, value: 2 %> <br>
-                <span class="badge bg-light text-dark">
-                    <%= form.submit "x2" %>
-                </span>
-            <% end %>
-        </div>
-        <div class="col-1.5">
-            <%= form_with(model: meal_recipe ) do |form| %>
-                <%= form.hidden_field :multiply, value: 0.5 %> <br>
-                <span class="badge bg-light text-dark">
-                    <%= form.submit "/2" %>
-                </span>
-            <% end %>
-        </div>
-        <div class="col-1.5">
-            <%= form_with(model: meal_recipe ) do |form| %>
-                <%= form.hidden_field :add, value: 1 %> <br>
-                <span class="badge bg-light text-dark">
-                    <%= form.submit "+1" %>
-                </span>
-            <% end %>
-        </div>
-        <div class="col-1.5">
+
+<div class="row no-gutters">
+    <div class="col-1.5">
+        <%= form_with(model: meal_recipe ) do |form| %>
+            <%= form.hidden_field :multiply, value: 2 %> <br>
             <span class="badge bg-light text-dark">
-                <%= link_to "X", meal_recipe_path(meal_recipe),
-                    method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+                <%= form.submit "x2" %>
             </span>
-        </div>
+        <% end %>
+    </div>
+    <div class="col-1.5">
+        <%= form_with(model: meal_recipe ) do |form| %>
+            <%= form.hidden_field :multiply, value: 0.5 %> <br>
+            <span class="badge bg-light text-dark">
+                <%= form.submit "/2" %>
+            </span>
+        <% end %>
+    </div>
+    <div class="col-1.5">
+        <%= form_with(model: meal_recipe ) do |form| %>
+            <%= form.hidden_field :add, value: 1 %> <br>
+            <span class="badge bg-light text-dark">
+                <%= form.submit "+1" %>
+            </span>
+        <% end %>
     </div>
 </div>
+        
+   

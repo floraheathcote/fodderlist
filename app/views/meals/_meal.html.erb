@@ -1,25 +1,30 @@
 <%= turbo_frame_tag "meal#{meal.id}" do %> 
-    <div data-controller="toggle" 
-                    data-toggle-hide-text="Hide <%= meal.name %>" 
-                    data-toggle-show-text="Show <%= meal.name %>">
-        <div class="card-deck">
+    <div data-controller="toggle">
+                        
+        <div data-toggle-target="visibleOnLoad">
+            <strong style="color:black;"><%= meal.name %></strong>
+            <button type="button" class="btn btn-link " 
+                        data-action="click->toggle#showhide">
+                        view
+            </button>
+            <%= render "meal_recipe_list", meal: meal %>
+        </div>
+                            
 
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm">
-                            <h5><%= meal.name %></h5>
-                            <% if @meal_plan.status=="draft" %>
+                        
+                
+                <div data-toggle-target="hiddenOnLoad" class="d-none">
+                    
+                    <button type="button" class="btn btn-primary " 
+                                data-action="click->toggle#showhide">
+                                Hide meal
+                    </button>
+                        <% if @meal_plan.status=="draft" %>
                                 <%= link_to "Edit meal", edit_meal_path(meal) %>
                                 <%= link_to "Delete meal", meal_path(meal), 
                                         method: :delete, class: "text-danger", 
                                         data: { confirm: 'Are you sure you want to delete the meal?' } %>
-                            <% end %><br>
-
-                            
-
-
-                        </div>
+                        <% end %><br>
                         <div class="col-sm">
                             <%= meal.time.strftime('%l:%M%P') %>
                         </div>
@@ -28,20 +33,6 @@
                                 <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @meal_recipe, data: {controller: 'hello', action: 'turbo:submit-end->hello#reset'} %>
                             <% end %>                
                         </div>
-                    </div>
-                </div>
-                <div data-toggle-target="visibleOnLoad" >initial content
-                    <button type="button" class="btn btn-primary " 
-                                data-action="click->toggle#showhide">
-                                Show meal
-                    </button></div>
-                <div data-toggle-target="hiddenOnLoad" class="d-none">
-                    
-                    <button type="button" class="btn btn-primary " 
-                                data-action="click->toggle#showhide">
-                                Hide meal
-                    </button>
-
 
                         <% unless meal_recipes.present? %>
                             <div class="row">

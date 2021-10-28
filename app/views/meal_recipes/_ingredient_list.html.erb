@@ -1,7 +1,3 @@
 <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-    <%#= turbo_frame_tag "meal_ingredient#{meal_ingredient.id}", src: meal_ingredient_path(meal_ingredient), loading: :eager do %>
-            
-    <%# end %>
-
     <%= render 'meal_ingredients/mi_or_ri_list_item', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
 <% end %>
