@@ -1,98 +1,75 @@
 <%= turbo_frame_tag("meal_recipe#{meal_recipe.id}") do %>
 
     <div data-controller="toggle"><br>
+        <div data-toggle-target="visibleOnLoad" >
+            <a  data-action="click->toggle#showhide">
+                <%= render "meal_recipes/meal_recipe_header", meal_recipe: meal_recipe, leftover: leftover, meal_plan: meal_plan %>
+            </a>    
+        </div>   
+
+    <div data-toggle-target="hiddenOnLoad" class="d-none">
 
         <div class="card no-gutters">
             <div class="card-body no-gutters">
-                <div class="row">
-                    <div class="col-md-auto no-gutters">
-                        <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
+                <a  data-action="click->toggle#showhide">
+                    <%= render "meal_recipes/meal_recipe_header", meal_recipe: meal_recipe, leftover: leftover, meal_plan: meal_plan %>
+                </a>    
+            </div>
+
+            <div class="card-footer no-gutters">
+                <% if meal_plan.status=="draft" %>
+                    <%= render "meal_recipe_portion_info", leftover: leftover, meal_recipe: meal_recipe %>
+                <% else %>
+                    <span class="badge bg-light text-dark">
+                        <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
+                    </span>
+                <% end %>
+            </div>
+            
+            <div class="card-footer no-gutters">
+
+                <div data-controller="toggle">
+                    <div data-toggle-target="visibleOnLoad">
+                        <button type="button" class="btn btn-link btn-sm" 
+                                data-action="click->toggle#showhide">Edit ingredients
+                        </button>
                     </div>
-                    <div class="col no-gutters">
-                        <p class="card-text"><small class="text-muted"><%= meal_recipe.recipe.name %></small></p>
+
+                    <div data-toggle-target="hiddenOnLoad" class="d-none">
+                        <a style="color:black">Ingredients</a>
+                        <button type="button" class="btn btn-link btn-sm" 
+                                data-action="click->toggle#showhide">
+                                (hide)
+                        </button>
+                        
+                        <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
+                        <%= render "meal_recipes/meal_recipe_ingredients_list", meal_recipe:meal_recipe, meal_plan: @meal_plan %>
+
+                        Add ingredient to this recipe:
+                        <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{meal_recipe.id}" do %>
+                            <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
+                        <% end %><br>
                     </div>
                 </div>
             </div>
-            
-        
-            <div data-toggle-target="visibleOnLoad" >
-                <div class="card-footer no-gutters">
+
+            <div class="card-footer no-gutters">
+    
+                <div data-toggle-target="visibleOnLoad" >
                     <button type="button" class="btn btn-link btn-sm" 
                         data-action="click->toggle#showhide">
-                        view/edit
+                        hide
                     </button>
                     
                     <span class="badge bg-light text-dark">
                         <%= link_to "delete X", meal_recipe_path(meal_recipe),
                             method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
                     </span>
+                    
                 </div>
             </div>
 
-
-
-            <div data-toggle-target="hiddenOnLoad" class="d-none">
-
-                
-
-                <div class="card-footer no-gutters">
-                    <% if meal_plan.status=="draft" %>
-                        <%= render "meal_recipe_portion_info", leftover: leftover, meal_recipe: meal_recipe %>
-                    <% else %>
-                        <span class="badge bg-light text-dark">
-                            <%= pluralize(round_nicely(meal_recipe.portions), "portion") -%>
-                        </span>
-                    <% end %>
-                </div>
-                <div class="card-footer no-gutters">
-
-                    <div data-controller="toggle">
-                        <div data-toggle-target="visibleOnLoad">
-                            <button type="button" class="btn btn-link btn-sm" 
-                                    data-action="click->toggle#showhide">Edit ingredients
-                            </button>
-                        </div>
-
-                        <div data-toggle-target="hiddenOnLoad" class="d-none">
-                            <a style="color:black">Ingredients</a>
-                            <button type="button" class="btn btn-link btn-sm" 
-                                    data-action="click->toggle#showhide">
-                                    (hide)
-                            </button>
-                            
-                            <%= turbo_stream_from("meal_recipe_ingredients_list#{meal_recipe.id}") %>
-                            <%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
-                                
-                                        <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
-                                            <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: @meal_plan %>
-                                        <% end %>
-                            <% end %>   
-
-                            Add ingredient to this recipe:
-                            <%= turbo_frame_tag "meal_ingredient_form_mealrecipe#{meal_recipe.id}" do %>
-                                <%= render 'meal_ingredients/form',  url: meal_recipe_meal_ingredients_path(meal_recipe), meal_ingredient: @meal_ingredient, method: :post, id: "mealrecipe#{meal_recipe.id}mealingredient#{@meal_ingredient.id}" %>
-                            <% end %><br>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-footer no-gutters">
-        
-                    <div data-toggle-target="visibleOnLoad" >
-                        <button type="button" class="btn btn-link btn-sm" 
-                            data-action="click->toggle#showhide">
-                            hide
-                        </button>
-                        
-                        <span class="badge bg-light text-dark">
-                            <%= link_to "delete X", meal_recipe_path(meal_recipe),
-                                method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-                        </span>
-                        
-                    </div>
-                </div>
-
-            </div>
+    </div>
         </div>
     </div>
         

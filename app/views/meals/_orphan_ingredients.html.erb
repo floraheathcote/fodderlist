@@ -1,0 +1,36 @@
+<div data-controller="toggle">
+    <div class="card no-gutters">
+        <% if meal.meal_ingredients.no_recipe.first.present? %>
+            <div class="card-body no-gutters">
+                <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
+                <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
+                
+                    <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
+                        <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %> 
+                    <% end %>
+                
+                <% end %>
+                
+            </div>
+        <% end %>
+        
+        <div data-toggle-target="visibleOnLoad">
+            <button type="button" class="btn btn-link btn-xxs" 
+                        data-action="click->toggle#showhide">
+                        add an ingredient
+            </button>
+        </div>
+
+        <div data-toggle-target="hiddenOnLoad" class="d-none">
+            <button type="button" class="btn btn-link " 
+                        data-action="click->toggle#showhide">
+                        hide form
+            </button>
+            <div class="card-footer no-gutters">
+                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post, id: "meal#{meal.id}mealingredient#{meal_ingredient.id}" %><br>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

@@ -98,6 +98,10 @@ body > .alert {
   }
 }
 
+a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
+  cursor: pointer;
+}
+
 // .font_handwriting {
 // font-family: 'Nothing You Could Do', cursive;
 // color: blue;

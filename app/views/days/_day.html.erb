@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="card text-white bg-light mb-3" style="max-width: 45rem;">
+                <div class="card bg-light mb-3" style="max-width: 45rem;">
                     <div class="card-body">
                         <%= turbo_stream_from "meallist#{day.id}" %>
                         <%= turbo_frame_tag "meallist#{day.id}" do %> 

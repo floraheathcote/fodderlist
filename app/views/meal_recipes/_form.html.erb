@@ -1,7 +1,7 @@
 
 <%= form_with(scope: :meal_recipe, url: url, local: true, method: method) do |form| %>
 
-<%= render 'shared/errors', object: @meal_recipe %>
+    <%= render 'shared/errors', object: @meal_recipe %>
     
     <%= collection_select(:meal_recipe, :recipe_id, Recipe.all, :id, :name, 
         {:prompt => 'Add recipe to meal'}, 
@@ -9,14 +9,16 @@
         :style=>'width:100%', 
         :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
     
-    <%#= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
-
+    <%#= form.submit "Add recipe", class: 'btn btn-primary' %>
+    <span class="badge bg-light text-dark">
+        <%= form.submit "Add ffrecipe" %>
+    </span>
 
     <%= form.hidden_field :meal_id, value: meal.id %>
 
-    <br>
-    <%= form.submit "Add recipe", class: 'btn btn-primary' %>
-
-  
-
 <% end %>
+
+
+<span class="badge bg-light text-dark">
+    <%= form.submit "Add recipe" %>
+</span>

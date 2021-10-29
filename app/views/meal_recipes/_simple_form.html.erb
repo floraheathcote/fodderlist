@@ -10,12 +10,14 @@
             :onchange=>"$('#accordion').accordion('activate',2);$('#blind').show('blind', 500)"})%>
         
         <%#= form.text_field :portions, class: 'form-control', placeholder: "number of portions" %>
-
+        <span class="badge bg-light text-dark">
+            <%= form.submit "Add recipe" %>
+        </span>
 
         <%= form.hidden_field :meal_id, value: meal.id %>
 
-        <br>
-        <%= form.submit "Add recipe", class: 'btn btn-primary' %>
+        
+        <%#= form.submit "Add recipe", class: 'btn btn-primary' %>
 
     <% end %>
 

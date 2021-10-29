@@ -1,136 +1,95 @@
 <%= turbo_frame_tag "meal#{meal.id}" do %> 
-    <div data-controller="toggle">
-                        
-        <div data-toggle-target="visibleOnLoad">
-            <strong style="color:black;"><%= meal.name %></strong>
-            <button type="button" class="btn btn-link " 
-                        data-action="click->toggle#showhide">
-                        view
-            </button>
-            <%= render "meal_recipe_list", meal: meal %>
+
+    
+
+    <div data-controller="toggle">                        
+        <div data-toggle-target="visibleOnLoad">            
+            <a data-action="click->toggle#showhide" class="pointer">
+                        <%= meal.name %>
+            </a>
+            <% if meal.notes.present? %>
+                <span style = "font-family:Nothing You Could Do" > (<%= meal.notes %>)</span><br><br>
+            <% end%>
+            <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
+                <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %> 
+            <% end %>
         </div>
-                            
-
-                        
                 
-                <div data-toggle-target="hiddenOnLoad" class="d-none">
-                    
-                    <button type="button" class="btn btn-primary " 
+        <div data-toggle-target="hiddenOnLoad" class="d-none">
+            <div class="container-fluid rounded bg-white">
+                <br><%= meal.time.strftime('%l:%M%P') %><br>
+                
+                <% if @meal_plan.status=="draft" %><small>
+                    <%= link_to "Edit", edit_meal_path(meal) %>
+                    <%= link_to "Delete X", meal_path(meal), 
+                            method: :delete, class: "text-danger", 
+                            data: { confirm: 'Are you sure you want to delete the meal?' } %>
+                <% end %></small><br><br>
+
+                <% if @meal_plan.status=="draft" %>
+                    <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @meal_recipe, data: {controller: 'hello', action: 'turbo:submit-end->hello#reset'} %>
+                <% end %>
+
+                <button type="button" class="btn btn-link btn-xxs" 
+                            data-action="click->toggle#showhide">
+                            Hide
+                </button>
+            </div>
+            <br><%= render "orphan_ingredients", meal: meal, meal_ingredient: meal_ingredient %>
+        </div>
+
+        <%= render "meal_recipe_list", meal: meal %> <br>
+
+        <% if MealWithLeftover.meal(meal).present? %>
+            <h6>Leftovers added to meal:</h6>
+        <% end %>
+
+        <%= turbo_stream_from("added_leftovers_list#{meal.id}") %>
+        <%= turbo_frame_tag "added_leftovers_list#{meal.id}" do %>
+                <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |meal_with_leftover| %>
+                        <%= turbo_frame_tag "meal_with_leftover#{meal_with_leftover.id}", src: leftover_meal_with_leftover_path(meal_with_leftover.leftover, meal_with_leftover), loading: :eager do %>
+                                LOADING meal_with_leftover: <%= meal_with_leftover.id %>
+                        <% end %>
+                    <br>
+                <% end %>
+        <% end %>
+
+        Leftovers available to add to meal:
+
+        <div data-controller="toggle">
+            <%#= link_to "Leftovers available to add to meal:", "#", :data => { :action=> "click->toggle#showhide" } %>
+        
+            <div data-toggle-target="visibleOnLoad" >
+                <button type="button" class="btn btn-link btn-sm"  
                                 data-action="click->toggle#showhide">
-                                Hide meal
-                    </button>
-                        <% if @meal_plan.status=="draft" %>
-                                <%= link_to "Edit meal", edit_meal_path(meal) %>
-                                <%= link_to "Delete meal", meal_path(meal), 
-                                        method: :delete, class: "text-danger", 
-                                        data: { confirm: 'Are you sure you want to delete the meal?' } %>
-                        <% end %><br>
-                        <div class="col-sm">
-                            <%= meal.time.strftime('%l:%M%P') %>
-                        </div>
-                        <div class="col-sm">
-                            <% if @meal_plan.status=="draft" %>
-                                <%= render 'meal_recipes/simple_form', meal: meal, meal_recipe: @meal_recipe, data: {controller: 'hello', action: 'turbo:submit-end->hello#reset'} %>
-                            <% end %>                
-                        </div>
+                                Show/add leftovers
+                </button>
+            </div>
 
-                        <% unless meal_recipes.present? %>
-                            <div class="row">
-                                <div class="col-1">
-                                    <%= image_tag( 'https://reciping.s3.us-east-2.amazonaws.com/plate.jpg', class: "rounded-circle", size: '60', style: 'object-fit: cover' ) %>
-                                </div>
-                                <div class="col-4">
-                                    <h6>Add recipe using form above</h6><br><br><br><br>
-                                </div>
-                            </div>
-                        <% end %>
+            <div data-toggle-target="hiddenOnLoad" class="d-none">
+                <button type="button" class="btn btn-primary" 
+                                data-action="click->toggle#showhide">
+                                Hide
+                </button>
 
-                        <% if meal.notes.present? %>
-                            Notes: <span style = "font-family:Nothing You Could Do" ><%= meal.notes %></span><br><br>
-                        <% end%><br>
+                <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
+                <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
+                    <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
+                        <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
+                        <%= render "meals/available_leftover", leftover: leftover, meal: meal %>
+                    <% end %>
+                <% end %>
+            </div>
 
-                        <%= render "meal_recipe_list", meal: meal %> <br>
-
-                        <h6>Other food/drinks in this meal:</h6>
-                        
-                        <div data-controller="toggle" 
-                                data-toggle-hide-text="Hide ingredients" 
-                                data-toggle-show-text="Show/add ingredients">
-                            
-                           <br>
-
-                            <div data-toggle-target="visibleOnLoad" >initial content
-                                <button type="button" class="btn btn-primary " 
-                                    data-action="click->toggle#showhide">
-                                    Edit ingredients
-                                </button>
-                            </div>
-
-                            <div data-toggle-target="hiddenOnLoad" class="d-none">
-                                <button type="button" class="btn btn-primary " 
-                                    data-action="click->toggle#showhide">
-                                    Hide orphan ingredients
-                                </button>
-                            </div>
-                                <ul>
-                                    <%= turbo_stream_from("orphan_ingredients_list#{meal.id}") %>
-                                    <%= turbo_frame_tag "orphan_ingredients_list#{meal.id}" do %>
-                                            <% meal.meal_ingredients.no_recipe.each do |meal_ingredient| %>
-                                                <%= render "meal_ingredients/meal_ingredient", meal_ingredient: meal_ingredient, meal_plan: @meal_plan %> 
-                                            <% end %>
-                                    <% end %>
-                                </ul>
-                                
-                                <%= render 'meal_ingredients/form',  url: meal_meal_ingredients_path(meal), meal_ingredient: meal_ingredient, method: :post, id: "meal#{meal.id}mealingredient#{meal_ingredient.id}" %><br>
-                            </div>
-
-                        <% if MealWithLeftover.meal(meal).present? %>
-                            <h6>Leftovers added to meal:</h6>
-                        <% end %>
-
-                        <%= turbo_stream_from("added_leftovers_list#{meal.id}") %>
-                        <%= turbo_frame_tag "added_leftovers_list#{meal.id}" do %>
-                                <% MealWithLeftover.meal(meal).includes(:leftover => :recipe).each do |meal_with_leftover| %>
-                                        <%= turbo_frame_tag "meal_with_leftover#{meal_with_leftover.id}", src: leftover_meal_with_leftover_path(meal_with_leftover.leftover, meal_with_leftover), loading: :eager do %>
-                                                LOADING meal_with_leftover: <%= meal_with_leftover.id %>
-                                        <% end %>
-                                    <br>
-                                <% end %>
-                        <% end %>
-
-                        <%# title_already_drawn = false %>
-                        <br><h6>Leftovers available to add to meal:</h6>
-            
-                        <div data-controller="toggle">
-                        
-                            <div data-toggle-target="visibleOnLoad" >initial content
-                                <button type="button" class="btn btn-primary " 
-                                                data-action="click->toggle#showhide">
-                                                Show/add leftovers
-                                </button>
-                            </div>
-
-                            <div data-toggle-target="hiddenOnLoad" class="d-none">
-                                <button type="button" class="btn btn-primary " 
-                                                data-action="click->toggle#showhide">
-                                                Hide
-                                </button>
-
-                                <%= turbo_stream_from("available_leftover_list#{meal.id}") %>
-                                <%= turbo_frame_tag "available_leftover_list#{meal.id}" do %>
-                                    <% Leftover.user(current_user).made_before(meal.time).includes(:recipe).each do |leftover| %>
-                                        <%#= turbo_stream_from("available_leftover#{leftover.id}") %>
-                                        <%= render "meals/available_leftover", leftover: leftover, meal: meal %>
-                                    <% end %>
-                                <% end %>
-                            </div>
-
-                        </div>
-                        
+        </div>
                     
-                </div>
+                
+            </div>
+        
+
+
+
             </div>
         </div>
     </div>
-<br>
 <% end %>

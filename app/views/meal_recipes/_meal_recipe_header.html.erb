@@ -1,12 +1,9 @@
-<div class="card no-gutters">
-    <div class="card-body no-gutters">
-        <div class="row">
-            <div class="col-md-auto no-gutters">
-                <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
-            </div>
-            <div class="col no-gutters">
-                <p class="card-text"><small class="text-muted"><%= meal_recipe.recipe.name %></small></p>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-auto no-gutters">
+        <%= image_tag(meal_recipe.recipe.main_image, class: "rounded-circle", size: '60', style: 'object-fit: cover')  %> 
     </div>
- </div>
+    <div class="col no-gutters">
+        <p class="card-text"><small class="text-muted"><%= meal_recipe.recipe.name %></small></p>
+        
+    </div>
+</div>

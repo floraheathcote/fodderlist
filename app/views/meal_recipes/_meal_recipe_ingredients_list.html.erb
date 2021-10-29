@@ -1,0 +1,5 @@
+<%= turbo_frame_tag("meal_recipe_ingredients_list#{meal_recipe.id}") do %>
+    <% meal_recipe.meal_ingredients.includes(:ingredient).each do |meal_ingredient| %>
+        <%= render 'meal_ingredients/meal_ingredient', meal_ingredient: meal_ingredient, meal_plan: meal_plan %>
+    <% end %>
+<% end %>

@@ -1,2 +1,5 @@
 <%#= turbo_stream.replace "mr_ingredients_bullets#{@meal_recipe.id}", partial: "ingredient_list", locals: { meal_recipe: @meal_recipe, meal_plan: @meal_plan } %>
-<%= turbo_stream.replace "meal_recipe#{@meal_recipe.id}", partial: "meal_recipe", locals: { meal_recipe: @meal_recipe, meal_plan: @meal_plan, leftover: @leftover, meal_ingredient: @meal_ingredient } %>
+<%#= turbo_stream.replace "meal_recipe#{@meal_recipe.id}", partial: "meal_recipe", locals: { meal_recipe: @meal_recipe, meal_plan: @meal_plan, leftover: @leftover, meal_ingredient: @meal_ingredient } %>
+
+<%= turbo_stream.replace "portion_info_mr#{@meal_recipe.id}", partial: "meal_recipes/meal_recipe_portion_info", locals: { meal_recipe: @meal_recipe, leftover: @leftover} %>
+<%= turbo_stream.replace "meal_recipe_ingredients_list#{@meal_recipe.id}", partial: "meal_recipes/meal_recipe_ingredients_list", locals: { meal_recipe: @meal_recipe, meal_plan: @meal_plan} %>
