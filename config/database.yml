@@ -82,6 +82,6 @@ production:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: reciping_production
+  database: reciping_production_nur9
   username: reciping
   password: <%= ENV['RECIPING_DATABASE_PASSWORD'] %>
