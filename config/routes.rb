@@ -67,7 +67,6 @@ Rails.application.routes.draw do
   
 
   get '/feed', to: 'pins#feed'
-  get '/abc', to: 'home#abc_tmp'
 
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
