@@ -1,7 +1,7 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: reciping_production
+    databaseName: reciping_production_nur9
     user: reciping
 
 services:
