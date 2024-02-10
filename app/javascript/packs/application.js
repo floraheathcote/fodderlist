@@ -5,27 +5,29 @@
 
 
 
-require("@rails/ujs").start()
-require("@rails/activestorage").start()
-require("channels")
-require("local-time").start()
-require("@hotwired/turbo-rails")
-require("@rails/actiontext")
-require("trix")
+import 'select2/dist/css/select2.min.css';
+import './select2_init';
+import 'bootstrap';
+import 'data-confirm-modal';
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+import 'select2';
 
-window.Rails = Rails
+require("@rails/ujs").start();
+require("@rails/activestorage").start();
+require("channels");
+require("local-time").start();
+require("@hotwired/turbo-rails");
+require("@rails/actiontext");
+require("trix");
 
-import 'bootstrap'
-import 'data-confirm-modal'
+window.Rails = Rails;
 
 $(document).on("turbo:load", () => {
   // console.log("turbo!!")
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover()
-})
-
-
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+});
 
 // import "controllers"
-
-import "controllers"
+import "controllers";

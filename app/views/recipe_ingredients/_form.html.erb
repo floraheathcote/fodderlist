@@ -9,7 +9,9 @@
       <div class="form-group">
         <h5><%#= form.label :Ingredient, "add ingredient:" %></h5>
             <div class="dropdown">
-              <%= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
+                  <%#= collection_select(:recipe_ingredient, :ingredient_id, Ingredient.order('name ASC'), :id, :name, prompt: true, :include_blank => true) %>
+                  <%#= form.select :ingredient_id, Ingredient.order('name ASC').pluck(:name, :id), { include_blank: true }, { class: 'form-control select2' } %>
+                  <%= form.select :ingredient_id, Ingredient.all.collect { |ingredient| [ingredient.name, ingredient.id] }, {}, class: 'select2' %>
             </div>
       </div>
 
@@ -35,3 +37,4 @@
     <%= link_to "Cancel", @recipe, class: "btn btn-link" %>
    
 <% end %>
+

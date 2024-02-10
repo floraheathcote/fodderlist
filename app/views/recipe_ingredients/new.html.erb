@@ -4,12 +4,12 @@
 <%#= render 'form', recipe_ingredient: @recipe_ingredient, recipe: @recipe %>
 <%= turbo_frame_tag(dom_id(@recipe_ingredient)) do %>
     <%= render 'recipe_ingredients/form', scope: :recipe_ingredient, 
-                                    url: recipe_ingredient_group_recipe_ingredients_path(@recipe_ingredient_group), 
-                                    method: :post %>
+            url: recipe_ingredient_group_recipe_ingredients_path(@recipe_ingredient_group), 
+            method: :post %>
 <% end %>
 
 <%= turbo_frame_tag(dom_id(@recipe_ingredient_group)) do %>
     <%= render 'recipe_ingredients/form', scope: :recipe_ingredient, 
-                                    url: recipe_ingredient_group_recipe_ingredients_path(@recipe_ingredient_group), 
-                                    method: :post %>
+            url: recipe_ingredient_group_recipe_ingredients_path(@recipe_ingredient_group), 
+            method: :post %>
 <% end %>

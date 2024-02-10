@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+
+  def handle_unverified_request
+    reset_session
+  end
+
   include Pundit
 
   protect_from_forgery with: :exception

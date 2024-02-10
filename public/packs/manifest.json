@@ -1,13 +1,13 @@
 {
-  "application.js": "/packs/js/application-87ffc39c7fa79ad2253f.js",
-  "application.js.map": "/packs/js/application-87ffc39c7fa79ad2253f.js.map",
+  "application.js": "/packs/js/application-e95196a60bbb95372895.js",
+  "application.js.map": "/packs/js/application-e95196a60bbb95372895.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-87ffc39c7fa79ad2253f.js"
+        "/packs/js/application-e95196a60bbb95372895.js"
       ],
       "js.map": [
-        "/packs/js/application-87ffc39c7fa79ad2253f.js.map"
+        "/packs/js/application-e95196a60bbb95372895.js.map"
       ]
     },
     "imagesloaded": {
@@ -17,10 +17,20 @@
       "js.map": [
         "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map"
       ]
+    },
+    "select2_init": {
+      "js": [
+        "/packs/js/select2_init-d3b417736f2f359341f4.js"
+      ],
+      "js.map": [
+        "/packs/js/select2_init-d3b417736f2f359341f4.js.map"
+      ]
     }
   },
   "imagesloaded.js": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js",
   "imagesloaded.js.map": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map",
+  "select2_init.js": "/packs/js/select2_init-d3b417736f2f359341f4.js",
+  "select2_init.js.map": "/packs/js/select2_init-d3b417736f2f359341f4.js.map",
   "vendors~actioncable.js": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js",
   "vendors~actioncable.js.map": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js.map"
 }
