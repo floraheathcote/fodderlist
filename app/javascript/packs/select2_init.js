@@ -5,3 +5,4 @@ $(document).on('turbo:load', function() {
           allowClear: true
     });
 });
+
