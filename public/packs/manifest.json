@@ -1,36 +1,40 @@
 {
-  "application.js": "/packs/js/application-e95196a60bbb95372895.js",
-  "application.js.map": "/packs/js/application-e95196a60bbb95372895.js.map",
+  "actioncable.js": "/packs/js/actioncable-b39445dceebf0aa373e4.chunk.js",
+  "actioncable.js.map": "/packs/js/actioncable-b39445dceebf0aa373e4.chunk.js.map",
+  "application.css": "/packs/css/application-553fa537.css",
+  "application.js": "/packs/js/application-bd16aefc80204c3155d5.js",
+  "application.js.map": "/packs/js/application-bd16aefc80204c3155d5.js.map",
   "entrypoints": {
     "application": {
+      "css": [
+        "/packs/css/application-553fa537.css"
+      ],
       "js": [
-        "/packs/js/application-e95196a60bbb95372895.js"
+        "/packs/js/application-bd16aefc80204c3155d5.js"
       ],
       "js.map": [
-        "/packs/js/application-e95196a60bbb95372895.js.map"
+        "/packs/js/application-bd16aefc80204c3155d5.js.map"
       ]
     },
     "imagesloaded": {
       "js": [
-        "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js"
+        "/packs/js/imagesloaded-c50719650a5d7c0bbcc4.js"
       ],
       "js.map": [
-        "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map"
+        "/packs/js/imagesloaded-c50719650a5d7c0bbcc4.js.map"
       ]
     },
     "select2_init": {
       "js": [
-        "/packs/js/select2_init-d3b417736f2f359341f4.js"
+        "/packs/js/select2_init-dec2a0ce2542e8bcf0f1.js"
       ],
       "js.map": [
-        "/packs/js/select2_init-d3b417736f2f359341f4.js.map"
+        "/packs/js/select2_init-dec2a0ce2542e8bcf0f1.js.map"
       ]
     }
   },
-  "imagesloaded.js": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js",
-  "imagesloaded.js.map": "/packs/js/imagesloaded-d6d14cfd40d69fee9073.js.map",
-  "select2_init.js": "/packs/js/select2_init-d3b417736f2f359341f4.js",
-  "select2_init.js.map": "/packs/js/select2_init-d3b417736f2f359341f4.js.map",
-  "vendors~actioncable.js": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js",
-  "vendors~actioncable.js.map": "/packs/js/vendors~actioncable-a9a439982dea30932847.chunk.js.map"
+  "imagesloaded.js": "/packs/js/imagesloaded-c50719650a5d7c0bbcc4.js",
+  "imagesloaded.js.map": "/packs/js/imagesloaded-c50719650a5d7c0bbcc4.js.map",
+  "select2_init.js": "/packs/js/select2_init-dec2a0ce2542e8bcf0f1.js",
+  "select2_init.js.map": "/packs/js/select2_init-dec2a0ce2542e8bcf0f1.js.map"
 }
