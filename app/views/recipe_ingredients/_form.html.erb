@@ -13,9 +13,10 @@
                   <%#= form.select :ingredient_id, Ingredient.order('name ASC').pluck(:name, :id), { include_blank: true }, { class: 'form-control select2' } %>
                   <%#= form.select :ingredient_id, Ingredient.all.collect { |ingredient| [ingredient.name, ingredient.id] }, {}, {id: "select2-ingredient-#{rig.id}", class: 'select2'} %>
                   <%= form.select :ingredient_id, 
-                        Ingredient.order(name: :asc).collect { |ingredient| [ingredient.name, ingredient.id] }, 
+                        Ingredient.order(name: :asc).collect { |ingredient| [ingredient.name, ingredient.id] } + [['Add new ingredient...', 'new']], 
                         { include_blank: true }, 
                         { id: "select2-ingredient-#{rig.id}", class: 'select2' } %>
+
 
 
             </div>

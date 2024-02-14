@@ -1,2 +1,3 @@
-
-<%= turbo_stream.prepend("#{@ingredient_category.name}", @ingredient) %>
+<%= turbo_stream.prepend("#{@ingredient_category.name}", partial: "ingredients/ingredient", locals: { ingredient: @ingredient }) %>
+<%#= turbo_stream.eval 'document.getElementById("ingredient_form").reset();' %>
+<%#= turbo_stream.replace "ingredient_form", partial: "ingredients/form", locals: { ingredient: Ingredient.new } %>
