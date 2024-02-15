@@ -7,7 +7,7 @@
                         
                                 <%= link_to main_image(recipe), recipe, class: 'card-img-top' %>
                                 <div class="card-body">
-                                    <h5 class="card-title"><%=recipe.name%></h5>
+                                    <h5 class="card-title"><%=link_to recipe.name, recipe %></h5>
                                     <p class="card-text"><small class="text-muted">Added <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.user.name %></small></p>
                                 </div>
                         </div>
