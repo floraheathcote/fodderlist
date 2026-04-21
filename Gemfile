@@ -35,6 +35,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Pin Psych to <4 so Rails 6.0's database.yml loader still resolves YAML aliases (<<: *default)
 gem 'psych', '< 4'
 
+# Embed V8 in-process so ExecJS stops shelling out to an external JS runtime
+# (Render's build image defaults to Bun, which autoprefixer-rails rejects).
+gem 'mini_racer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
